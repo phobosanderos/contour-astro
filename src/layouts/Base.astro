@@ -13,25 +13,28 @@ import c from "../content.json";
     <script is:inline>(function(d){d.className='js';d.dataset.accent="blue";try{var t=localStorage.getItem("ct-theme"),a=localStorage.getItem("ct-accent");if(t)d.dataset.theme=t;if(a)d.dataset.accent=a;}catch(e){}})(document.documentElement);</script>
     <link rel="stylesheet" href="/site.css">
   </head>
-  <body>
-    {/* 1. The Global Frame Utility Bars: Cleaned, Swapped, and Positioned to the Corners */}
-    <div class="metawrap note note--meta" aria-hidden="true" style="text-transform: uppercase;">
-      {/* Top Left Corner: "SURVEYING THE SITE" */}
-      <div class="meta-label meta-label--tl"><span>{c.header.span_2}</span></div>
+  <body class="is-loading" data-hero-generate="true">
+    <div id="app" class="site-container">
       
-      {/* Top Right Corner: Swapped to the live percentage counter tracker */}
-      <div class="meta-label meta-label--tr"><span><span class="preloader__count">0%</span></span></div>
-      
-      {/* Bottom Left Corner: Left completely empty to remove "HUMAN + MACHINE" */}
-      <div class="meta-label meta-label--bl"><span></span></div>
-      
-      {/* Bottom Right Corner: Swapped to display "REV. 2026" exactly where the percentage tracker was */}
-      <div class="meta-label meta-label--br"><span>{c.header.span_3}</span></div>
-    </div>
+      {/* The Global Frame Elements: Standard native placement with swapped keys */}
+      <div class="metawrap note note--meta" aria-hidden="true">
+        {/* Top Left corner: "SURVEYING THE SITE" */}
+        <div class="meta-label meta-label--tl"><span>{c.header.span_2}</span></div>
+        
+        {/* Top Right corner: Displays the active, animated percentage count tracker */}
+        <div class="meta-label meta-label--tr"><span><span class="preloader__count">0%</span></span></div>
+        
+        {/* Bottom Left corner: Stripped entirely to hide "HUMAN + MACHINE" */}
+        <div class="meta-label meta-label--bl"><span></span></div>
+        
+        {/* Bottom Right corner: Displays "REV. 2026" exactly where the counter used to sit */}
+        <div class="meta-label meta-label--br"><span>{c.header.span_3}</span></div>
+      </div>
 
-    {/* 2. Main Webpage Content Target Injector Slot */}
-    <slot />
+      <slot />
+    </div>
 
     <script is:inline src="/site.js" defer></script>
   </body>
 </html>
+
