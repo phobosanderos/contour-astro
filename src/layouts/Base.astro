@@ -1,35 +1,49 @@
 ---
 import c from "../content.json";
+import "../styles.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title = c.site.title, description = c.site.description } = Astro.props;
 ---
 
 <!doctype html>
 <html lang={c.site.lang}>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{c.site.title}</title>
-    <meta name="description" content={c.site.description}>
-    <link rel="icon" href="/img/favicon.svg">
-    <script is:inline>(function(d){d.className='js';d.dataset.accent="blue";try{var t=localStorage.getItem("ct-theme"),a=localStorage.getItem("ct-accent");if(t)d.dataset.theme=t;if(a)d.dataset.accent=a;}catch(e){}})(document.documentElement);</script>
-    
-    {/* Corrected Asset Routes using relative path indicators */}
-    <link rel="stylesheet" href="./site.css">
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <script is:inline>
+      (function (d) {
+        d.className = "js";
+        d.dataset.accent = "blue";
+        try {
+          var theme = localStorage.getItem("ct-theme");
+          var accent = localStorage.getItem("ct-accent");
+          if (theme) d.dataset.theme = theme;
+          if (accent) d.dataset.accent = accent;
+        } catch (e) {}
+      })(document.documentElement);
+    </script>
   </head>
   <body class="is-loading" data-hero-generate="true">
     <div id="app" class="site-container">
-      
-      {/* Global Frame Elements */}
-      <div class="metawrap note note--meta" aria-hidden="true" style="text-transform: uppercase;">
+      <div class="metawrap note note--meta" aria-hidden="true">
         <div class="meta-label meta-label--tl"><span>{c.header.span_2}</span></div>
-        <div class="meta-label meta-label--tr"><span><span class="preloader__count">0%</span></span></div>
-        <div class="meta-label meta-label--bl"><span></span></div>
-        <div class="meta-label meta-label--br"><span>{c.header.span_3}</span></div>
+        <div class="meta-label meta-label--tr"><span>{c.header.span_3}</span></div>
+        <div class="meta-label meta-label--bl"><span>{c.header.span_4}</span></div>
+        <div class="meta-label meta-label--br"><span><span class="preloader__count"></span></span></div>
       </div>
-
       <slot />
     </div>
-
-    {/* Corrected Script Asset Route */}
-    <script is:inline src="./site.js" defer></script>
+    <script>
+      import "../scripts.js";
+    </script>
   </body>
 </html>
