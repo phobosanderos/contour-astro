@@ -352,8 +352,18 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
 .credit{margin-top:1.5rem}
 
 /* footer */
-main{min-height:100svh;display:flex;flex-direction:column}
-.site-footer{position:relative;overflow:clip;padding-top:var(--section);padding-bottom:1.25rem;margin-top:auto}
+main{
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
+}
+.site-footer{
+  position:relative;
+  overflow:clip;
+  padding-top:var(--section);
+  padding-bottom:1.25rem;
+  margin-top:auto;
+}
 .footer-top{row-gap:2.5rem;padding-bottom:clamp(48px,8vw,120px)}
 .footer-claim{grid-column:1/span 6;max-width:16ch}
 .footer-claim .accent{color:var(--accent-text)}
@@ -361,19 +371,7 @@ main{min-height:100svh;display:flex;flex-direction:column}
 .footer-col ul{display:flex;flex-direction:column;gap:.35rem}
 .footer-sign{position:relative}
 .footer-mark{font-size:clamp(4rem,18.6vw,23rem);font-weight:500;line-height:.78;letter-spacing:-.065em;white-space:nowrap;margin-inline:-.04em}
-.tb{position:relative;width:max-content;max-width:100%;margin-top:2rem;border:1px solid var(--line-strong);background:var(--bg);transition:border-color var(--dur-1) var(--ease-out);display:none}
-.tb::before,.tb::after{content:"";position:absolute;width:9px;height:9px;border:solid var(--accent);pointer-events:none}
-.tb::before{border-width:1px 0 0 1px;top:-5px;left:-5px}
-.tb::after{border-width:0 1px 1px 0;bottom:-5px;right:-5px}
-.tb:hover{border-color:var(--ink)}
-.tb__cells{display:grid;grid-template-columns:repeat(3,auto)}
-.tb__cells>div{display:flex;flex-direction:column;gap:.35rem;padding:.7rem 1rem .8rem}
-.tb__cells>div+div{border-left:1px solid var(--line-strong)}
-.tb dt{color:var(--muted)}
-.tb__val{font-size:1.9rem;line-height:1;color:var(--ink);font-variant-numeric:tabular-nums}
-.tb__cap{display:flex;justify-content:space-between;gap:2rem;padding:.5rem 1rem;border-top:1px solid var(--line-strong);color:var(--muted)}
-.tb__link{color:var(--accent-text)}
-.tb__link::after{content:"";position:absolute;inset:0}
+.tb{display:none}
 .footer-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.75rem;margin-top:1.25rem;padding-top:1rem;border-top:1px solid var(--line)}
 .copy{display:flex;flex-wrap:wrap;column-gap:.5em}
 .copy span+span::before{content:"· "}
