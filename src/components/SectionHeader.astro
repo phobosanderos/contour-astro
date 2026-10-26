@@ -3,15 +3,11 @@ import c from "../content.json";
 ---
 
 <a class="skip-note" href="#main">{c.header.a_1}</a>
-
-{/* 1. Core Preloader System Layer (Restored to keep layout from breaking or centering) */}
 <div class="preloader" aria-hidden="true">
   <div class="preloader__meta-note"><span>{c.header.span_2}</span><span>{c.header.span_3}</span></div>
   <svg class="monogram preloader__mark" style="opacity: 0; width: 0; height: 0;" viewBox="0 0 58 40" aria-hidden="true"><path d="M0 0" /></svg>
   <div class="preloader__meta-note"><span>{c.header.span_4}</span><span><span class="preloader__count"></span></span></div>
 </div>
-
-{/* 2. Main Live Navigation Sticky Header */}
 <header class="site-header wrap">
   <a class="brand" href="#main" aria-label={`${c.site.title}, back to top`}>
     <span class="brand__name note note--int" set:html={c.header.span_5_html}></span>
@@ -33,15 +29,3 @@ import c from "../content.json";
   </div>
   <div class="hd-rule" aria-hidden="true"><span class="hd-rule__fill"></span><span class="hd-rule__tag note"></span></div>
 </header>
-
-{/* 3. Global Frame Overlay Bars (Swapped, restyled, and locked to the corners) */}
-<div class="frame-labels note note--meta" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 999; text-transform: uppercase;">
-  {/* Top Left corner: "SURVEYING THE SITE" */}
-  <span style="position: fixed; top: var(--wrap-padding, 1.5rem); left: var(--wrap-padding, 1.5rem); font-family: var(--font-mono, monospace);">{c.header.span_2}</span>
-  
-  {/* Top Right corner: Displays the percentage indicator loading tracking string dynamically */}
-  <span class="preloader__count" style="position: fixed; top: var(--wrap-padding, 1.5rem); right: var(--wrap-padding, 1.5rem); font-family: var(--font-mono, monospace);">0%</span>
-  
-  {/* Bottom Right corner: Displays "REV. 2026" right where the percentage tracker used to sit */}
-  <span style="position: fixed; bottom: var(--wrap-padding, 1.5rem); right: var(--wrap-padding, 1.5rem); font-family: var(--font-mono, monospace);">{c.header.span_3}</span>
-</div>
