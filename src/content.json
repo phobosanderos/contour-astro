@@ -49,7 +49,7 @@
     "span_20": "0",
     "span_21": "Privacy spec · rev. 2026",
     "a_22": "Read →",
-    "span_23": "© 2026 Ada Ferrer",
+    "span_23": "© 2026 Vipul M.R",
     "span_24": "Designed and built in Lisbon",
     "span_25_html": "Press <kbd>G</kbd> for the grid · <kbd>⌘K</kbd> for everything else",
     "a_26": "Privacy",
@@ -160,7 +160,7 @@
     "span_2": "Reply within one working day",
     "h2_3": "Tell me what you're making.",
     "a_4_html": "Send a short brief <span class=\"arrow\" aria-hidden=\"true\">↓</span>",
-    "a_5": "Or write to hello@example.com",
+    "a_5": "Or write to phobosanderos@gmail.com",
     "p_6": "What it is, when it has to launch and which part worries you. Rough notes are fine.",
     "text_7": "Leave this field empty",
     "span_8": "Name",
@@ -178,7 +178,7 @@
     "p_20": "Your brief is in. I will reply within one working day.",
     "button_21": "Send another",
     "p_22_html": "I use your details only to reply to you. <a class=\"link link--inline\" href=\"/privacy/\">Privacy policy</a>",
-    "p_23_html": "Forms by <a class=\"link link--inline\" href=\"https://formgong.com\" rel=\"noopener\">Formgong</a>"
+    "p_23_html": "p_23_html": "© 2026 Phobos and Eros. All Rights Reserved."
   },
   "approach": {
     "span_1": "[01] Approach",
@@ -192,6 +192,6 @@
     "span_9": "the launch.",
     "span_10": "the launch.",
     "span_11": "tracking −0.05em",
-    "p_12": "Studios bring the concept. I make sure it survives production. If an uneven grid is what makes a page feel alive, I change the code to fit the grid, not the other way round."
+    "p_12": "You bring your vision. I give it life. If strecthing the text is what makes the design speak for itself, I change the design to fit the text, not the other way round."
   }
 }
