@@ -3,17 +3,14 @@ import c from "../content.json";
 ---
 
 <a class="skip-note" href="#main">{c.header.a_1}</a>
-
-{/* Preloader Layer: Includes a hidden placeholder to clear the timeline wait freeze */}
 <div class="preloader" aria-hidden="true">
   <div class="preloader__meta-note"><span>{c.header.span_2}</span><span>{c.header.span_3}</span></div>
-  {/* The hidden script anchor path below fixes the timeline freeze loop */}
-  <svg class="monogram preloader__mark is-plotting" style="opacity: 0; width: 1px; height: 1px;" viewBox="0 0 58 40" aria-hidden="true"><path pathLength="1" d="M0 0" /></svg>
-  <div class="preloader__meta-note"><span>{c.header.span_4}</span><span><span class="preloader__count">0%</span></span></div>
+  <svg class="monogram preloader__mark is-plotting" viewBox="0 0 58 40" aria-hidden="true"><path pathLength="1" d="M34 37 16 31 11 34M.1 22H16.2"/><circle class="monogram__dot" cx="44" cy="20" r="1.6"/></svg>
+  <div class="preloader__meta-note"><span>{c.header.span_4}</span><span><span class="preloader__count"></span></span></div>
 </div>
-
 <header class="site-header wrap">
   <a class="brand" href="#main" aria-label={`${c.site.title}, back to top`}>
+    <svg class="monogram brand__mark is-plotting" viewBox="0 0 58 40" aria-hidden="true"><path pathLength="1" d="M34 37 16 31 11 34M.1 22H16.2"/><circle class="monogram__dot" cx="44" cy="20" r="1.6"/></svg>
     <span class="brand__name note note--int" set:html={c.header.span_5_html}></span>
   </a>
   <nav class="nav" aria-label="Main Navigation">
