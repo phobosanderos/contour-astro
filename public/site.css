@@ -352,6 +352,15 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
 .credit{margin-top:1.5rem}
 
 /* footer */
+main{
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
+}
+
+.site-footer{
+  margin-top:auto;
+}
 .site-footer{position:relative;overflow:clip;padding-top:var(--section);padding-bottom:1.25rem}
 .footer-top{row-gap:2.5rem;padding-bottom:clamp(48px,8vw,120px)}
 .footer-claim{grid-column:1/span 6;max-width:16ch}
