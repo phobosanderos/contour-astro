@@ -351,6 +351,128 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
 .fg-privacy + .credit{margin-top:.5rem}
 .credit{margin-top:1.5rem}
 
+/* contact media / brutalist futuristic motion shape */
+.cta__media{
+  grid-column:7/-1;
+  display:flex;
+  align-items:flex-end;
+  min-height:0;
+}
+
+.shape-scene{
+  position:relative;
+  width:100%;
+  height:clamp(220px,28vw,430px);
+  overflow:hidden;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--bg-raised) 78%, transparent), var(--bg)),
+    repeating-linear-gradient(
+      to right,
+      transparent 0,
+      transparent 23px,
+      color-mix(in srgb, var(--line) 72%, transparent) 24px,
+      transparent 25px
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 23px,
+      color-mix(in srgb, var(--line) 72%, transparent) 24px,
+      transparent 25px
+    );
+  border:1px solid var(--line);
+  box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--line) 45%, transparent);
+}
+
+.shape-grid{
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(135deg, transparent 0 48%, color-mix(in srgb, var(--accent) 16%, transparent) 48% 52%, transparent 52% 100%),
+    linear-gradient(45deg, transparent 0 48%, color-mix(in srgb, var(--accent) 10%, transparent) 48% 52%, transparent 52% 100%);
+  opacity:.8;
+}
+
+.shape-panel{
+  position:absolute;
+  inset:15% 16% 18% 16%;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--accent) 26%, transparent), transparent 42%),
+    linear-gradient(180deg, color-mix(in srgb, var(--bg) 80%, transparent), color-mix(in srgb, var(--bg-raised) 72%, transparent));
+  border:1px solid color-mix(in srgb, var(--accent) 52%, transparent);
+  transform:skewX(-18deg) rotate(18deg);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--line) 50%, transparent),
+    0 24px 50px -24px color-mix(in srgb, var(--accent) 50%, transparent);
+  animation:panel-drift 12s ease-in-out infinite alternate;
+}
+
+.shape-ring{
+  position:absolute;
+  inset:24% 26%;
+  border:1px solid color-mix(in srgb, var(--accent-text) 56%, transparent);
+  transform:rotate(45deg);
+  animation:ring-rotate 18s linear infinite;
+  box-shadow:0 0 0 1px color-mix(in srgb, var(--accent) 18%, transparent);
+}
+
+.shape-core{
+  position:absolute;
+  width:22%;
+  height:22%;
+  left:39%;
+  top:39%;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--accent) 82%, var(--bg)), color-mix(in srgb, var(--accent) 64%, transparent));
+  border:1px solid color-mix(in srgb, var(--accent-text) 74%, transparent);
+  transform:rotate(45deg);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--accent) 28%, transparent),
+    0 18px 28px -12px color-mix(in srgb, var(--accent) 70%, transparent);
+  animation:core-pulse 8s ease-in-out infinite;
+}
+
+@keyframes panel-drift{
+  0%{
+    transform:skewX(-18deg) rotate(14deg) translate(-10px,8px) scale(.96);
+  }
+  100%{
+    transform:skewX(-18deg) rotate(22deg) translate(10px,-12px) scale(1.06);
+  }
+}
+
+@keyframes ring-rotate{
+  0%{
+    transform:rotate(0deg) scale(0.94);
+  }
+  100%{
+    transform:rotate(360deg) scale(1.08);
+  }
+}
+
+@keyframes core-pulse{
+  0%,100%{
+    transform:rotate(45deg) scale(.96);
+    filter:saturate(.9);
+  }
+  50%{
+    transform:rotate(45deg) scale(1.08);
+    filter:saturate(1.25);
+  }
+}
+
+@media (max-width: 767px){
+  .cta__lead,
+  .cta__media,
+  .fg{
+    grid-column:1/-1;
+  }
+
+  .shape-scene{
+    height:240px;
+  }
+}
+
 /* footer */
 .site-footer{position:relative;overflow:clip;padding-top:clamp(4rem,6vw,6rem);padding-bottom:1rem}
 .footer-top{row-gap:1.5rem;padding-bottom:clamp(2rem,4vw,4rem)}
