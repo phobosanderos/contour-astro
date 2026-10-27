@@ -422,122 +422,25 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--line) 45%, transparent);
 }
 
-.shape-grid{
+.shape-slab{
   position:absolute;
-  inset:0;
-  opacity:0.9;
+  inset:12% 18% 12% 18%;
+  border:1px solid color-mix(in srgb, var(--accent) 62%, transparent);
   background:
-    linear-gradient(135deg, transparent 0 47%, color-mix(in srgb, var(--accent) 18%, transparent) 47% 53%, transparent 53% 100%),
-    linear-gradient(45deg, transparent 0 47%, color-mix(in srgb, var(--accent) 12%, transparent) 47% 53%, transparent 53% 100%);
-  animation:grid-pan 18s linear infinite;
+    linear-gradient(90deg, transparent 0 18%, color-mix(in srgb, var(--accent) 18%, transparent) 18% 22%, transparent 22% 100%),
+    linear-gradient(180deg, color-mix(in srgb, var(--bg) 84%, transparent), color-mix(in srgb, var(--bg-raised) 82%, transparent));
+  transform:translateX(0);
+  animation:slab-move 12s cubic-bezier(.65,0,.35,1) infinite;
 }
 
-.shape-panel{
+.shape-cut{
   position:absolute;
-  inset:18% 18% 16% 18%;
-  border:1px solid color-mix(in srgb, var(--accent) 52%, transparent);
+  inset:22% 22% 22% 22%;
+  border-left:1px solid color-mix(in srgb, var(--accent-text) 70%, transparent);
+  border-right:1px solid color-mix(in srgb, var(--accent-text) 70%, transparent);
   background:
-    linear-gradient(135deg, color-mix(in srgb, var(--accent) 24%, transparent), transparent 42%),
-    linear-gradient(180deg, color-mix(in srgb, var(--bg) 80%, transparent), color-mix(in srgb, var(--bg-raised) 72%, transparent));
-  transform:skewX(-18deg) rotate(18deg);
-  box-shadow:
-    inset 0 0 0 1px color-mix(in srgb, var(--line) 50%, transparent),
-    0 18px 38px -18px color-mix(in srgb, var(--accent) 50%, transparent);
-  animation:panel-drift 12s cubic-bezier(.65,0,.35,1) infinite;
-}
-
-.shape-ring{
-  position:absolute;
-  inset:22% 27%;
-  border:1px solid color-mix(in srgb, var(--accent-text) 58%, transparent);
-  transform:rotate(45deg);
-  box-shadow:0 0 0 1px color-mix(in srgb, var(--accent) 18%, transparent);
-  animation:ring-rotate 13s linear infinite;
-}
-
-.shape-core{
-  position:absolute;
-  width:20%;
-  height:20%;
-  left:40%;
-  top:40%;
-  border:1px solid color-mix(in srgb, var(--accent-text) 74%, transparent);
-  background:
-    linear-gradient(135deg, color-mix(in srgb, var(--accent) 82%, var(--bg)), color-mix(in srgb, var(--accent) 64%, transparent));
-  transform:rotate(45deg);
-  box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--accent) 30%, transparent),
-    0 16px 28px -12px color-mix(in srgb, var(--accent) 70%, transparent);
-  animation:core-pulse 6s ease-in-out infinite;
-}
-
-@keyframes grid-pan{
-  0%{
-    transform:translate3d(0,0,0);
-    opacity:0.7;
-  }
-  50%{
-    transform:translate3d(-8px,10px,0);
-    opacity:1;
-  }
-  100%{
-    transform:translate3d(0,0,0);
-    opacity:0.7;
-  }
-}
-
-@keyframes panel-drift{
-  0%{
-    transform:skewX(-18deg) rotate(12deg) translate(-8px,8px) scale(0.96);
-  }
-  20%{
-    transform:skewX(-18deg) rotate(16deg) translate(-2px,4px) scale(0.98);
-  }
-  50%{
-    transform:skewX(-18deg) rotate(18deg) translate(0,0) scale(1);
-  }
-  80%{
-    transform:skewX(-18deg) rotate(22deg) translate(8px,-10px) scale(1.04);
-  }
-  100%{
-    transform:skewX(-18deg) rotate(12deg) translate(-8px,8px) scale(0.96);
-  }
-}
-
-@keyframes ring-rotate{
-  0%{
-    transform:rotate(0deg) scale(0.94);
-  }
-  25%{
-    transform:rotate(90deg) scale(1);
-  }
-  50%{
-    transform:rotate(180deg) scale(1.02);
-  }
-  75%{
-    transform:rotate(270deg) scale(1);
-  }
-  100%{
-    transform:rotate(360deg) scale(0.94);
-  }
-}
-
-@keyframes core-pulse{
-  0%,100%{
-    transform:rotate(45deg) scale(0.94);
-    filter:saturate(0.9);
-  }
-  25%{
-    transform:rotate(45deg) scale(0.99);
-  }
-  50%{
-    transform:rotate(45deg) scale(1.08);
-    filter:saturate(1.25);
-  }
-  75%{
-    transform:rotate(45deg) scale(0.99);
-  }
-}
+    linear-gradient(90deg, transparent 0 14%, color-mix(in srgb, var(--accent) 38%, transparent) 14% 16%, transparent 16% 84%, color-mix(in srgb, var(--accent) 38%,*
+
 
 /* footer */
 .site-footer{position:relative;overflow:clip;padding-top:clamp(4rem,6vw,6rem);padding-bottom:1rem}
