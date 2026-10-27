@@ -7,7 +7,12 @@ import c from "../content.json";
     <div class="footer-claim-wrap">
       <p class="footer-claim h3">
         Have a project that needs to move?
-        <button class="cal-trigger" type="button" aria-expanded="false" aria-controls="calendar-drawer">
+        <button
+          class="cal-trigger"
+          type="button"
+          aria-expanded="false"
+          aria-controls="calendar-drawer"
+        >
           Pick a time <span class="arrow" aria-hidden="true">→</span>
         </button>
       </p>
@@ -88,84 +93,3 @@ import c from "../content.json";
     </nav>
   </div>
 </footer>
-
-<script is:inline>
-  (() => {
-    const trigger = document.querySelector(".cal-trigger");
-    const drawer = document.getElementById("calendar-drawer");
-    const inlineEl = document.getElementById("cal-inline");
-    if (!trigger || !drawer || !inlineEl) return;
-
-    const root = document.documentElement;
-    const calLink = "phobosanderos";
-    let calLoaded = false;
-    let calMounted = false;
-
-    function currentTheme() {
-      return root.dataset.theme === "dark" ? "dark" : "light";
-    }
-
-    function ensureCalScript(cb) {
-      if (window.Cal) {
-        cb();
-        return;
-      }
-
-      const script = document.createElement("script");
-      script.src = "https://cal.com/assets/external/widget.js";
-      script.async = true;
-      script.onload = cb;
-      document.head.appendChild(script);
-    }
-
-    function mountCal() {
-      if (!window.Cal) return;
-      if (calMounted) {
-        inlineEl.innerHTML = "";
-      }
-
-      const theme = currentTheme();
-      window.Cal("inline", {
-        elementOrSelector: "#cal-inline",
-        calLink,
-        config: {
-          name: "Project enquiry",
-          theme,
-          layout: "month_view",
-        },
-      });
-
-      calMounted = true;
-      calLoaded = true;
-    }
-
-    function toggleDrawer() {
-      const isOpen = trigger.getAttribute("aria-expanded") === "true";
-      trigger.setAttribute("aria-expanded", String(!isOpen));
-      drawer.classList.toggle("is-open", !isOpen);
-      drawer.setAttribute("aria-hidden", String(isOpen));
-
-      if (!isOpen) {
-        ensureCalScript(mountCal);
-      }
-    }
-
-    trigger.addEventListener("click", toggleDrawer);
-
-    const themeObserver = new MutationObserver(() => {
-      if (!drawer.classList.contains("is-open") || !window.Cal || !calMounted) return;
-      inlineEl.innerHTML = "";
-      window.Cal("inline", {
-        elementOrSelector: "#cal-inline",
-        calLink,
-        config: {
-          name: "Project enquiry",
-          theme: currentTheme(),
-          layout: "month_view",
-        },
-      });
-    });
-
-    themeObserver.observe(root, { attributes: true, attributeFilter: ["data-theme"] });
-  })();
-</script>
