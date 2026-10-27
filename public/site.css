@@ -578,3 +578,105 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
 .copy span+span::before{content:"· "}
 .legal-links{display:flex;gap:1.25rem}
 @media (hover:none){.hint{display:none}}
+
+/* footer CTA */
+.footer-claim-wrap{
+  position:relative;
+  grid-column:1 / span 6;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:1rem;
+}
+
+.footer-claim{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  gap:.6rem .9rem;
+  max-width:22ch;
+  line-height:1.1;
+}
+
+.cal-trigger{
+  display:inline-flex;
+  align-items:center;
+  gap:.45rem;
+  padding:.3rem .7rem .35rem;
+  border:1px solid var(--line-strong);
+  border-radius:999px;
+  background:transparent;
+  color:var(--ink);
+  transition:transform var(--dur-1) var(--ease-out),
+             border-color var(--dur-1) var(--ease-out),
+             background-color var(--dur-1) var(--ease-out),
+             box-shadow var(--dur-1) var(--ease-out);
+}
+
+.cal-trigger:hover{
+  transform:translateY(-1px);
+  border-color:var(--ink);
+  background:color-mix(in srgb, var(--ink) 4%, transparent);
+}
+
+.cal-trigger:focus-visible{
+  outline:2px solid var(--accent-text);
+  outline-offset:3px;
+}
+
+.cal-trigger .arrow{
+  display:inline-block;
+  transition:transform var(--dur-1) var(--ease-out);
+}
+
+.cal-trigger[aria-expanded="true"] .arrow{
+  transform:translateX(2px);
+}
+
+.calendar-drawer{
+  width:min(34rem, 100%);
+  max-height:0;
+  opacity:0;
+  overflow:hidden;
+  transform:translateY(6px);
+  transition:max-height .45s var(--ease-in-out),
+             opacity .28s ease,
+             transform .35s ease;
+  pointer-events:none;
+}
+
+.calendar-drawer.is-open{
+  max-height:34rem;
+  opacity:1;
+  transform:translateY(0);
+  pointer-events:auto;
+}
+
+.calendar-drawer__inner{
+  padding:0.8rem 0 0;
+  border-top:1px solid var(--line);
+}
+
+.cal-inline{
+  width:100%;
+  min-height:12rem;
+  border-radius:14px;
+  background:var(--bg);
+  overflow:hidden;
+}
+
+.cal-inline iframe{
+  width:100%;
+  min-height:16rem;
+  border:0;
+}
+
+@media (max-width: 767px){
+  .footer-claim-wrap{
+    grid-column:1 / -1;
+  }
+
+  .calendar-drawer{
+    width:100%;
+  }
+}
