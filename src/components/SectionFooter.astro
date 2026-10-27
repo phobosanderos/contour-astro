@@ -20,120 +20,32 @@ import c from "../content.json";
     line-height: 1.08;
   }
 
-  .cal-trigger {
+  .book-call {
     display: inline-flex;
     align-items: center;
-    gap: 0.25rem;
-    padding: 0;
-    border: 0;
-    background: none;
+    gap: 0.15em;
     color: inherit;
-    font: inherit;
-    font-size: inherit;
-    line-height: inherit;
-    letter-spacing: inherit;
-    cursor: pointer;
     background-image: linear-gradient(currentColor, currentColor);
     background-position: 0 100%;
     background-repeat: no-repeat;
     background-size: 0 1px;
-    transition: background-size 0.4s ease;
+    transition: background-size 0.4s ease, color 0.2s ease;
   }
 
-  .cal-trigger:hover,
-  .cal-trigger:focus-visible,
-  .cal-trigger[aria-expanded="true"] {
+  .book-call:hover,
+  .book-call:focus-visible {
+    color: var(--accent-text);
     background-size: 100% 1px;
   }
 
-  .cal-trigger:focus-visible {
-    outline: 2px solid var(--accent-text);
-    outline-offset: 4px;
-  }
-
-  .cal-trigger .arrow {
+  .book-call .arrow {
     display: inline-block;
-    transform: rotate(-45deg);
-    transition: transform 0.25s ease;
+    transition: transform 0.2s ease;
   }
 
-  .cal-trigger:hover .arrow,
-  .cal-trigger:focus-visible .arrow,
-  .cal-trigger[aria-expanded="true"] .arrow {
-    transform: rotate(90deg) translateY(1px);
-  }
-
-  .calendar-drawer {
-    width: min(36rem, 100%);
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transform: translateY(6px);
-    transition: max-height 0.45s ease, opacity 0.28s ease, transform 0.35s ease;
-    pointer-events: none;
-  }
-
-  .calendar-drawer.is-open {
-    max-height: 42rem;
-    opacity: 1;
-    transform: translateY(0);
-    pointer-events: auto;
-  }
-
-  .calendar-drawer__inner {
-    padding-top: 0.9rem;
-    border-top: 1px solid var(--line);
-  }
-
-  .cal-inline {
-    width: 100%;
-    min-height: 20rem;
-  }
-
-  .cal-inline iframe {
-    display: block;
-    width: 100%;
-    min-height: 24rem;
-    border: 0;
-    background: var(--bg);
-  }
-
-  .cal-empty-note {
-    display: grid;
-    gap: 0.5rem;
-    padding: 1rem 0 0;
-    color: var(--muted);
-    font-family: var(--font-mono);
-    font-size: 0.72rem;
-    line-height: 1.5;
-    letter-spacing: 0.02em;
-    text-transform: uppercase;
-  }
-
-  .cal-empty-note a {
-    display: inline-flex;
-    width: fit-content;
-    color: var(--ink);
-    background-image: linear-gradient(currentColor, currentColor);
-    background-position: 0 100%;
-    background-repeat: no-repeat;
-    background-size: 0 1px;
-    transition: background-size 0.4s ease;
-  }
-
-  .cal-empty-note a:hover,
-  .cal-empty-note a:focus-visible {
-    background-size: 100% 1px;
-  }
-
-  @media (max-width: 767px) {
-    .footer-claim-wrap {
-      grid-column: 1 / -1;
-    }
-
-    .calendar-drawer {
-      width: 100%;
-    }
+  .book-call:hover .arrow,
+  .book-call:focus-visible .arrow {
+    transform: translateX(2px);
   }
 </style>
 
@@ -142,21 +54,15 @@ import c from "../content.json";
     <div class="footer-claim-wrap">
       <p class="footer-claim h3">
         Have a project that needs to move?
-        <button
-          class="cal-trigger"
-          type="button"
-          aria-expanded="false"
-          aria-controls="calendar-drawer"
+        <a
+          class="book-call"
+          href="https://cal.com/phobosanderos"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          Pick a time <span class="arrow" aria-hidden="true">↗</span>
-        </button>
+          Book a call.
+        </a>
       </p>
-
-      <div id="calendar-drawer" class="calendar-drawer" aria-hidden="true">
-        <div class="calendar-drawer__inner">
-          <div id="cal-inline" class="cal-inline" aria-live="polite"></div>
-        </div>
-      </div>
     </div>
 
     <div class="footer-col">
@@ -228,99 +134,3 @@ import c from "../content.json";
     </nav>
   </div>
 </footer>
-
-<script is:inline>
-  (() => {
-    const trigger = document.querySelector(".cal-trigger");
-    const drawer = document.getElementById("calendar-drawer");
-    const widgetHost = document.getElementById("cal-inline");
-    if (!trigger || !drawer || !widgetHost) return;
-
-    const root = document.documentElement;
-    const CAL_LINK = "phobosanderos";
-    const FALLBACK_URL = "https://cal.com/phobosanderos";
-
-    function getThemeMode() {
-      return root.dataset.theme === "dark" ? "dark" : "light";
-    }
-
-    function fallbackMessage() {
-      widgetHost.innerHTML = `
-        <div class="cal-empty-note">
-          Booking is unavailable right now.
-          <a href="${FALLBACK_URL}" target="_blank" rel="noopener noreferrer">Open the calendar ↗</a>
-        </div>
-      `;
-    }
-
-    function renderCal() {
-      if (!widgetHost) return;
-      widgetHost.innerHTML = "";
-
-      if (!window.Cal) {
-        // only fallback if the widget script itself failed to load
-        fallbackMessage();
-        return;
-      }
-
-      try {
-        window.Cal("inline", {
-          elementOrSelector: "#cal-inline",
-          calLink: CAL_LINK,
-          config: {
-            name: "Project enquiry",
-            theme: getThemeMode(),
-            layout: "month_view",
-          },
-        });
-      } catch (error) {
-        fallbackMessage();
-      }
-
-      setTimeout(() => {
-        const ready = widgetHost.querySelector("iframe, .cal-booking, .cal-inline__body");
-        if (!ready) {
-          // fallback only if the widget really does not render
-          fallbackMessage();
-        }
-      }, 1200);
-    }
-
-    function toggleDrawer() {
-      const isOpen = trigger.getAttribute("aria-expanded") === "true";
-      const nextOpen = !isOpen;
-
-      trigger.setAttribute("aria-expanded", String(nextOpen));
-      drawer.classList.toggle("is-open", nextOpen);
-      drawer.setAttribute("aria-hidden", String(!nextOpen));
-
-      if (nextOpen) {
-        renderCal();
-      }
-    }
-
-    function loadCalScript() {
-      if (window.Cal) {
-        renderCal();
-        return;
-      }
-
-      const script = document.createElement("script");
-      script.src = "https://assets.cal.com/assets/external/widget.js";
-      script.async = true;
-      script.onload = renderCal;
-      document.head.appendChild(script);
-    }
-
-    trigger.addEventListener("click", toggleDrawer);
-
-    const observer = new MutationObserver(() => {
-      if (drawer.classList.contains("is-open") && window.Cal) {
-        renderCal();
-      }
-    });
-
-    observer.observe(root, { attributes: true, attributeFilter: ["data-theme"] });
-    loadCalScript();
-  })();
-</script>
