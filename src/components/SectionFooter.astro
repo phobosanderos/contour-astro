@@ -3,28 +3,15 @@ import c from "../content.json";
 ---
 
 <style>
-  .footer-claim-wrap {
-    grid-column: 1 / span 6;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0.8rem;
-  }
-
   .footer-claim {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.5rem 0.8rem;
-    max-width: 22ch;
-    line-height: 1.08;
+    grid-column: 1 / span 6;
+    max-width: 16ch;
+    display: inline;
   }
 
   .book-call {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.15em;
-    color: inherit;
+    display: inline;
+    color: var(--accent-text);
     background-image: linear-gradient(currentColor, currentColor);
     background-position: 0 100%;
     background-repeat: no-repeat;
@@ -37,33 +24,21 @@ import c from "../content.json";
     color: var(--accent-text);
     background-size: 100% 1px;
   }
-
-  .book-call .arrow {
-    display: inline-block;
-    transition: transform 0.2s ease;
-  }
-
-  .book-call:hover .arrow,
-  .book-call:focus-visible .arrow {
-    transform: translateX(2px);
-  }
 </style>
 
 <footer class="site-footer wrap">
   <div class="grid-12 footer-top">
-    <div class="footer-claim-wrap">
-     <p class="footer-claim h3">
-  Have a project that needs to move?
-  <a
-    class="book-call"
-    href="https://cal.com/phobosanderos"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Book a call.
-  </a>
-</p>
-    </div>
+    <p class="footer-claim h3">
+      Have a project that needs to move?
+      <a
+        class="book-call"
+        href="https://cal.com/phobosanderos"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Book a call.
+      </a>
+    </p>
 
     <div class="footer-col">
       <p class="note">{c.footer.p_6}</p>
@@ -127,9 +102,9 @@ import c from "../content.json";
   </div>
 
   <div class="footer-bottom note">
-  <p class="copy"><span>{c.footer.span_23}</span><span>{c.footer.span_24}</span></p>
-  <nav class="legal-links" aria-label="Legal">
-    <a class="link" href="/privacy/">{c.footer.a_26}</a>
-  </nav>
-</div>
+    <p class="copy"><span>{c.footer.span_23}</span><span>{c.footer.span_24}</span></p>
+    <nav class="legal-links" aria-label="Legal">
+      <a class="link" href="/privacy/">{c.footer.a_26}</a>
+    </nav>
+  </div>
 </footer>
