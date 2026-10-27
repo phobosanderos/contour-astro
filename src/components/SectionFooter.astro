@@ -33,7 +33,6 @@ import c from "../content.json";
     line-height: inherit;
     letter-spacing: inherit;
     cursor: pointer;
-    text-decoration: none;
     background-image: linear-gradient(currentColor, currentColor);
     background-position: 0 100%;
     background-repeat: no-repeat;
@@ -62,7 +61,7 @@ import c from "../content.json";
   .cal-trigger:hover .arrow,
   .cal-trigger:focus-visible .arrow,
   .cal-trigger[aria-expanded="true"] .arrow {
-    transform: translateY(0.16em) rotate(45deg);
+    transform: translateY(0.18em) rotate(45deg);
   }
 
   .calendar-drawer {
@@ -233,17 +232,17 @@ import c from "../content.json";
 
 <script is:inline>
   (() => {
-    const trigger = document.querySelector('.cal-trigger');
-    const drawer = document.getElementById('calendar-drawer');
-    const widgetHost = document.getElementById('cal-inline');
+    const trigger = document.querySelector(".cal-trigger");
+    const drawer = document.getElementById("calendar-drawer");
+    const widgetHost = document.getElementById("cal-inline");
     if (!trigger || !drawer || !widgetHost) return;
 
     const root = document.documentElement;
-    const CAL_LINK = 'phobosanderos';
-    const FALLBACK_URL = 'https://cal.com/phobosanderos';
+    const CAL_LINK = "phobosanderos";
+    const FALLBACK_URL = "https://cal.com/phobosanderos";
 
     function getThemeMode() {
-      return root.dataset.theme === 'dark' ? 'dark' : 'light';
+      return root.dataset.theme === "dark" ? "dark" : "light";
     }
 
     function fallbackMessage() {
@@ -257,7 +256,8 @@ import c from "../content.json";
 
     function renderCal() {
       if (!widgetHost) return;
-      widgetHost.innerHTML = '';
+
+      widgetHost.innerHTML = "";
 
       if (!window.Cal) {
         fallbackMessage();
@@ -265,13 +265,13 @@ import c from "../content.json";
       }
 
       try {
-        window.Cal('inline', {
-          elementOrSelector: '#cal-inline',
+        window.Cal("inline", {
+          elementOrSelector: "#cal-inline",
           calLink: CAL_LINK,
           config: {
-            name: 'Project enquiry',
+            name: "Project enquiry",
             theme: getThemeMode(),
-            layout: 'month_view',
+            layout: "month_view",
           },
         });
       } catch (error) {
@@ -279,18 +279,18 @@ import c from "../content.json";
       }
 
       setTimeout(() => {
-        const ready = widgetHost.querySelector('iframe, .cal-booking, .cal-inline__body');
+        const ready = widgetHost.querySelector("iframe, .cal-booking, .cal-inline__body");
         if (!ready) fallbackMessage();
       }, 1200);
     }
 
     function toggleDrawer() {
-      const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+      const isOpen = trigger.getAttribute("aria-expanded") === "true";
       const nextOpen = !isOpen;
 
-      trigger.setAttribute('aria-expanded', String(nextOpen));
-      drawer.classList.toggle('is-open', nextOpen);
-      drawer.setAttribute('aria-hidden', String(!nextOpen));
+      trigger.setAttribute("aria-expanded", String(nextOpen));
+      drawer.classList.toggle("is-open", nextOpen);
+      drawer.setAttribute("aria-hidden", String(!nextOpen));
 
       if (nextOpen) {
         renderCal();
@@ -303,22 +303,22 @@ import c from "../content.json";
         return;
       }
 
-      const script = document.createElement('script');
-      script.src = 'https://cal.com/assets/external/widget.js';
+      const script = document.createElement("script");
+      script.src = "https://cal.com/assets/external/widget.js";
       script.async = true;
       script.onload = renderCal;
       document.head.appendChild(script);
     }
 
-    trigger.addEventListener('click', toggleDrawer);
+    trigger.addEventListener("click", toggleDrawer);
 
     const observer = new MutationObserver(() => {
-      if (drawer.classList.contains('is-open') && window.Cal) {
+      if (drawer.classList.contains("is-open") && window.Cal) {
         renderCal();
       }
     });
 
-    observer.observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+    observer.observe(root, { attributes: true, attributeFilter: ["data-theme"] });
     loadCalScript();
   })();
 </script>
