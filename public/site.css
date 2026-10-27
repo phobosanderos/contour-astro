@@ -7,7 +7,6 @@
 .footer-col ul{display:flex;flex-direction:column;gap:.25rem}
 .footer-bottom{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.75rem;margin-top:.75rem;padding-top:.75rem;border-top:1px solid var(--line)}
 .copy{display:flex;flex-wrap:wrap;column-gap:.5em}
-.copy span+span::before{content:"· "}
 .legal-links{display:flex;align-items:center;gap:1.25rem;flex-wrap:wrap}
 .link--button{padding:0;border:0;background:none;color:inherit;font:inherit;cursor:pointer;line-height:1.2}
 .link--button:hover{background-size:100% 1px}
@@ -44,62 +43,6 @@
 
 .access-option--reset{
   border-color:color-mix(in srgb, var(--accent-text) 65%, transparent);
-}
-
-html[data-a11y-contrast="true"]{
-  --bg:#0b0b0c;
-  --bg-raised:#111213;
-  --ink:#f4f4f0;
-  --muted:#d1d1cd;
-  --line:#f4f4f034;
-  --line-strong:#f4f4f067;
-  --control-line:#f4f4f07a;
-  --accent:#ffd166;
-  --accent-ink:#0b0b0c;
-  --accent-text:#ffd166;
-}
-
-html[data-a11y-text="true"] body{
-  font-size:1.08rem;
-}
-
-html[data-a11y-motion="true"] *,
-html[data-a11y-motion="true"] *::before,
-html[data-a11y-motion="true"] *::after{
-  animation-duration: .01ms !important;
-  animation-iteration-count: 1 !important;
-  transition-duration: .01ms !important;
-  scroll-behavior: auto !important;
-}
-.link--button{padding:0;border:0;background:none;color:inherit;font:inherit;cursor:pointer;line-height:1.2}
-.link--button:hover{background-size:100% 1px}
-
-.access-panel{
-  display:flex;
-  flex-wrap:wrap;
-  gap:.75rem;
-  margin-top:.75rem;
-  padding-top:.75rem;
-  border-top:1px solid var(--line);
-}
-.access-option{
-  border:1px solid var(--line-strong);
-  border-radius:999px;
-  padding:.5rem .9rem;
-  font-family:var(--font-mono);
-  font-size:.72rem;
-  letter-spacing:.02em;
-  text-transform:uppercase;
-  background:transparent;
-  color:var(--ink);
-  cursor:pointer;
-  transition:border-color var(--dur-1) var(--ease-out), background-color var(--dur-1) var(--ease-out), color var(--dur-1) var(--ease-out);
-}
-.access-option:hover,
-.access-option[aria-pressed="true"]{
-  border-color:var(--accent-text);
-  background:var(--ink);
-  color:var(--bg);
 }
 
 html[data-a11y-contrast="true"]{
