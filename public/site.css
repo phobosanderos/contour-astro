@@ -606,7 +606,28 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   .site-header {
     height: 3.25rem;
   }
+.footer-claim {
+  grid-column: 1 / span 6;
+  max-width: 16ch;
+  display: inline;
+}
 
+.book-call {
+  display: inline;
+  color: var(--accent-text);
+  background-image: linear-gradient(currentColor, currentColor);
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  background-size: 0 1px;
+  transition: background-size 0.4s ease, color 0.2s ease;
+}
+
+.book-call:hover,
+.book-call:focus-visible {
+  background-size: 100% 1px;
+  color: var(--accent-text);
+}
+  
 /* footer */
 .site-footer{position:relative;overflow:clip;padding-top:clamp(4rem,6vw,6rem);padding-bottom:1rem}
 .footer-top{row-gap:1.5rem;padding-bottom:clamp(2rem,4vw,4rem)}
