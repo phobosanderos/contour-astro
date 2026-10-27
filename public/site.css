@@ -326,13 +326,55 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
 /* contact */
 .cta__title{max-width:11ch}
 .cta__actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:clamp(2rem,4vw,3.5rem)}
-.cta__form{margin-top:clamp(2rem,3vw,4rem);border-top:1px solid var(--line);padding-top:clamp(1.5rem,3vw,2.75rem);row-gap:1.25rem}
-.cta__lead{grid-column:1/span 5;max-width:26ch;line-height:1.45;color:var(--muted)}
-.fg{position:relative;grid-column:7/-1}
+
+.cta__form{
+  margin-top:clamp(2rem,3vw,4rem);
+  border-top:1px solid var(--line);
+  padding-top:clamp(1.5rem,3vw,2.75rem);
+  row-gap:1.25rem;
+  align-items:stretch;
+}
+
+.cta__media{
+  grid-column:1 / span 4;
+  display:flex;
+  min-height:0;
+  align-self:stretch;
+}
+
+.cta__right{
+  grid-column:5 / -1;
+  display:flex;
+  flex-direction:column;
+  gap:1.1rem;
+  min-height:100%;
+}
+
+.cta__lead{
+  max-width:26ch;
+  line-height:1.45;
+  color:var(--muted);
+  margin:0;
+}
+
+.fg{
+  position:relative;
+  margin-top:0;
+}
+
 .fg-fields{display:grid;grid-template-columns:1fr 1fr;gap:1.6rem var(--col-gap)}
 .fld{display:flex;flex-direction:column;gap:.5rem}
 .fld-wide{grid-column:1/-1}
-.fld input,.fld select,.fld textarea{width:100%;border:0;border-bottom:1px solid var(--control-line);border-radius:0;padding:.55rem 0;font-size:var(--step-1);letter-spacing:-.015em;transition:border-color var(--dur-1) var(--ease-out)}
+.fld input,.fld select,.fld textarea{
+  width:100%;
+  border:0;
+  border-bottom:1px solid var(--control-line);
+  border-radius:0;
+  padding:.55rem 0;
+  font-size:var(--step-1);
+  letter-spacing:-.015em;
+  transition:border-color var(--dur-1) var(--ease-out);
+}
 .fld select{appearance:none;cursor:pointer;background:linear-gradient(45deg,transparent 50%,currentColor 50%) right 6px center/6px 6px no-repeat,linear-gradient(-45deg,transparent 50%,currentColor 50%) right 2px center/6px 6px no-repeat}
 .fld select option{background:var(--bg);color:var(--ink)}
 .fld textarea{resize:vertical;min-height:6.5rem}
@@ -351,34 +393,28 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
 .fg-privacy + .credit{margin-top:.5rem}
 .credit{margin-top:1.5rem}
 
-/* contact media / brutalist futuristic motion shape */
-.cta__media{
-  grid-column:7/-1;
-  display:flex;
-  align-items:flex-end;
-  min-height:0;
-}
-
+/* brutalist futuristic contact media */
 .shape-scene{
   position:relative;
   width:100%;
-  height:clamp(220px,28vw,430px);
+  height:100%;
+  min-height:clamp(260px,32vw,540px);
   overflow:hidden;
   background:
     linear-gradient(180deg, color-mix(in srgb, var(--bg-raised) 78%, transparent), var(--bg)),
     repeating-linear-gradient(
       to right,
       transparent 0,
-      transparent 23px,
-      color-mix(in srgb, var(--line) 72%, transparent) 24px,
-      transparent 25px
+      transparent 18px,
+      color-mix(in srgb, var(--line) 72%, transparent) 19px,
+      transparent 20px
     ),
     repeating-linear-gradient(
       to bottom,
       transparent 0,
-      transparent 23px,
-      color-mix(in srgb, var(--line) 72%, transparent) 24px,
-      transparent 25px
+      transparent 18px,
+      color-mix(in srgb, var(--line) 72%, transparent) 19px,
+      transparent 20px
     );
   border:1px solid var(--line);
   box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--line) 45%, transparent);
@@ -388,56 +424,59 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   position:absolute;
   inset:0;
   background:
-    linear-gradient(135deg, transparent 0 48%, color-mix(in srgb, var(--accent) 16%, transparent) 48% 52%, transparent 52% 100%),
-    linear-gradient(45deg, transparent 0 48%, color-mix(in srgb, var(--accent) 10%, transparent) 48% 52%, transparent 52% 100%);
-  opacity:.8;
+    linear-gradient(135deg, transparent 0 47%, color-mix(in srgb, var(--accent) 18%, transparent) 47% 53%, transparent 53% 100%),
+    linear-gradient(45deg, transparent 0 47%, color-mix(in srgb, var(--accent) 12%, transparent) 47% 53%, transparent 53% 100%);
+  opacity:.9;
 }
 
 .shape-panel{
   position:absolute;
-  inset:15% 16% 18% 16%;
+  inset:18% 18% 16% 18%;
   background:
-    linear-gradient(135deg, color-mix(in srgb, var(--accent) 26%, transparent), transparent 42%),
+    linear-gradient(135deg, color-mix(in srgb, var(--accent) 24%, transparent), transparent 42%),
     linear-gradient(180deg, color-mix(in srgb, var(--bg) 80%, transparent), color-mix(in srgb, var(--bg-raised) 72%, transparent));
   border:1px solid color-mix(in srgb, var(--accent) 52%, transparent);
   transform:skewX(-18deg) rotate(18deg);
   box-shadow:
     inset 0 0 0 1px color-mix(in srgb, var(--line) 50%, transparent),
-    0 24px 50px -24px color-mix(in srgb, var(--accent) 50%, transparent);
-  animation:panel-drift 12s ease-in-out infinite alternate;
+    0 18px 38px -18px color-mix(in srgb, var(--accent) 50%, transparent);
+  animation:panel-drift 9s ease-in-out infinite alternate;
 }
 
 .shape-ring{
   position:absolute;
-  inset:24% 26%;
-  border:1px solid color-mix(in srgb, var(--accent-text) 56%, transparent);
+  inset:24% 28%;
+  border:1px solid color-mix(in srgb, var(--accent-text) 58%, transparent);
   transform:rotate(45deg);
-  animation:ring-rotate 18s linear infinite;
   box-shadow:0 0 0 1px color-mix(in srgb, var(--accent) 18%, transparent);
+  animation:ring-rotate 14s linear infinite;
 }
 
 .shape-core{
   position:absolute;
-  width:22%;
-  height:22%;
-  left:39%;
-  top:39%;
+  width:20%;
+  height:20%;
+  left:40%;
+  top:40%;
   background:
     linear-gradient(135deg, color-mix(in srgb, var(--accent) 82%, var(--bg)), color-mix(in srgb, var(--accent) 64%, transparent));
   border:1px solid color-mix(in srgb, var(--accent-text) 74%, transparent);
   transform:rotate(45deg);
   box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--accent) 28%, transparent),
-    0 18px 28px -12px color-mix(in srgb, var(--accent) 70%, transparent);
-  animation:core-pulse 8s ease-in-out infinite;
+    0 0 0 1px color-mix(in srgb, var(--accent) 30%, transparent),
+    0 16px 28px -12px color-mix(in srgb, var(--accent) 70%, transparent);
+  animation:core-pulse 7s ease-in-out infinite;
 }
 
 @keyframes panel-drift{
   0%{
-    transform:skewX(-18deg) rotate(14deg) translate(-10px,8px) scale(.96);
+    transform:skewX(-18deg) rotate(12deg) translate(-8px,8px) scale(.96);
+  }
+  50%{
+    transform:skewX(-18deg) rotate(18deg) translate(0,0) scale(1);
   }
   100%{
-    transform:skewX(-18deg) rotate(22deg) translate(10px,-12px) scale(1.06);
+    transform:skewX(-18deg) rotate(22deg) translate(8px,-10px) scale(1.04);
   }
 }
 
@@ -452,7 +491,7 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
 
 @keyframes core-pulse{
   0%,100%{
-    transform:rotate(45deg) scale(.96);
+    transform:rotate(45deg) scale(.94);
     filter:saturate(.9);
   }
   50%{
@@ -462,17 +501,23 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
 }
 
 @media (max-width: 767px){
-  .cta__lead,
   .cta__media,
-  .fg{
-    grid-column:1/-1;
+  .cta__right{
+    grid-column:1 / -1;
+  }
+
+  .cta__right{
+    gap:1rem;
   }
 
   .shape-scene{
-    height:240px;
+    min-height:240px;
   }
+
+  .fg-fields{grid-template-columns:1fr}
 }
 
+/* footer */
 /* footer */
 .site-footer{position:relative;overflow:clip;padding-top:clamp(4rem,6vw,6rem);padding-bottom:1rem}
 .footer-top{row-gap:1.5rem;padding-bottom:clamp(2rem,4vw,4rem)}
