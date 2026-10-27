@@ -619,11 +619,6 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   background:color-mix(in srgb, var(--ink) 4%, transparent);
 }
 
-.cal-trigger:focus-visible{
-  outline:2px solid var(--accent-text);
-  outline-offset:3px;
-}
-
 .cal-trigger .arrow{
   display:inline-block;
   transition:transform var(--dur-1) var(--ease-out);
