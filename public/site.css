@@ -566,6 +566,47 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   .fg-fields{grid-template-columns:1fr}
 }
 
+.site-header {
+  height: 3.5rem;
+}
+
+.brand {
+  padding-left: 0;
+  gap: 0;
+}
+
+.brand__mark {
+  display: none;
+}
+
+.brand__name {
+  font-size: 0.72rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.hero {
+  padding-top: 4.25rem;
+  gap: 1rem;
+}
+
+.hero__top {
+  padding-top: 0.25rem;
+}
+
+.hero__title {
+  margin-top: 0;
+}
+
+.hero__intro {
+  margin-top: 0;
+}
+
+@media (max-width: 960px) {
+  .site-header {
+    height: 3.25rem;
+  }
+
 /* footer */
 .site-footer{position:relative;overflow:clip;padding-top:clamp(4rem,6vw,6rem);padding-bottom:1rem}
 .footer-top{row-gap:1.5rem;padding-bottom:clamp(2rem,4vw,4rem)}
