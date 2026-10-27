@@ -2,7 +2,7 @@
   "site": {
     "name": "Phobos and Eros",
     "lang": "en",
-    "title": "Vipul M.R",
+    "title": "Phobos and Eros",
     "description": "Ada Ferrer builds motion-heavy websites, CMS builds and AI features for design studios and agencies, from the first prototype to a clean handover."
   },
   "form": {
@@ -13,7 +13,7 @@
     "span_2": "Surveying the site",
     "span_3": "rev. 2026",
     "span_4": "Human + machine",
-    "span_5_html": "Vipul M.R<span class=\"brand__role\"> / Visual Designer</span>",
+    "span_5_html": "Vipul M.R<span class=\"brand__role\"></span>",
     "span_6": "02",
     "span_7": "Work",
     "span_8": "03",
