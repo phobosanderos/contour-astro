@@ -1,8 +1,6 @@
 (function () {
   "use strict";
-
-  var doc = document;
-  var root = doc.documentElement;
+  var doc = document, root = doc.documentElement;
 
   function getKey(name) {
     return "ct-a11y-" + name;
@@ -28,15 +26,6 @@
     } catch (e) {}
   }
 
-  function setButtonPressedState() {
-    var buttons = doc.querySelectorAll("[data-a11y]");
-    for (var i = 0; i < buttons.length; i++) {
-      var button = buttons[i];
-      if (button.dataset.a11y === "reset") continue;
-      button.setAttribute("aria-pressed", String(getState(button.dataset.a11y)));
-    }
-  }
-
   function applyAccessibilityState() {
     var contrast = getState("contrast");
     var text = getState("text");
@@ -52,7 +41,11 @@
       trigger.setAttribute("aria-expanded", String(!panel.hidden));
     }
 
-    setButtonPressedState();
+    doc.querySelectorAll("[data-a11y]").forEach(function (button) {
+      if (button.dataset.a11y === "reset") return;
+      var on = getState(button.dataset.a11y);
+      button.setAttribute("aria-pressed", String(on));
+    });
   }
 
   function togglePanel() {
@@ -99,12 +92,9 @@
       if (panel && !panel.hidden) {
         panel.hidden = true;
         var trigger = doc.querySelector('[data-action="accessibility"]');
-        if (trigger) {
-          trigger.setAttribute("aria-expanded", "false");
-        }
+        if (trigger) trigger.setAttribute("aria-expanded", "false");
       }
     }
   });
 
   applyAccessibilityState();
-})();
