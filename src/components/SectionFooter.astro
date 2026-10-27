@@ -23,7 +23,7 @@ import c from "../content.json";
   .cal-trigger {
     display: inline-flex;
     align-items: center;
-    gap: 0.2rem;
+    gap: 0.25rem;
     padding: 0;
     border: 0;
     background: none;
@@ -54,14 +54,13 @@ import c from "../content.json";
   .cal-trigger .arrow {
     display: inline-block;
     transform: rotate(-45deg);
-    transform-origin: center;
     transition: transform 0.25s ease;
   }
 
   .cal-trigger:hover .arrow,
   .cal-trigger:focus-visible .arrow,
   .cal-trigger[aria-expanded="true"] .arrow {
-    transform: translateY(0.18em) rotate(45deg);
+    transform: rotate(90deg) translateY(1px);
   }
 
   .calendar-drawer {
@@ -256,10 +255,10 @@ import c from "../content.json";
 
     function renderCal() {
       if (!widgetHost) return;
-
       widgetHost.innerHTML = "";
 
       if (!window.Cal) {
+        // only fallback if the widget script itself failed to load
         fallbackMessage();
         return;
       }
@@ -280,7 +279,10 @@ import c from "../content.json";
 
       setTimeout(() => {
         const ready = widgetHost.querySelector("iframe, .cal-booking, .cal-inline__body");
-        if (!ready) fallbackMessage();
+        if (!ready) {
+          // fallback only if the widget really does not render
+          fallbackMessage();
+        }
       }, 1200);
     }
 
@@ -304,7 +306,7 @@ import c from "../content.json";
       }
 
       const script = document.createElement("script");
-      script.src = "https://cal.com/assets/external/widget.js";
+      script.src = "https://assets.cal.com/assets/external/widget.js";
       script.async = true;
       script.onload = renderCal;
       document.head.appendChild(script);
