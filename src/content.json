@@ -32,7 +32,7 @@
     "a_3": "Work",
     "a_4": "Services",
     "a_5": "Process",
-    "a_6": "Notes",
+    "a_6": "Shop <span class=\"arrow\" aria-hidden=\"true\">↗</span>",
     "p_7": "Elsewhere",
     "a_8_html": "LinkedIn <span class=\"arrow\" aria-hidden=\"true\">↗</span>",
     "a_9_html": "GitHub <span class=\"arrow\" aria-hidden=\"true\">↗</span>",
@@ -56,7 +56,7 @@
     "a_27": "Accessibility"
   },
   "top": {
-    "span_1": "Ada Ferrer · independent web & AI developer",
+    "span_1": "Vipul M.R · Independent Visual Designer",
     "span_2": "Base camp · 38.72° N, 9.14° W · Lisbon",
     "span_3": "Booking from March",
     "span_4": "I build it.",
