@@ -539,23 +539,6 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   }
 }
 
-@media (max-width: 767px){
-  .cta__media,
-  .cta__right{
-    grid-column:1 / -1;
-  }
-
-  .cta__right{
-    gap:1rem;
-  }
-
-  .shape-scene{
-    min-height:240px;
-  }
-
-  .fg-fields{grid-template-columns:1fr}
-}
-
 /* footer */
 .site-footer{position:relative;overflow:clip;padding-top:clamp(4rem,6vw,6rem);padding-bottom:1rem}
 .footer-top{row-gap:1.5rem;padding-bottom:clamp(2rem,4vw,4rem)}
