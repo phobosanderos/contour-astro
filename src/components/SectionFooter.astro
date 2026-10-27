@@ -2,6 +2,143 @@
 import c from "../content.json";
 ---
 
+<style>
+  .footer-claim-wrap {
+    grid-column: 1 / span 6;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+
+  .footer-claim {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.8rem;
+    max-width: 22ch;
+    line-height: 1.08;
+  }
+
+  .cal-trigger {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.2rem;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+    cursor: pointer;
+    text-decoration: none;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0 1px;
+    transition: background-size 0.4s ease;
+  }
+
+  .cal-trigger:hover,
+  .cal-trigger:focus-visible,
+  .cal-trigger[aria-expanded="true"] {
+    background-size: 100% 1px;
+  }
+
+  .cal-trigger:focus-visible {
+    outline: 2px solid var(--accent-text);
+    outline-offset: 4px;
+  }
+
+  .cal-trigger .arrow {
+    display: inline-block;
+    transform: rotate(-45deg);
+    transform-origin: center;
+    transition: transform 0.25s ease;
+  }
+
+  .cal-trigger:hover .arrow,
+  .cal-trigger:focus-visible .arrow,
+  .cal-trigger[aria-expanded="true"] .arrow {
+    transform: translateY(0.16em) rotate(45deg);
+  }
+
+  .calendar-drawer {
+    width: min(36rem, 100%);
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transform: translateY(6px);
+    transition: max-height 0.45s ease, opacity 0.28s ease, transform 0.35s ease;
+    pointer-events: none;
+  }
+
+  .calendar-drawer.is-open {
+    max-height: 42rem;
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .calendar-drawer__inner {
+    padding-top: 0.9rem;
+    border-top: 1px solid var(--line);
+  }
+
+  .cal-inline {
+    width: 100%;
+    min-height: 20rem;
+  }
+
+  .cal-inline iframe {
+    display: block;
+    width: 100%;
+    min-height: 24rem;
+    border: 0;
+    background: var(--bg);
+  }
+
+  .cal-empty-note {
+    display: grid;
+    gap: 0.5rem;
+    padding: 1rem 0 0;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+  }
+
+  .cal-empty-note a {
+    display: inline-flex;
+    width: fit-content;
+    color: var(--ink);
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0 1px;
+    transition: background-size 0.4s ease;
+  }
+
+  .cal-empty-note a:hover,
+  .cal-empty-note a:focus-visible {
+    background-size: 100% 1px;
+  }
+
+  @media (max-width: 767px) {
+    .footer-claim-wrap {
+      grid-column: 1 / -1;
+    }
+
+    .calendar-drawer {
+      width: 100%;
+    }
+  }
+</style>
+
 <footer class="site-footer wrap">
   <div class="grid-12 footer-top">
     <div class="footer-claim-wrap">
@@ -13,7 +150,7 @@ import c from "../content.json";
           aria-expanded="false"
           aria-controls="calendar-drawer"
         >
-          Pick a time <span class="arrow" aria-hidden="true">→</span>
+          Pick a time <span class="arrow" aria-hidden="true">↗</span>
         </button>
       </p>
 
@@ -96,38 +233,68 @@ import c from "../content.json";
 
 <script is:inline>
   (() => {
-    const trigger = document.querySelector(".cal-trigger");
-    const drawer = document.getElementById("calendar-drawer");
-    const widgetHost = document.getElementById("cal-inline");
+    const trigger = document.querySelector('.cal-trigger');
+    const drawer = document.getElementById('calendar-drawer');
+    const widgetHost = document.getElementById('cal-inline');
     if (!trigger || !drawer || !widgetHost) return;
 
     const root = document.documentElement;
-    const CAL_LINK = "phobosanderos";
+    const CAL_LINK = 'phobosanderos';
+    const FALLBACK_URL = 'https://cal.com/phobosanderos';
 
     function getThemeMode() {
-      return root.dataset.theme === "dark" ? "dark" : "light";
+      return root.dataset.theme === 'dark' ? 'dark' : 'light';
+    }
+
+    function fallbackMessage() {
+      widgetHost.innerHTML = `
+        <div class="cal-empty-note">
+          Booking is unavailable right now.
+          <a href="${FALLBACK_URL}" target="_blank" rel="noopener noreferrer">Open the calendar ↗</a>
+        </div>
+      `;
     }
 
     function renderCal() {
-      if (!window.Cal || !widgetHost) return;
-      widgetHost.innerHTML = "";
-      window.Cal("inline", {
-        elementOrSelector: "#cal-inline",
-        calLink: CAL_LINK,
-        config: {
-          name: "Project enquiry",
-          theme: getThemeMode(),
-          layout: "month_view",
-        },
-      });
+      if (!widgetHost) return;
+      widgetHost.innerHTML = '';
+
+      if (!window.Cal) {
+        fallbackMessage();
+        return;
+      }
+
+      try {
+        window.Cal('inline', {
+          elementOrSelector: '#cal-inline',
+          calLink: CAL_LINK,
+          config: {
+            name: 'Project enquiry',
+            theme: getThemeMode(),
+            layout: 'month_view',
+          },
+        });
+      } catch (error) {
+        fallbackMessage();
+      }
+
+      setTimeout(() => {
+        const ready = widgetHost.querySelector('iframe, .cal-booking, .cal-inline__body');
+        if (!ready) fallbackMessage();
+      }, 1200);
     }
 
     function toggleDrawer() {
-      const isOpen = trigger.getAttribute("aria-expanded") === "true";
-      trigger.setAttribute("aria-expanded", String(!isOpen));
-      drawer.classList.toggle("is-open", !isOpen);
-      drawer.setAttribute("aria-hidden", String(isOpen));
-      if (!isOpen) renderCal();
+      const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+      const nextOpen = !isOpen;
+
+      trigger.setAttribute('aria-expanded', String(nextOpen));
+      drawer.classList.toggle('is-open', nextOpen);
+      drawer.setAttribute('aria-hidden', String(!nextOpen));
+
+      if (nextOpen) {
+        renderCal();
+      }
     }
 
     function loadCalScript() {
@@ -136,23 +303,22 @@ import c from "../content.json";
         return;
       }
 
-      const script = document.createElement("script");
-      script.src = "https://cal.com/assets/external/widget.js";
+      const script = document.createElement('script');
+      script.src = 'https://cal.com/assets/external/widget.js';
       script.async = true;
       script.onload = renderCal;
       document.head.appendChild(script);
     }
 
-    trigger.addEventListener("click", toggleDrawer);
+    trigger.addEventListener('click', toggleDrawer);
 
     const observer = new MutationObserver(() => {
-      if (drawer.classList.contains("is-open") && window.Cal) {
+      if (drawer.classList.contains('is-open') && window.Cal) {
         renderCal();
       }
     });
 
-    observer.observe(root, { attributes: true, attributeFilter: ["data-theme"] });
-
+    observer.observe(root, { attributes: true, attributeFilter: ['data-theme'] });
     loadCalScript();
   })();
 </script>
