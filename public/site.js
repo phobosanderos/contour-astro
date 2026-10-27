@@ -4,6 +4,96 @@
  */
 (function () {
   "use strict";
+    function getKey(name) {
+    return "ct-a11y-" + name;
+  }
+
+  function setState(key, value) {
+    localStorage.setItem(getKey(key), value ? "on" : "off");
+  }
+
+  function getState(key) {
+    return localStorage.getItem(getKey(key)) === "on";
+  }
+
+  function clearState(key) {
+    localStorage.removeItem(getKey(key));
+  }
+
+  function applyAccessibilityState() {
+    var root = document.documentElement;
+    var contrast = getState("contrast");
+    var text = getState("text");
+    var motion = getState("motion");
+
+    root.setAttribute("data-a11y-contrast", String(contrast));
+    root.setAttribute("data-a11y-text", String(text));
+    root.setAttribute("data-a11y-motion", String(motion));
+
+    var trigger = document.querySelector('[data-action="accessibility"]');
+    var panel = document.getElementById("accessibility-panel");
+    if (trigger && panel) {
+      trigger.setAttribute("aria-expanded", String(!panel.hidden));
+    }
+
+    document.querySelectorAll("[data-a11y]").forEach(function (button) {
+      if (button.dataset.a11y === "reset") return;
+      var on = getState(button.dataset.a11y);
+      button.setAttribute("aria-pressed", String(on));
+    });
+  }
+
+  function togglePanel() {
+    var panel = document.getElementById("accessibility-panel");
+    if (!panel) return;
+
+    var hidden = panel.hidden;
+    panel.hidden = !hidden;
+
+    var trigger = document.querySelector('[data-action="accessibility"]');
+    if (trigger) {
+      trigger.setAttribute("aria-expanded", String(!hidden));
+    }
+  }
+
+  function toggleAccessibility(type) {
+    if (type === "reset") {
+      ["contrast", "text", "motion"].forEach(clearState);
+      applyAccessibilityState();
+      return;
+    }
+
+    var next = !getState(type);
+    setState(type, next);
+    applyAccessibilityState();
+  }
+
+  document.addEventListener("click", function (event) {
+    var trigger = event.target.closest('[data-action="accessibility"]');
+    if (trigger) {
+      togglePanel();
+      return;
+    }
+
+    var option = event.target.closest("[data-a11y]");
+    if (option) {
+      toggleAccessibility(option.dataset.a11y);
+      return;
+    }
+  });
+
+  document.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      var panel = document.getElementById("accessibility-panel");
+      if (panel && !panel.hidden) {
+        panel.hidden = true;
+        var trigger = document.querySelector('[data-action="accessibility"]');
+        if (trigger) trigger.setAttribute("aria-expanded", "false");
+      }
+    }
+  });
+
+  applyAccessibilityState();
   var doc = document, root = doc.documentElement;
   var $ = function (s, c) { return (c || doc).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || doc).querySelectorAll(s)); };
