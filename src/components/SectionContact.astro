@@ -15,47 +15,48 @@ import c from "../content.json";
     <a class="btn btn--ghost" href="mailto:phobosanderos@gmail.com">{c.contact.a_5}</a>
   </div>
 
-  <div class="cta__form grid-12" id="brief">
-    <div class="cta__media" data-reveal="up" aria-hidden="true">
-      <div class="shape-scene">
-        <div class="shape-orbit orbit-a"></div>
-        <div class="shape-orbit orbit-b"></div>
-        <div class="shape-core"></div>
-        <div class="shape-glow"></div>
-      </div>
-    </div>
-
-    <div class="cta__right" data-reveal="up">
-      <p class="cta__lead lead">{c.contact.p_6}</p>
-
-      <form class="fg" action="https://formsubmit.co/phobosanderos@gmail.com" method="POST">
-        <input type="hidden" name="subject" value="New project brief">
-        <div aria-hidden="true" class="hp">
-          <label>{c.contact.text_7}<input name="botcheck" tabindex="-1" autocomplete="off"></label>
-        </div>
-
-        <div class="fg-fields">
-          <label class="fld"><span class="note">{c.contact.span_8}</span><input name="name" autocomplete="name" required></label>
-          <label class="fld"><span class="note">{c.contact.span_9}</span><input name="email" type="email" autocomplete="email" required></label>
-          <label class="fld"><span class="note">{c.contact.span_10}</span><input name="company" autocomplete="organization"></label>
-          <label class="fld"><span class="note">{c.contact.span_11}</span><select name="budget"><option>{c.contact.option_12}</option><option>{c.contact.option_13}</option><option>{c.contact.option_14}</option><option>{c.contact.option_15}</option><option>{c.contact.option_16}</option></select></label>
-          <label class="fld fld-wide"><span class="note">{c.contact.span_17}</span><textarea name="message" rows="4" required></textarea></label>
-
-          <div class="fld-wide fg-row">
-            <button class="btn" type="submit">
-              <span data-label>{c.contact.span_18}</span>
-              <span class="arrow" aria-hidden="true">→</span>
-            </button>
-            <p class="fg-status" aria-live="polite"></p>
-          </div>
-        </div>
-
-        <div class="fg-sent" tabindex="-1">
-          <p class="fg-sent-h h3" set:html={c.contact.p_19_html}></p>
-          <p>{c.contact.p_20}</p>
-          <button class="btn btn--ghost" type="button" data-again>{c.contact.button_21}</button>
-        </div>
-      </form>
+<div class="cta__form grid-12" id="brief">
+  <div class="cta__media" data-reveal="up" aria-hidden="true">
+    <div class="shape-scene">
+      <span class="shape-grid"></span>
+      <span class="shape-slab"></span>
+      <span class="shape-scan"></span>
+      <span class="shape-ring"></span>
+      <span class="shape-core"></span>
     </div>
   </div>
+
+  <div class="cta__right" data-reveal="up">
+    <p class="cta__lead lead">{c.contact.p_6}</p>
+
+    <form class="fg" action="https://formsubmit.co/phobosanderos@gmail.com" method="POST">
+      <input type="hidden" name="subject" value="New project brief">
+      <div aria-hidden="true" class="hp">
+        <label>{c.contact.text_7}<input name="botcheck" tabindex="-1" autocomplete="off"></label>
+      </div>
+
+      <div class="fg-fields">
+        <label class="fld"><span class="note">{c.contact.span_8}</span><input name="name" autocomplete="name" required></label>
+        <label class="fld"><span class="note">{c.contact.span_9}</span><input name="email" type="email" autocomplete="email" required></label>
+        <label class="fld"><span class="note">{c.contact.span_10}</span><input name="company" autocomplete="organization"></label>
+        <label class="fld"><span class="note">{c.contact.span_11}</span><select name="budget"><option>{c.contact.option_12}</option><option>{c.contact.option_13}</option><option>{c.contact.option_14}</option><option>{c.contact.option_15}</option><option>{c.contact.option_16}</option></select></label>
+        <label class="fld fld-wide"><span class="note">{c.contact.span_17}</span><textarea name="message" rows="4" required></textarea></label>
+
+        <div class="fld-wide fg-row">
+          <button class="btn" type="submit">
+            <span data-label>{c.contact.span_18}</span>
+            <span class="arrow" aria-hidden="true">→</span>
+          </button>
+          <p class="fg-status" aria-live="polite"></p>
+        </div>
+      </div>
+
+      <div class="fg-sent" tabindex="-1">
+        <p class="fg-sent-h h3" set:html={c.contact.p_19_html}></p>
+        <p>{c.contact.p_20}</p>
+        <button class="btn btn--ghost" type="button" data-again>{c.contact.button_21}</button>
+      </div>
+    </form>
+  </div>
+</div>
 </section>
