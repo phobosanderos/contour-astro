@@ -351,10 +351,25 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
 }
 
 .cta__lead{
-  max-width:26ch;
-  line-height:1.45;
-  color:var(--muted);
+  grid-column:1/span 5;
+  max-width:100%;
   margin:0;
+  color:var(--muted);
+  font-size:var(--step-1);
+  line-height:1.15;
+  letter-spacing:-.015em;
+  font-weight:500;
+  white-space:nowrap;
+}
+
+.cta__lead--prototype{
+  letter-spacing:-.02em;
+}
+
+@media (max-width: 960px){
+  .cta__lead{
+    white-space:normal;
+  }
 }
 
 .fg{
