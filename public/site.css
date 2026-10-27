@@ -395,53 +395,123 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
 .fg-sent-h{margin-bottom:1rem}
 .fg-sent p:not(.fg-sent-h){color:var(--muted);margin-bottom:1.5rem}
 
-/* brutalist futuristic contact media */
+/* previous orbital motion */
 .shape-scene{
   position:relative;
   width:100%;
   height:100%;
   min-height:clamp(260px,32vw,540px);
+  border-radius:18px;
   overflow:hidden;
   border:1px solid var(--line);
   background:
-    linear-gradient(180deg, color-mix(in srgb, var(--bg-raised) 78%, transparent), var(--bg)),
-    repeating-linear-gradient(
-      to right,
-      transparent 0,
-      transparent 18px,
-      color-mix(in srgb, var(--line) 72%, transparent) 19px,
-      transparent 20px
-    ),
-    repeating-linear-gradient(
-      to bottom,
-      transparent 0,
-      transparent 18px,
-      color-mix(in srgb, var(--line) 72%, transparent) 19px,
-      transparent 20px
-    );
-  box-shadow:inset 0 0 0 1px color-mix(in srgb, var(--line) 45%, transparent);
+    linear-gradient(135deg, color-mix(in srgb, var(--bg-raised) 85%, transparent), var(--bg)),
+    radial-gradient(circle at 20% 20%, color-mix(in srgb, var(--accent) 12%, transparent), transparent 42%);
+  box-shadow:inset 0 0 0 1px var(--line);
 }
 
-.shape-slab{
+.shape-orbit{
   position:absolute;
-  inset:12% 18% 12% 18%;
-  border:1px solid color-mix(in srgb, var(--accent) 62%, transparent);
-  background:
-    linear-gradient(90deg, transparent 0 18%, color-mix(in srgb, var(--accent) 18%, transparent) 18% 22%, transparent 22% 100%),
-    linear-gradient(180deg, color-mix(in srgb, var(--bg) 84%, transparent), color-mix(in srgb, var(--bg-raised) 82%, transparent));
-  transform:translateX(0);
-  animation:slab-move 12s cubic-bezier(.65,0,.35,1) infinite;
+  inset:12%;
+  border-radius:38% 62% 58% 42% / 45% 39% 61% 55%;
+  border:1px solid color-mix(in srgb, var(--accent) 54%, transparent);
+  background:color-mix(in srgb, var(--accent) 10%, transparent);
 }
 
-.shape-cut{
-  position:absolute;
-  inset:22% 22% 22% 22%;
-  border-left:1px solid color-mix(in srgb, var(--accent-text) 70%, transparent);
-  border-right:1px solid color-mix(in srgb, var(--accent-text) 70%, transparent);
-  background:
-    linear-gradient(90deg, transparent 0 14%, color-mix(in srgb, var(--accent) 38%, transparent) 14% 16%, transparent 16% 84%, color-mix(in srgb, var(--accent) 38%,*
-
+.orbit-a{
+  inset:10% 14%;
+  transform:rotate(18deg);
+  animation:shape-drift 14s ease-in-out infinite alternate;
+}
 
+.orbit-b{
+  inset:18% 18%;
+  border-radius:52% 48% 40% 60% / 35% 58% 42% 65%;
+  border-color:color-mix(in srgb, var(--accent-text) 50%, transparent);
+  animation:shape-drift-alt 18s ease-in-out infinite alternate;
+}
+
+.shape-core{
+  position:absolute;
+  inset:28% 30%;
+  border-radius:27% 73% 64% 36% / 44% 38% 62% 56%;
+  background:
+    linear-gradient(135deg, color-mix(in srgb, var(--accent) 76%, var(--bg-raised)), var(--accent)),
+    var(--accent);
+  box-shadow:
+    0 0 0 1px color-mix(in srgb, var(--accent) 65%, transparent),
+    0 24px 60px color-mix(in srgb, var(--accent) 24%, transparent);
+  animation:shape-pulse 8s ease-in-out infinite;
+}
+
+.shape-glow{
+  position:absolute;
+  width:42%;
+  height:42%;
+  right:-6%;
+  bottom:-10%;
+  border-radius:50%;
+  background:radial-gradient(circle, color-mix(in srgb, var(--accent) 54%, transparent), transparent 68%);
+  filter:blur(16px);
+  animation:shape-glow 12s ease-in-out infinite alternate;
+}
+
+@keyframes shape-drift{
+  0%{
+    transform:translate3d(-10px, 8px, 0) rotate(0deg) scale(0.96);
+  }
+  100%{
+    transform:translate3d(12px, -12px, 0) rotate(18deg) scale(1.08);
+  }
+}
+
+@keyframes shape-drift-alt{
+  0%{
+    transform:translate3d(8px, -8px, 0) rotate(18deg) scale(0.98);
+  }
+  100%{
+    transform:translate3d(-12px, 10px, 0) rotate(-12deg) scale(1.08);
+  }
+}
+
+@keyframes shape-pulse{
+  0%, 100%{
+    transform:scale(0.96) rotate(-12deg);
+    filter:saturate(0.95);
+  }
+  50%{
+    transform:scale(1.08) rotate(12deg);
+    filter:saturate(1.2);
+  }
+}
+
+@keyframes shape-glow{
+  0%{
+    transform:translate(0, 0) scale(0.9);
+    opacity:0.5;
+  }
+  100%{
+    transform:translate(-10px, -18px) scale(1.18);
+    opacity:1;
+  }
+}
+
+@media (max-width: 767px){
+  .cta__media,
+  .cta__right{
+    grid-column:1 / -1;
+  }
+
+  .cta__right{
+    gap:1rem;
+  }
+
+  .shape-scene{
+    min-height:240px;
+  }
+
+  .fg-fields{grid-template-columns:1fr}
+}
 /* footer */
 .site-footer{position:relative;overflow:clip;padding-top:clamp(4rem,6vw,6rem);padding-bottom:1rem}
 .footer-top{row-gap:1.5rem;padding-bottom:clamp(2rem,4vw,4rem)}
