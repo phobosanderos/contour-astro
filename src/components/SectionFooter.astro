@@ -67,35 +67,11 @@ import c from "../content.json";
     </div>
   </div>
 
-      <div class="footer-bottom note">
+  <div class="footer-bottom note">
     <p class="copy"><span>{c.footer.span_23}</span><span>{c.footer.span_24}</span></p>
-
-    <nav class="legal-links" aria-label="Legal and accessibility">
+    <nav class="legal-links" aria-label="Legal">
       <a class="link" href="/privacy/">{c.footer.a_26}</a>
-      <button
-        class="link link--button"
-        type="button"
-        data-action="accessibility"
-        aria-expanded="false"
-        aria-controls="accessibility-panel"
-      >
-        Accessibility
-      </button>
+      <a class="link" href="#top">{c.footer.a_27}</a>
     </nav>
-  </div>
-
-  <div id="accessibility-panel" class="access-panel" hidden aria-live="polite">
-    <button type="button" class="access-option" data-a11y="contrast" aria-pressed="false">
-      High contrast
-    </button>
-    <button type="button" class="access-option" data-a11y="text" aria-pressed="false">
-      Larger text
-    </button>
-    <button type="button" class="access-option" data-a11y="motion" aria-pressed="false">
-      Reduce motion
-    </button>
-    <button type="button" class="access-option access-option--reset" data-a11y="reset" aria-pressed="false">
-      Reset
-    </button>
   </div>
 </footer>
