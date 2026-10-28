@@ -151,7 +151,6 @@
   var pc = document.querySelector(".preloader__count");
 var ring = document.querySelector(".preloader__ring");
 var preloader = document.querySelector(".preloader");
-var root = document.documentElement;
 
 if (pc && ring && preloader && !root.dataset.preloaded) {
   var t0 = performance.now();
@@ -177,7 +176,7 @@ if (pc && ring && preloader && !root.dataset.preloaded) {
 
     setTimeout(function () {
       root.classList.add("motion-ready");
-    }, 150);
+    }, 180);
 
     setTimeout(function () {
       preloader.style.opacity = "0";
@@ -187,6 +186,7 @@ if (pc && ring && preloader && !root.dataset.preloaded) {
 
   requestAnimationFrame(tick);
 }
+   
   /* ---------- footer title block: 9 → 0 as each cell enters ---------- */
   function tbCount() {
     if (!("IntersectionObserver" in window)) return;
