@@ -53,20 +53,21 @@ const buildStamp = Date.now();
   </head>
   <body>
   <div class="preloader" aria-live="polite" aria-label="Loading">
-  <div class="preloader__inner">
-    <div class="preloader__ring" aria-hidden="true"></div>
-    <span class="preloader__count">0%</span>
-  </div>
+    <div class="preloader__inner">
+      <div class="preloader__ring" aria-hidden="true"></div>
+      <span class="preloader__count">0%</span>
+    </div>
 </div>
     <slot />
-    <script is:inline src={`/site.js?v=${buildStamp}`} defer></script>
-
     <script is:inline>
-      window.addEventListener("load", () => {
-        document.documentElement.dataset.preloaded = "true";
-        const loader = document.querySelector(".preloader");
-        if (loader) loader.remove();
-      });
-    </script>
+  try {
+    const root = document.documentElement;
+    const savedTheme = localStorage.getItem("ct-theme");
+    const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const initialTheme = savedTheme || (systemDark ? "dark" : "light");
+    root.dataset.theme = initialTheme;
+    root.classList.add("js");
+  } catch (e) {}
+</script>
   </body>
 </html>
