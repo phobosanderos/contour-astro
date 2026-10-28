@@ -174,14 +174,14 @@ if (pc && ring && preloader && !root.dataset.preloaded) {
 
     root.dataset.preloaded = "true";
 
-    setTimeout(function () {
-      root.classList.add("motion-ready");
-    }, 180);
+setTimeout(function () {
+  bootAnimations();
+}, 180);
 
-    setTimeout(function () {
-      preloader.style.opacity = "0";
-      preloader.style.visibility = "hidden";
-    }, 220);
+setTimeout(function () {
+  preloader.style.opacity = "0";
+  preloader.style.visibility = "hidden";
+}, 220);
   }
 
   requestAnimationFrame(tick);
@@ -502,20 +502,57 @@ if (root.dataset.preloaded === "true") {
     requestAnimationFrame(function () { cv.classList.add("is-on"); hero.classList.add("has-terrain"); });
   }
 
-  /* ---------- boot ---------- */
-if (root.dataset.preloaded === "true") {
-  var delay = .1;
-  (doc.fonts && doc.fonts.ready ? doc.fonts.ready : Promise.resolve()).then(function () {
+  
+/* ---------- boot ---------- */
+function bootAnimations() {
+  // Prevent duplicate initialization.
+  if (root.dataset.motionBooted === "true") return;
+
+  // Do not initialize before the preloader has completed.
+  if (root.dataset.preloaded !== "true") return;
+
+  root.dataset.motionBooted = "true";
+
+  var delay = 0.1;
+
+  (doc.fonts && doc.fonts.ready
+    ? doc.fonts.ready
+    : Promise.resolve()
+  ).then(function () {
     var intro = heroIntro(delay);
+
+    // Keep the existing CSS visibility mechanism.
     root.classList.add("motion-ready");
-    idle(function () { reveals(); workStage(); ST.refresh(); });
+
+    // Restore the existing scroll and work animations.
+    idle(function () {
+      reveals();
+      workStage();
+      ST.refresh();
+    });
+
     var hero = $("[data-hero]");
-    if (hero && matchMedia("(pointer: fine) and (min-width: 900px)").matches) {
-      var start = function () { idle(function () { heroGL(hero); }); };
+
+    if (
+      hero &&
+      matchMedia("(pointer: fine) and (min-width: 900px)").matches
+    ) {
+      var start = function () {
+        idle(function () {
+          heroGL(hero);
+        });
+      };
+
       intro.eventCallback("onComplete", start);
     }
   });
 }
+
+// Also support pages where the preloader has already completed.
+if (root.dataset.preloaded === "true") {
+  bootAnimations();
+}
+
 
   /* ---------- Formgong form: success only when the server answers success: true ---------- */
   function formInit() {
