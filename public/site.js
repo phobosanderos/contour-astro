@@ -148,21 +148,21 @@
   }
 
   /* ---------- preloader counter (the curtain itself is pure CSS) ---------- */
-  var pc = $(".preloader__count");
-var preloader = $(".preloader");
+  var pc = document.querySelector(".preloader__count");
+var preloader = document.querySelector(".preloader");
 var root = document.documentElement;
 
 if (pc && preloader && !root.dataset.preloaded) {
   var t0 = performance.now();
-  var io = function (t) {
-    return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-  };
 
-  (function tick(now) {
-    var t = Math.min(1, (now - t0) / 1300);
-    var pct = Math.round(io(t) * 100);
+  function easeOutCubic(t) {
+    return 1 - Math.pow(1 - t, 3);
+  }
 
-    pc.textContent = pct + "%";
+  function tick(now) {
+    var t = Math.min(1, (now - t0) / 1800);
+    var p = Math.round(easeOutCubic(t) * 100);
+    pc.textContent = p + "%";
 
     if (t < 1) {
       requestAnimationFrame(tick);
@@ -174,7 +174,14 @@ if (pc && preloader && !root.dataset.preloaded) {
     setTimeout(function () {
       root.classList.add("motion-ready");
     }, 180);
-  })(t0);
+
+    setTimeout(function () {
+      preloader.style.opacity = "0";
+      preloader.style.visibility = "hidden";
+    }, 220);
+  }
+
+  requestAnimationFrame(tick);
 }
 
   /* ---------- footer title block: 9 → 0 as each cell enters ---------- */
@@ -479,7 +486,8 @@ if (pc && preloader && !root.dataset.preloaded) {
   }
 
   /* ---------- boot ---------- */
-  var delay = root.dataset.preloaded ? .1 : 1.45;
+if (root.dataset.preloaded === "true") {
+  var delay = .1;
   (doc.fonts && doc.fonts.ready ? doc.fonts.ready : Promise.resolve()).then(function () {
     var intro = heroIntro(delay);
     root.classList.add("motion-ready");
@@ -490,6 +498,7 @@ if (pc && preloader && !root.dataset.preloaded) {
       intro.eventCallback("onComplete", start);
     }
   });
+}
 
   /* ---------- Formgong form: success only when the server answers success: true ---------- */
   function formInit() {
