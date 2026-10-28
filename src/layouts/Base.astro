@@ -10,7 +10,33 @@ const buildStamp = Date.now();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{c.site.title}</title>
     <meta name="description" content={c.site.description}>
-    <link rel="icon" href="/img/Resistance_Symbol.svg">
+    <link rel="icon" href="/img/Resistance_Symbol (light).svg" id="site-favicon">
+<script is:inline>
+  function updateFavicon() {
+    const root = document.documentElement;
+    const darkMode =
+      root.dataset.theme === "dark" ||
+      window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+    const favicon = document.getElementById("site-favicon");
+    if (favicon) {
+      favicon.href = darkMode ? "/img/Resistance_Symbol (dark).svg" : "/img/Resistance_Symbol (light).svg";
+    }
+  }
+
+  updateFavicon();
+
+  const observer = new MutationObserver(() => {
+    updateFavicon();
+  });
+
+  observer.observe(document.documentElement, {
+    attributes: true,
+    attributeFilter: ["data-theme"]
+  });
+
+  window.matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", updateFavicon);
+</script>
 
     <script is:inline>
       try {
