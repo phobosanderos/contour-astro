@@ -132,9 +132,10 @@ html.js:not([data-preloaded]) .preloader{display:grid}
   align-items:center;
   gap:1rem;
   color:var(--ink);
-  border-bottom:1px solid var(--line-strong);
+  background:var(--bg);
+  border-bottom:none; /* remove the extra header line */
+  transition:height var(--dur-1) var(--ease-out);
 }
-
 .site-header::before{
   content:"";
   position:absolute;
@@ -267,8 +268,8 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
   display:flex;
   justify-content:space-between;
   gap:1rem;
-  border-top:1px solid var(--line-strong);
-  padding-top:.75rem;
+  padding-top:.5rem;
+  border-top:1px solid var(--line-strong); /* this is the one visible line */
 }
 .hero__title{display:flex;flex-direction:column;align-self:end;gap:.35em;font-weight:500}
 .hero__human{display:block;margin-left:-.05em;color:var(--ink);-webkit-text-stroke:0 var(--ink)}
@@ -289,9 +290,11 @@ html.js:not(.motion-ready) :is([data-hero-generate],[data-hero-human]){visibilit
 .hero__ctas{display:flex;flex-wrap:wrap;gap:.75rem}
 .hero-gl{
   position:absolute;
-  inset:0;
-  top:4.5rem;
-  height:calc(100% - 4.5rem);
+  inset:0;              /* full hero box */
+  left:0;
+  right:0;
+  top:0;
+  bottom:0;
   z-index:-1;
   pointer-events:none;
   opacity:0;
