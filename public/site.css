@@ -581,7 +581,7 @@ html.js:not(.motion-ready) :is(
   }
 
   .hero__machine {
-    font-size: clamp(2.4rem, 9vw, 4.5rem);
+    font-size: clamp(3.5rem, 8vw, 8rem);
     transform: translateY(-0.7rem);
   }
   .hero__intro {
