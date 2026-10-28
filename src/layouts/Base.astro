@@ -61,5 +61,6 @@ const buildStamp = Date.now();
     </div>
 
     <slot />
+ <script is:inline src={`/site.js?v=${buildStamp}`} defer></script>
   </body>
 </html>
