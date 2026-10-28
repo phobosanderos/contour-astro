@@ -52,6 +52,12 @@ const buildStamp = Date.now();
     <link rel="stylesheet" href={`/site.css?v=${buildStamp}`}>
   </head>
   <body>
+  <div class="preloader" aria-live="polite" aria-label="Loading">
+  <div class="preloader__inner">
+    <div class="preloader__ring" aria-hidden="true"></div>
+    <span class="preloader__count">0%</span>
+  </div>
+</div>
     <slot />
     <script is:inline src={`/site.js?v=${buildStamp}`} defer></script>
 
