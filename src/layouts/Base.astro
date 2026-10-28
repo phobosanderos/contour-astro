@@ -6,62 +6,53 @@ const buildStamp = Date.now();
 <!doctype html>
 <html lang={c.site.lang}>
   <head>
-<script is:inline>
-  try {
-    const root = document.documentElement;
-    const savedTheme = localStorage.getItem("ct-theme");
-    const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const initialTheme = savedTheme || (systemDark ? "dark" : "light");
-    root.dataset.theme = initialTheme;
-    root.classList.add("js");
-  } catch (e) {}
-</script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{c.site.title}</title>
     <meta name="description" content={c.site.description}>
     <link rel="icon" href="/img/favicon-light.svg" id="site-favicon">
-<script is:inline>
-  function updateFavicon() {
-    const root = document.documentElement;
-    const darkMode =
-      root.dataset.theme === "dark" ||
-      window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-    const favicon = document.getElementById("site-favicon");
-    if (favicon) {
-      favicon.href = darkMode ? "/img/favicon-light.svg" : "/img/favicon-dark.svg";
-    }
-  }
+    <script is:inline>
+      function updateFavicon() {
+        const root = document.documentElement;
+        const darkMode =
+          root.dataset.theme === "dark" ||
+          window.matchMedia("(prefers-color-scheme: dark)").matches;
 
-  updateFavicon();
+        const favicon = document.getElementById("site-favicon");
+        if (favicon) {
+          favicon.href = darkMode ? "/img/favicon-light.svg" : "/img/favicon-dark.svg";
+        }
+      }
 
-  const observer = new MutationObserver(() => {
-    updateFavicon();
-  });
+      updateFavicon();
 
-  observer.observe(document.documentElement, {
-    attributes: true,
-    attributeFilter: ["data-theme"]
-  });
+      const observer = new MutationObserver(() => {
+        updateFavicon();
+      });
 
-  window.matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", updateFavicon);
-</script>
+      observer.observe(document.documentElement, {
+        attributes: true,
+        attributeFilter: ["data-theme"]
+      });
 
-   <script is:inline>
-  try {
-    const root = document.documentElement;
-    const savedTheme = localStorage.getItem("ct-theme");
-    const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const initialTheme = savedTheme || (systemDark ? "dark" : "light");
-    root.dataset.theme = initialTheme;
-    root.classList.add("js");
-  } catch (e) {}
-</script>
+      window.matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", updateFavicon);
+    </script>
+
+    <script is:inline>
+      try {
+        const root = document.documentElement;
+        const savedTheme = localStorage.getItem("ct-theme");
+        const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        const initialTheme = savedTheme || (systemDark ? "dark" : "light");
+        root.dataset.theme = initialTheme;
+        root.classList.add("js");
+      } catch (e) {}
+    </script>
 
     <link rel="stylesheet" href={`/site.css?v=${buildStamp}`}>
   </head>
-    <body>
+  <body>
     <div class="preloader" aria-live="polite" aria-label="Loading">
       <div class="preloader__inner">
         <div class="preloader__ring" aria-hidden="true"></div>
@@ -70,5 +61,7 @@ const buildStamp = Date.now();
     </div>
 
     <slot />
+
+    <script is:inline src={`/site.js?v=${buildStamp}`} defer></script>
   </body>
 </html>
