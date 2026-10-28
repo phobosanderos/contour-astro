@@ -347,7 +347,8 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
   align-self: end;
   position: relative;
   z-index: 1;
-  padding-bottom: clamp(2.5rem, 7vh, 6rem);
+  padding-bottom: clamp(1rem, 3vh, 2.5rem);
+  transform: translateY(1.5rem);
 }
 
 .hero__title {
@@ -519,7 +520,7 @@ html.js:not(.motion-ready) :is(
   }
 
   .hero__copy {
-    padding-bottom: 2rem;
+    padding-bottom: 0;
   }
 
   .hero__human {
@@ -529,7 +530,13 @@ html.js:not(.motion-ready) :is(
   .hero__machine {
     font-size: clamp(2.4rem, 9vw, 4.5rem);
   }
-
+  .hero__intro {
+  max-width: 34ch;
+  margin: 1.25rem 0 0;
+  color: var(--muted);
+  font-size: clamp(1rem, 1.25vw, 1.2rem);
+  line-height: 1.5;
+}
   .hero__notes {
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 0.75rem;
@@ -902,23 +909,6 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   font-size: 0.72rem;
   letter-spacing: 0.02em;
   text-transform: uppercase;
-}
-
-.hero {
-  padding-top: 4.25rem;
-  gap: 1rem;
-}
-
-.hero__top {
-  padding-top: 0.25rem;
-}
-
-.hero__title {
-  margin-top: 0;
-}
-
-.hero__intro {
-  margin-top: 0;
 }
 
 @media (max-width: 960px) {
