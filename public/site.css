@@ -114,12 +114,78 @@ kbd{font-family:inherit;box-shadow:inset 0 0 0 1px var(--line-strong);color:var(
 @keyframes pop{0%{transform-origin:64px 36px;transform:scale(0)}}
 
 /* preloader */
-.preloader{position:fixed;inset:0;z-index:95;display:none;grid-template-rows:auto 1fr auto;place-items:center;padding:1.25rem var(--gutter);background:var(--ink);color:var(--bg);clip-path:inset(0 round 0);}
-html.js:not([data-preloaded]) .preloader{display:grid}
-.preloader__meta{width:100%;display:flex;justify-content:space-between;color:color-mix(in oklab,var(--bg) 60%,transparent)}
-.preloader .preloader__mark{font-size:clamp(5rem,16vw,12rem)}
-.preloader__count{font-variant-numeric:tabular-nums}
-@keyframes lift{to{clip-path:inset(0 0 100%);visibility:hidden}}
+:root{
+  --preloader-bg: #f4f4f0;
+  --preloader-fg: #0e0e0d;
+  --preloader-ring: color-mix(in oklab, var(--preloader-fg) 18%, transparent);
+}
+
+:root[data-theme=dark]{
+  --preloader-bg: #0b0b0c;
+  --preloader-fg: #edede7;
+}
+
+.preloader{
+  position:fixed;
+  inset:0;
+  z-index:95;
+  display:none;
+  place-items:center;
+  background:var(--preloader-bg);
+  color:var(--preloader-fg);
+  opacity:1;
+  visibility:visible;
+  transition:opacity 1.1s ease, visibility 1.1s ease;
+}
+
+html.js:not([data-preloaded]) .preloader{
+  display:grid;
+}
+
+html[data-preloaded="true"] .preloader{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+}
+
+.preloader__inner{
+  position:relative;
+  display:grid;
+  place-items:center;
+  width:clamp(90px,14vw,150px);
+  height:clamp(90px,14vw,150px);
+}
+
+.preloader__ring{
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  background:conic-gradient(
+    var(--preloader-fg) 0deg,
+    var(--preloader-fg) 3.6deg,
+    var(--preloader-ring) 3.6deg 360deg
+  );
+  mask: radial-gradient(farthest-side, transparent calc(100% - 7px), #000 0);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 7px), #000 0);
+  animation: spin 1.8s linear infinite;
+}
+
+.preloader__count{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  font-family:var(--font-mono);
+  font-size:clamp(.85rem,1.4vw,1.15rem);
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  font-variant-numeric:tabular-nums;
+  color:var(--preloader-fg);
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
 
 /* header */
 .site-header{
