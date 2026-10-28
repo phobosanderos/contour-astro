@@ -60,9 +60,9 @@
     "span_3": "Slots available",
     "span_4": "Ideas,",
 "span_5": "made visible.",
-"p_6_html": "<span class=\"hero__label\">DESIGN</span><span class=\"hero__label-desc\">shaping ideas into form</span>",
-"p_7_html": "<span class=\"hero__label\">MOTION</span><span class=\"hero__label-desc\">giving ideas movement</span>",
-"p_8_html": "<span class=\"hero__label\">ILLUSTRATION</span><span class=\"hero__label-desc\">making imagination visible</span>",
+"p_6_html": "<span class=\"hero__label\"><span class=\"hero__symbol\" aria-hidden=\"true\">●</span> DESIGN</span><span class=\"hero__label-desc\">shaping ideas into form</span>",
+"p_7_html": "<span class=\"hero__label\"><span class=\"hero__symbol\" aria-hidden=\"true\">◆</span> MOTION</span><span class=\"hero__label-desc\">giving ideas movement</span>",
+"p_8_html": "<span class=\"hero__label\"><span class=\"hero__symbol\" aria-hidden=\"true\">▲</span> ILLUSTRATION</span><span class=\"hero__label-desc\">making imagination visible</span>",
 "p_9": "Visual design, motion and illustration for ideas worth exploring."
   },
   "work": {
