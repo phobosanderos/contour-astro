@@ -149,10 +149,33 @@
 
   /* ---------- preloader counter (the curtain itself is pure CSS) ---------- */
   var pc = $(".preloader__count");
-  if (pc && !root.dataset.preloaded && getComputedStyle($(".preloader")).display !== "none") {
-    var t0 = performance.now(), io = function (t) { return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2; };
-    (function tick(now) { var t = Math.min(1, (now - t0) / 1100); pc.textContent = Math.round(io(t) * 100) + "%"; if (t < 1) requestAnimationFrame(tick); })(t0);
-  }
+var preloader = $(".preloader");
+var root = document.documentElement;
+
+if (pc && preloader && !root.dataset.preloaded) {
+  var t0 = performance.now();
+  var io = function (t) {
+    return t < .5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  };
+
+  (function tick(now) {
+    var t = Math.min(1, (now - t0) / 1300);
+    var pct = Math.round(io(t) * 100);
+
+    pc.textContent = pct + "%";
+
+    if (t < 1) {
+      requestAnimationFrame(tick);
+      return;
+    }
+
+    root.dataset.preloaded = "true";
+
+    setTimeout(function () {
+      root.classList.add("motion-ready");
+    }, 180);
+  })(t0);
+}
 
   /* ---------- footer title block: 9 → 0 as each cell enters ---------- */
   function tbCount() {
