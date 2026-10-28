@@ -453,7 +453,14 @@ html.js:not(.motion-ready) :is(
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
-
+.hero__symbol {
+  display: inline-block;
+  margin-right: 0.45rem;
+  font-family: var(--font-sans);
+  font-size: 0.9em;
+  line-height: 1;
+  vertical-align: baseline;
+}
 .hero__label-desc {
   color: var(--muted);
   font-family: var(--font-mono);
