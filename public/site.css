@@ -133,7 +133,7 @@ html.js:not([data-preloaded]) .preloader{display:grid}
   gap:1rem;
   color:var(--ink);
   background:var(--bg);
-  border-bottom:none;
+  border-bottom:1px solid var(--line-strong);
   transition:height var(--dur-1) var(--ease-out);
 }
 .site-header::before{
@@ -260,7 +260,7 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
   grid-template-rows:auto 1fr auto auto;
   gap:1.5rem;
   min-height:100svh;
-  padding-top:4.25rem;
+  padding-top:4.5rem;
   padding-bottom:2rem;
 }
 
@@ -270,7 +270,7 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
   align-items:center;
   gap:1rem;
   padding-top:.5rem;
-  border-top:1px solid var(--line-strong);
+  border-top:none;
 }
 .hero__title{display:flex;flex-direction:column;align-self:end;gap:.35em;font-weight:500}
 .hero__human{display:block;margin-left:-.05em;color:var(--ink);-webkit-text-stroke:0 var(--ink)}
