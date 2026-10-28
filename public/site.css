@@ -264,9 +264,10 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
   padding-bottom:2rem;
 }
 
-..hero__top{
+.hero__top{
   display:flex;
   justify-content:space-between;
+  align-items:center;
   gap:1rem;
   padding-top:.5rem;
   border-top:1px solid var(--line-strong);
