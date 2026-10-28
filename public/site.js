@@ -148,15 +148,34 @@
   }
 
   /* ---------- preloader counter (the curtain itself is pure CSS) ---------- */
-  var pc = document.querySelector(".preloader__count");
+/* ---------- preloader counter (the curtain itself is pure CSS) ---------- */
+var pc = document.querySelector(".preloader__count");
 var ring = document.querySelector(".preloader__ring");
 var preloader = document.querySelector(".preloader");
 
 if (pc && ring && preloader && !root.dataset.preloaded) {
   var t0 = performance.now();
+  var bootStarted = false;
 
   function easeOutCubic(t) {
     return 1 - Math.pow(1 - t, 3);
+  }
+
+  function finishPreloader() {
+    if (bootStarted) return;
+    bootStarted = true;
+
+    preloader.removeEventListener("transitionend", onPreloaderFadeEnd);
+    bootAnimations();
+  }
+
+  function onPreloaderFadeEnd(event) {
+    if (
+      event.target === preloader &&
+      event.propertyName === "opacity"
+    ) {
+      finishPreloader();
+    }
   }
 
   function tick(now) {
@@ -172,32 +191,17 @@ if (pc && ring && preloader && !root.dataset.preloaded) {
       return;
     }
 
+    // Listen before triggering the CSS fade.
+    preloader.addEventListener("transitionend", onPreloaderFadeEnd);
+
+    // Starts the existing CSS opacity/visibility transition.
     root.dataset.preloaded = "true";
 
-// Wait for the preloader's opacity fade to finish.
-function onPreloaderFadeEnd(event) {
-  if (event.target !== preloader || event.propertyName !== "opacity") {
-    return;
+    // Fallback in case transitionend does not fire.
+    setTimeout(finishPreloader, 1200);
   }
 
-  preloader.removeEventListener("transitionend", onPreloaderFadeEnd);
-  bootAnimations();
-}
-
-preloader.addEventListener("transitionend", onPreloaderFadeEnd);
-     
-if (root.dataset.preloaded === "true") {
-  var delay = .1;
-  (doc.fonts && doc.fonts.ready ? doc.fonts.ready : Promise.resolve()).then(function () {
-    var intro = heroIntro(delay);
-    root.classList.add("motion-ready");
-    idle(function () { reveals(); workStage(); ST.refresh(); });
-    var hero = $("[data-hero]");
-    if (hero && matchMedia("(pointer: fine) and (min-width: 900px)").matches) {
-      var start = function () { idle(function () { heroGL(hero); }); };
-      intro.eventCallback("onComplete", start);
-    }
-  });
+  requestAnimationFrame(tick);
 }
    
   /* ---------- footer title block: 9 → 0 as each cell enters ---------- */
