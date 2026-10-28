@@ -1,6 +1,27 @@
-/* Bundled fonts (SIL Open Font License 1.1, see OFL-Geist.txt). */
-@font-face{font-family:"Geist";src:url(fonts/geist-latin.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
-@font-face{font-family:"Geist Mono";src:url(fonts/geist-mono-latin.woff2) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+/* Bundled fonts */
+@font-face {
+  font-family: "Geist";
+  src: url("fonts/geist-latin.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Geist Mono";
+  src: url("fonts/geist-mono-latin.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Instrument Serif";
+  src: url("fonts/InstrumentSerif-Italic.ttf") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
 
 /* Generated from tokens.json */
 :root {
@@ -355,19 +376,22 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.12em;
+  gap: clamp(1.25rem, 3vw, 3rem);
   margin: 0;
   font-weight: 500;
 }
 
 .hero__human {
   display: block;
-  margin-left: -0.05em;
+  margin-left: -0.02em;
   color: var(--ink);
+  font-family: "Instrument Serif", serif;
+  font-style: italic;
+  font-weight: 400;
   -webkit-text-stroke: 0 var(--ink);
   font-size: var(--step-5);
-  letter-spacing: -0.055em;
-  line-height: 0.9;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
 }
 
 .hero__machine {
@@ -407,6 +431,20 @@ html.js:not(.motion-ready) :is(
   min-width: 0;
 }
 
+.hero__note:nth-child(1) {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.hero__note:nth-child(2) {
+  align-items: center;
+  text-align: center;
+}
+
+.hero__note:nth-child(3) {
+  align-items: flex-end;
+  text-align: right;
+}
 .hero__label {
   color: var(--ink);
   font-family: var(--font-mono);
