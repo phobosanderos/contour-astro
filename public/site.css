@@ -339,9 +339,14 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
 .hero__title{display:flex;flex-direction:column;align-self:end;gap:.35em;font-weight:500}
 .hero__human{display:block;margin-left:-.05em;color:var(--ink);-webkit-text-stroke:0 var(--ink)}
 .hero__machine{display:block;max-width:24ch;color:var(--ink)}
-html.js:not(.motion-ready) :is([data-hero-generate],[data-hero-human]) {
+html.js:not(.motion-ready) :is(
+  [data-hero-generate],
+  [data-hero-human],
+  [data-hero-fade]
+) {
   visibility: hidden;
 }
+
 .gen-word{display:inline-block;will-change:filter,opacity}
 .gen-caret{display:inline-block;position:relative;width:0;height:.82em;vertical-align:-.04em}
 .gen-caret::after{content:"";position:absolute;inset:0 auto 0 .08em;width:.08em;background:var(--accent)}
