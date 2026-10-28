@@ -149,10 +149,11 @@
 
   /* ---------- preloader counter (the curtain itself is pure CSS) ---------- */
   var pc = document.querySelector(".preloader__count");
+var ring = document.querySelector(".preloader__ring");
 var preloader = document.querySelector(".preloader");
 var root = document.documentElement;
 
-if (pc && preloader && !root.dataset.preloaded) {
+if (pc && ring && preloader && !root.dataset.preloaded) {
   var t0 = performance.now();
 
   function easeOutCubic(t) {
@@ -162,7 +163,10 @@ if (pc && preloader && !root.dataset.preloaded) {
   function tick(now) {
     var t = Math.min(1, (now - t0) / 1800);
     var p = Math.round(easeOutCubic(t) * 100);
+    var deg = (p / 100) * 360;
+
     pc.textContent = p + "%";
+    ring.style.setProperty("--progress", deg + "deg");
 
     if (t < 1) {
       requestAnimationFrame(tick);
@@ -173,7 +177,7 @@ if (pc && preloader && !root.dataset.preloaded) {
 
     setTimeout(function () {
       root.classList.add("motion-ready");
-    }, 180);
+    }, 150);
 
     setTimeout(function () {
       preloader.style.opacity = "0";
@@ -183,7 +187,6 @@ if (pc && preloader && !root.dataset.preloaded) {
 
   requestAnimationFrame(tick);
 }
-
   /* ---------- footer title block: 9 → 0 as each cell enters ---------- */
   function tbCount() {
     if (!("IntersectionObserver" in window)) return;
