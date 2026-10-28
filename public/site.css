@@ -195,13 +195,12 @@ html.js:not([data-preloaded]) .preloader{display:grid}
 .nav__label,.nav__label::after{transition:transform var(--dur-1) var(--ease-in-out)}
 .nav__link:hover .nav__label{transform:translateY(-100%)}
 .nav__link:hover .nav__label::after{transform:translateY(0)}
-.tools{justify-self:end;display:flex;align-items:center;gap:.5rem;padding-right:.75rem}
+.tools{justify-self:end;display:flex;align-items:center;gap:0.75rem;padding-right:.75rem}
 .tool{width:2.25rem;height:2.25rem;display:grid;place-items:center;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line-strong);transition:box-shadow var(--dur-1) var(--ease-out),transform var(--dur-1) var(--ease-out)}
 .tool:hover{box-shadow:inset 0 0 0 1px var(--ink)}
 .tool:active{transform:scale(.92)}
 .tool svg{width:1.05rem;height:1.05rem;fill:none;stroke:currentColor;stroke-width:1.5px}
 .tool svg path{fill:currentColor;stroke:none}
-.tool--kbd{width:auto;padding-inline:.7rem;color:var(--ink)}
 .swatch{width:.9rem;height:.9rem;border-radius:999px;background:var(--accent);transition:background var(--dur-1) var(--ease-out)}
 .tool--menu{display:none;width:auto;padding-inline:.9rem;color:var(--ink)}
 .header-cta{height:2.25rem;margin-left:.25rem;padding-inline:1rem;font-size:.85rem}
