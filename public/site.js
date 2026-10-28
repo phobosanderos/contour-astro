@@ -186,6 +186,20 @@ if (pc && ring && preloader && !root.dataset.preloaded) {
 
   requestAnimationFrame(tick);
 }
+
+if (root.dataset.preloaded === "true") {
+  var delay = .1;
+  (doc.fonts && doc.fonts.ready ? doc.fonts.ready : Promise.resolve()).then(function () {
+    var intro = heroIntro(delay);
+    root.classList.add("motion-ready");
+    idle(function () { reveals(); workStage(); ST.refresh(); });
+    var hero = $("[data-hero]");
+    if (hero && matchMedia("(pointer: fine) and (min-width: 900px)").matches) {
+      var start = function () { idle(function () { heroGL(hero); }); };
+      intro.eventCallback("onComplete", start);
+    }
+  });
+}
    
   /* ---------- footer title block: 9 → 0 as each cell enters ---------- */
   function tbCount() {
