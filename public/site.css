@@ -575,13 +575,14 @@ html.js:not(.motion-ready) :is(
 
   .hero__machine {
     font-size: clamp(2.4rem, 9vw, 4.5rem);
-    transform: translateY(-0.5rem);
+    transform: translateY(-1.5rem);
   }
   .hero__intro {
   max-width: 34ch;
   margin: 1.25rem 0 0;
   color: var(--muted);
   font-size: clamp(1rem, 1.25vw, 1.2rem);
+  transform: translateY(-1.5rem);
   line-height: 1.5;
 }
   .hero__notes {
