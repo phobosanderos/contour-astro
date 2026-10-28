@@ -404,7 +404,10 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
 }
 
 .hero__intro {
-  transform: translateY(-2.5rem);
+  transform: translateY(0);
+  margin-top: 1rem;
+  position: relative;
+  z-index: 2;
 }
 
 /* Keep the existing intro animation hook */
