@@ -38,16 +38,16 @@ const buildStamp = Date.now();
   window.matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", updateFavicon);
 </script>
 
-    <script is:inline>
-      try {
-        const root = document.documentElement;
-        root.classList.add("js");
-        const savedTheme = localStorage.getItem("ct-theme");
-        const savedAccent = localStorage.getItem("ct-accent");
-        if (savedTheme) root.dataset.theme = savedTheme;
-        if (savedAccent) root.dataset.accent = savedAccent;
-      } catch (e) {}
-    </script>
+   <script is:inline>
+  try {
+    const root = document.documentElement;
+    const savedTheme = localStorage.getItem("ct-theme");
+    const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const initialTheme = savedTheme || (systemDark ? "dark" : "light");
+    root.dataset.theme = initialTheme;
+    root.classList.add("js");
+  } catch (e) {}
+</script>
 
     <link rel="stylesheet" href={`/site.css?v=${buildStamp}`}>
   </head>
