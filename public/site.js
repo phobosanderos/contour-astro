@@ -174,19 +174,18 @@ if (pc && ring && preloader && !root.dataset.preloaded) {
 
     root.dataset.preloaded = "true";
 
-setTimeout(function () {
-  bootAnimations();
-}, 180);
-
-setTimeout(function () {
-  preloader.style.opacity = "0";
-  preloader.style.visibility = "hidden";
-}, 220);
+// Wait for the preloader's opacity fade to finish.
+function onPreloaderFadeEnd(event) {
+  if (event.target !== preloader || event.propertyName !== "opacity") {
+    return;
   }
 
-  requestAnimationFrame(tick);
+  preloader.removeEventListener("transitionend", onPreloaderFadeEnd);
+  bootAnimations();
 }
 
+preloader.addEventListener("transitionend", onPreloaderFadeEnd);
+     
 if (root.dataset.preloaded === "true") {
   var delay = .1;
   (doc.fonts && doc.fonts.ready ? doc.fonts.ready : Promise.resolve()).then(function () {
