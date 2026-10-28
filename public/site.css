@@ -403,6 +403,10 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
   line-height: 0.95;
 }
 
+.hero__intro {
+  transform: translateY(-2.5rem);
+}
+
 /* Keep the existing intro animation hook */
 html.js:not(.motion-ready) :is(
   [data-hero-generate],
