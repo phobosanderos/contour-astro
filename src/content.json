@@ -58,14 +58,12 @@
     "span_1": "Independent Visual Designer",
     "span_2": "",
     "span_3": "Slots available",
-    "span_4": "Ideas, made visible.",
-    "span_5": "Visual design, motion and illustration for ideas worth exploring.",
-    "p_6_html": "<span class=\"note--accent\">●</span> Design · shaping ideas into form",
-    "p_7_html": "<span class=\"note--accent\">◆</span> Motion · giving ideas movement",
-    "p_8_html": "<span class=\"note--accent\">▲</span> Illustration · making imagination visible",
-    "p_9": "From still frames to moving forms, I turn curiosity into visual experiences through design, motion, and illustration.",
-    "a_10_html": "Bring me the tricky part <span class=\"arrow\" aria-hidden=\"true\">→</span>",
-    "a_11": "See the projects"
+    "span_4": "Ideas,",
+"span_5": "made visible.",
+"p_6_html": "<span class=\"hero__label\">DESIGN</span><span class=\"hero__label-desc\">shaping ideas into form</span>",
+"p_7_html": "<span class=\"hero__label\">MOTION</span><span class=\"hero__label-desc\">giving ideas movement</span>",
+"p_8_html": "<span class=\"hero__label\">ILLUSTRATION</span><span class=\"hero__label-desc\">making imagination visible</span>",
+"p_9": "Visual design, motion and illustration for ideas worth exploring."
   },
   "work": {
     "span_1": "[02] Selected projects",
