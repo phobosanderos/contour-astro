@@ -60,6 +60,10 @@ button{cursor:pointer}
 ul,ol{list-style:none}
 :focus-visible{outline:2px solid var(--accent-text);outline-offset:3px}
 main:focus,[tabindex="-1"]:focus{outline:0}
+main {
+  position: relative;
+  z-index: 1;
+}
 h1,h2,h3,h4{letter-spacing:-.035em;text-wrap:balance;font-weight:500;line-height:.95}
 p{text-wrap:pretty}
 [hidden]{display:none!important}
@@ -178,6 +182,7 @@ html.js:not([data-preloaded]) .preloader{display:grid}
   height:.45rem;
   background:var(--accent);
 }
+
 /* header state is driven from main.js (compact band, ruler draw, progress) */
 .site-header{transition:height var(--dur-1) var(--ease-out)}
 .site-header::before{opacity:var(--band,0)}
@@ -249,8 +254,22 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
 
 /* hero */
 [data-hero]{position:relative;isolation:isolate}
-.hero{display:grid;grid-template-rows:auto 1fr auto auto;gap:1.5rem;min-height:100svh;padding-top:6rem;padding-bottom:2rem}
-.hero__top{display:flex;justify-content:space-between;gap:1rem;border-top:1px solid var(--line-strong);padding-top:.75rem}
+.hero{
+  display:grid;
+  grid-template-rows:auto 1fr auto auto;
+  gap:1.5rem;
+  min-height:100svh;
+  padding-top:4.25rem;
+  padding-bottom:2rem;
+}
+
+.hero__top{
+  display:flex;
+  justify-content:space-between;
+  gap:1rem;
+  border-top:1px solid var(--line-strong);
+  padding-top:.75rem;
+}
 .hero__title{display:flex;flex-direction:column;align-self:end;gap:.35em;font-weight:500}
 .hero__human{display:block;margin-left:-.05em;color:var(--ink);-webkit-text-stroke:0 var(--ink)}
 .hero__machine{display:block;max-width:24ch;color:var(--ink)}
@@ -268,7 +287,17 @@ html.js:not(.motion-ready) :is([data-hero-generate],[data-hero-human]){visibilit
 .hero__foot{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:1.5rem;border-top:1px solid var(--line);padding-top:1.5rem}
 .hero__intro{max-width:34ch;color:var(--muted)}
 .hero__ctas{display:flex;flex-wrap:wrap;gap:.75rem}
-.hero-gl{position:absolute;inset:0;z-index:-1;width:100%;height:100%;pointer-events:none;opacity:0;transition:opacity 2s var(--ease-out)}
+.hero-gl{
+  position:absolute;
+  inset:0;
+  z-index:-1;
+  width:100%;
+  height:100%;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity 2s var(--ease-out);
+  margin-top:0;
+}
 .hero-gl.is-on{opacity:1}
 .bp{position:absolute;inset:0;z-index:2;pointer-events:none}
 .bp__box{position:absolute;outline:1px dashed color-mix(in oklab,var(--accent) 70%,transparent);outline-offset:4px;background:color-mix(in oklab,var(--accent) 4%,transparent)}
