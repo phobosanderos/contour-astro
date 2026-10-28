@@ -128,14 +128,15 @@ kbd{font-family:inherit;box-shadow:inset 0 0 0 1px var(--line-strong);color:var(
 .preloader{
   position:fixed;
   inset:0;
-  z-index:95;
-  display:none;
+  z-index:150;
+  display:grid;
   place-items:center;
   background:var(--preloader-bg);
   color:var(--preloader-fg);
   opacity:1;
   visibility:visible;
-  transition:opacity 1.1s ease, visibility 1.1s ease;
+  transition:opacity 1s ease, visibility 1s ease;
+  pointer-events:none;
 }
 
 html.js:not([data-preloaded]) .preloader{
@@ -145,15 +146,16 @@ html.js:not([data-preloaded]) .preloader{
 html[data-preloaded="true"] .preloader{
   opacity:0;
   visibility:hidden;
-  pointer-events:none;
 }
 
 .preloader__inner{
-  position:relative;
+  position:fixed;
+  right:clamp(16px,2vw,32px);
+  bottom:clamp(16px,2vw,32px);
+  width:clamp(76px,8vw,110px);
+  height:clamp(76px,8vw,110px);
   display:grid;
   place-items:center;
-  width:clamp(90px,14vw,150px);
-  height:clamp(90px,14vw,150px);
 }
 
 .preloader__ring{
@@ -165,9 +167,9 @@ html[data-preloaded="true"] .preloader{
     var(--preloader-fg) 3.6deg,
     var(--preloader-ring) 3.6deg 360deg
   );
-  mask: radial-gradient(farthest-side, transparent calc(100% - 7px), #000 0);
-  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 7px), #000 0);
-  animation: spin 1.8s linear infinite;
+  mask:radial-gradient(farthest-side, transparent calc(100% - 7px), #000 0);
+  -webkit-mask:radial-gradient(farthest-side, transparent calc(100% - 7px), #000 0);
+  animation:spin 1.8s linear infinite;
 }
 
 .preloader__count{
@@ -176,7 +178,7 @@ html[data-preloaded="true"] .preloader{
   display:grid;
   place-items:center;
   font-family:var(--font-mono);
-  font-size:clamp(.85rem,1.4vw,1.15rem);
+  font-size:clamp(.7rem,1.1vw,1rem);
   letter-spacing:.18em;
   text-transform:uppercase;
   font-variant-numeric:tabular-nums;
