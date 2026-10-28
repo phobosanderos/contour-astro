@@ -152,8 +152,8 @@ html[data-preloaded="true"] .preloader{
   position:fixed;
   right:24px;
   bottom:20px;
-  width:200px;
-  height:200px;
+  width:160px;
+  height:160px;
   display:grid;
   place-items:center;
 }
@@ -178,7 +178,7 @@ html[data-preloaded="true"] .preloader{
   display:grid;
   place-items:center;
   font-family:var(--font-mono);
-  font-size:clamp(2.8rem,5vw,4.2rem);
+  font-size:clamp(2.2rem,4vw,3.2rem);
   letter-spacing:-.06em;
   font-weight:500;
   color:var(--preloader-fg);
