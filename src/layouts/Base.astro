@@ -6,6 +6,16 @@ const buildStamp = Date.now();
 <!doctype html>
 <html lang={c.site.lang}>
   <head>
+<script is:inline>
+  try {
+    const root = document.documentElement;
+    const savedTheme = localStorage.getItem("ct-theme");
+    const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const initialTheme = savedTheme || (systemDark ? "dark" : "light");
+    root.dataset.theme = initialTheme;
+    root.classList.add("js");
+  } catch (e) {}
+</script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{c.site.title}</title>
@@ -51,23 +61,14 @@ const buildStamp = Date.now();
 
     <link rel="stylesheet" href={`/site.css?v=${buildStamp}`}>
   </head>
-  <body>
-  <div class="preloader" aria-live="polite" aria-label="Loading">
-    <div class="preloader__inner">
-      <div class="preloader__ring" aria-hidden="true"></div>
-      <span class="preloader__count">0%</span>
+    <body>
+    <div class="preloader" aria-live="polite" aria-label="Loading">
+      <div class="preloader__inner">
+        <div class="preloader__ring" aria-hidden="true"></div>
+        <span class="preloader__count">0%</span>
+      </div>
     </div>
-</div>
+
     <slot />
-    <script is:inline>
-  try {
-    const root = document.documentElement;
-    const savedTheme = localStorage.getItem("ct-theme");
-    const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const initialTheme = savedTheme || (systemDark ? "dark" : "light");
-    root.dataset.theme = initialTheme;
-    root.classList.add("js");
-  } catch (e) {}
-</script>
   </body>
 </html>
