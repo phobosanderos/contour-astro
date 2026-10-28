@@ -1047,3 +1047,7 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   color:var(--accent-text);
   background-size:100% 1px;
 }
+/* Restore the size of "made visible." */
+.hero__machine {
+  font-size: clamp(3.5rem, 8vw, 8rem) !important;
+}
