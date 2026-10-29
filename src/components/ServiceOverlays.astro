@@ -187,7 +187,7 @@ function bringCursorForward(dialog) {
 function restoreCursor() {
   const customCursor = document.querySelector(".cursor");
 
-  if (customCursor && document.body.contains(customCursor) === false) {
+  if (customCursor && customCursor.parentElement !== document.body) {
     document.body.appendChild(customCursor);
   }
 }
@@ -221,15 +221,13 @@ function closeDialog(dialog) {
     });
   });
 
-  document.querySelectorAll("[data-policy-open]").forEach((button) => {
-    button.addEventListener("click", () => {
-      if (policyDialog instanceof HTMLDialogElement) {
-  openInfoDialog(policyDialog);
-}
-  bringCursorForward(policyDialog);
-}
-    });
+ document.querySelectorAll("[data-policy-open]").forEach((button) => {
+  button.addEventListener("click", () => {
+    if (policyDialog instanceof HTMLDialogElement) {
+      openInfoDialog(policyDialog);
+    }
   });
+});
 
   document.querySelectorAll("[data-dialog-close]").forEach((button) => {
     button.addEventListener("click", () => {
