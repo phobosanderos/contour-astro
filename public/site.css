@@ -1798,6 +1798,7 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   }
 
   .info-dialog {
+  width: calc(100% - 16px);
   max-height: 92dvh;
 }
 
