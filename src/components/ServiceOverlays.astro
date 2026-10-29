@@ -174,9 +174,30 @@
     }
   };
 
-  function closeDialog(dialog) {
-    if (dialog instanceof HTMLDialogElement && dialog.open) dialog.close();
+  
+const cursor = document.querySelector(".cursor");
+const cursorHome = cursor?.parentElement;
+
+function bringCursorForward(dialog) {
+  const customCursor = document.querySelector(".cursor");
+  if (customCursor && dialog instanceof HTMLDialogElement) {
+    dialog.appendChild(customCursor);
   }
+}
+
+function restoreCursor() {
+  const customCursor = document.querySelector(".cursor");
+  if (customCursor && cursorHome && customCursor.parentElement !== cursorHome) {
+    cursorHome.appendChild(customCursor);
+  }
+}
+
+function closeDialog(dialog) {
+  if (dialog instanceof HTMLDialogElement && dialog.open) {
+    dialog.close();
+  }
+}
+
 
   document.querySelectorAll("[data-service-open]").forEach((button) => {
     button.addEventListener("click", () => {
@@ -188,12 +209,16 @@
       serviceTitle.textContent = item.title;
       serviceBody.innerHTML = item.content;
       serviceDialog.showModal();
+      bringCursorForward(serviceDialog);
     });
   });
 
   document.querySelectorAll("[data-policy-open]").forEach((button) => {
     button.addEventListener("click", () => {
-      if (policyDialog instanceof HTMLDialogElement) policyDialog.showModal();
+      if (policyDialog instanceof HTMLDialogElement) {
+  policyDialog.showModal();
+  bringCursorForward(policyDialog);
+}
     });
   });
 
@@ -202,14 +227,17 @@
       closeDialog(button.closest("dialog"));
     });
   });
+  
+[serviceDialog, policyDialog].forEach((dialog) => {
+  if (!(dialog instanceof HTMLDialogElement)) return;
 
-  [serviceDialog, policyDialog].forEach((dialog) => {
-    if (!(dialog instanceof HTMLDialogElement)) return;
-
-    dialog.addEventListener("click", (event) => {
-      if (event.target === dialog) dialog.close();
-    });
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) dialog.close();
   });
+
+  dialog.addEventListener("close", restoreCursor);
+});
+
 
   document.querySelectorAll("[data-dialog-contact]").forEach((link) => {
     link.addEventListener("click", () => {
