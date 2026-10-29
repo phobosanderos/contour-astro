@@ -1648,7 +1648,8 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   border-top: 1px solid var(--line);
 }
 
-.
+
+/* Close button: same accent-fill animation as .btn */
 .info-dialog__close {
   position: relative;
   isolation: isolate;
@@ -1661,16 +1662,19 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   padding: 0;
   border: 1px solid var(--line-strong);
   border-radius: 50%;
+  background: transparent;
+  color: var(--ink);
+  font: inherit;
   font-size: 1.8rem;
   line-height: 1;
-  cursor: pointer;
+  cursor: none;
   transition:
     color var(--dur-1) var(--ease-out),
     border-color var(--dur-1) var(--ease-out),
     border-radius var(--dur-2) var(--ease-in-out);
 }
 
-.info-dialog__close:before {
+.info-dialog__close::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -1693,6 +1697,8 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
 .info-dialog__close:focus-visible {
   color: var(--accent-ink);
   border-color: var(--accent);
+}
+
 }
 
 .info-dialog__content {
@@ -1871,35 +1877,46 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   transform: rotate(-45deg);
 }
 
-/* Keep service-row text above the animated background */
-.service__link > span {
-  position: relative;
-  z-index: 1;
-}
-/* Keep dialog controls interactive and show the native cursor */
+
+/* Keep the custom cursor visible above open dialogs */
 html.has-cursor dialog.info-dialog,
 html.has-cursor dialog.info-dialog * {
-  cursor: auto !important;
+  cursor: none !important;
 }
 
-html.has-cursor dialog.info-dialog button,
-html.has-cursor dialog.info-dialog a {
-  cursor: pointer !important;
+dialog.info-dialog > .cursor {
+  display: block !important;
+  z-index: 9999;
+  pointer-events: none !important;
 }
 
-dialog.info-dialog .cursor {
-  display: none !important;
+/* Keep the dialog content scrollable */
+.info-dialog__shell {
+  display: flex;
+  flex-direction: column;
+  height: min(88dvh, 920px);
+  max-height: min(88dvh, 920px);
+  min-height: 0;
 }
 
+.info-dialog__content {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: var(--line-strong) transparent;
+}
+
+/* Keep dialog controls above the animated layers */
 .info-dialog__head,
-.info-dialog__content,
 .info-dialog__foot {
   position: relative;
-  z-index: 1;
+  z-index: 2;
 }
 
 .info-dialog__close {
-  position: relative;
-  z-index: 2;
   pointer-events: auto;
 }
