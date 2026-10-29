@@ -1476,10 +1476,10 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   }
 }
 
-/* Compact spacing for the expanded brief */
+/* Compact spacing while keeping the divider clear of the button */
 .cta__expanded {
-  margin-top: 1rem;
-  padding-top: 0.75rem;
+  margin-top: 0.75rem;
+  padding-top: 1.5rem;
 }
 
 .cta__expanded .fg-fields {
@@ -1499,7 +1499,10 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   min-height: 6rem;
   max-height: 6rem;
   overflow-y: auto;
-  resize: vertical;
+  overflow-x: hidden;
+  resize: none;
   line-height: 1.4;
   padding-block: 0.35rem;
+  box-sizing: border-box;
+  overscroll-behavior: contain;
 }
