@@ -274,9 +274,7 @@ startProjectButton?.addEventListener("click", (event) => {
       let previousPointerX = 0;
       let previousPointerY = 0;
 
-      const ROTATION_SPEED = 0.00018;
-      const DRAG_SPEED = 0.008;
-      const SMOOTHING = 0.92;
+      const ROTATION_SPEED = .00012, DRAG_SPEED = .005, SMOOTHING = .94;
 
       function resizeSphere() {
         const rect = canvas.getBoundingClientRect();
@@ -333,30 +331,30 @@ startProjectButton?.addEventListener("click", (event) => {
 
           // A soft cursor repulsion makes nearby particles react.
           const dx = x - pointerX;
-          const dy = y - pointerY;
-          const distanceSquared = dx * dx + dy * dy;
-          const influenceRadius = 135;
+const dy = y - pointerY;
+const distanceSquared = dx * dx + dy * dy;
+const influenceRadius = 100;
 
-          if (
-            distanceSquared > 0 &&
-            distanceSquared < influenceRadius * influenceRadius
-          ) {
-            const distance = Math.sqrt(distanceSquared);
-            const force =
-              Math.pow(1 - distance / influenceRadius, 1.5) * 30;
+if (distanceSquared > 0 && distanceSquared < influenceRadius * influenceRadius) {
+  const distance = Math.sqrt(distanceSquared);
+  const falloff = Math.pow(1 - distance / influenceRadius, 2);
+  const force = falloff * 10;
 
-            x += (dx / distance) * force;
-            y += (dy / distance) * force;
-          }
+  // Gently push nearby particles away from the cursor.
+  x += (dx / distance) * force;
+  y += (dy / distance) * force;
 
-          projected.push({
-            x,
-            y,
-            z: z2,
-            size: Math.max(0.3, (z2 + 1.25) * 0.42),
-            alpha: Math.max(0.2, Math.min(0.95, 0.48 + z2 * 0.38)),
-          });
-        }
+  // Give particles near the sphere's perimeter a subtle outward bias.
+  const edgeX = x - centerX;
+  const edgeY = y - centerY;
+  const edgeDistance = Math.sqrt(edgeX * edgeX + edgeY * edgeY);
+
+  if (edgeDistance > radius * 0.65) {
+    const edgeForce = falloff * 2;
+    x += (edgeX / Math.max(edgeDistance, 1)) * edgeForce;
+    y += (edgeY / Math.max(edgeDistance, 1)) * edgeForce;
+  }
+}
 
         // Draw rear particles first and front particles last.
         projected.sort((a, b) => a.z - b.z);
