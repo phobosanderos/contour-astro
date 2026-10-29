@@ -217,15 +217,15 @@ function closeDialog(dialog) {
       serviceKicker.textContent = item.number;
       serviceTitle.textContent = item.title;
       serviceBody.innerHTML = item.content;
-      serviceDialog.showModal();
-      bringCursorForward(serviceDialog);
+      openInfoDialog(serviceDialog);
     });
   });
 
   document.querySelectorAll("[data-policy-open]").forEach((button) => {
     button.addEventListener("click", () => {
       if (policyDialog instanceof HTMLDialogElement) {
-  policyDialog.showModal();
+  openInfoDialog(policyDialog);
+}
   bringCursorForward(policyDialog);
 }
     });
@@ -237,6 +237,7 @@ function closeDialog(dialog) {
     });
   });
   
+
 [serviceDialog, policyDialog].forEach((dialog) => {
   if (!(dialog instanceof HTMLDialogElement)) return;
 
@@ -244,9 +245,13 @@ function closeDialog(dialog) {
     if (event.target === dialog) dialog.close();
   });
 
-  dialog.addEventListener("close", restoreCursor);
-});
+  dialog.addEventListener("close", () => {
+    restoreCursor();
 
+    // Resume normal page scrolling after the window closes.
+    if (window.__lenis) window.__lenis.start();
+  });
+});
 
   document.querySelectorAll("[data-dialog-contact]").forEach((link) => {
     link.addEventListener("click", () => {
