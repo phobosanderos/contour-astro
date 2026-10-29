@@ -1377,3 +1377,26 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
     height: 300px;
   }
 }
+/* Rotate the same arrow instead of swapping characters */
+.cta__toggle .cta__arrow {
+  display: inline-block;
+  transform: rotate(0deg) !important;
+  transition: transform var(--dur-1) var(--ease-out);
+}
+
+.cta__toggle:hover .cta__arrow,
+.cta__toggle:focus-visible .cta__arrow,
+.cta.is-brief-open .cta__toggle .cta__arrow {
+  transform: rotate(45deg) !important;
+}
+
+.cta__toggle:hover,
+.cta__toggle:focus-visible {
+  color: var(--accent-ink);
+}
+
+.cta__toggle:hover::before,
+.cta__toggle:focus-visible::before {
+  transform: translateY(0);
+  border-radius: 0;
+}
