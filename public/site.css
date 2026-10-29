@@ -1614,7 +1614,20 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
 .info-dialog__shell {
   display: flex;
   flex-direction: column;
+  height: min(88dvh, 920px);
   max-height: min(88dvh, 920px);
+  min-height: 0;
+}
+
+.info-dialog__content {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding: clamp(1.25rem, 4vw, 3rem);
+  scrollbar-color: var(--line-strong) transparent;
 }
 
 .info-dialog__head,
@@ -1635,22 +1648,51 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   border-top: 1px solid var(--line);
 }
 
+.
 .info-dialog__close {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
   display: grid;
   place-items: center;
   flex: 0 0 2.5rem;
   width: 2.5rem;
   height: 2.5rem;
+  padding: 0;
   border: 1px solid var(--line-strong);
   border-radius: 50%;
   font-size: 1.8rem;
   line-height: 1;
-  transition: background-color var(--dur-1), color var(--dur-1);
+  cursor: pointer;
+  transition:
+    color var(--dur-1) var(--ease-out),
+    border-color var(--dur-1) var(--ease-out),
+    border-radius var(--dur-2) var(--ease-in-out);
 }
 
-.info-dialog__close:hover {
-  color: var(--accent-ink);
+.info-dialog__close::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
   background: var(--accent);
+  border-radius: 50% 50% 0 0;
+  transform: translateY(101%);
+  transition:
+    transform var(--dur-2) var(--ease-in-out),
+    border-radius var(--dur-2) var(--ease-in-out);
+}
+
+.info-dialog__close:hover::before,
+.info-dialog__close:focus-visible::before {
+  transform: translateY(0);
+  border-radius: 0;
+}
+
+.info-dialog__close:hover,
+.info-dialog__close:focus-visible {
+  color: var(--accent-ink);
+  border-color: var(--accent);
 }
 
 .info-dialog__content {
@@ -1750,14 +1792,13 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   }
 
   .info-dialog {
-    width: calc(100% - 16px);
-    max-height: 92dvh;
-  }
+  max-height: 92dvh;
+}
 
-  .info-dialog__shell {
-    max-height: 92dvh;
-  }
-
+.info-dialog__shell {
+  height: 92dvh;
+  max-height: 92dvh;
+}
   .info-dialog__head,
   .info-dialog__foot {
     padding: .75rem 1rem;
