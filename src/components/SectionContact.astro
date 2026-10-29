@@ -190,6 +190,8 @@ startProjectButton?.addEventListener("click", (event) => {
 });
   
   // Brief disclosure and automatic scroll
+  
+  // Brief disclosure and automatic scroll
   const contactSection = document.querySelector(".cta");
   const briefToggle = document.querySelector("[data-brief-toggle]");
   const briefPanel = document.querySelector("#brief-panel");
@@ -208,25 +210,27 @@ startProjectButton?.addEventListener("click", (event) => {
       briefPanel.hidden = !nextOpen;
       contactSection.classList.toggle("is-brief-open", nextOpen);
 
-      
-if (nextOpen) {
-  const reducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
+      if (nextOpen) {
+        const reducedMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches;
 
-  requestAnimationFrame(() => {
-    requestAnimationFrame(() => {
-      window.scrollTo({
-        top:
-          document.documentElement.scrollHeight -
-          window.innerHeight,
-        behavior: reducedMotion ? "auto" : "smooth",
-      });
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            window.scrollTo({
+              top:
+                document.documentElement.scrollHeight -
+                window.innerHeight,
+              behavior: reducedMotion ? "auto" : "smooth",
+            });
+          });
+        });
+      } else {
+        briefToggle.focus({ preventScroll: true });
+      }
     });
-  });
-} else {
-  briefToggle.focus({ preventScroll: true });
-}
+  }
+
 
 
   // Native canvas recreation of the interactive particle sphere.
