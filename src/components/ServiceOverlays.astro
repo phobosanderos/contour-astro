@@ -184,6 +184,7 @@ function bringCursorForward(dialog) {
   }
 }
 
+
 function restoreCursor() {
   const customCursor = document.querySelector(".cursor");
 
@@ -192,13 +193,17 @@ function restoreCursor() {
   }
 }
 
+
+
 function openInfoDialog(dialog) {
   if (!(dialog instanceof HTMLDialogElement)) return;
 
   if (window.__lenis) window.__lenis.stop();
 
   dialog.showModal();
+  bringCursorForward(dialog);
 }
+
 
 function closeDialog(dialog) {
   if (dialog instanceof HTMLDialogElement && dialog.open) {
