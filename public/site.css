@@ -1785,3 +1785,53 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
     animation: none;
   }
 }
+
+/* Restore service-row hover animation */
+.service__link {
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+  transition:
+    color var(--dur-1) var(--ease-out),
+    background-color var(--dur-1) var(--ease-out);
+}
+
+.service__link::before {
+  content: "";
+  position: absolute;
+  inset: 0 calc(-1 * var(--gutter));
+  z-index: -1;
+  background: var(--ink);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform var(--dur-2) var(--ease-in-out);
+  pointer-events: none;
+}
+
+.service__link:hover,
+.service__link[data-hot] {
+  color: var(--bg);
+}
+
+.service__link:hover::before,
+.service__link[data-hot]::before {
+  transform: scaleY(1);
+  transform-origin: top;
+}
+
+.service__link:hover .note,
+.service__link[data-hot] .note {
+  color: color-mix(in oklab, var(--bg) 65%, transparent);
+}
+
+.service__link:hover .service__arrow,
+.service__link[data-hot] .service__arrow {
+  color: var(--accent);
+  transform: rotate(-45deg);
+}
+
+/* Keep service-row text above the animated background */
+.service__link > span {
+  position: relative;
+  z-index: 1;
+}
