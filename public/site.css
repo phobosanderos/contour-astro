@@ -1518,3 +1518,25 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
     height: 300px;
   }
 }
+
+/* Compress the contact intro upward when the brief opens */
+.cta__intro {
+  transition: min-height 650ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.cta.is-brief-open .cta__intro {
+  min-height: clamp(220px, 20vw, 280px);
+}
+
+/* Keep the intro compact on mobile without forcing extra height */
+@media (max-width: 767px) {
+  .cta.is-brief-open .cta__intro {
+    min-height: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cta__intro {
+    transition: none;
+  }
+}
