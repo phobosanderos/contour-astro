@@ -210,28 +210,65 @@ startProjectButton?.addEventListener("click", (event) => {
       briefPanel.hidden = !nextOpen;
       contactSection.classList.toggle("is-brief-open", nextOpen);
 
-      if (nextOpen) {
-        const reducedMotion = window.matchMedia(
-          "(prefers-reduced-motion: reduce)"
-        ).matches;
+      
+if (nextOpen) {
+  const reducedMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
 
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            window.scrollTo({
-              top:
-                document.documentElement.scrollHeight -
-                window.innerHeight,
-              behavior: reducedMotion ? "auto" : "smooth",
-            });
-          });
-        });
-      } else {
-        briefToggle.focus({ preventScroll: true });
+  if (reducedMotion) {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: "auto",
+    });
+  } else {
+    briefPanel.style.overflow = "hidden";
+    briefPanel.style.height = "0px";
+    briefPanel.style.opacity = "0";
+    briefPanel.style.transform = "translateY(16px)";
+
+    const targetHeight = briefPanel.scrollHeight;
+
+    const openingAnimation = briefPanel.animate(
+      [
+        {
+          height: "0px",
+          opacity: 0,
+          transform: "translateY(16px)",
+        },
+        {
+          height: `${targetHeight}px`,
+          opacity: 1,
+          transform: "translateY(0)",
+        },
+      ],
+      {
+        duration: 750,
+        easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+        fill: "forwards",
       }
+    );
+
+    openingAnimation.onfinish = () => {
+      briefPanel.style.height = "auto";
+      briefPanel.style.overflow = "";
+      briefPanel.style.opacity = "";
+      briefPanel.style.transform = "";
+      openingAnimation.cancel();
+
+      window.scrollTo({
+        top:
+          document.documentElement.scrollHeight -
+          window.innerHeight,
+        behavior: "smooth",
+      });
+    };
+  }
+} else {
+  briefToggle.focus({ preventScroll: true });
+}
     });
   }
-
-
 
   // Native canvas recreation of the interactive particle sphere.
   const sphereCanvas = document.querySelector("[data-particle-sphere]");
