@@ -254,14 +254,26 @@ startProjectButton?.addEventListener("click", (event) => {
           };
         }
 
-        requestAnimationFrame(() => {
-          requestAnimationFrame(() => {
-            briefPanel.scrollIntoView({
-              behavior: reducedMotion ? "auto" : "smooth",
-              block: "end",
-            });
-          });
-        });
+        
+requestAnimationFrame(() => {
+  const finalPageHeight =
+    document.documentElement.scrollHeight;
+
+  const currentFormHeight = briefPanel.getBoundingClientRect().height;
+  const finalScrollPosition = Math.max(
+    0,
+    finalPageHeight -
+      currentFormHeight +
+      briefPanel.scrollHeight -
+      window.innerHeight
+  );
+
+  window.scrollTo({
+    top: finalScrollPosition,
+    behavior: reducedMotion ? "auto" : "smooth",
+  });
+});
+
       } else {
         briefPanel.hidden = true;
         briefPanel.style.height = "";
