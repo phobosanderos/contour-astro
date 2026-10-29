@@ -190,8 +190,6 @@ startProjectButton?.addEventListener("click", (event) => {
 });
   
   // Brief disclosure and automatic scroll
-  
-  // Brief disclosure and automatic scroll
   const contactSection = document.querySelector(".cta");
   const briefToggle = document.querySelector("[data-brief-toggle]");
   const briefPanel = document.querySelector("#brief-panel");
@@ -207,65 +205,71 @@ startProjectButton?.addEventListener("click", (event) => {
       const nextOpen = !isOpen;
 
       briefToggle.setAttribute("aria-expanded", String(nextOpen));
-      briefPanel.hidden = !nextOpen;
       contactSection.classList.toggle("is-brief-open", nextOpen);
 
-      
+      if (nextOpen) {
+        briefPanel.hidden = false;
 
-    // Start scrolling while the form is still expanding.
-    const submitButton = briefPanel.querySelector(
-      'button[type="submit"]'
-    );
+        const reducedMotion = window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches;
 
-    let scrollFrame;
+        if (reducedMotion) {
+          briefPanel.style.height = "auto";
+          briefPanel.style.opacity = "1";
+          briefPanel.style.transform = "none";
+          briefPanel.style.overflow = "";
+        } else {
+          briefPanel.style.overflow = "hidden";
+          briefPanel.style.height = "0px";
+          briefPanel.style.opacity = "0";
+          briefPanel.style.transform = "translateY(12px)";
 
-    function followFormBottom() {
-      if (!submitButton || !briefPanel.isConnected) return;
+          const targetHeight = briefPanel.scrollHeight;
 
-      const buttonBottom =
-        submitButton.getBoundingClientRect().bottom;
+          const openingAnimation = briefPanel.animate(
+            [
+              {
+                height: "0px",
+                opacity: 0,
+                transform: "translateY(12px)",
+              },
+              {
+                height: `${targetHeight}px`,
+                opacity: 1,
+                transform: "translateY(0)",
+              },
+            ],
+            {
+              duration: 650,
+              easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+            }
+          );
 
-      const targetScroll =
-        window.scrollY +
-        buttonBottom -
-        window.innerHeight +
-        32;
+          openingAnimation.onfinish = () => {
+            briefPanel.style.height = "auto";
+            briefPanel.style.overflow = "";
+            briefPanel.style.opacity = "";
+            briefPanel.style.transform = "";
+          };
+        }
 
-      window.scrollTo({
-        top: Math.max(0, targetScroll),
-        behavior: "auto",
-      });
-
-      scrollFrame = requestAnimationFrame(followFormBottom);
-    }
-
-    scrollFrame = requestAnimationFrame(followFormBottom);
-
-    openingAnimation.onfinish = () => {
-      cancelAnimationFrame(scrollFrame);
-
-      briefPanel.style.height = "auto";
-      briefPanel.style.overflow = "";
-      briefPanel.style.opacity = "";
-      briefPanel.style.transform = "";
-      openingAnimation.cancel();
-
-      // Final alignment after the form finishes expanding.
-      const buttonBottom =
-        submitButton?.getBoundingClientRect().bottom ??
-        briefPanel.getBoundingClientRect().bottom;
-
-      window.scrollTo({
-        top: Math.max(
-          0,
-          window.scrollY +
-            buttonBottom -
-            window.innerHeight +
-            32
-        ),
-        behavior: "smooth",
-      });
-    };
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            briefPanel.scrollIntoView({
+              behavior: reducedMotion ? "auto" : "smooth",
+              block: "end",
+            });
+          });
+        });
+      } else {
+        briefPanel.hidden = true;
+        briefPanel.style.height = "";
+        briefPanel.style.overflow = "";
+        briefPanel.style.opacity = "";
+        briefPanel.style.transform = "";
+        briefToggle.focus({ preventScroll: true });
+      }
     });
   }
 
