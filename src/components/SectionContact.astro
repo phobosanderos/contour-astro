@@ -12,7 +12,7 @@ import c from "../content.json";
   <div class="cta__intro grid-12">
     <div class="cta__intro-copy">
       <h2 class="display cta__title" id="c-h">
-      Tell me what you're<br />making.
+      Tell me what<br />you're making.
       </h2>
 
       <div class="cta__actions">
@@ -188,7 +188,8 @@ startProjectButton?.addEventListener("click", (event) => {
     });
   }, 50);
 });
-  // Brief disclosure
+  
+  // Brief disclosure and automatic scroll
   const contactSection = document.querySelector(".cta");
   const briefToggle = document.querySelector("[data-brief-toggle]");
   const briefPanel = document.querySelector("#brief-panel");
@@ -199,14 +200,29 @@ startProjectButton?.addEventListener("click", (event) => {
     briefPanel instanceof HTMLElement
   ) {
     briefToggle.addEventListener("click", () => {
-      const isOpen = briefToggle.getAttribute("aria-expanded") === "true";
+      const isOpen =
+        briefToggle.getAttribute("aria-expanded") === "true";
       const nextOpen = !isOpen;
 
       briefToggle.setAttribute("aria-expanded", String(nextOpen));
       briefPanel.hidden = !nextOpen;
       contactSection.classList.toggle("is-brief-open", nextOpen);
 
-      if (!nextOpen) {
+      if (nextOpen) {
+        // Wait for the expanded layout to be calculated before scrolling.
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            briefPanel.scrollIntoView({
+              behavior: window.matchMedia(
+                "(prefers-reduced-motion: reduce)"
+              ).matches
+                ? "auto"
+                : "smooth",
+              block: "end",
+            });
+          });
+        });
+      } else {
         briefToggle.focus({ preventScroll: true });
       }
     });
@@ -224,7 +240,7 @@ startProjectButton?.addEventListener("click", (event) => {
         "(prefers-reduced-motion: reduce)"
       );
 
-      const PARTICLE_COUNT = 3000;
+      const PARTICLE_COUNT = 42000;
       const points = [];
 
       // Fibonacci sphere distribution gives the dots an even spread.
@@ -319,7 +335,7 @@ startProjectButton?.addEventListener("click", (event) => {
           const dx = x - pointerX;
           const dy = y - pointerY;
           const distanceSquared = dx * dx + dy * dy;
-          const influenceRadius = 85;
+          const influenceRadius = 135;
 
           if (
             distanceSquared > 0 &&
@@ -327,7 +343,7 @@ startProjectButton?.addEventListener("click", (event) => {
           ) {
             const distance = Math.sqrt(distanceSquared);
             const force =
-              Math.pow(1 - distance / influenceRadius, 2) * 15;
+              Math.pow(1 - distance / influenceRadius, 1.5) * 30;
 
             x += (dx / distance) * force;
             y += (dy / distance) * force;
@@ -337,7 +353,7 @@ startProjectButton?.addEventListener("click", (event) => {
             x,
             y,
             z: z2,
-            size: Math.max(0.45, (z2 + 1.25) * 0.9),
+            size: Math.max(0.3, (z2 + 1.25) * 0.55),
             alpha: Math.max(0.2, Math.min(0.95, 0.48 + z2 * 0.38)),
           });
         }
@@ -345,13 +361,20 @@ startProjectButton?.addEventListener("click", (event) => {
         // Draw rear particles first and front particles last.
         projected.sort((a, b) => a.z - b.z);
 
-        for (const p of projected) {
-          ctx.globalAlpha = p.alpha;
-          ctx.fillStyle = "#ffffff";
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-          ctx.fill();
-        }
+        const particleColor =
+  getComputedStyle(document.documentElement)
+    .getPropertyValue("--ink")
+    .trim() || "#0e0e0d";
+
+for (const p of projected) {
+  ctx.globalAlpha = p.alpha;
+  ctx.fillStyle = particleColor;
+  ctx.beginPath();
+  ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+  ctx.fill();
+}
+
+ctx.globalAlpha = 1;
 
         ctx.globalAlpha = 1;
       }
