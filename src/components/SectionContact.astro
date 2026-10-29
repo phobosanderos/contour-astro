@@ -329,50 +329,62 @@ startProjectButton?.addEventListener("click", (event) => {
           let x = centerX + x1 * radius * perspective;
           let y = centerY + y2 * radius * perspective;
 
+          
           // A soft cursor repulsion makes nearby particles react.
           const dx = x - pointerX;
-const dy = y - pointerY;
-const distanceSquared = dx * dx + dy * dy;
-const influenceRadius = 100;
+          const dy = y - pointerY;
+          const distanceSquared = dx * dx + dy * dy;
+          const influenceRadius = 100;
 
-if (distanceSquared > 0 && distanceSquared < influenceRadius * influenceRadius) {
-  const distance = Math.sqrt(distanceSquared);
-  const falloff = Math.pow(1 - distance / influenceRadius, 2);
-  const force = falloff * 10;
+          if (
+            distanceSquared > 0 &&
+            distanceSquared < influenceRadius * influenceRadius
+          ) {
+            const distance = Math.sqrt(distanceSquared);
+            const falloff = Math.pow(1 - distance / influenceRadius, 2);
+            const force = falloff * 10;
 
-  // Gently push nearby particles away from the cursor.
-  x += (dx / distance) * force;
-  y += (dy / distance) * force;
+            // Gently push nearby particles away from the cursor.
+            x += (dx / distance) * force;
+            y += (dy / distance) * force;
 
-  // Give particles near the sphere's perimeter a subtle outward bias.
-  const edgeX = x - centerX;
-  const edgeY = y - centerY;
-  const edgeDistance = Math.sqrt(edgeX * edgeX + edgeY * edgeY);
+            // Gently spread affected particles near the outer edge.
+            const edgeX = x - centerX;
+            const edgeY = y - centerY;
+            const edgeDistance = Math.sqrt(edgeX * edgeX + edgeY * edgeY);
 
-  if (edgeDistance > radius * 0.65) {
-    const edgeForce = falloff * 2;
-    x += (edgeX / Math.max(edgeDistance, 1)) * edgeForce;
-    y += (edgeY / Math.max(edgeDistance, 1)) * edgeForce;
-  }
-}
+            if (edgeDistance > radius * 0.65) {
+              const edgeForce = falloff * 2;
+              x += (edgeX / Math.max(edgeDistance, 1)) * edgeForce;
+              y += (edgeY / Math.max(edgeDistance, 1)) * edgeForce;
+            }
+          }
+
+          // Save each particle for drawing.
+          projected.push({
+            x,
+            y,
+            z: z2,
+            size: Math.max(0.25, (z2 + 1.25) * 0.42),
+            alpha: Math.max(0.2, Math.min(0.95, 0.48 + z2 * 0.38)),
+          });
+        }
 
         // Draw rear particles first and front particles last.
         projected.sort((a, b) => a.z - b.z);
 
         const particleColor =
-  getComputedStyle(document.documentElement)
-    .getPropertyValue("--ink")
-    .trim() || "#0e0e0d";
+          getComputedStyle(document.documentElement)
+            .getPropertyValue("--ink")
+            .trim() || "#0e0e0d";
 
-for (const p of projected) {
-  ctx.globalAlpha = p.alpha;
-  ctx.fillStyle = particleColor;
-  ctx.beginPath();
-  ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-  ctx.fill();
-}
-
-ctx.globalAlpha = 1;
+        for (const p of projected) {
+          ctx.globalAlpha = p.alpha;
+          ctx.fillStyle = particleColor;
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
 
         ctx.globalAlpha = 1;
       }
