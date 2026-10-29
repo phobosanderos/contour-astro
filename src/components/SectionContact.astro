@@ -191,7 +191,8 @@ startProjectButton?.addEventListener("click", (event) => {
 });
   
   
-  // Brief disclosure: keep the viewport anchored to the page bottom
+  
+  // Brief disclosure: keep the viewport anchored while the form expands
   const contactSection = document.querySelector(".cta");
   const briefToggle = document.querySelector("[data-brief-toggle]");
   const briefPanel = document.querySelector("#brief-panel");
@@ -201,52 +202,59 @@ startProjectButton?.addEventListener("click", (event) => {
     briefToggle instanceof HTMLButtonElement &&
     briefPanel instanceof HTMLElement
   ) {
-    let bottomAnchorObserver = null;
-    let bottomAnchorGap = 0;
+    let anchorFrame = 0;
+    let bottomGap = 0;
 
     const keepBottomAnchored = () => {
-      const pageHeight = document.documentElement.scrollHeight;
-      const targetTop = Math.max(
+      const maxScroll = Math.max(
         0,
-        pageHeight - window.innerHeight - bottomAnchorGap
+        document.documentElement.scrollHeight - window.innerHeight
       );
 
-      window.scrollTo(0, targetTop);
+      window.scrollTo(0, Math.max(0, maxScroll - bottomGap));
     };
 
-    const startBottomAnchor = () => {
-      bottomAnchorGap = Math.max(
-        0,
-        document.documentElement.scrollHeight -
-          (window.scrollY + window.innerHeight)
-      );
+    const stopAnchoring = () => {
+      if (anchorFrame) {
+        cancelAnimationFrame(anchorFrame);
+        anchorFrame = 0;
+      }
+    };
 
-      bottomAnchorObserver?.disconnect();
+    const startAnchoring = () => {
+      stopAnchoring();
 
-      bottomAnchorObserver = new ResizeObserver(() => {
+      const track = () => {
         keepBottomAnchored();
-      });
+        anchorFrame = requestAnimationFrame(track);
+      };
 
-      bottomAnchorObserver.observe(document.body);
-      keepBottomAnchored();
-    };
-
-    const stopBottomAnchor = () => {
-      bottomAnchorObserver?.disconnect();
-      bottomAnchorObserver = null;
+      anchorFrame = requestAnimationFrame(track);
     };
 
     briefToggle.addEventListener("click", () => {
-      const isOpen =
-        briefToggle.getAttribute("aria-expanded") === "true";
-      const nextOpen = !isOpen;
+      const nextOpen =
+        briefToggle.getAttribute("aria-expanded") !== "true";
 
       briefToggle.setAttribute("aria-expanded", String(nextOpen));
       contactSection.classList.toggle("is-brief-open", nextOpen);
 
       if (nextOpen) {
+        // Record the current distance from the bottom before expanding.
+        bottomGap = Math.max(
+          0,
+          document.documentElement.scrollHeight -
+            (window.scrollY + window.innerHeight)
+        );
+
         briefPanel.hidden = false;
-        startBottomAnchor();
+
+        briefPanel.style.overflow = "hidden";
+        briefPanel.style.height = "0px";
+        briefPanel.style.opacity = "0";
+        briefPanel.style.transform = "translateY(12px)";
+
+        const targetHeight = briefPanel.scrollHeight;
 
         const reducedMotion = window.matchMedia(
           "(prefers-reduced-motion: reduce)"
@@ -258,53 +266,45 @@ startProjectButton?.addEventListener("click", (event) => {
           briefPanel.style.transform = "none";
           briefPanel.style.overflow = "";
 
-          requestAnimationFrame(() => {
-            keepBottomAnchored();
-            stopBottomAnchor();
-          });
-        } else {
-          briefPanel.style.overflow = "hidden";
-          briefPanel.style.height = "0px";
-          briefPanel.style.opacity = "0";
-          briefPanel.style.transform = "translateY(12px)";
-
-          const targetHeight = briefPanel.scrollHeight;
-
-          const openingAnimation = briefPanel.animate(
-            [
-              {
-                height: "0px",
-                opacity: 0,
-                transform: "translateY(12px)",
-              },
-              {
-                height: `${targetHeight}px`,
-                opacity: 1,
-                transform: "translateY(0)",
-              },
-            ],
-            {
-              duration: 650,
-              easing: "cubic-bezier(0.22, 1, 0.36, 1)",
-            }
-          );
-
-          openingAnimation.onfinish = () => {
-            briefPanel.style.height = "auto";
-            briefPanel.style.overflow = "";
-            briefPanel.style.opacity = "";
-            briefPanel.style.transform = "";
-
-            requestAnimationFrame(() => {
-              keepBottomAnchored();
-              stopBottomAnchor();
-            });
-          };
-
-          openingAnimation.oncancel = stopBottomAnchor;
+          requestAnimationFrame(keepBottomAnchored);
+          return;
         }
+
+        const openingAnimation = briefPanel.animate(
+          [
+            {
+              height: "0px",
+              opacity: 0,
+              transform: "translateY(12px)",
+            },
+            {
+              height: `${targetHeight}px`,
+              opacity: 1,
+              transform: "translateY(0)",
+            },
+          ],
+          {
+            duration: 650,
+            easing: "cubic-bezier(0.22, 1, 0.36, 1)",
+          }
+        );
+
+        // Follow the page height on every frame of the opening animation.
+        startAnchoring();
+
+        openingAnimation.onfinish = () => {
+          briefPanel.style.height = "auto";
+          briefPanel.style.overflow = "";
+          briefPanel.style.opacity = "";
+          briefPanel.style.transform = "";
+
+          keepBottomAnchored();
+          stopAnchoring();
+        };
+
+        openingAnimation.oncancel = stopAnchoring;
       } else {
-        stopBottomAnchor();
+        stopAnchoring();
 
         briefPanel.hidden = true;
         briefPanel.style.height = "";
