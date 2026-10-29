@@ -257,25 +257,52 @@ startProjectButton?.addEventListener("click", (event) => {
 
         
 requestAnimationFrame(() => {
-  const headline = document.querySelector("#c-h");
-  const header = document.querySelector(".site-header");
+  requestAnimationFrame(() => {
+    const headline = document.querySelector("#c-h");
+    const header = document.querySelector(".site-header");
+    const submitButton = briefPanel.querySelector(
+      'button[type="submit"], input[type="submit"]'
+    );
 
-  if (!(headline instanceof HTMLElement)) return;
+    if (!(headline instanceof HTMLElement)) return;
 
-  const headerHeight =
-    header instanceof HTMLElement
-      ? header.getBoundingClientRect().height
-      : 72;
+    const headerHeight =
+      header instanceof HTMLElement
+        ? header.getBoundingClientRect().height
+        : 72;
 
-  const targetTop =
-    window.scrollY +
-    headline.getBoundingClientRect().top -
-    headerHeight -
-    20;
+    const topGap = 18;
+    const bottomGap = 24;
 
-  window.scrollTo({
-    top: Math.max(0, targetTop),
-    behavior: reducedMotion ? "auto" : "smooth",
+    const headlineTop =
+      window.scrollY +
+      headline.getBoundingClientRect().top;
+
+    const targetTop = headlineTop - headerHeight - topGap;
+
+    window.scrollTo({
+      top: Math.max(0, targetTop),
+      behavior: reducedMotion ? "auto" : "smooth",
+    });
+
+    if (submitButton instanceof HTMLElement) {
+      const scrollAfterOpen = () => {
+        const buttonBottom =
+          submitButton.getBoundingClientRect().bottom;
+
+        const visibleBottom =
+          window.innerHeight - bottomGap;
+
+        if (buttonBottom > visibleBottom) {
+          window.scrollBy({
+            top: buttonBottom - visibleBottom,
+            behavior: reducedMotion ? "auto" : "smooth",
+          });
+        }
+      };
+
+      window.setTimeout(scrollAfterOpen, 700);
+    }
   });
 });
 
