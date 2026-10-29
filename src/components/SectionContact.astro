@@ -211,62 +211,61 @@ startProjectButton?.addEventListener("click", (event) => {
       contactSection.classList.toggle("is-brief-open", nextOpen);
 
       
-if (nextOpen) {
-  const reducedMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
 
-  if (reducedMotion) {
-    window.scrollTo({
-      top: document.documentElement.scrollHeight,
-      behavior: "auto",
-    });
-  } else {
-    briefPanel.style.overflow = "hidden";
-    briefPanel.style.height = "0px";
-    briefPanel.style.opacity = "0";
-    briefPanel.style.transform = "translateY(16px)";
-
-    const targetHeight = briefPanel.scrollHeight;
-
-    const openingAnimation = briefPanel.animate(
-      [
-        {
-          height: "0px",
-          opacity: 0,
-          transform: "translateY(16px)",
-        },
-        {
-          height: `${targetHeight}px`,
-          opacity: 1,
-          transform: "translateY(0)",
-        },
-      ],
-      {
-        duration: 750,
-        easing: "cubic-bezier(0.22, 1, 0.36, 1)",
-        fill: "forwards",
-      }
+    // Start scrolling while the form is still expanding.
+    const submitButton = briefPanel.querySelector(
+      'button[type="submit"]'
     );
 
+    let scrollFrame;
+
+    function followFormBottom() {
+      if (!submitButton || !briefPanel.isConnected) return;
+
+      const buttonBottom =
+        submitButton.getBoundingClientRect().bottom;
+
+      const targetScroll =
+        window.scrollY +
+        buttonBottom -
+        window.innerHeight +
+        32;
+
+      window.scrollTo({
+        top: Math.max(0, targetScroll),
+        behavior: "auto",
+      });
+
+      scrollFrame = requestAnimationFrame(followFormBottom);
+    }
+
+    scrollFrame = requestAnimationFrame(followFormBottom);
+
     openingAnimation.onfinish = () => {
+      cancelAnimationFrame(scrollFrame);
+
       briefPanel.style.height = "auto";
       briefPanel.style.overflow = "";
       briefPanel.style.opacity = "";
       briefPanel.style.transform = "";
       openingAnimation.cancel();
 
+      // Final alignment after the form finishes expanding.
+      const buttonBottom =
+        submitButton?.getBoundingClientRect().bottom ??
+        briefPanel.getBoundingClientRect().bottom;
+
       window.scrollTo({
-        top:
-          document.documentElement.scrollHeight -
-          window.innerHeight,
+        top: Math.max(
+          0,
+          window.scrollY +
+            buttonBottom -
+            window.innerHeight +
+            32
+        ),
         behavior: "smooth",
       });
     };
-  }
-} else {
-  briefToggle.focus({ preventScroll: true });
-}
     });
   }
 
