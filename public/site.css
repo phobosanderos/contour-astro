@@ -1433,3 +1433,45 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
     font-size: clamp(2.5rem, 9vw, 3.8rem);
   }
 }
+
+/* Final spacing adjustments: contact section and footer */
+
+/* Move the contact section slightly downward */
+.cta {
+  padding-top: calc(var(--section) + 1.5rem);
+}
+
+/* Bring [06] Next / Reply within one working day
+   closer to the headline and sphere */
+.cta > .section-head {
+  margin-bottom: clamp(1rem, 2vw, 1.75rem);
+}
+
+/* Reduce the vertical space occupied by the headline and sphere */
+.cta__intro {
+  min-height: clamp(260px, 26vw, 350px);
+}
+
+/* Keep Overview / Elsewhere closer to the contact section */
+.site-footer {
+  padding-top: clamp(1rem, 2vw, 1.75rem);
+}
+
+/* Mobile adjustments */
+@media (max-width: 767px) {
+  .cta {
+    padding-top: calc(var(--section) + 0.75rem);
+  }
+
+  .cta > .section-head {
+    margin-bottom: 1rem;
+  }
+
+  .cta__intro {
+    min-height: 0;
+  }
+
+  .site-footer {
+    padding-top: 1.25rem;
+  }
+}
