@@ -1,3 +1,4 @@
+
 ---
 import c from "../content.json";
 ---
@@ -8,55 +9,463 @@ import c from "../content.json";
     <span class="note">{c.contact.span_2}</span>
   </header>
 
-  <h2 class="display cta__title" id="c-h" data-reveal="lines">{c.contact.h2_3}</h2>
+  <div class="cta__intro grid-12">
+    <div class="cta__intro-copy">
+      <h2 class="display cta__title" id="c-h">
+        {c.contact.h2_3}
+      </h2>
 
-  <div class="cta__actions" data-reveal="up">
-    <a class="btn" href="#brief" set:html={c.contact.a_4_html}></a>
-    <a class="btn btn--ghost" href="mailto:phobosanderos@gmail.com">{c.contact.a_5}</a>
-  </div>
+      <div class="cta__actions">
+        <button
+          class="btn cta__toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="brief-panel"
+          data-brief-toggle
+        >
+          <span>Send a short brief</span>
+          <span class="arrow" aria-hidden="true">
+            <span class="arrow-diagonal">↘</span>
+            <span class="arrow-down">↓</span>
+          </span>
+        </button>
 
-<div class="cta__form grid-12" id="brief">
-  <div class="cta__media" data-reveal="up" aria-hidden="true">
-    <div class="shape-scene">
-      <span class="shape-grid"></span>
-      <span class="shape-slab"></span>
-      <span class="shape-scan"></span>
-      <span class="shape-ring"></span>
-      <span class="shape-core"></span>
+        <a
+          class="btn btn--ghost"
+          href="mailto:phobosanderos@gmail.com"
+        >
+          Or write to phobosanderos@gmail.com
+        </a>
+      </div>
+    </div>
+
+    <div class="cta__sphere" aria-hidden="true">
+      <canvas
+        class="particle-sphere"
+        data-particle-sphere
+      ></canvas>
     </div>
   </div>
 
-  <div class="cta__right" data-reveal="up">
-    <p class="cta__lead lead">{c.contact.p_6}</p>
+  <div class="cta__expanded" id="brief-panel" hidden>
+    <div class="cta__form-area">
+      <form
+        class="fg"
+        action="https://formsubmit.co/phobosanderos@gmail.com"
+        method="POST"
+      >
+        <input
+          type="hidden"
+          name="subject"
+          value="New project brief"
+        >
 
-    <form class="fg" action="https://formsubmit.co/phobosanderos@gmail.com" method="POST">
-      <input type="hidden" name="subject" value="New project brief">
-      <div aria-hidden="true" class="hp">
-        <label>{c.contact.text_7}<input name="botcheck" tabindex="-1" autocomplete="off"></label>
-      </div>
-
-      <div class="fg-fields">
-        <label class="fld"><span class="note">{c.contact.span_8}</span><input name="name" autocomplete="name" required></label>
-        <label class="fld"><span class="note">{c.contact.span_9}</span><input name="email" type="email" autocomplete="email" required></label>
-        <label class="fld"><span class="note">{c.contact.span_10}</span><input name="company" autocomplete="organization"></label>
-        <label class="fld"><span class="note">{c.contact.span_11}</span><select name="budget"><option>{c.contact.option_12}</option><option>{c.contact.option_13}</option><option>{c.contact.option_14}</option><option>{c.contact.option_15}</option><option>{c.contact.option_16}</option></select></label>
-        <label class="fld fld-wide"><span class="note">{c.contact.span_17}</span><textarea name="message" rows="4" required></textarea></label>
-
-        <div class="fld-wide fg-row">
-          <button class="btn" type="submit">
-            <span data-label>{c.contact.span_18}</span>
-            <span class="arrow" aria-hidden="true">→</span>
-          </button>
-          <p class="fg-status" aria-live="polite"></p>
+        <div aria-hidden="true" class="hp">
+          <label>
+            {c.contact.text_7}
+            <input
+              name="botcheck"
+              tabindex="-1"
+              autocomplete="off"
+            >
+          </label>
         </div>
-      </div>
 
-      <div class="fg-sent" tabindex="-1">
-        <p class="fg-sent-h h3" set:html={c.contact.p_19_html}></p>
-        <p>{c.contact.p_20}</p>
-        <button class="btn btn--ghost" type="button" data-again>{c.contact.button_21}</button>
-      </div>
-    </form>
+        <div class="fg-fields">
+          <label class="fld">
+            <span class="note">{c.contact.span_8}</span>
+            <input
+              name="name"
+              autocomplete="name"
+              required
+            >
+          </label>
+
+          <label class="fld">
+            <span class="note">{c.contact.span_9}</span>
+            <input
+              name="email"
+              type="email"
+              autocomplete="email"
+              required
+            >
+          </label>
+
+          <label class="fld">
+            <span class="note">{c.contact.span_10}</span>
+            <input
+              name="company"
+              autocomplete="organization"
+            >
+          </label>
+
+          <label class="fld">
+            <span class="note">{c.contact.span_11}</span>
+            <select name="budget">
+              <option value="" selected disabled>
+                {c.contact.option_12}
+              </option>
+              <option>{c.contact.option_13}</option>
+              <option>{c.contact.option_14}</option>
+              <option>{c.contact.option_15}</option>
+              <option>{c.contact.option_16}</option>
+            </select>
+          </label>
+
+          <label class="fld fld-wide">
+            <span class="note">{c.contact.span_17}</span>
+            <textarea
+              name="message"
+              rows="4"
+              required
+            ></textarea>
+          </label>
+
+          <div class="fld-wide fg-row">
+            <button class="btn" type="submit">
+              <span data-label>{c.contact.span_18}</span>
+              <span class="arrow" aria-hidden="true">↗</span>
+            </button>
+
+            <p
+              class="fg-status"
+              data-status
+              aria-live="polite"
+            ></p>
+          </div>
+        </div>
+
+        <div class="fg-sent" tabindex="-1">
+          <p
+            class="fg-sent-h h3"
+            set:html={c.contact.p_19_html}
+          ></p>
+
+          <p>{c.contact.p_20}</p>
+
+          <button
+            class="btn btn--ghost"
+            type="button"
+            data-again
+          >
+            {c.contact.button_21}
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <aside class="cta__booking">
+      <p class="cta__booking-title">
+        Have a project that needs to move?
+      </p>
+
+      <a
+        class="footer-cta-link"
+        href="https://cal.com/phobosanderos"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <span>Book a call.</span>
+      </a>
+    </aside>
   </div>
-</div>
 </section>
+
+<script>
+  // Brief disclosure
+  const contactSection = document.querySelector(".cta");
+  const briefToggle = document.querySelector("[data-brief-toggle]");
+  const briefPanel = document.querySelector("#brief-panel");
+
+  if (
+    contactSection instanceof HTMLElement &&
+    briefToggle instanceof HTMLButtonElement &&
+    briefPanel instanceof HTMLElement
+  ) {
+    briefToggle.addEventListener("click", () => {
+      const isOpen = briefToggle.getAttribute("aria-expanded") === "true";
+      const nextOpen = !isOpen;
+
+      briefToggle.setAttribute("aria-expanded", String(nextOpen));
+      briefPanel.hidden = !nextOpen;
+      contactSection.classList.toggle("is-brief-open", nextOpen);
+
+      if (!nextOpen) {
+        briefToggle.focus({ preventScroll: true });
+      }
+    });
+  }
+
+  // Native canvas recreation of the interactive particle sphere.
+  const sphereCanvas = document.querySelector("[data-particle-sphere]");
+
+  if (sphereCanvas instanceof HTMLCanvasElement) {
+    const canvas = sphereCanvas;
+    const ctx = canvas.getContext("2d");
+
+    if (ctx) {
+      const reducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      );
+
+      const PARTICLE_COUNT = 3000;
+      const points = [];
+
+      // Fibonacci sphere distribution gives the dots an even spread.
+      const goldenAngle = Math.PI * (3 - Math.sqrt(5));
+
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        const y = 1 - (i / (PARTICLE_COUNT - 1)) * 2;
+        const radius = Math.sqrt(Math.max(0, 1 - y * y));
+        const angle = goldenAngle * i;
+
+        points.push({
+          x: Math.cos(angle) * radius,
+          y,
+          z: Math.sin(angle) * radius,
+        });
+      }
+
+      let width = 0;
+      let height = 0;
+      let dpr = 1;
+      let frameId = 0;
+      let lastTime = 0;
+      let rotationY = 0.25;
+      let rotationX = -0.08;
+      let dragVelocityX = 0;
+      let dragVelocityY = 0;
+      let isDragging = false;
+      let isVisible = true;
+      let pointerX = -10000;
+      let pointerY = -10000;
+      let previousPointerX = 0;
+      let previousPointerY = 0;
+
+      const ROTATION_SPEED = 0.00018;
+      const DRAG_SPEED = 0.008;
+      const SMOOTHING = 0.92;
+
+      function resizeSphere() {
+        const rect = canvas.getBoundingClientRect();
+
+        width = Math.max(1, rect.width);
+        height = Math.max(1, rect.height);
+        dpr = Math.min(window.devicePixelRatio || 1, 1.5);
+
+        canvas.width = Math.round(width * dpr);
+        canvas.height = Math.round(height * dpr);
+
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        drawSphere(0);
+      }
+
+      function drawSphere(deltaTime) {
+        if (!ctx || !width || !height) return;
+
+        ctx.clearRect(0, 0, width, height);
+
+        // Position the sphere toward the right so its edge is clipped.
+        const centerX = width * 0.91;
+        const centerY = height * 0.51;
+        const radius = Math.min(height * 0.57, width * 0.82);
+
+        if (!reducedMotion.matches && !isDragging) {
+          rotationY += ROTATION_SPEED * deltaTime;
+          rotationY += dragVelocityX;
+          rotationX += dragVelocityY;
+
+          dragVelocityX *= SMOOTHING;
+          dragVelocityY *= SMOOTHING;
+        }
+
+        const cosY = Math.cos(rotationY);
+        const sinY = Math.sin(rotationY);
+        const cosX = Math.cos(rotationX);
+        const sinX = Math.sin(rotationX);
+        const projected = [];
+
+        for (const point of points) {
+          // Rotate around the vertical axis.
+          const x1 = point.x * cosY - point.z * sinY;
+          const z1 = point.x * sinY + point.z * cosY;
+
+          // Rotate around the horizontal axis.
+          const y2 = point.y * cosX - z1 * sinX;
+          const z2 = point.y * sinX + z1 * cosX;
+
+          const perspective = 1 / (2.35 - z2 * 0.7);
+
+          let x = centerX + x1 * radius * perspective;
+          let y = centerY + y2 * radius * perspective;
+
+          // A soft cursor repulsion makes nearby particles react.
+          const dx = x - pointerX;
+          const dy = y - pointerY;
+          const distanceSquared = dx * dx + dy * dy;
+          const influenceRadius = 85;
+
+          if (
+            distanceSquared > 0 &&
+            distanceSquared < influenceRadius * influenceRadius
+          ) {
+            const distance = Math.sqrt(distanceSquared);
+            const force =
+              Math.pow(1 - distance / influenceRadius, 2) * 15;
+
+            x += (dx / distance) * force;
+            y += (dy / distance) * force;
+          }
+
+          projected.push({
+            x,
+            y,
+            z: z2,
+            size: Math.max(0.45, (z2 + 1.25) * 0.9),
+            alpha: Math.max(0.2, Math.min(0.95, 0.48 + z2 * 0.38)),
+          });
+        }
+
+        // Draw rear particles first and front particles last.
+        projected.sort((a, b) => a.z - b.z);
+
+        for (const p of projected) {
+          ctx.globalAlpha = p.alpha;
+          ctx.fillStyle = "#ffffff";
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        ctx.globalAlpha = 1;
+      }
+
+      function animate(now) {
+        frameId = 0;
+
+        if (!isVisible || document.hidden) return;
+
+        const deltaTime = lastTime
+          ? Math.min(now - lastTime, 40)
+          : 16;
+
+        lastTime = now;
+
+        drawSphere(deltaTime);
+
+        if (!reducedMotion.matches || isDragging) {
+          frameId = requestAnimationFrame(animate);
+        }
+      }
+
+      function startAnimation() {
+        if (!frameId && isVisible && !document.hidden) {
+          lastTime = 0;
+          frameId = requestAnimationFrame(animate);
+        }
+      }
+
+      function stopAnimation() {
+        if (frameId) {
+          cancelAnimationFrame(frameId);
+          frameId = 0;
+        }
+      }
+
+      function getCanvasPointer(event) {
+        const rect = canvas.getBoundingClientRect();
+
+        return {
+          x: event.clientX - rect.left,
+          y: event.clientY - rect.top,
+        };
+      }
+
+      canvas.addEventListener("pointerdown", (event) => {
+        isDragging = true;
+
+        const point = getCanvasPointer(event);
+        previousPointerX = point.x;
+        previousPointerY = point.y;
+
+        canvas.setPointerCapture?.(event.pointerId);
+      });
+
+      canvas.addEventListener("pointermove", (event) => {
+        const point = getCanvasPointer(event);
+
+        pointerX = point.x;
+        pointerY = point.y;
+
+        if (isDragging) {
+          const dx = point.x - previousPointerX;
+          const dy = point.y - previousPointerY;
+
+          dragVelocityX = dx * DRAG_SPEED;
+          dragVelocityY = dy * DRAG_SPEED;
+
+          rotationY += dx * DRAG_SPEED;
+          rotationX += dy * DRAG_SPEED;
+
+          previousPointerX = point.x;
+          previousPointerY = point.y;
+        }
+
+        startAnimation();
+      });
+
+      function releaseDrag() {
+        isDragging = false;
+        startAnimation();
+      }
+
+      canvas.addEventListener("pointerup", releaseDrag);
+      canvas.addEventListener("pointercancel", releaseDrag);
+
+      canvas.addEventListener("pointerleave", () => {
+        if (!isDragging) {
+          pointerX = -10000;
+          pointerY = -10000;
+        }
+      });
+
+      const resizeObserver = new ResizeObserver(resizeSphere);
+      resizeObserver.observe(canvas);
+
+      const visibilityObserver = new IntersectionObserver(([entry]) => {
+        isVisible = entry.isIntersecting;
+
+        if (isVisible) {
+          startAnimation();
+        } else {
+          stopAnimation();
+        }
+      });
+
+      visibilityObserver.observe(canvas);
+
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+          stopAnimation();
+        } else {
+          startAnimation();
+        }
+      });
+
+      reducedMotion.addEventListener?.("change", () => {
+        stopAnimation();
+        drawSphere(0);
+
+        if (!reducedMotion.matches) {
+          startAnimation();
+        }
+      });
+
+      resizeSphere();
+
+      if (!reducedMotion.matches) {
+        startAnimation();
+      }
+    }
+  }
+</script>
