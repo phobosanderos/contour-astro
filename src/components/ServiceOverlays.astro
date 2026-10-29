@@ -175,11 +175,10 @@
   };
 
   
-const cursor = document.querySelector(".cursor");
-const cursorHome = cursor?.parentElement;
 
 function bringCursorForward(dialog) {
   const customCursor = document.querySelector(".cursor");
+
   if (customCursor && dialog instanceof HTMLDialogElement) {
     dialog.appendChild(customCursor);
   }
@@ -187,9 +186,20 @@ function bringCursorForward(dialog) {
 
 function restoreCursor() {
   const customCursor = document.querySelector(".cursor");
-  if (customCursor && cursorHome && customCursor.parentElement !== cursorHome) {
-    cursorHome.appendChild(customCursor);
+
+  if (customCursor && document.body.contains(customCursor) === false) {
+    document.body.appendChild(customCursor);
   }
+}
+
+function openInfoDialog(dialog) {
+  if (!(dialog instanceof HTMLDialogElement)) return;
+
+  // Pause the page's smooth scrolling while the dialog is open.
+  if (window.__lenis) window.__lenis.stop();
+
+  dialog.showModal();
+  bringCursorForward(dialog);
 }
 
 function closeDialog(dialog) {
@@ -197,7 +207,6 @@ function closeDialog(dialog) {
     dialog.close();
   }
 }
-
 
   document.querySelectorAll("[data-service-open]").forEach((button) => {
     button.addEventListener("click", () => {
