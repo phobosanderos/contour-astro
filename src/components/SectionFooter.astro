@@ -1,22 +1,23 @@
+
 ---
 import c from "../content.json";
 ---
 
 <footer class="site-footer wrap">
   <div class="grid-12 footer-top">
-    <p class="footer-claim h3">
-  Have a project that needs to move?
-  <a class="footer-cta-link" href="https://cal.com/phobosanderos" target="_blank" rel="noopener noreferrer">
-    Book a call.
-  </a>
-</p>
-
-    <div class="footer-col">
+    <div class="footer-col footer-col--overview">
       <p class="note">{c.footer.p_6}</p>
+
       <ul>
-        <li><a class="link" href="#work">{c.footer.a_3}</a></li>
-        <li><a class="link" href="#services">{c.footer.a_4}</a></li>
-        <li><a class="link" href="#process">{c.footer.a_5}</a></li>
+        <li>
+          <a class="link" href="#work">{c.footer.a_3}</a>
+        </li>
+        <li>
+          <a class="link" href="#services">{c.footer.a_4}</a>
+        </li>
+        <li>
+          <a class="link" href="#process">{c.footer.a_5}</a>
+        </li>
         <li>
           <a
             class="link"
@@ -30,8 +31,9 @@ import c from "../content.json";
       </ul>
     </div>
 
-    <div class="footer-col">
+    <div class="footer-col footer-col--elsewhere">
       <p class="note">{c.footer.p_7}</p>
+
       <ul>
         <li>
           <a
@@ -39,8 +41,9 @@ import c from "../content.json";
             href="https://www.linkedin.com/in/vipul-m-r/"
             target="_blank"
             rel="noopener noreferrer"
-            set:html={c.footer.a_8_html}
-          ></a>
+          >
+            LinkedIn ↗
+          </a>
         </li>
         <li>
           <a
@@ -48,8 +51,9 @@ import c from "../content.json";
             href="https://www.instagram.com/phobosanderos/"
             target="_blank"
             rel="noopener noreferrer"
-            set:html={c.footer.a_9_html}
-          ></a>
+          >
+            Instagram ↗
+          </a>
         </li>
         <li>
           <a
@@ -57,23 +61,28 @@ import c from "../content.json";
             href="https://www.behance.net/phobosanderos"
             target="_blank"
             rel="noopener noreferrer"
-            set:html={c.footer.a_10_html}
-          ></a>
+          >
+            Behance ↗
+          </a>
         </li>
-      </ul>
-    </div>
-
-    <div class="footer-col">
-      <p class="note">{c.footer.p_11}</p>
-      <ul>
-        <li><a class="link" href="#contact">{c.footer.a_12}</a></li>
-        <li><a class="link" href="mailto:phobosanderos@gmail.com">{c.footer.a_13}</a></li>
+        <li>
+          <a
+            class="link"
+            href="mailto:phobosanderos@gmail.com"
+          >
+            Email ↗
+          </a>
+        </li>
       </ul>
     </div>
   </div>
 
   <div class="footer-bottom note">
-    <p class="copy"><span>{c.footer.span_23}</span><span>{c.footer.span_24}</span></p>
+    <p class="copy">
+      <span>{c.footer.span_23}</span>
+      <span>{c.footer.span_24}</span>
+    </p>
+
     <nav class="legal-links" aria-label="Legal">
       <a class="link" href="/privacy/">{c.footer.a_26}</a>
     </nav>
