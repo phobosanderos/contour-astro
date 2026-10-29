@@ -1506,3 +1506,15 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   box-sizing: border-box;
   overscroll-behavior: contain;
 }
+/* Slightly enlarge the contact particle sphere */
+.cta__sphere {
+  width: 58%;
+  right: 0;
+}
+
+@media (max-width: 767px) {
+  .cta__sphere {
+    width: 72%;
+    height: 300px;
+  }
+}
