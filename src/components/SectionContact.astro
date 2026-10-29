@@ -190,7 +190,8 @@ startProjectButton?.addEventListener("click", (event) => {
   }, 50);
 });
   
-  // Brief disclosure and automatic scroll
+  
+  // Brief disclosure: keep the viewport anchored to the page bottom
   const contactSection = document.querySelector(".cta");
   const briefToggle = document.querySelector("[data-brief-toggle]");
   const briefPanel = document.querySelector("#brief-panel");
@@ -200,6 +201,41 @@ startProjectButton?.addEventListener("click", (event) => {
     briefToggle instanceof HTMLButtonElement &&
     briefPanel instanceof HTMLElement
   ) {
+    let bottomAnchorObserver = null;
+    let bottomAnchorGap = 0;
+
+    const keepBottomAnchored = () => {
+      const pageHeight = document.documentElement.scrollHeight;
+      const targetTop = Math.max(
+        0,
+        pageHeight - window.innerHeight - bottomAnchorGap
+      );
+
+      window.scrollTo(0, targetTop);
+    };
+
+    const startBottomAnchor = () => {
+      bottomAnchorGap = Math.max(
+        0,
+        document.documentElement.scrollHeight -
+          (window.scrollY + window.innerHeight)
+      );
+
+      bottomAnchorObserver?.disconnect();
+
+      bottomAnchorObserver = new ResizeObserver(() => {
+        keepBottomAnchored();
+      });
+
+      bottomAnchorObserver.observe(document.body);
+      keepBottomAnchored();
+    };
+
+    const stopBottomAnchor = () => {
+      bottomAnchorObserver?.disconnect();
+      bottomAnchorObserver = null;
+    };
+
     briefToggle.addEventListener("click", () => {
       const isOpen =
         briefToggle.getAttribute("aria-expanded") === "true";
@@ -210,6 +246,7 @@ startProjectButton?.addEventListener("click", (event) => {
 
       if (nextOpen) {
         briefPanel.hidden = false;
+        startBottomAnchor();
 
         const reducedMotion = window.matchMedia(
           "(prefers-reduced-motion: reduce)"
@@ -220,6 +257,11 @@ startProjectButton?.addEventListener("click", (event) => {
           briefPanel.style.opacity = "1";
           briefPanel.style.transform = "none";
           briefPanel.style.overflow = "";
+
+          requestAnimationFrame(() => {
+            keepBottomAnchored();
+            stopBottomAnchor();
+          });
         } else {
           briefPanel.style.overflow = "hidden";
           briefPanel.style.height = "0px";
@@ -252,15 +294,24 @@ startProjectButton?.addEventListener("click", (event) => {
             briefPanel.style.overflow = "";
             briefPanel.style.opacity = "";
             briefPanel.style.transform = "";
-          };
-        }
 
+            requestAnimationFrame(() => {
+              keepBottomAnchored();
+              stopBottomAnchor();
+            });
+          };
+
+          openingAnimation.oncancel = stopBottomAnchor;
+        }
       } else {
+        stopBottomAnchor();
+
         briefPanel.hidden = true;
         briefPanel.style.height = "";
         briefPanel.style.overflow = "";
         briefPanel.style.opacity = "";
         briefPanel.style.transform = "";
+
         briefToggle.focus({ preventScroll: true });
       }
     });
