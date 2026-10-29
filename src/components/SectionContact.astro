@@ -265,10 +265,10 @@ import c from "../content.json";
 
         ctx.clearRect(0, 0, width, height);
 
-        // Position the sphere toward the right so its edge is clipped.
-        const centerX = width * 0.91;
-        const centerY = height * 0.51;
-        const radius = Math.min(height * 0.57, width * 0.82);
+        // Position of sphere
+        const centerX = width * 0.5;
+        const centerY = height * 0.5;
+        const radius = Math.min(height * 0.66, width * 0.66);
 
         if (!reducedMotion.matches && !isDragging) {
           rotationY += ROTATION_SPEED * deltaTime;
