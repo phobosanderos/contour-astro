@@ -1,29 +1,131 @@
+
 ---
 import c from "../content.json";
 ---
+
 <section class="section wrap" id="services" aria-labelledby="s-h">
-    <header class="section-head"><h2 class="note note--ink" id="s-h">{c.services.h2_1}</h2><a class="note link" href="#contact">{c.services.a_2}</a></header>
-    <ol class="services">
-      <li class="service" data-reveal="up"><a class="service__link grid-12" href="#contact" data-fill>
-        <span class="service__n note" aria-hidden="true">{c.services.span_3}</span>
-        <span class="service__title h2">{c.services.span_4}</span>
-        <span class="service__body">{c.services.span_5}</span>
-        <span class="service__tags"><span class="note">{c.services.span_6}</span><span class="note">{c.services.span_7}</span><span class="note">{c.services.span_8}</span><span class="note">{c.services.span_9}</span></span>
+  <header class="section-head">
+    <h2 class="note note--ink" id="s-h">{c.services.h2_1}</h2>
+
+    <button
+      class="note link service-policy-trigger"
+      type="button"
+      data-policy-open
+    >
+      Ask for a quote →
+    </button>
+  </header>
+
+  <ol class="services">
+    <li class="service" data-reveal="up">
+      <button
+        class="service__link grid-12"
+        type="button"
+        data-service-open="identity"
+        aria-haspopup="dialog"
+      >
+        <span class="service__n note">01</span>
+
+        <span class="service__title h2">
+          Identity & Branding Systems
+        </span>
+
+        <span class="service__body">
+          Brand identity systems, logo suites and wedding monograms built
+          around a clear visual direction.
+        </span>
+
+        <span class="service__tags">
+          <span class="note">Brand identity</span>
+          <span class="note">Logo systems</span>
+          <span class="note">Monograms</span>
+        </span>
+
         <span class="service__arrow" aria-hidden="true">→</span>
-      </a></li>
-      <li class="service" data-reveal="up"><a class="service__link grid-12" href="#contact" data-fill>
-        <span class="service__n note" aria-hidden="true">{c.services.span_10}</span>
-        <span class="service__title h2">{c.services.span_11}</span>
-        <span class="service__body">{c.services.span_12}</span>
-        <span class="service__tags"><span class="note">{c.services.span_13}</span><span class="note">{c.services.span_14}</span><span class="note">{c.services.span_15}</span></span>
+      </button>
+    </li>
+
+    <li class="service" data-reveal="up">
+      <button
+        class="service__link grid-12"
+        type="button"
+        data-service-open="media"
+        aria-haspopup="dialog"
+      >
+        <span class="service__n note">02</span>
+
+        <span class="service__title h2">
+          Media, Publishing & Spatial Graphics
+        </span>
+
+        <span class="service__body">
+          Artwork for music, books, print production, events and large-scale
+          physical environments.
+        </span>
+
+        <span class="service__tags">
+          <span class="note">Album covers</span>
+          <span class="note">Book covers</span>
+          <span class="note">Signage</span>
+        </span>
+
         <span class="service__arrow" aria-hidden="true">→</span>
-      </a></li>
-      <li class="service" data-reveal="up"><a class="service__link grid-12" href="#contact" data-fill>
-        <span class="service__n note" aria-hidden="true">{c.services.span_16}</span>
-        <span class="service__title h2">{c.services.span_17}</span>
-        <span class="service__body">{c.services.span_18}</span>
-        <span class="service__tags"><span class="note">{c.services.span_19}</span><span class="note">{c.services.span_20}</span><span class="note">{c.services.span_21}</span></span>
+      </button>
+    </li>
+
+    <li class="service" data-reveal="up">
+      <button
+        class="service__link grid-12"
+        type="button"
+        data-service-open="artwork"
+        aria-haspopup="dialog"
+      >
+        <span class="service__n note">03</span>
+
+        <span class="service__title h2">
+          Artwork & Marketing
+        </span>
+
+        <span class="service__body">
+          Standalone visual assets, promotional design, recurring social
+          content and personalised illustration.
+        </span>
+
+        <span class="service__tags">
+          <span class="note">Posters</span>
+          <span class="note">Social media</span>
+          <span class="note">Illustration</span>
+        </span>
+
         <span class="service__arrow" aria-hidden="true">→</span>
-      </a></li>
-    </ol>
-  </section>
+      </button>
+    </li>
+
+    <li class="service" data-reveal="up">
+      <button
+        class="service__link grid-12"
+        type="button"
+        data-service-open="custom"
+        aria-haspopup="dialog"
+      >
+        <span class="service__n note">04</span>
+
+        <span class="service__title h2">
+          Custom Requests
+        </span>
+
+        <span class="service__body">
+          Have a project that doesn't fit neatly into one category? Tell me
+          about the outcome you need.
+        </span>
+
+        <span class="service__tags">
+          <span class="note">Bespoke briefs</span>
+          <span class="note">Mixed deliverables</span>
+        </span>
+
+        <span class="service__arrow" aria-hidden="true">→</span>
+      </button>
+    </li>
+  </ol>
+</section>
