@@ -114,9 +114,10 @@ import c from "../content.json";
           <label class="fld fld-wide">
             <span class="note">{c.contact.span_17}</span>
             <textarea
-              name="message"
-              rows="4"
-              required
+            name="message"
+            rows="4"
+            required
+            aria-label="Project brief message"
             ></textarea>
           </label>
 
@@ -256,20 +257,24 @@ startProjectButton?.addEventListener("click", (event) => {
 
         
 requestAnimationFrame(() => {
-  const finalPageHeight =
-    document.documentElement.scrollHeight;
+  const headline = document.querySelector("#c-h");
+  const header = document.querySelector(".site-header");
 
-  const currentFormHeight = briefPanel.getBoundingClientRect().height;
-  const finalScrollPosition = Math.max(
-    0,
-    finalPageHeight -
-      currentFormHeight +
-      briefPanel.scrollHeight -
-      window.innerHeight
-  );
+  if (!(headline instanceof HTMLElement)) return;
+
+  const headerHeight =
+    header instanceof HTMLElement
+      ? header.getBoundingClientRect().height
+      : 72;
+
+  const targetTop =
+    window.scrollY +
+    headline.getBoundingClientRect().top -
+    headerHeight -
+    20;
 
   window.scrollTo({
-    top: finalScrollPosition,
+    top: Math.max(0, targetTop),
     behavior: reducedMotion ? "auto" : "smooth",
   });
 });
