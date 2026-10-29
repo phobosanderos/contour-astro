@@ -256,6 +256,7 @@ startProjectButton?.addEventListener("click", (event) => {
         }
 
         
+
 requestAnimationFrame(() => {
   const headline = document.querySelector("#c-h");
   const header = document.querySelector(".site-header");
@@ -268,8 +269,6 @@ requestAnimationFrame(() => {
       : 72;
 
   const topGap = 18;
-
-  // Position the headline just below the fixed header.
   const targetTop =
     window.scrollY +
     headline.getBoundingClientRect().top -
