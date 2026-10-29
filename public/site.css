@@ -1670,7 +1670,7 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
     border-radius var(--dur-2) var(--ease-in-out);
 }
 
-.info-dialog__close::before {
+.info-dialog__close:before {
   content: "";
   position: absolute;
   inset: 0;
@@ -1876,8 +1876,30 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   position: relative;
   z-index: 1;
 }
-/* Keep the custom cursor above the open dialog's contents */
-dialog.info-dialog > .cursor {
-  z-index: 9999;
-  pointer-events: none;
+/* Keep dialog controls interactive and show the native cursor */
+html.has-cursor dialog.info-dialog,
+html.has-cursor dialog.info-dialog * {
+  cursor: auto !important;
+}
+
+html.has-cursor dialog.info-dialog button,
+html.has-cursor dialog.info-dialog a {
+  cursor: pointer !important;
+}
+
+dialog.info-dialog .cursor {
+  display: none !important;
+}
+
+.info-dialog__head,
+.info-dialog__content,
+.info-dialog__foot {
+  position: relative;
+  z-index: 1;
+}
+
+.info-dialog__close {
+  position: relative;
+  z-index: 2;
+  pointer-events: auto;
 }
