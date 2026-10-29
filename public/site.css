@@ -1347,3 +1347,33 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
     padding-bottom: 1.5rem;
   }
 }
+/* Final contact refinements */
+.cta__title {
+  max-width: 10ch;
+  font-size: clamp(3.2rem, 7.2vw, 8.5rem);
+  line-height: 0.9;
+  letter-spacing: -0.055em;
+}
+
+@media (max-width: 767px) {
+  .cta__title {
+    font-size: clamp(3rem, 10vw, 4.3rem);
+  }
+}
+/* Larger particle sphere */
+.cta__sphere {
+  width: 55%;
+  right: 0;
+}
+
+.particle-sphere {
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-width: 767px) {
+  .cta__sphere {
+    width: 68%;
+    height: 300px;
+  }
+}
