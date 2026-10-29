@@ -1215,3 +1215,135 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   font-size: clamp(2.5rem, 6.5vw, 7rem) !important;
   transform: translateY(-0.7rem);
 }
+
+
+/* Contact section — spacing, sizing and alignment refinements */
+
+/* Bring the section label closer to the headline */
+.cta > .section-head {
+  margin-bottom: clamp(1.5rem, 3vw, 2.75rem);
+}
+
+/* Make the headline closer to its original scale, but slightly smaller */
+.cta__title {
+  font-size: clamp(3.3rem, 9.5vw, 12rem);
+  line-height: 0.88;
+  letter-spacing: -0.055em;
+}
+
+/* Reduce excess vertical space in the opening row */
+.cta__intro {
+  min-height: clamp(280px, 31vw, 420px);
+}
+
+/* Match the brief button typography to the form's Send the brief button */
+.cta__actions .cta__toggle {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/* Use the same built-in button hover animation as the form submit button */
+.cta__toggle:hover,
+.cta__toggle:focus-visible {
+  color: var(--accent-ink);
+}
+
+.cta__toggle:hover::before,
+.cta__toggle:focus-visible::before {
+  transform: translateY(0);
+  border-radius: 0;
+}
+
+/* Keep the arrow change separate from the button's movement animation */
+.cta__toggle .arrow {
+  transform: none !important;
+}
+
+/* Bring the expanded form closer to the headline and buttons */
+.cta__expanded {
+  margin-top: clamp(1.5rem, 3vw, 2.75rem);
+  padding-top: clamp(1.25rem, 2.5vw, 2rem);
+}
+
+/* Align the booking message to the right side */
+.cta__booking {
+  justify-self: end;
+  text-align: right;
+}
+
+.cta__booking-title {
+  margin-left: auto;
+}
+
+.cta__booking .footer-cta-link {
+  align-items: flex-end;
+  margin-left: auto;
+}
+
+/* Enlarge the sphere and keep it fully visible on the right */
+.cta__sphere {
+  right: 0;
+  width: 49%;
+}
+
+.particle-sphere {
+  width: 100%;
+  height: 100%;
+}
+
+/* Reduce the gap between the contact section and the footer */
+.site-footer {
+  padding-top: clamp(1.75rem, 3vw, 3rem);
+}
+
+.footer-top {
+  padding-bottom: clamp(1.5rem, 2.5vw, 2.5rem);
+}
+
+/* Mobile refinements */
+@media (max-width: 767px) {
+  .cta > .section-head {
+    margin-bottom: 1.5rem;
+  }
+
+  .cta__title {
+    font-size: clamp(3rem, 10.5vw, 4.5rem);
+  }
+
+  .cta__intro {
+    min-height: 0;
+  }
+
+  .cta__sphere {
+    right: 0;
+    width: 62%;
+    height: 280px;
+  }
+
+  .cta__expanded {
+    margin-top: 1.75rem;
+    padding-top: 1.25rem;
+  }
+
+  .cta__booking {
+    justify-self: stretch;
+    text-align: left;
+  }
+
+  .cta__booking-title {
+    margin-left: 0;
+  }
+
+  .cta__booking .footer-cta-link {
+    align-items: flex-start;
+    margin-left: 0;
+  }
+
+  .site-footer {
+    padding-top: 2rem;
+  }
+
+  .footer-top {
+    padding-bottom: 1.5rem;
+  }
+}
