@@ -195,11 +195,9 @@ function restoreCursor() {
 function openInfoDialog(dialog) {
   if (!(dialog instanceof HTMLDialogElement)) return;
 
-  // Pause the page's smooth scrolling while the dialog is open.
   if (window.__lenis) window.__lenis.stop();
 
   dialog.showModal();
-  bringCursorForward(dialog);
 }
 
 function closeDialog(dialog) {
