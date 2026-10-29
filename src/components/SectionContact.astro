@@ -171,6 +171,23 @@ import c from "../content.json";
 </section>
 
 <script>
+// Make the header's "Start a project" button reveal the page bottom.
+const startProjectButton = document.querySelector(".header-cta");
+
+startProjectButton?.addEventListener("click", (event) => {
+  const footer = document.querySelector(".site-footer");
+
+  if (!footer) return;
+
+  event.preventDefault();
+
+  window.setTimeout(() => {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: "smooth",
+    });
+  }, 50);
+});
   // Brief disclosure
   const contactSection = document.querySelector(".cta");
   const briefToggle = document.querySelector("[data-brief-toggle]");
