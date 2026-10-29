@@ -1,0 +1,219 @@
+
+---
+---
+
+<dialog class="info-dialog" id="service-dialog" aria-labelledby="service-dialog-title">
+  <div class="info-dialog__shell">
+    <header class="info-dialog__head">
+      <p class="note note--accent" id="service-dialog-kicker">SERVICE DETAILS</p>
+      <button class="info-dialog__close" type="button" data-dialog-close aria-label="Close service details">×</button>
+    </header>
+
+    <div class="info-dialog__content" tabindex="0">
+      <h2 class="h1 info-dialog__title" id="service-dialog-title">Service details</h2>
+      <div id="service-dialog-body"></div>
+    </div>
+
+    <footer class="info-dialog__foot">
+      <span class="note">PHOBOS AND EROS · SERVICES</span>
+      <a class="btn" href="#contact" data-dialog-contact>
+        Discuss a project <span class="arrow" aria-hidden="true">↗</span>
+      </a>
+    </footer>
+  </div>
+</dialog>
+
+<dialog class="info-dialog" id="policy-dialog" aria-labelledby="policy-dialog-title">
+  <div class="info-dialog__shell">
+    <header class="info-dialog__head">
+      <p class="note note--accent">PROJECT INFORMATION · REV. 2026</p>
+      <button class="info-dialog__close" type="button" data-dialog-close aria-label="Close rates and working terms">×</button>
+    </header>
+
+    <div class="info-dialog__content" tabindex="0">
+      <h2 class="h1 info-dialog__title" id="policy-dialog-title">Rates & working terms</h2>
+      <p class="info-dialog__intro">A clear overview of the services, payment structure and working conditions before a project begins. Project-specific scope and deliverables are confirmed in the agreed brief.</p>
+
+      <section class="policy-group">
+        <p class="note note--accent">01 / BOOKING & PAYMENT</p>
+        <h3 class="h3">Secure the slot</h3>
+        <p>A 50% non-refundable deposit of the total project fee is required to reserve a scheduling slot. Preliminary design investigation, initial sketches and mood boards do not begin before payment clears.</p>
+        <p>The remaining 50% is due immediately after digital layout validation and before final high-resolution source directories are handed over.</p>
+      </section>
+
+      <section class="policy-group">
+        <p class="note note--accent">02 / REVISIONS</p>
+        <h3 class="h3">Keep feedback within scope</h3>
+        <p>Each project has an agreed revision allowance. One revision cycle means one compiled brief of modifications. Additional cycles, or variations that conflict with the approved primary brief, are charged at $15 / €15 / £12 per revision track.</p>
+      </section>
+
+      <section class="policy-group">
+        <p class="note note--accent">03 / RUSH WORK</p>
+        <h3 class="h3">Accelerated timelines</h3>
+        <p>Work requiring less than 72 hours, off-hours adjustments or weekend coverage carries a 30% premium on the base quote. Rush projects require 100% upfront payment.</p>
+      </section>
+
+      <section class="policy-group">
+        <p class="note note--accent">04 / CANCELLATION</p>
+        <h3 class="h3">Project termination</h3>
+        <p>If a client halts, freezes or terminates a project, the initial 50% retainer is retained. If cancellation occurs after secondary layout reviews have been delivered, an additional 25% of the remaining project allocation is due.</p>
+        <p>Draft iterations and intellectual-property branches remain the designer's property.</p>
+      </section>
+
+      <section class="policy-group">
+        <p class="note note--accent">05 / USAGE & INTELLECTUAL PROPERTY</p>
+        <h3 class="h3">Final files and usage rights</h3>
+        <p>Exploration work, raw conceptual files and rejected drafts remain the designer's property. After full payment, commercial deployment rights for the single selected final layout transfer to the client for ongoing print and electronic use within the terms stated in the rate card.</p>
+        <p>Wholesale redistribution, global-market extensions and direct retail resale of raw artwork layers require separately negotiated licensing.</p>
+      </section>
+
+      <section class="policy-group">
+        <p class="note note--accent">06 / SIGNAGE & PRODUCTION</p>
+        <h3 class="h3">Production requirements</h3>
+        <p>Signage work requires final engineering blueprints from the client before design begins. Scale changes requested after the brief incur a $35 / €35 / £30 reconfiguration fee.</p>
+        <p>Field deployment supervision, site evaluation and production-vendor support are charged at $45 / €40 / £35 per physical deployment journey.</p>
+      </section>
+
+      <section class="policy-group">
+        <p class="note note--accent">07 / MONTHLY SOCIAL MEDIA</p>
+        <h3 class="h3">Retainer commitment</h3>
+        <p>The monthly social media retainer requires a minimum three-month commitment. A 50% retainer must clear before each month's work cycle begins.</p>
+      </section>
+
+      <p class="policy-note">These terms summarise the clauses in the international rate card. Project scope, deliverables, timelines, licensing and applicable charges should be confirmed in writing before work begins.</p>
+    </div>
+
+    <footer class="info-dialog__foot">
+      <span class="note">RATES & WORKING TERMS</span>
+      <a class="btn" href="#contact" data-dialog-contact>
+        Discuss a project <span class="arrow" aria-hidden="true">↗</span>
+      </a>
+    </footer>
+  </div>
+</dialog>
+
+<script>
+  const serviceDialog = document.querySelector("#service-dialog");
+  const policyDialog = document.querySelector("#policy-dialog");
+  const serviceTitle = document.querySelector("#service-dialog-title");
+  const serviceKicker = document.querySelector("#service-dialog-kicker");
+  const serviceBody = document.querySelector("#service-dialog-body");
+
+  const services = {
+    identity: {
+      number: "01 / IDENTITY & BRANDING SYSTEMS",
+      title: "Build a recognisable identity.",
+      content: `
+        <section class="rate-item">
+          <p class="note note--accent">CORPORATE & BUSINESS</p>
+          <h3 class="h3">Brand identity package</h3>
+          <p class="rate-price">$500–$850+ <span>|</span> €450–€800+ <span>|</span> £400–£700+</p>
+          <p>Primary logo, responsive secondary layouts, brand iconography, typography hierarchy, HEX/RGB/CMYK colour specifications, a multi-page brand style guide and print-ready business cards, letterheads and email signatures.</p>
+          <p class="note">14–21 BUSINESS DAYS · 3 INITIAL DIRECTIONS · UP TO 4 REVISION LOOPS</p>
+        </section>
+        <section class="rate-item">
+          <p class="note note--accent">WEDDINGS & PERSONAL IDENTITY</p>
+          <h3 class="h3">Wedding logo & monogram suite</h3>
+          <p class="rate-price">$75–$150 <span>|</span> €70–€140 <span>|</span> £60–£120</p>
+          <p>Custom initials or vector illustrations, master vector layouts (.AI, .EPS) and press-ready PDFs for printing, stamping or embroidery.</p>
+          <p class="note">5–7 BUSINESS DAYS · 3 CONCEPT PATHS · UP TO 2 REVISION ROUNDS</p>
+        </section>`
+    },
+    media: {
+      number: "02 / MEDIA, PUBLISHING & SPATIAL GRAPHICS",
+      title: "Design for screens, pages and spaces.",
+      content: `
+        <section class="rate-item">
+          <h3 class="h3">Album cover design</h3>
+          <p class="rate-price">$65–$135 <span>|</span> €60–€125 <span>|</span> £50–£110</p>
+          <p>3000 × 3000 px digital artwork for music platforms, plus one matching social announcement template or static Canvas backdrop.</p>
+          <p class="note">5–7 BUSINESS DAYS · 2 CONCEPT THEMES · UP TO 2 REVISION CYCLES</p>
+        </section>
+        <section class="rate-item">
+          <h3 class="h3">Book cover design</h3>
+          <p class="rate-price">$85–$200 <span>|</span> €80–€185 <span>|</span> £70–£160</p>
+          <p>Full print jacket including front, spine, back and flap copy, plus screen-ready JPG/PNG e-book cover exports.</p>
+          <p class="note">7–10 BUSINESS DAYS · 2 TYPOGRAPHIC LAYOUTS · UP TO 3 REVISION CYCLES</p>
+        </section>
+        <section class="rate-item">
+          <h3 class="h3">Large-scale print & signage</h3>
+          <p class="rate-price">$250–$600+ <span>|</span> €230–€550+ <span>|</span> £200–£480+ <span>per structural asset</span></p>
+          <p>Environmental graphics for arches, event backdrops, architectural signage and wraps; 1:1 high-resolution production files, bleed and crop alignment, and material recommendations for vinyl, ACP, acrylic or canvas.</p>
+          <p class="note">7–12 BUSINESS DAYS · 2 VARIATIONS · UP TO 3 REVISION CYCLES</p>
+        </section>`
+    },
+    artwork: {
+      number: "03 / STANDALONE ARTWORK & MARKETING",
+      title: "Make the message visible.",
+      content: `
+        <section class="rate-item">
+          <h3 class="h3">Posters & collateral</h3>
+          <p class="rate-price">$35–$85 <span>|</span> €30–€80 <span>|</span> £25–£70 <span>per asset</span></p>
+          <p>Single visual assets in a tailored aesthetic direction, with high-fidelity print PDF and digital PNG exports.</p>
+          <p class="note">3–5 BUSINESS DAYS · 1 FOCAL LAYOUT · UP TO 2 QUICK REVISIONS</p>
+        </section>
+        <section class="rate-item">
+          <h3 class="h3">Monthly social media retainer</h3>
+          <p class="rate-price">$275–$600 <span>|</span> €250–€550 <span>|</span> £220–£480 <span>per month</span></p>
+          <p>A monthly batch of 12–15 custom static layouts or multi-frame carousel narratives, matching covers and promotional frames, plus organised Canva setups or Photoshop master assets.</p>
+          <p class="note">MINIMUM 3-MONTH COMMITMENT · 50% RETAINER BEFORE EACH MONTH'S CYCLE</p>
+        </section>
+        <section class="rate-item">
+          <h3 class="h3">Personalised digital illustrations</h3>
+          <p class="rate-price">$50–$110 <span>|</span> €45–€100 <span>|</span> £40–£90 <span>per layout</span></p>
+          <p>Custom vector or digital-painting artwork and portraits for digital gifting or merchandise. Commercial retail usage requires a separate rights add-on.</p>
+          <p class="note">5–8 BUSINESS DAYS · 1 ROUGH DRAFT · UP TO 2 REVISIONS</p>
+        </section>`
+    },
+    custom: {
+      number: "04 / CUSTOM REQUESTS",
+      title: "Let's scope your project.",
+      content: `
+        <p class="info-dialog__intro">If your brief combines multiple services or needs something not listed in the rate card, send the intended outcome, deliverables, timeline and any production requirements. I'll review the scope and confirm a quote before work begins.</p>
+        <p class="note">CUSTOM PROJECTS ARE QUOTED ACCORDING TO SCOPE.</p>`
+    }
+  };
+
+  function closeDialog(dialog) {
+    if (dialog instanceof HTMLDialogElement && dialog.open) dialog.close();
+  }
+
+  document.querySelectorAll("[data-service-open]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const key = button.getAttribute("data-service-open");
+      const item = services[key];
+      if (!item || !(serviceDialog instanceof HTMLDialogElement)) return;
+
+      serviceKicker.textContent = item.number;
+      serviceTitle.textContent = item.title;
+      serviceBody.innerHTML = item.content;
+      serviceDialog.showModal();
+    });
+  });
+
+  document.querySelectorAll("[data-policy-open]").forEach((button) => {
+    button.addEventListener("click", () => {
+      if (policyDialog instanceof HTMLDialogElement) policyDialog.showModal();
+    });
+  });
+
+  document.querySelectorAll("[data-dialog-close]").forEach((button) => {
+    button.addEventListener("click", () => {
+      closeDialog(button.closest("dialog"));
+    });
+  });
+
+  [serviceDialog, policyDialog].forEach((dialog) => {
+    if (!(dialog instanceof HTMLDialogElement)) return;
+
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+  });
+
+  document.querySelectorAll("[data-dialog-contact]").forEach((link) => {
+    link.addEventListener("click", () => {
+      closeDialog(link.closest("dialog"));
+    });
+  });
+</script>
