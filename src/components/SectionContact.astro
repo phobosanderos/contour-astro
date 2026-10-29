@@ -240,7 +240,7 @@ startProjectButton?.addEventListener("click", (event) => {
         "(prefers-reduced-motion: reduce)"
       );
 
-      const PARTICLE_COUNT = 42000;
+      const PARTICLE_COUNT = 4200;
       const points = [];
 
       // Fibonacci sphere distribution gives the dots an even spread.
@@ -353,7 +353,7 @@ startProjectButton?.addEventListener("click", (event) => {
             x,
             y,
             z: z2,
-            size: Math.max(0.3, (z2 + 1.25) * 0.55),
+            size: Math.max(0.3, (z2 + 1.25) * 0.42),
             alpha: Math.max(0.2, Math.min(0.95, 0.48 + z2 * 0.38)),
           });
         }
