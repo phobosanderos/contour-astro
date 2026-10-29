@@ -1400,3 +1400,36 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   transform: translateY(0);
   border-radius: 0;
 }
+
+/* Footer navigation positioning */
+.footer-top {
+  padding-top: clamp(1.75rem, 3vw, 2.75rem);
+  padding-bottom: 0.75rem;
+}
+
+.footer-bottom {
+  margin-top: 0;
+}
+
+@media (max-width: 767px) {
+  .footer-top {
+    padding-top: 1.5rem;
+    padding-bottom: 1rem;
+  }
+}
+
+/* Final headline layout */
+.cta__title {
+  width: max-content;
+  max-width: none;
+  white-space: nowrap;
+  font-size: clamp(3rem, 6.2vw, 6.8rem);
+  line-height: 0.9;
+  letter-spacing: -0.055em;
+}
+
+@media (max-width: 767px) {
+  .cta__title {
+    font-size: clamp(2.5rem, 9vw, 3.8rem);
+  }
+}
