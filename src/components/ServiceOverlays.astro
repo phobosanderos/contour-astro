@@ -254,9 +254,35 @@ function closeDialog(dialog) {
   });
 });
 
-  document.querySelectorAll("[data-dialog-contact]").forEach((link) => {
-    link.addEventListener("click", () => {
-      closeDialog(link.closest("dialog"));
-    });
+  
+document.querySelectorAll("[data-dialog-contact]").forEach((link) => {
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    const dialog = link.closest("dialog");
+    const contactSection = document.querySelector("#contact");
+
+    closeDialog(dialog);
+
+    if (!contactSection) return;
+
+    if (window.__lenis) {
+      window.__lenis.start();
+      window.__lenis.scrollTo(contactSection, {
+        offset: -88,
+        duration: 1.15,
+      });
+    } else {
+      const top =
+        contactSection.getBoundingClientRect().top +
+        window.scrollY -
+        88;
+
+      window.scrollTo({
+        top: Math.max(0, top),
+        behavior: "smooth",
+      });
+    }
   });
+});
 </script>
