@@ -1520,66 +1520,48 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
 }
 
 
-/* Reflow the contact section when the brief opens */
+/* Move the complete contact section upwards when the brief opens */
 .cta.is-brief-open {
   padding-top: 1rem;
 }
 
+/* Keep the [06] label and its line together */
 .cta.is-brief-open > .section-head {
   margin-bottom: 0.75rem;
 }
 
+/* Preserve the original headline and sphere size */
 .cta.is-brief-open .cta__intro {
-  min-height: 0;
-  padding-block: 0;
   transform: none;
 }
 
-.cta.is-brief-open .cta__intro-copy {
-  padding-block: 0;
-}
-
-.cta.is-brief-open .cta__title {
-  font-size: clamp(2.8rem, 5.5vw, 5rem);
-  line-height: 0.88;
-}
-
-.cta.is-brief-open .cta__actions {
-  margin-top: 0.75rem;
-  gap: 0.5rem;
-}
-
+/* Bring the form closer to the intro without shrinking it */
 .cta.is-brief-open .cta__expanded {
   margin-top: 0.5rem;
   padding-top: 0.75rem;
 }
 
-/* Keep the compact layout on mobile */
+/* Move only the Send the brief button down */
+.cta__expanded .fg-row button[type="submit"] {
+  margin-top: 1.25rem;
+}
+
+/* Mobile adjustments */
 @media (max-width: 767px) {
   .cta.is-brief-open {
     padding-top: 0.75rem;
   }
 
-  .cta.is-brief-open .cta__title {
-    font-size: clamp(2.3rem, 8vw, 3.2rem);
-  }
-
-  .cta.is-brief-open .cta__actions {
-    margin-top: 0.5rem;
-    gap: 0.4rem;
+  .cta.is-brief-open > .section-head {
+    margin-bottom: 0.75rem;
   }
 
   .cta.is-brief-open .cta__expanded {
     margin-top: 0.5rem;
     padding-top: 0.75rem;
   }
-}
 
-@media (prefers-reduced-motion: reduce) {
-  .cta,
-  .cta > .section-head,
-  .cta__intro,
-  .cta__expanded {
-    transition: none;
+  .cta__expanded .fg-row button[type="submit"] {
+    margin-top: 1rem;
   }
 }
