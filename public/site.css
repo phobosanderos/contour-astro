@@ -1835,3 +1835,8 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   position: relative;
   z-index: 1;
 }
+/* Keep the custom cursor above the open dialog's contents */
+dialog.info-dialog > .cursor {
+  z-index: 9999;
+  pointer-events: none;
+}
