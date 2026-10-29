@@ -255,32 +255,6 @@ startProjectButton?.addEventListener("click", (event) => {
           };
         }
 
-        
-
-requestAnimationFrame(() => {
-  const headline = document.querySelector("#c-h");
-  const header = document.querySelector(".site-header");
-
-  if (!(headline instanceof HTMLElement)) return;
-
-  const headerHeight =
-    header instanceof HTMLElement
-      ? header.getBoundingClientRect().height
-      : 72;
-
-  const topGap = 18;
-  const targetTop =
-    window.scrollY +
-    headline.getBoundingClientRect().top -
-    headerHeight -
-    topGap;
-
-  window.scrollTo({
-    top: Math.max(0, targetTop),
-    behavior: reducedMotion ? "auto" : "smooth",
-  });
-});
-
       } else {
         briefPanel.hidden = true;
         briefPanel.style.height = "";
