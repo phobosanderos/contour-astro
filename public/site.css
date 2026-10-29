@@ -1479,7 +1479,7 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
 /* Compact spacing while keeping the divider clear of the button */
 .cta__expanded {
   margin-top: 0.75rem;
-  padding-top: 1.5rem;
+  padding-top: 2.5rem;
 }
 
 .cta__expanded .fg-fields {
