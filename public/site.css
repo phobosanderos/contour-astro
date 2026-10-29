@@ -1475,3 +1475,31 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
     padding-top: 1.25rem;
   }
 }
+
+/* Compact spacing for the expanded brief */
+.cta__expanded {
+  margin-top: 1rem;
+  padding-top: 0.75rem;
+}
+
+.cta__expanded .fg-fields {
+  row-gap: 1rem;
+}
+
+.cta__expanded .fld {
+  gap: 0.3rem;
+}
+
+.cta__expanded .fg-row {
+  margin-top: -0.25rem;
+}
+
+.cta__expanded .fld textarea {
+  height: 6rem;
+  min-height: 6rem;
+  max-height: 6rem;
+  overflow-y: auto;
+  resize: vertical;
+  line-height: 1.4;
+  padding-block: 0.35rem;
+}
