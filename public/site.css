@@ -1879,16 +1879,23 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
 }
 
 
-/* Keep the custom cursor visible above open dialogs */
+/* Use the normal cursor inside dialogs so controls are easy to use */
 html.has-cursor dialog.info-dialog,
 html.has-cursor dialog.info-dialog * {
-  cursor: none !important;
+  cursor: auto !important;
 }
 
-dialog.info-dialog > .cursor {
-  display: block !important;
-  z-index: 9999;
-  pointer-events: none !important;
+/* Keep the dialog above its backdrop and its controls interactive */
+.info-dialog__head,
+.info-dialog__foot {
+  position: relative;
+  z-index: 2;
+}
+
+.info-dialog__close,
+.info-dialog__foot .btn {
+  position: relative;
+  pointer-events: auto;
 }
 
 /* Keep the dialog content scrollable */
@@ -1909,8 +1916,8 @@ dialog.info-dialog > .cursor {
   -webkit-overflow-scrolling: touch;
   scrollbar-width: thin;
   scrollbar-color: var(--line-strong) transparent;
+  padding: clamp(1.25rem, 4vw, 3rem);
 }
-
 /* Keep dialog controls above the animated layers */
 .info-dialog__head,
 .info-dialog__foot {
