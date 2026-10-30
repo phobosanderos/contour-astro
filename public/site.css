@@ -1667,7 +1667,7 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   font: inherit;
   font-size: 1.8rem;
   line-height: 1;
-  cursor: none;
+  cursor: pointer;
   transition:
     color var(--dur-1) var(--ease-out),
     border-color var(--dur-1) var(--ease-out),
@@ -1884,7 +1884,11 @@ html.has-cursor dialog.info-dialog,
 html.has-cursor dialog.info-dialog * {
   cursor: auto !important;
 }
-
+/* Show the correct pointer over clickable dialog controls */
+html.has-cursor dialog.info-dialog button,
+html.has-cursor dialog.info-dialog a {
+  cursor: pointer !important;
+}
 /* Keep the dialog above its backdrop and its controls interactive */
 .info-dialog__head,
 .info-dialog__foot {
