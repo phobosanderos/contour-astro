@@ -507,17 +507,6 @@ if (pc && ring && preloader && !root.dataset.preloaded) {
 
   
 /* ---------- boot ---------- */
-// Remember the homepage scroll position before opening the privacy page.
-$$('a[href="/privacy/"]').forEach(function (link) {
-  link.addEventListener("click", function () {
-    try {
-      sessionStorage.setItem(
-        "ct-privacy-return-y",
-        String(window.scrollY)
-      );
-    } catch (error) {}
-  });
-});
    function bootAnimations() {
   // Prevent duplicate initialization.
   if (root.dataset.motionBooted === "true") return;
@@ -537,35 +526,7 @@ $$('a[href="/privacy/"]').forEach(function (link) {
     // Keep the existing CSS visibility mechanism.
     root.classList.add("motion-ready");
 
-    // Restore the existing scroll and work animations.
-    idle(function () {
-  reveals();
-  workStage();
-  ST.refresh();
-
-  // Restore the exact homepage position after its layout is ready.
-  try {
-    var savedPosition = sessionStorage.getItem("ct-return-scroll");
-
-    if (savedPosition !== null) {
-      sessionStorage.removeItem("ct-return-scroll");
-
-      var targetY = Math.max(0, Number(savedPosition) || 0);
-
-      requestAnimationFrame(function () {
-        requestAnimationFrame(function () {
-          if (window.__lenis) {
-            window.__lenis.scrollTo(targetY, {
-              immediate: true
-            });
-          } else {
-            window.scrollTo(0, targetY);
-          }
-        });
-      });
-    }
-  } catch (error) {}
-});
+     ST.refresh();
 
     var hero = $("[data-hero]");
 
