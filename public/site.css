@@ -2003,5 +2003,5 @@ body:has(#services .service:last-child .service__link[data-hot]) #contact > .sec
 }
 /* Custom Requests — preserve original hover extension */
 #services .service:last-child .service__link::before {
-  bottom: calc(-2rem + 3px);
+  bottom: calc(-2rem + 3.2px);
 }
