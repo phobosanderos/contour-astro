@@ -72,18 +72,7 @@ body {
     event.preventDefault();
 
     try {
-      const savedPosition = sessionStorage.getItem(
-        "ct-privacy-return-y"
-      );
-
-      if (savedPosition !== null) {
-        sessionStorage.setItem(
-          "ct-return-scroll",
-          savedPosition
-        );
-
-        sessionStorage.removeItem("ct-privacy-return-y");
-      }
+      sessionStorage.setItem("ct-return-to-bottom", "1");
     } catch (error) {}
 
     window.location.href = "/";
