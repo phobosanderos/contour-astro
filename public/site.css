@@ -2001,7 +2001,7 @@ body:has(#services .service:last-child .service__link:hover) #contact > .section
 body:has(#services .service:last-child .service__link[data-hot]) #contact > .section-head {
   border-bottom-color: color-mix(in oklab, var(--bg) 32%, transparent);
 }
-/* Align Custom Requests hover rectangle with bottom divider */
+/* Custom Requests — preserve original hover extension */
 #services .service:last-child .service__link::before {
-  inset: 0 calc(-1 * var(--gutter)) 3px;
+  bottom: calc(-2rem + 2px);
 }
