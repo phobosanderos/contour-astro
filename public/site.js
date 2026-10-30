@@ -565,13 +565,44 @@ if (root.dataset.preloaded === "true") {
         e.preventDefault();
         send.disabled = true; if (label) label.textContent = "Sending…"; status.textContent = ""; status.classList.remove("err");
         var first = ((form.elements.namedItem("name") || {}).value || "").trim().split(/\s+/)[0];
-        fetch(form.action, { method: "POST", headers: { Accept: "application/json" }, body: new FormData(form) })
-          .then(function (r) { return r.json().catch(function () { return null; }); })
-          .then(function (res) {
-            if (res && res.success === true) { var nm = $("[data-name]", form); if (nm) nm.textContent = first || "there"; form.reset(); form.classList.add("is-sent"); var s = $(".fg-sent", form); if (s) s.focus(); }
-            else { status.textContent = (res && res.message) || "Could not send. Please try again."; status.classList.add("err"); }
-          })
-          .catch(function () { status.textContent = "Could not send. Check your connection and try again."; status.classList.add("err"); })
+        fetch(form.action, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    "Accept": "application/json"
+  },
+  body: JSON.stringify(
+    Object.fromEntries(new FormData(form).entries())
+  )
+})
+  .then(function (r) {
+    return r.json();
+  })
+  .then(function (res) {
+    if (res && String(res.success) === "true") {
+      var nm = $("[data-name]", form);
+      if (nm) nm.textContent = first || "there";
+
+      form.reset();
+      form.classList.add("is-sent");
+
+      var s = $(".fg-sent", form);
+      if (s) s.focus();
+    } else {
+      status.textContent =
+        (res && res.message) || "Could not send. Please try again.";
+
+      status.classList.add("err");
+    }
+  })
+  .catch(function (error) {
+    console.error("Form submission error:", error);
+
+    status.textContent =
+      "Could not send. Please try again or email me directly.";
+
+    status.classList.add("err");
+  })
           .finally(function () { send.disabled = false; if (label) label.textContent = text; });
       });
       var again = $("[data-again]", form);
