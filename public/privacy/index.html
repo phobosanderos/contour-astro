@@ -70,17 +70,19 @@ body {
   const backLink = document.querySelector("#privacy-back");
 
   backLink?.addEventListener("click", function (event) {
-    const previousPage = document.referrer;
+    <script>
+  const backLink = document.querySelector("#privacy-back");
 
-    if (
-      previousPage &&
-      new URL(previousPage).origin === window.location.origin &&
-      window.history.length > 1
-    ) {
-      event.preventDefault();
-      window.history.back();
-    }
+  backLink?.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    try {
+      sessionStorage.setItem("ct-return-to-bottom", "1");
+    } catch (error) {}
+
+    window.location.href = "/";
   });
+</script>
 </script>
 </main>
 </body>
