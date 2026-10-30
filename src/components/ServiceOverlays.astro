@@ -176,12 +176,9 @@
 
   
 
-function bringCursorForward(dialog) {
-  const customCursor = document.querySelector(".cursor");
-
-  if (customCursor && dialog instanceof HTMLDialogElement) {
-    dialog.appendChild(customCursor);
-  }
+function bringCursorForward() {
+  // Keep the custom cursor in its original location.
+  // Native dialog controls will use the normal system cursor.
 }
 
 
@@ -193,15 +190,12 @@ function restoreCursor() {
   }
 }
 
-
-
 function openInfoDialog(dialog) {
   if (!(dialog instanceof HTMLDialogElement)) return;
 
   if (window.__lenis) window.__lenis.stop();
 
   dialog.showModal();
-  bringCursorForward(dialog);
 }
 
 
