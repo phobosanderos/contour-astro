@@ -1971,23 +1971,33 @@ html.has-cursor dialog.info-dialog a {
 #contact.section {
   padding-top: 0;
 }
-
-/* Invert the Next strip when the final service is hovered */
-body:has(#services .service:last-child .service__link:hover) #contact > .section-head,
-body:has(#services .service:last-child .service__link[data-hot]) #contact > .section-head {
-  margin-inline: calc(-1 * var(--gutter));
-  padding-inline: var(--gutter);
-  background: var(--ink);
-  color: var(--bg);
-  border-bottom-color: color-mix(in srgb, var(--bg) 32%, transparent);
-  transition:
-    background-color var(--dur-1) var(--ease-out),
-    color var(--dur-1) var(--ease-out),
-    border-color var(--dur-1) var(--ease-out);
+/* Remove the gap and the line between Services and Next */
+#contact.section {
+  padding-top: 0;
 }
 
-/* Keep both Next labels readable on the inverted background */
-body:has(#services .service:last-child .service__link:hover) #contact > .section-head > span,
-body:has(#services .service:last-child .service__link[data-hot]) #contact > .section-head > span {
-  color: var(--bg);
+#services .services {
+  border-bottom: 0;
+}
+
+/* Extend the final service's existing hover rectangle into the Next strip */
+#services .service:last-child .service__link::before {
+  bottom: -2rem;
+}
+
+/* Invert the Next labels in sync with the service rectangle */
+#contact > .section-head .note {
+  transition:
+    color var(--dur-2) var(--ease-in-out),
+    border-color var(--dur-2) var(--ease-in-out);
+}
+
+body:has(#services .service:last-child .service__link:hover) #contact > .section-head .note,
+body:has(#services .service:last-child .service__link[data-hot]) #contact > .section-head .note {
+  color: color-mix(in oklab, var(--bg) 65%, transparent);
+}
+
+body:has(#services .service:last-child .service__link:hover) #contact > .section-head,
+body:has(#services .service:last-child .service__link[data-hot]) #contact > .section-head {
+  border-bottom-color: color-mix(in oklab, var(--bg) 32%, transparent);
 }
