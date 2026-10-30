@@ -67,7 +67,15 @@
 :root[data-theme=dark]{--accent-text:var(--accent)}
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;border:0 solid}
-html{background:var(--bg);color:var(--ink);font-family:var(--font-sans);-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;-webkit-text-size-adjust:100%;scroll-padding-top:5.5rem}
+html {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 4.5rem;
+}
 body{font-size:var(--step-0);line-height:1.55;background:var(--bg);min-height:100dvh;transition:background-color var(--dur-1) var(--ease-out),color var(--dur-1) var(--ease-out)}
 html.lenis,html.lenis body{height:auto}
 .lenis.lenis-smooth{scroll-behavior:auto!important}
@@ -99,7 +107,23 @@ body::after{right:calc(var(--gutter)/2)}
 .note{font-family:var(--font-mono);font-size:.72rem;line-height:1.4;letter-spacing:.02em;text-transform:uppercase;color:var(--muted);font-weight:400}
 .note--ink{color:var(--ink)}
 .note--accent{color:var(--accent-text)}
-.section-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;border-top:1px solid var(--line-strong);padding-top:.75rem;margin-bottom:clamp(48px,7vw,112px)}
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  border-bottom: 1px solid var(--line-strong);
+  padding-bottom: .75rem;
+  margin-bottom: clamp(48px, 7vw, 112px);
+}
+/* Services: let the first option begin directly beneath the section line */
+#services .section-head {
+  margin-bottom: 0;
+}
+
+#services .service:first-child {
+  border-top: 0;
+}
 .display{font-size:var(--step-5);letter-spacing:-.055em;line-height:.86}
 .h1{font-size:var(--step-4);letter-spacing:-.05em;line-height:.9}
 .h2{font-size:var(--step-3);letter-spacing:-.045em;line-height:.95}
@@ -1942,4 +1966,8 @@ html.has-cursor dialog.info-dialog a {
 .info-dialog__foot .btn:hover .arrow,
 .info-dialog__foot .btn:focus-visible .arrow {
   transform: rotate(90deg);
+}
+/* Reduce the space between Services and Next */
+#contact.section {
+  padding-top: clamp(3rem, 5vw, 6rem);
 }
