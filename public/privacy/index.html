@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Privacy · Contour</title>
+<title>Privacy · Phobos and Eros</title>
 <meta name="description" content="How the contact form on this site uses your details.">
 <meta name="robots" content="noindex">
 <link rel="icon" href="/img/favicon.svg">
@@ -59,17 +59,12 @@ body {
 <p>Only to answer your message and, if you ask for it, to work with you. Your details are not used for newsletters or advertising and are not sold.</p>
 
 <h2>Who processes it</h2>
-<p>The form is delivered by <a href="https://formsubmit.co/" rel="noopener">Formsubmit</a>, which receives each message, stores it and forwards it to Vipul's inbox. FormSubmit processes it on Vipul's behalf and does not use it for anything else.</p>
+<p>The contact form is delivered by <a href="https://web3forms.com/" target="_blank" rel="noopener noreferrer">Web3Forms</a>, operated by Web3Creative. It processes the information you submit to deliver your enquiry to Vipul's email inbox. Web3Forms acts as a data processor on Vipul's behalf. For more information, see the <a href="https://web3forms.com/privacy" target="_blank" rel="noopener noreferrer">Web3Forms Privacy Policy</a>.</p>
 
 <h2>How long it is kept</h2>
-<p>Messages are kept for as long as needed to answer them and any work that follows, and deleted after conclusion of project.</p>
-
+<p>Web3Forms retains form submission data for up to three years by default, subject to its applicable retention settings and any earlier deletion. Vipul keeps his own copy of correspondence only for as long as needed to respond to your enquiry and manage any work that follows.</p>
 <h2>Your rights</h2>
 <p>You can ask to see, correct or delete the details you sent, or object to how they are used. Write to phobosanderos@gmail.com. You can also complain to your data protection authority.</p>
-<script>
-  const backLink = document.querySelector("#privacy-back");
-
-  backLink?.addEventListener("click", function (event) {
     <script>
   const backLink = document.querySelector("#privacy-back");
 
@@ -77,12 +72,22 @@ body {
     event.preventDefault();
 
     try {
-      sessionStorage.setItem("ct-return-to-bottom", "1");
+      const savedPosition = sessionStorage.getItem(
+        "ct-privacy-return-y"
+      );
+
+      if (savedPosition !== null) {
+        sessionStorage.setItem(
+          "ct-return-scroll",
+          savedPosition
+        );
+
+        sessionStorage.removeItem("ct-privacy-return-y");
+      }
     } catch (error) {}
 
     window.location.href = "/";
   });
-</script>
 </script>
 </main>
 </body>
