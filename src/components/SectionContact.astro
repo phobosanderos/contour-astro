@@ -49,37 +49,32 @@ import c from "../content.json";
   <div class="cta__expanded" id="brief-panel" hidden>
     <div class="cta__form-area">
       <form
-<input
-  type="hidden"
-  name="access_key"
-  value="41b9b510-e46f-4f27-b67c-0b87c116f335"
-/>
+  class="fg"
+  action="https://api.web3forms.com/submit"
+  method="POST"
+>
+  <input
+    type="hidden"
+    name="access_key"
+    value="41b9b510-e46f-4f27-b67c-0b87c116f335"
+  />
 
-<input
-  type="checkbox"
-  name="botcheck"
-  style="display:none"
-/>
-        class="fg"
-        action="https://api.web3forms.com/submit"
-        method="POST"
-      >
+  <input
+    type="checkbox"
+    name="botcheck"
+    style="display:none"
+  />
+
+  <input
+    type="hidden"
+    name="subject"
+    value="New project brief"
+  >
         <input
           type="hidden"
           name="subject"
           value="New project brief"
         >
-
-        <div aria-hidden="true" class="hp">
-          <label>
-            {c.contact.text_7}
-            <input
-              name="botcheck"
-              tabindex="-1"
-              autocomplete="off"
-            >
-          </label>
-        </div>
 
         <div class="fg-fields">
           <label class="fld">
