@@ -507,7 +507,18 @@ if (pc && ring && preloader && !root.dataset.preloaded) {
 
   
 /* ---------- boot ---------- */
-function bootAnimations() {
+// Remember the homepage scroll position before opening the privacy page.
+$$('a[href="/privacy/"]').forEach(function (link) {
+  link.addEventListener("click", function () {
+    try {
+      sessionStorage.setItem(
+        "ct-privacy-return-y",
+        String(window.scrollY)
+      );
+    } catch (error) {}
+  });
+});
+   function bootAnimations() {
   // Prevent duplicate initialization.
   if (root.dataset.motionBooted === "true") return;
 
@@ -515,24 +526,6 @@ function bootAnimations() {
   if (root.dataset.preloaded !== "true") return;
 
   root.dataset.motionBooted = "true";
-// Return to the bottom after arriving from the privacy page.
-try {
-  if (sessionStorage.getItem("ct-return-to-bottom") === "1") {
-    sessionStorage.removeItem("ct-return-to-bottom");
-
-    requestAnimationFrame(function () {
-      requestAnimationFrame(function () {
-        var bottom = document.documentElement.scrollHeight;
-
-        if (window.__lenis) {
-          window.__lenis.scrollTo(bottom, { immediate: true });
-        } else {
-          window.scrollTo(0, bottom);
-        }
-      });
-    });
-  }
-} catch (error) {}
   var delay = 0.1;
 
   (doc.fonts && doc.fonts.ready
@@ -546,10 +539,33 @@ try {
 
     // Restore the existing scroll and work animations.
     idle(function () {
-      reveals();
-      workStage();
-      ST.refresh();
-    });
+  reveals();
+  workStage();
+  ST.refresh();
+
+  // Restore the exact homepage position after its layout is ready.
+  try {
+    var savedPosition = sessionStorage.getItem("ct-return-scroll");
+
+    if (savedPosition !== null) {
+      sessionStorage.removeItem("ct-return-scroll");
+
+      var targetY = Math.max(0, Number(savedPosition) || 0);
+
+      requestAnimationFrame(function () {
+        requestAnimationFrame(function () {
+          if (window.__lenis) {
+            window.__lenis.scrollTo(targetY, {
+              immediate: true
+            });
+          } else {
+            window.scrollTo(0, targetY);
+          }
+        });
+      });
+    }
+  } catch (error) {}
+});
 
     var hero = $("[data-hero]");
 
