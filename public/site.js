@@ -238,7 +238,17 @@ if (pc && ring && preloader && !root.dataset.preloaded) {
       if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       var a = e.target.closest("a[href^='#']"); if (!a || a.classList.contains("skip")) return;
       var id = a.getAttribute("href").slice(1), t = id && doc.getElementById(id); if (!t) return;
-      e.preventDefault(); lenis.scrollTo(t); history.replaceState(history.state, "", "#" + id);
+      e.preventDefault();
+
+const header = doc.querySelector(".site-header");
+const headerHeight = header ? header.getBoundingClientRect().height : 0;
+
+lenis.scrollTo(t, {
+  offset: -headerHeight,
+  duration: 0.9,
+});
+
+history.replaceState(history.state, "", "#" + id);
       if (!t.matches("a[href],button,input,select,textarea,[tabindex]")) t.setAttribute("tabindex", "-1");
       t.focus({ preventScroll: true });
     }, true);
