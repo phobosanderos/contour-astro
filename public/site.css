@@ -1932,3 +1932,14 @@ html.has-cursor dialog.info-dialog a {
 .info-dialog__close {
   pointer-events: auto;
 }
+/* Discuss a project arrow: up initially, down on hover */
+.info-dialog__foot .btn .arrow {
+  display: inline-block;
+  transform: rotate(0deg);
+  transition: transform var(--dur-1) var(--ease-out);
+}
+
+.info-dialog__foot .btn:hover .arrow,
+.info-dialog__foot .btn:focus-visible .arrow {
+  transform: rotate(180deg);
+}
