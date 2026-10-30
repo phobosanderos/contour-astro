@@ -14,14 +14,10 @@
     "span_3": "rev. 2026",
     "span_4": "Human + machine",
     "span_5_html": "Vipul M.R",
-    "span_6": "02",
-    "span_7": "Work",
-    "span_8": "03",
-    "span_9": "Services",
-    "span_10": "04",
-    "span_11": "Process",
-    "span_12": "05",
-    "span_13": "Shop ↗",
+    "span_6": "Work",
+    "span_8": "Services",
+    "span_10": "Studios",
+    "span_12": "Shop ↗",
     "button_14": "⌘K",
     "button_15": "Menu",
     "a_16": "Start a project"
@@ -66,7 +62,7 @@
 "p_9": "Visual design, motion and illustration for ideas worth exploring."
   },
   "work": {
-    "span_1": "[02] Selected projects",
+    "span_1": "Selected projects",
     "span_2": "Field notes · client names kept private",
     "h2_3": "Most client work is under NDA. So each case shows how it was built rather than who it was for.",
     "span_4": "01",
@@ -100,7 +96,7 @@
     "img_32_image": "img/work-3-1600.webp"
   },
   "services": {
-    "h2_1": "[03] Services",
+    "h2_1": "Services",
     "a_2": "Ask for a quote →",
     "span_3": "01",
     "span_4": "Websites for studios",
@@ -123,7 +119,7 @@
     "span_21": "Evals"
   },
   "process": {
-    "span_1": "[04] Working with studios",
+    "span_1": "Working with studios",
     "span_2": "Quiet by default · white-label on request",
     "h2_3": "Your design on the surface. My code underneath.",
     "span_4": "01",
@@ -140,7 +136,7 @@
     "p_15": "Docs, a short CMS session for your team and a tidy repository."
   },
   "notes": {
-    "h2_1": "[05] Field notes",
+    "h2_1": "Field notes",
     "span_2": "Short write-ups",
     "span_3": "02 Feb 2026",
     "span_4": "Scroll-linked motion that stays smooth on a five-year-old phone",
@@ -153,7 +149,7 @@
     "span_11": "CMS"
   },
   "contact": {
-    "span_1": "[06] Next",
+    "span_1": "Next",
     "span_2": "Reply within one working day",
     "h2_3": "Tell me what you're making.",
     "a_4_html": "Send a short brief <span class=\"arrow\" aria-hidden=\"true\">↓</span>",
@@ -178,7 +174,7 @@
     "p_23_html": "© 2026 Phobos and Eros. All Rights Reserved."
   },
   "approach": {
-    "span_1": "[01] Approach",
+    "span_1": "Approach",
     "span_2": "fig. 01 · sketch → shipped",
     "span_3": "Hold the vision.",
     "span_4": "Hold the vision.",
