@@ -1967,7 +1967,27 @@ html.has-cursor dialog.info-dialog a {
 .info-dialog__foot .btn:focus-visible .arrow {
   transform: rotate(90deg);
 }
-/* Reduce the space between Services and Next */
+/* Remove the gap between the final service and the Next strip */
 #contact.section {
-  padding-top: clamp(3rem, 5vw, 6rem);
+  padding-top: 0;
+}
+
+/* Invert the Next strip when the final service is hovered */
+body:has(#services .service:last-child .service__link:hover) #contact > .section-head,
+body:has(#services .service:last-child .service__link[data-hot]) #contact > .section-head {
+  margin-inline: calc(-1 * var(--gutter));
+  padding-inline: var(--gutter);
+  background: var(--ink);
+  color: var(--bg);
+  border-bottom-color: color-mix(in srgb, var(--bg) 32%, transparent);
+  transition:
+    background-color var(--dur-1) var(--ease-out),
+    color var(--dur-1) var(--ease-out),
+    border-color var(--dur-1) var(--ease-out);
+}
+
+/* Keep both Next labels readable on the inverted background */
+body:has(#services .service:last-child .service__link:hover) #contact > .section-head > span,
+body:has(#services .service:last-child .service__link[data-hot]) #contact > .section-head > span {
+  color: var(--bg);
 }
