@@ -190,18 +190,29 @@ function restoreCursor() {
   }
 }
 
+function resetDialogScroll(dialog) {
+  const content = dialog.querySelector(".info-dialog__content");
+
+  if (content) {
+    content.scrollTop = 0;
+    content.scrollTo(0, 0);
+  }
+}
+
 function openInfoDialog(dialog) {
   if (!(dialog instanceof HTMLDialogElement)) return;
 
   if (window.__lenis) window.__lenis.stop();
 
-  // Reset the window to the top whenever it opens.
-  const content = dialog.querySelector(".info-dialog__content");
-  if (content) content.scrollTop = 0;
-
   dialog.showModal();
-}
 
+  // Reset after opening as well, once the dialog is displayed.
+  resetDialogScroll(dialog);
+
+  requestAnimationFrame(() => {
+    resetDialogScroll(dialog);
+  });
+}
 function closeDialog(dialog) {
   if (dialog instanceof HTMLDialogElement && dialog.open) {
     dialog.close();
@@ -247,11 +258,14 @@ function closeDialog(dialog) {
   });
 
   dialog.addEventListener("close", () => {
-    restoreCursor();
+  // Clear the previous scroll position before this dialog is reopened.
+  resetDialogScroll(dialog);
 
-    // Resume normal page scrolling after the window closes.
-    if (window.__lenis) window.__lenis.start();
-  });
+  restoreCursor();
+
+  // Resume normal page scrolling after the window closes.
+  if (window.__lenis) window.__lenis.start();
+});
 });
 
   
