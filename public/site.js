@@ -515,7 +515,24 @@ function bootAnimations() {
   if (root.dataset.preloaded !== "true") return;
 
   root.dataset.motionBooted = "true";
+// Return to the bottom after arriving from the privacy page.
+try {
+  if (sessionStorage.getItem("ct-return-to-bottom") === "1") {
+    sessionStorage.removeItem("ct-return-to-bottom");
 
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () {
+        var bottom = document.documentElement.scrollHeight;
+
+        if (window.__lenis) {
+          window.__lenis.scrollTo(bottom, { immediate: true });
+        } else {
+          window.scrollTo(0, bottom);
+        }
+      });
+    });
+  }
+} catch (error) {}
   var delay = 0.1;
 
   (doc.fonts && doc.fonts.ready
