@@ -195,9 +195,12 @@ function openInfoDialog(dialog) {
 
   if (window.__lenis) window.__lenis.stop();
 
+  // Reset the window to the top whenever it opens.
+  const content = dialog.querySelector(".info-dialog__content");
+  if (content) content.scrollTop = 0;
+
   dialog.showModal();
 }
-
 
 function closeDialog(dialog) {
   if (dialog instanceof HTMLDialogElement && dialog.open) {
@@ -235,7 +238,10 @@ function closeDialog(dialog) {
 
 [serviceDialog, policyDialog].forEach((dialog) => {
   if (!(dialog instanceof HTMLDialogElement)) return;
-
+  // Let the dialog handle its own mouse-wheel scrolling.
+  dialog.addEventListener("wheel", (event) => {
+    event.stopPropagation();
+  }, { passive: true });
   dialog.addEventListener("click", (event) => {
     if (event.target === dialog) dialog.close();
   });
