@@ -778,31 +778,18 @@ html.js:not(.motion-ready) :is(
   color:inherit;
 }
 
-.featured-card__client{
-  margin-top:.45rem;
-}
-
 
 /* ---------------------------------------------------------
    ROLE + DESCRIPTION
    --------------------------------------------------------- */
-
 .featured-card__body{
-  margin-top:1.5rem;
-}
-
-.featured-card__role{
-  font-size:var(--step-0);
-  font-weight:500;
-  line-height:1.3;
+  margin-top:1.1rem;
 }
 
 .featured-card__description{
-  margin-top:.65rem;
-  color:color-mix(in oklab,var(--bg) 72%,transparent);
+  color:color-mix(in oklab,var(--ink) 72%,transparent);
   line-height:1.45;
 }
-
 
 /* ---------------------------------------------------------
    VIEW PROJECT
@@ -845,28 +832,20 @@ html.js:not(.motion-ready) :is(
 .featured-card:hover .featured-card__arrow{
   transform:translate(2px,-2px);
 }
-
-
-/* ---------------------------------------------------------
-   CARD HOVER
-   --------------------------------------------------------- */
-
 .featured-card:hover .featured-card__info{
-  background:var(--accent);
-  color:var(--accent-text);
+  background:var(--bg);
+  color:var(--ink);
 }
 
 .featured-card:hover .featured-card__eyebrow,
 .featured-card:hover .featured-card__year,
-.featured-card:hover .featured-card__client,
 .featured-card:hover .featured-card__description{
   color:inherit;
 }
 
 .featured-card:hover .featured-card__action{
-  color:inherit;
+  color:var(--accent);
 }
-
 
 /* ---------------------------------------------------------
    ARCHIVE HAND-OFF
