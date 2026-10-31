@@ -11,7 +11,6 @@ const featured = work.featured;
 >
   <h2 class="sr-only" id="work-heading">Work</h2>
 
-  <!-- Work / Featured projects -->
   <header class="section-head work__head">
     <span class="note note--ink">Work</span>
     <span class="note">Featured projects</span>
@@ -21,76 +20,70 @@ const featured = work.featured;
     {
       featured.map((project, index) => (
         <article
-          class={`featured-project featured-project--${index + 1}`}
+          class={`featured-card featured-card--${index + 1}`}
           data-reveal="up"
         >
-          <figure class="featured-project__media">
-            <div class="featured-project__frame">
+          <div class="featured-card__media">
+            <img
+              class="featured-card__image"
+              src={project.primaryImage}
+              alt={project.alt}
+              loading={index === 0 ? "eager" : "lazy"}
+              decoding="async"
+            />
 
-              <img
-                class="featured-project__image"
-                src={project.primaryImage}
-                alt={project.alt}
-                loading={index === 0 ? "eager" : "lazy"}
-                decoding="async"
-              />
+            <span
+              class="featured-card__number note"
+              aria-hidden="true"
+            >
+              {project.number}
+            </span>
+          </div>
 
-              <span
-                class="featured-project__number note"
-                aria-hidden="true"
-              >
-                {project.number}
-              </span>
-
-            </div>
-          </figure>
-
-          <div class="featured-project__info grid-12">
-
-            <div class="featured-project__identity">
-              <p class="featured-project__eyebrow note">
+          <div class="featured-card__info">
+            <div class="featured-card__top">
+              <p class="featured-card__eyebrow note">
                 {project.category} · {project.type}
               </p>
 
-              <h3 class="h3 featured-project__title">
-                {project.title}
-              </h3>
-
-              <p class="featured-project__client note">
-                {project.client} · {project.year}
-              </p>
+              <span class="featured-card__year note">
+                {project.year}
+              </span>
             </div>
 
-            <div class="featured-project__details">
-              <p class="featured-project__role">
+            <h3 class="h3 featured-card__title">
+              {project.title}
+            </h3>
+
+            <p class="featured-card__client note">
+              {project.client}
+            </p>
+
+            <div class="featured-card__body">
+              <p class="featured-card__role">
                 {project.role}
               </p>
 
-              <p class="featured-project__description">
+              <p class="featured-card__description">
                 {project.description}
               </p>
             </div>
 
-            <div
-              class="featured-project__action"
-              aria-hidden="true"
-            >
-              <span class="note featured-project__view">
+            <div class="featured-card__action" aria-hidden="true">
+              <span class="note featured-card__view">
                 View project
               </span>
 
-              <span class="featured-project__arrow">
+              <span class="featured-card__arrow">
                 ↗
               </span>
             </div>
-
           </div>
         </article>
       ))
     }
   </div>
 
-  <!-- Archive begins here later -->
   <header
     class="section-head work__archive-head"
     id="archive"
@@ -98,5 +91,4 @@ const featured = work.featured;
     <span aria-hidden="true"></span>
     <span class="note">THE ARCHIVE</span>
   </header>
-
 </section>
