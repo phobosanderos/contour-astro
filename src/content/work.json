@@ -1,1 +1,40 @@
-
+{
+  "featured": [
+    {
+      "number": "01",
+      "title": "Living Bridge 2026",
+      "category": "Visuals",
+      "type": "Editorial",
+      "client": "NISAU / Achievers",
+      "year": "2026",
+      "role": "Cover Design + Selected Editorial Pages",
+      "description": "Front and back cover design, plus selected editorial pages for the 2026 edition of Living Bridge.",
+      "primaryImage": "/img/work/living-bridge-2026/cover-in-context.jpg",
+      "alt": "Printed copy of Living Bridge 2026 featuring the magazine cover design"
+    },
+    {
+      "number": "02",
+      "title": "Unity Cup 2026",
+      "category": "Campaigns",
+      "type": "Social Campaign",
+      "client": "NISAU / Unity Cup",
+      "year": "2026",
+      "role": "Social Media Design + Motion",
+      "description": "A campaign system for Unity Cup 2026 spanning match promotion, ticket pushes, social statics, carousels and motion content.",
+      "primaryImage": "/img/work/unity-cup-2026/culture-clash.png",
+      "alt": "India versus Jamaica Unity Cup 2026 Culture Clash campaign creative"
+    },
+    {
+      "number": "03",
+      "title": "LDN 2025",
+      "category": "Identity",
+      "type": "Event Campaign",
+      "client": "NISAU",
+      "year": "2025",
+      "role": "Visual Direction + Campaign Design",
+      "description": "Visual direction and campaign design for a welcome event created for Indian students arriving in London.",
+      "primaryImage": "/img/work/ldn-2025/eventbrite-banner.jpg",
+      "alt": "LDN 2025 welcome event campaign banner"
+    }
+  ]
+}
