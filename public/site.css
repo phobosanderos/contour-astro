@@ -819,16 +819,9 @@ html.js:not(.motion-ready) :is(
 
 .featured-card__arrow{
   line-height:1;
-
   transition:
     transform var(--dur-1) var(--ease-out);
 }
-
-.featured-card:hover .featured-card__info{
-  background:var(--ink);
-  color:var(--bg);
-}
-
 .featured-card:hover .featured-card__eyebrow,
 .featured-card:hover .featured-card__year,
 .featured-card:hover .featured-card__description{
