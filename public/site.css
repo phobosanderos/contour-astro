@@ -822,12 +822,27 @@ html.js:not(.motion-ready) :is(
   transition:
     transform var(--dur-1) var(--ease-out);
 }
+
+.featured-card:hover .featured-card__view{
+  background-size:100% 1px;
+}
+
+.featured-card:hover .featured-card__arrow{
+  transform:translate(2px,-2px);
+}
+/* simple theme inversion on hover */
+.featured-card:hover .featured-card__info{
+  background:var(--ink);
+  color:var(--bg);
+}
+
 .featured-card:hover .featured-card__eyebrow,
 .featured-card:hover .featured-card__year,
 .featured-card:hover .featured-card__description{
-  color:color-mix(in oklab,var(--bg) 72%,transparent);
+  color:inherit;
 }
 
+/* View project keeps the selected accent */
 .featured-card:hover .featured-card__action{
   color:var(--accent);
 }
