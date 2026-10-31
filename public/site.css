@@ -647,54 +647,288 @@ html.js:not(.motion-ready) :is(
 .manifesto__body p{grid-column:7/-1}
 @media (max-width:767px){.wf-line{white-space:normal;font-size:var(--step-3)}.wf-row:nth-of-type(n) .wf-line{margin-left:0}.wf-dim{display:none}.manifesto__body p{grid-column:1/-1}}
 
-/* work stage */
-.work__intro{font-weight:400;letter-spacing:-.015em;line-height:1.35;text-wrap:pretty;max-width:40ch;margin-bottom:clamp(2rem,4vw,3.5rem)}
-.ws{display:grid;gap:clamp(3rem,8vw,5rem)}
-.ws__count,.ws__stages{display:none}
-.ws__item{display:flex;flex-direction:column-reverse;gap:1.25rem}
-.ws__art{position:relative;aspect-ratio:8/5;overflow:hidden;border-radius:4px;color:var(--ink);background:linear-gradient(var(--line) 1px,transparent 1px) 0 0/3.125% 5%,linear-gradient(90deg,var(--line) 1px,transparent 1px) 0 0/5% 5%}
-.ws__art svg,.ws__photo{position:absolute;inset:0;width:100%;height:100%}
-.ws__photo{object-fit:cover;transform-origin:0 50%}
-.ws__meta{display:flex;justify-content:space-between;gap:1rem}
-.ws__title{margin-top:.9rem}
-.ws__client{margin-top:.5rem}
-.ws__summary{max-width:42ch;margin-top:.75rem;color:var(--muted)}
-.ws__actions{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.5rem}
-.ws__actions:not(:has(>:not([hidden]))){display:none}
-.ws.is-pinned{grid-template-columns:repeat(12,minmax(0,1fr));grid-template-rows:auto 1fr auto;column-gap:var(--col-gap);row-gap:1.5rem;height:calc(100svh - 5.5rem);padding-block:1.5rem}
-.ws.is-pinned .ws__count{display:block;grid-area:1/1/auto/span 4}
-.ws.is-pinned .ws__stages{display:block;grid-area:3/1/auto/span 4}
-.ws.is-pinned .ws__item{display:contents}
-.ws.is-pinned .ws__text{grid-area:2/1/auto/span 4;align-self:center}
-.ws.is-pinned .ws__art{grid-area:1/5/span 3/span 8;align-self:center}
-.ws.is-pinned :is(.ws__text,.ws__art){will-change:opacity,transform}
-.ws.is-pinned .ws__item:not([data-current]) :is(.ws__text,.ws__art){pointer-events:none}
-.ws__count{font-size:var(--step-4);font-weight:500;letter-spacing:-.06em;line-height:.85;font-variant-numeric:tabular-nums}
-.ws__n{display:inline-block}
-.ws__stages ol{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
-.ws__stages li{position:relative;border-top:2px solid var(--line);padding-top:10px}
-.ws__stages li i{position:absolute;top:-2px;left:0;width:100%;height:2px;background:var(--ink);transform:scaleX(var(--p,0));transform-origin:0}
-.ws__stages li[data-on] span{color:var(--accent-text)}
-.ws__stages li[data-on] i{background:var(--accent)}
-.ws__stages b{display:block;margin-top:4px;font-family:var(--font-sans);font-size:var(--step-0);font-weight:500;letter-spacing:-.01em;text-transform:none;color:var(--ink)}
-.ws__rail{display:flex;gap:8px;margin-top:1.25rem}
-.ws__rail i{flex:1;height:4px;background:var(--line);transition:background-color var(--dur-1)}
-.ws__rail i[data-on]{background:var(--ink)}
-svg [pathLength="1"]{stroke-dasharray:1 2}
-.guide{fill:none;stroke:var(--accent);stroke-opacity:.7;stroke-dasharray:3 5}
-.wire{fill:none;stroke:currentColor;stroke-opacity:.55}
-.veil{fill:#0e0e0d;fill-opacity:.28}
-.track{fill:#f4f4f0;fill-opacity:.35}
-.track-on{fill:#f4f4f0}
-.chip{fill:#f4f4f0;fill-opacity:.92}
-.hill{fill:none;stroke:#f4f4f0;stroke-opacity:.45}
-.hill--a{stroke:var(--accent);stroke-opacity:1;stroke-width:2px}
-.lbl{font-family:var(--font-mono);font-size:13px;letter-spacing:.04em;fill:currentColor;fill-opacity:.6}
-.lbl--a{fill:var(--accent);fill-opacity:1}
-.lbl--ink{fill:#0e0e0d;fill-opacity:1}
-.lbl--lg{font-size:15px}
-.lbl--light{fill:#f4f4f0;fill-opacity:1}
-.ws__art .live{opacity:1}
+/* ---------------------------------------------------------
+   WORK · FEATURED PROJECTS
+   --------------------------------------------------------- */
+
+.work__head{
+  margin-bottom:clamp(3.5rem,7vw,7rem);
+}
+
+.featured-projects{
+  display:grid;
+  gap:clamp(7rem,12vw,12rem);
+}
+
+.featured-project{
+  display:grid;
+  grid-template-columns:repeat(12,minmax(0,1fr));
+  column-gap:var(--col-gap);
+  row-gap:clamp(1.5rem,3vw,2.5rem);
+  min-width:0;
+}
+
+
+/* ---------------------------------------------------------
+   HERO
+   --------------------------------------------------------- */
+
+.featured-project__media{
+  grid-column:1/-1;
+  position:relative;
+  min-width:0;
+  overflow:hidden;
+  aspect-ratio:16/9;
+}
+
+.featured-project__frame{
+  position:relative;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:var(--bg-raised);
+}
+
+.featured-project__image{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  transition:
+    transform 1.2s var(--ease-out);
+}
+
+.featured-project:hover .featured-project__image{
+  transform:scale(1.015);
+}
+
+
+/* ---------------------------------------------------------
+   PER-PROJECT IMAGE POSITIONING
+   --------------------------------------------------------- */
+
+/* Living Bridge:
+   keep the physical magazine clearly visible */
+.featured-project--1 .featured-project__image{
+  object-position:center center;
+}
+
+/* Unity Cup:
+   preserve the centre of the pitch and title */
+.featured-project--2 .featured-project__image{
+  object-position:center center;
+}
+
+/* LDN:
+   wide banner already suits this ratio */
+.featured-project--3 .featured-project__image{
+  object-position:center center;
+}
+
+
+/* ---------------------------------------------------------
+   PROJECT NUMBER
+   --------------------------------------------------------- */
+
+.featured-project__number{
+  position:absolute;
+  z-index:2;
+  top:1rem;
+  left:1rem;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  min-width:2.25rem;
+  height:2.25rem;
+  padding-inline:.55rem;
+  color:var(--bg);
+  background:var(--ink);
+  border-radius:999px;
+}
+
+
+/* ---------------------------------------------------------
+   PROJECT INFORMATION
+   --------------------------------------------------------- */
+
+.featured-project__info{
+  grid-column:1/-1;
+  align-items:start;
+  row-gap:1.5rem;
+}
+
+.featured-project__identity{
+  grid-column:1/span 4;
+}
+
+.featured-project__eyebrow{
+  margin-bottom:.8rem;
+}
+
+.featured-project__title{
+  font-weight:500;
+}
+
+.featured-project__client{
+  margin-top:.65rem;
+  color:var(--muted);
+}
+
+.featured-project__details{
+  grid-column:6/span 5;
+  max-width:42ch;
+}
+
+.featured-project__role{
+  font-size:var(--step-1);
+  line-height:1.25;
+  letter-spacing:-.02em;
+}
+
+.featured-project__description{
+  margin-top:.8rem;
+  color:var(--muted);
+}
+
+
+/* ---------------------------------------------------------
+   VIEW PROJECT
+   --------------------------------------------------------- */
+
+.featured-project__action{
+  grid-column:11/-1;
+  justify-self:end;
+  align-self:end;
+  display:flex;
+  align-items:center;
+  gap:.65rem;
+  color:var(--accent-text);
+}
+
+.featured-project__view{
+  color:inherit;
+  background:
+    linear-gradient(currentColor,currentColor)
+    0 100%/0 1px no-repeat;
+  transition:
+    background-size var(--dur-1) var(--ease-out);
+}
+
+.featured-project__arrow{
+  line-height:1;
+  transition:
+    transform var(--dur-1) var(--ease-out);
+}
+
+.featured-project:hover .featured-project__view{
+  background-size:100% 1px;
+}
+
+.featured-project:hover .featured-project__arrow{
+  transform:translate(2px,-2px);
+}
+
+
+/* ---------------------------------------------------------
+   ARCHIVE HAND-OFF
+   --------------------------------------------------------- */
+
+.work__archive-head{
+  margin-top:clamp(7rem,12vw,12rem);
+  margin-bottom:0;
+}
+
+
+/* ---------------------------------------------------------
+   TABLET
+   --------------------------------------------------------- */
+
+@media (max-width:1023px){
+
+  .featured-projects{
+    gap:clamp(5rem,10vw,8rem);
+  }
+
+  .featured-project__identity{
+    grid-column:1/span 5;
+  }
+
+  .featured-project__details{
+    grid-column:6/-1;
+  }
+
+  .featured-project__action{
+    grid-column:6/-1;
+    justify-self:start;
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   MOBILE
+   --------------------------------------------------------- */
+
+@media (max-width:767px){
+
+  .work__head{
+    margin-bottom:3rem;
+  }
+
+  .featured-projects{
+    gap:5rem;
+  }
+
+  .featured-project{
+    display:block;
+  }
+
+  .featured-project__media{
+    aspect-ratio:4/5;
+  }
+
+  .featured-project__info{
+    display:block;
+    margin-top:1.35rem;
+  }
+
+  .featured-project__details{
+    margin-top:1.5rem;
+  }
+
+  .featured-project__action{
+    margin-top:1.4rem;
+    justify-content:flex-start;
+  }
+
+  .featured-project__number{
+    top:.75rem;
+    left:.75rem;
+  }
+
+  .work__archive-head{
+    margin-top:6rem;
+  }
+
+}
+
+
+/* ---------------------------------------------------------
+   REDUCED MOTION
+   --------------------------------------------------------- */
+
+@media (prefers-reduced-motion:reduce){
+
+  .featured-project__image,
+  .featured-project__arrow{
+    transition:none;
+  }
+
+  .featured-project:hover .featured-project__image{
+    transform:none;
+  }
+
+}
 
 /* services */
 .services{position:relative;isolation:isolate;border-bottom:1px solid var(--line)}
