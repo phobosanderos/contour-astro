@@ -20,8 +20,9 @@ const featured = work.featured;
     {
       featured.map((project, index) => (
         <article
-          class={`featured-card featured-card--${index + 1}`}
-          data-reveal="up"
+        class={`featured-card featured-card--${index + 1}`}
+        data-reveal="up"
+        data-cursor-click
         >
           <div class="featured-card__media">
             <img
