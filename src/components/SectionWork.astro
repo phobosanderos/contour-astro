@@ -41,44 +41,36 @@ const featured = work.featured;
           </div>
 
           <div class="featured-card__info">
-            <div class="featured-card__top">
-              <p class="featured-card__eyebrow note">
-                {project.category} · {project.type}
-              </p>
+  <div class="featured-card__top">
+    <p class="featured-card__eyebrow note">
+      {project.category} · {project.type}
+    </p>
 
-              <span class="featured-card__year note">
-                {project.year}
-              </span>
-            </div>
+    <span class="featured-card__year note">
+      {project.year}
+    </span>
+  </div>
 
-            <h3 class="h3 featured-card__title">
-              {project.title}
-            </h3>
+  <h3 class="h3 featured-card__title">
+    {project.title.replace(/\s+\d{4}$/, "")}
+  </h3>
 
-            <p class="featured-card__client note">
-              {project.client}
-            </p>
+  <div class="featured-card__body">
+    <p class="featured-card__description">
+      {project.description}
+    </p>
+  </div>
 
-            <div class="featured-card__body">
-              <p class="featured-card__role">
-                {project.role}
-              </p>
+  <div class="featured-card__action" aria-hidden="true">
+    <span class="note featured-card__view">
+      View project
+    </span>
 
-              <p class="featured-card__description">
-                {project.description}
-              </p>
-            </div>
-
-            <div class="featured-card__action" aria-hidden="true">
-              <span class="note featured-card__view">
-                View project
-              </span>
-
-              <span class="featured-card__arrow">
-                ↗
-              </span>
-            </div>
-          </div>
+    <span class="featured-card__arrow">
+      ↗
+    </span>
+  </div>
+</div>
         </article>
       ))
     }
