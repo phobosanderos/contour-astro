@@ -752,8 +752,8 @@ html.js:not(.motion-ready) :is(
 
   padding:1.25rem;
 
-  color:var(--bg);
-  background:var(--ink);
+  background:var(--bg);
+  color:var(--ink);
 
   transition:
     background-color var(--dur-2) var(--ease-in-out),
@@ -768,14 +768,13 @@ html.js:not(.motion-ready) :is(
 }
 
 .featured-card__eyebrow,
-.featured-card__year,
-.featured-card__client{
-  color:color-mix(in oklab,var(--bg) 65%,transparent);
+.featured-card__year{
+  color:var(--muted);
 }
 
-.featured-card__title{
-  margin-top:1rem;
-  color:inherit;
+.featured-card__description{
+  color:var(--muted);
+  line-height:1.45;
 }
 
 
@@ -787,7 +786,7 @@ html.js:not(.motion-ready) :is(
 }
 
 .featured-card__description{
-  color:color-mix(in oklab,var(--ink) 72%,transparent);
+  color:var(--muted);
   line-height:1.45;
 }
 
@@ -825,22 +824,15 @@ html.js:not(.motion-ready) :is(
     transform var(--dur-1) var(--ease-out);
 }
 
-.featured-card:hover .featured-card__view{
-  background-size:100% 1px;
-}
-
-.featured-card:hover .featured-card__arrow{
-  transform:translate(2px,-2px);
-}
 .featured-card:hover .featured-card__info{
-  background:var(--bg);
-  color:var(--ink);
+  background:var(--ink);
+  color:var(--bg);
 }
 
 .featured-card:hover .featured-card__eyebrow,
 .featured-card:hover .featured-card__year,
 .featured-card:hover .featured-card__description{
-  color:inherit;
+  color:color-mix(in oklab,var(--bg) 72%,transparent);
 }
 
 .featured-card:hover .featured-card__action{
