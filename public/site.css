@@ -652,95 +652,89 @@ html.js:not(.motion-ready) :is(
    --------------------------------------------------------- */
 
 .work__head{
-  margin-bottom:clamp(3.5rem,7vw,7rem);
+  margin-bottom:clamp(2.5rem,5vw,4.5rem);
 }
 
 .featured-projects{
   display:grid;
-  gap:clamp(7rem,12vw,12rem);
-}
-
-.featured-project{
-  display:grid;
-  grid-template-columns:repeat(12,minmax(0,1fr));
-  column-gap:var(--col-gap);
-  row-gap:clamp(1.5rem,3vw,2.5rem);
-  min-width:0;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:var(--col-gap);
+  align-items:stretch;
 }
 
 
 /* ---------------------------------------------------------
-   HERO
+   CARD
    --------------------------------------------------------- */
 
-.featured-project__media{
-  grid-column:1/-1;
-  position:relative;
+.featured-card{
+  display:flex;
+  flex-direction:column;
   min-width:0;
+  border:1px solid var(--line);
   overflow:hidden;
-  aspect-ratio:16/9;
+  background:var(--bg);
 }
 
-.featured-project__frame{
+
+/* ---------------------------------------------------------
+   IMAGE
+   --------------------------------------------------------- */
+
+.featured-card__media{
   position:relative;
-  width:100%;
-  height:100%;
+  aspect-ratio:4/5;
   overflow:hidden;
   background:var(--bg-raised);
 }
 
-.featured-project__image{
+.featured-card__image{
   display:block;
   width:100%;
   height:100%;
   object-fit:cover;
   transition:
-    transform 1.2s var(--ease-out);
+    transform .8s var(--ease-out);
 }
 
-.featured-project:hover .featured-project__image{
-  transform:scale(1.015);
+.featured-card:hover .featured-card__image{
+  transform:scale(1.025);
 }
 
 
-/* ---------------------------------------------------------
-   PER-PROJECT IMAGE POSITIONING
-   --------------------------------------------------------- */
+/* individual image positioning */
 
-/* Living Bridge:
-   keep the physical magazine clearly visible */
-.featured-project--1 .featured-project__image{
+.featured-card--1 .featured-card__image{
   object-position:center center;
 }
 
-/* Unity Cup:
-   preserve the centre of the pitch and title */
-.featured-project--2 .featured-project__image{
+.featured-card--2 .featured-card__image{
   object-position:center center;
 }
 
-/* LDN:
-   wide banner already suits this ratio */
-.featured-project--3 .featured-project__image{
+.featured-card--3 .featured-card__image{
   object-position:center center;
 }
 
 
 /* ---------------------------------------------------------
-   PROJECT NUMBER
+   NUMBER
    --------------------------------------------------------- */
 
-.featured-project__number{
+.featured-card__number{
   position:absolute;
   z-index:2;
-  top:1rem;
-  left:1rem;
-  display:inline-flex;
+  top:.85rem;
+  left:.85rem;
+
+  display:flex;
   align-items:center;
   justify-content:center;
-  min-width:2.25rem;
-  height:2.25rem;
+
+  min-width:2.2rem;
+  height:2.2rem;
   padding-inline:.55rem;
+
   color:var(--bg);
   background:var(--ink);
   border-radius:999px;
@@ -748,46 +742,65 @@ html.js:not(.motion-ready) :is(
 
 
 /* ---------------------------------------------------------
-   PROJECT INFORMATION
+   INFO PANEL
    --------------------------------------------------------- */
 
-.featured-project__info{
-  grid-column:1/-1;
-  align-items:start;
-  row-gap:1.5rem;
+.featured-card__info{
+  display:flex;
+  flex-direction:column;
+  flex:1;
+
+  padding:1.25rem;
+
+  color:var(--bg);
+  background:var(--ink);
+
+  transition:
+    background-color var(--dur-2) var(--ease-in-out),
+    color var(--dur-2) var(--ease-in-out);
 }
 
-.featured-project__identity{
-  grid-column:1/span 4;
+.featured-card__top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:1rem;
 }
 
-.featured-project__eyebrow{
-  margin-bottom:.8rem;
+.featured-card__eyebrow,
+.featured-card__year,
+.featured-card__client{
+  color:color-mix(in oklab,var(--bg) 65%,transparent);
 }
 
-.featured-project__title{
+.featured-card__title{
+  margin-top:1rem;
+  color:inherit;
+}
+
+.featured-card__client{
+  margin-top:.45rem;
+}
+
+
+/* ---------------------------------------------------------
+   ROLE + DESCRIPTION
+   --------------------------------------------------------- */
+
+.featured-card__body{
+  margin-top:1.5rem;
+}
+
+.featured-card__role{
+  font-size:var(--step-0);
   font-weight:500;
+  line-height:1.3;
 }
 
-.featured-project__client{
+.featured-card__description{
   margin-top:.65rem;
-  color:var(--muted);
-}
-
-.featured-project__details{
-  grid-column:6/span 5;
-  max-width:42ch;
-}
-
-.featured-project__role{
-  font-size:var(--step-1);
-  line-height:1.25;
-  letter-spacing:-.02em;
-}
-
-.featured-project__description{
-  margin-top:.8rem;
-  color:var(--muted);
+  color:color-mix(in oklab,var(--bg) 72%,transparent);
+  line-height:1.45;
 }
 
 
@@ -795,37 +808,63 @@ html.js:not(.motion-ready) :is(
    VIEW PROJECT
    --------------------------------------------------------- */
 
-.featured-project__action{
-  grid-column:11/-1;
-  justify-self:end;
-  align-self:end;
+.featured-card__action{
   display:flex;
   align-items:center;
-  gap:.65rem;
-  color:var(--accent-text);
+  justify-content:space-between;
+  gap:1rem;
+
+  margin-top:auto;
+  padding-top:2rem;
+
+  color:var(--accent);
 }
 
-.featured-project__view{
+.featured-card__view{
   color:inherit;
+
   background:
     linear-gradient(currentColor,currentColor)
     0 100%/0 1px no-repeat;
+
   transition:
     background-size var(--dur-1) var(--ease-out);
 }
 
-.featured-project__arrow{
+.featured-card__arrow{
   line-height:1;
+
   transition:
     transform var(--dur-1) var(--ease-out);
 }
 
-.featured-project:hover .featured-project__view{
+.featured-card:hover .featured-card__view{
   background-size:100% 1px;
 }
 
-.featured-project:hover .featured-project__arrow{
+.featured-card:hover .featured-card__arrow{
   transform:translate(2px,-2px);
+}
+
+
+/* ---------------------------------------------------------
+   CARD HOVER
+   --------------------------------------------------------- */
+
+.featured-card:hover .featured-card__info{
+  background:var(--accent);
+  color:var(--accent-text);
+}
+
+.featured-card:hover .featured-card__eyebrow,
+.featured-card:hover .featured-card__year,
+.featured-card:hover .featured-card__client,
+.featured-card:hover .featured-card__description{
+  color:inherit;
+}
+
+.featured-card:hover .featured-card__action{
+  color:inherit;
 }
 
 
@@ -834,7 +873,7 @@ html.js:not(.motion-ready) :is(
    --------------------------------------------------------- */
 
 .work__archive-head{
-  margin-top:clamp(7rem,12vw,12rem);
+  margin-top:clamp(5rem,9vw,8rem);
   margin-bottom:0;
 }
 
@@ -846,20 +885,12 @@ html.js:not(.motion-ready) :is(
 @media (max-width:1023px){
 
   .featured-projects{
-    gap:clamp(5rem,10vw,8rem);
+    grid-template-columns:repeat(2,minmax(0,1fr));
   }
 
-  .featured-project__identity{
-    grid-column:1/span 5;
-  }
-
-  .featured-project__details{
-    grid-column:6/-1;
-  }
-
-  .featured-project__action{
-    grid-column:6/-1;
-    justify-self:start;
+  .featured-card--3{
+    grid-column:1/-1;
+    width:calc(50% - (var(--col-gap) / 2));
   }
 
 }
@@ -872,42 +903,37 @@ html.js:not(.motion-ready) :is(
 @media (max-width:767px){
 
   .work__head{
-    margin-bottom:3rem;
+    margin-bottom:2.5rem;
   }
 
   .featured-projects{
-    gap:5rem;
+    grid-template-columns:1fr;
+    gap:1.5rem;
   }
 
-  .featured-project{
-    display:block;
+  .featured-card--3{
+    grid-column:auto;
+    width:100%;
   }
 
-  .featured-project__media{
+  .featured-card__media{
     aspect-ratio:4/5;
   }
 
-  .featured-project__info{
-    display:block;
-    margin-top:1.35rem;
+  .featured-card__info{
+    padding:1rem;
   }
 
-  .featured-project__details{
-    margin-top:1.5rem;
+  .featured-card__body{
+    margin-top:1.25rem;
   }
 
-  .featured-project__action{
-    margin-top:1.4rem;
-    justify-content:flex-start;
-  }
-
-  .featured-project__number{
-    top:.75rem;
-    left:.75rem;
+  .featured-card__action{
+    padding-top:1.5rem;
   }
 
   .work__archive-head{
-    margin-top:6rem;
+    margin-top:5rem;
   }
 
 }
@@ -919,12 +945,13 @@ html.js:not(.motion-ready) :is(
 
 @media (prefers-reduced-motion:reduce){
 
-  .featured-project__image,
-  .featured-project__arrow{
+  .featured-card__image,
+  .featured-card__info,
+  .featured-card__arrow{
     transition:none;
   }
 
-  .featured-project:hover .featured-project__image{
+  .featured-card:hover .featured-card__image{
     transform:none;
   }
 
