@@ -2,6 +2,7 @@
   "featured": [
     {
       "number": "01",
+      "slug": "living-bridge-2026",
       "title": "Living Bridge 2026",
       "category": "Visuals",
       "type": "Editorial",
@@ -14,6 +15,7 @@
     },
     {
       "number": "02",
+      "slug": "unity-cup-2026",
       "title": "Unity Cup 2026",
       "category": "Campaigns",
       "type": "Social Campaign",
@@ -26,6 +28,7 @@
     },
     {
       "number": "03",
+      "slug": "welcome-to-ldn-2025",
       "title": "WELCOME TO LDN 2025",
       "category": "Identity",
       "type": "Event Campaign",
