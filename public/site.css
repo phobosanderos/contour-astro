@@ -763,6 +763,14 @@ html.js:not(.motion-ready) :is(
     color var(--dur-2) var(--ease-in-out);
 }
 
+.featured-card__title{
+  margin-top:.65rem;
+}
+
+.featured-card__body{
+  margin-top:1rem;
+}
+
 .featured-card__top{
   display:flex;
   justify-content:space-between;
@@ -796,7 +804,7 @@ html.js:not(.motion-ready) :is(
   gap:1rem;
 
   margin-top:auto;
-  padding-top:2rem;
+  padding-top:2.75rem;
 
   color:var(--accent);
 }
