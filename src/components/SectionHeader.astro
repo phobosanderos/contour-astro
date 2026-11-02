@@ -3,20 +3,20 @@ import c from "../content.json";
 ---
 
 <header class="site-header wrap">
-  <a class="brand" href="#main" aria-label={`${c.site.title}, back to top`}>
+  <a class="brand" href="/#main" aria-label={`${c.site.title}, back to top`}>
     <span class="brand__name note note--int" set:html={c.header.span_5_html}></span>
   </a>
 
   <nav class="nav" aria-label="Main Navigation">
   <ul>
     <li>
-      <a class="nav__link" href="#work">
+      <a class="nav__link" href="/#work">
         <span class="nav__label" data-label="Work">{c.header.span_6}</span>
       </a>
     </li>
 
     <li>
-      <a class="nav__link" href="#services">
+      <a class="nav__link" href="/#services">
         <span class="nav__label" data-label="Services">{c.header.span_8}</span>
       </a>
     </li>
@@ -38,6 +38,6 @@ import c from "../content.json";
   <button class="tool" type="button" data-action="theme" aria-label="Toggle light / dark theme"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.25"/><path d="M10 2.75V.2[...]"></path></svg></button>
   <button class="tool" type="button" data-action="accent"><span class="swatch" aria-hidden="true"></span></button>
   <button class="tool tool--menu note" type="button" data-action="palette" aria-label="Open menu">{c.header.button_15}</button>
-  <a class="btn header-cta" href="#contact">{c.header.a_16}</a>
+  <a class="btn header-cta" href="/#contact">{c.header.a_16}</a>
 </div>
 </header>
