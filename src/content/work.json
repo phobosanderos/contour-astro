@@ -13,8 +13,191 @@
       "primaryImage": "/img/work/living-bridge-2026/cover-in-context.jpg",
       "coverPosition": "13% center",
       "alt": "Printed copy of Living Bridge 2026 featuring the magazine cover design",
-      "media": []
+      "media": [
+    {
+      "type": "group",
+      "category": "editorial",
+      "title": "Living Bridge Magazine Cover",
+      "items": [
+        {
+          "type": "image",
+          "src": "/img/work/living-bridge-2026/editorial/Living-bridge magazine-cover-front.jpg",
+          "alt": "Living Bridge 2026 magazine front cover"
+        },
+        {
+          "type": "image",
+          "src": "/img/work/living-bridge-2026/editorial/Living-bridge magazine-cover-back.jpg",
+          "alt": "Living Bridge 2026 magazine back cover"
+        }
+      ]
     },
+    {
+      "type": "group",
+      "category": "editorial",
+      "title": "Booklet Cover",
+      "items": [
+        {
+          "type": "image",
+          "src": "/img/work/living-bridge-2026/editorial/booklet-cover-front.png",
+          "alt": "Living Bridge event booklet front cover"
+        },
+        {
+          "type": "image",
+          "src": "/img/work/living-bridge-2026/editorial/booklet-cover-back.jpg",
+          "alt": "Living Bridge event booklet back cover"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "category": "editorial",
+      "title": "Meet Your Class 2026",
+      "src": "/img/work/living-bridge-2026/editorial/meet-your-class-2026.jpg",
+      "alt": "Meet Your Class 2026 editorial design"
+    },
+
+    {
+      "type": "image",
+      "category": "digital",
+      "title": "Deadline Extended",
+      "src": "/img/work/living-bridge-2026/digital/Deadline extended (ver 1).png",
+      "alt": "Living Bridge deadline extended digital campaign post"
+    },
+    {
+      "type": "image",
+      "category": "digital",
+      "title": "I'm Attending",
+      "src": "/img/work/living-bridge-2026/digital/I'm attending post (ver 1).png",
+      "alt": "Living Bridge I'm attending digital campaign post"
+    },
+    {
+      "type": "image",
+      "category": "digital",
+      "title": "Meet Our Jury",
+      "src": "/img/work/living-bridge-2026/digital/Meet our jury grid post (ver 4).png",
+      "alt": "Living Bridge Meet Our Jury digital campaign post"
+    },
+    {
+      "type": "image",
+      "category": "digital",
+      "title": "Nominations Closed",
+      "src": "/img/work/living-bridge-2026/digital/Nominations are closed.png",
+      "alt": "Living Bridge nominations closed digital campaign post"
+    },
+    {
+      "type": "image",
+      "category": "digital",
+      "title": "Nominations Open",
+      "src": "/img/work/living-bridge-2026/digital/Nominations now open.png",
+      "alt": "Living Bridge nominations open digital campaign post"
+    },
+    {
+      "type": "image",
+      "category": "digital",
+      "title": "Outreach Email",
+      "src": "/img/work/living-bridge-2026/digital/Outreach email boiler plate (Chevening).png",
+      "alt": "Living Bridge Chevening outreach email design"
+    },
+
+    {
+      "type": "image",
+      "category": "print",
+      "title": "A4 Partners Leaflet",
+      "src": "/img/work/living-bridge-2026/print/A4-leaflet.png",
+      "alt": "Living Bridge A4 partners leaflet"
+    },
+    {
+      "type": "group",
+      "category": "print",
+      "title": "Congratulations Card",
+      "items": [
+        {
+          "type": "image",
+          "src": "/img/work/living-bridge-2026/print/congratulations-front.png",
+          "alt": "Living Bridge congratulations card front"
+        },
+        {
+          "type": "image",
+          "src": "/img/work/living-bridge-2026/print/congratulations-back.png",
+          "alt": "Living Bridge congratulations card back"
+        }
+      ]
+    },
+    {
+      "type": "image",
+      "category": "print",
+      "title": "Share Your Moments Banner",
+      "src": "/img/work/living-bridge-2026/print/Share-your-moments-banner.jpg",
+      "alt": "Living Bridge Share Your Moments event banner"
+    },
+    {
+      "type": "image",
+      "category": "print",
+      "title": "Welcome to Achievers Roll-up",
+      "src": "/img/work/living-bridge-2026/print/Welcome-to-Achievers-roll-up-banner.jpg",
+      "alt": "Welcome to Achievers roll-up banner"
+    },
+    {
+      "type": "image",
+      "category": "print",
+      "title": "Partners Roll-up Banner",
+      "src": "/img/work/living-bridge-2026/print/partners-roll-up-banner.jpg",
+      "alt": "Living Bridge partners roll-up banner"
+    },
+
+    {
+      "type": "group",
+      "category": "merch",
+      "title": "Achievers Ticket",
+      "items": [
+        {
+          "type": "image",
+          "src": "/img/work/living-bridge-2026/merch/Achievers-ticket-front.jpg",
+          "alt": "Achievers event ticket front"
+        },
+        {
+          "type": "image",
+          "src": "/img/work/living-bridge-2026/merch/Achievers-ticket-back.jpg",
+          "alt": "Achievers event ticket back"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "category": "merch",
+      "title": "Lanyard",
+      "items": [
+        {
+          "type": "image",
+          "src": "/img/work/living-bridge-2026/merch/Lanyard-mock-up-1.png",
+          "alt": "Achievers lanyard mockup one"
+        },
+        {
+          "type": "image",
+          "src": "/img/work/living-bridge-2026/merch/Lanyard-mock-up-2.png",
+          "alt": "Achievers lanyard mockup two"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "category": "merch",
+      "title": "Tote Bag",
+      "items": [
+        {
+          "type": "image",
+          "src": "/img/work/living-bridge-2026/merch/Tote-bag-design-front.png",
+          "alt": "Achievers tote bag front design"
+        },
+        {
+          "type": "image",
+          "src": "/img/work/living-bridge-2026/merch/Tote-bag-design-back.png",
+          "alt": "Achievers tote bag back design"
+        }
+      ]
+    }
+  ]
+},
     {
       "number": "02",
       "slug": "unity-cup-2026",
