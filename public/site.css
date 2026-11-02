@@ -2538,8 +2538,6 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   border-color: var(--accent);
 }
 
-}
-
 .info-dialog__content {
   min-height: 0;
   overflow-y: auto;
