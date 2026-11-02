@@ -11,6 +11,7 @@
       "role": "Cover Design + Selected Editorial Pages",
       "description": "Front and back cover design, plus selected editorial pages for the 2026 edition of Living Bridge.",
       "primaryImage": "/img/work/living-bridge-2026/cover-in-context.jpg",
+      "coverPosition": "22% center",
       "alt": "Printed copy of Living Bridge 2026 featuring the magazine cover design"
     },
     {
@@ -36,7 +37,7 @@
       "year": "2025",
       "role": "Visual Direction + Campaign Design",
       "description": "Visual direction and campaign design for a welcome event created for Indian students arriving in London.",
-      "primaryImage": "/img/work/ldn-2025/eventbrite-banner.jpg",
+      "primaryImage": "/img/work/ldn-2025/welcome-to-ldn.png",
       "alt": "LDN 2025 welcome event campaign banner"
     }
   ]
