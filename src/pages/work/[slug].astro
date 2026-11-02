@@ -335,43 +335,6 @@ const showcaseFilters = [
 
 
     /* ---------------------------------------------
-       CURSOR
-       --------------------------------------------- */
-
-    const customCursor =
-      document.querySelector(".cursor");
-
-    const cursorHome =
-      customCursor?.parentElement || null;
-
-
-    function bringCursorForward(dialog) {
-
-      if (
-        customCursor &&
-        dialog instanceof HTMLDialogElement &&
-        customCursor.parentElement !== dialog
-      ) {
-        dialog.appendChild(customCursor);
-      }
-
-    }
-
-
-    function restoreCursor() {
-
-      if (
-        customCursor &&
-        cursorHome &&
-        customCursor.parentElement !== cursorHome
-      ) {
-        cursorHome.appendChild(customCursor);
-      }
-
-    }
-
-
-    /* ---------------------------------------------
        FILTERS
        --------------------------------------------- */
 
@@ -596,9 +559,6 @@ const showcaseFilters = [
 
       lightbox.showModal();
 
-      bringCursorForward(lightbox);
-
-
       requestAnimationFrame(() => {
 
         lightboxMedia.focus({
@@ -761,10 +721,6 @@ const showcaseFilters = [
 
         activeItems = [];
         activeItemIndex = 0;
-
-
-        restoreCursor();
-
 
         if (window.__lenis) {
           window.__lenis.start();
