@@ -27,6 +27,16 @@ const displayTitle =
   project.title.replace(/\s+\d{4}$/, "");
 
 const media = project.media || [];
+const hasShowcaseFilters =
+  project.slug === "living-bridge-2026";
+
+const showcaseFilters = [
+  "all",
+  "editorial",
+  "print",
+  "digital",
+  "merch"
+];
 ---
 
 <Base
@@ -72,34 +82,71 @@ const media = project.media || [];
 
     </section>
 
+<section class="project-showcase wrap">
 
-    <section class="project-showcase wrap">
+  <header class="section-head project-showcase__head">
+    <span class="note note--ink">
+      Media showcase
+    </span>
 
-      <header class="section-head project-showcase__head">
-        <span class="note note--ink">
-          Media showcase
-        </span>
+    <span aria-hidden="true"></span>
+  </header>
 
-        <span aria-hidden="true"></span>
-      </header>
+  {
+    hasShowcaseFilters && media.length > 0 && (
+      <div
+        class="project-filters"
+        aria-label="Filter Living Bridge media"
+      >
+        {
+          showcaseFilters.map((filter, index) => (
+            <button
+              class={`project-filter note${index === 0 ? " is-active" : ""}`}
+              type="button"
+              data-showcase-filter={filter}
+              aria-pressed={index === 0 ? "true" : "false"}
+            >
+              {filter}
+            </button>
+          ))
+        }
+      </div>
+    )
+  }
 
-      {
-        media.length ? (
-          <div class="project-masonry">
-            {
-              media.map((item, index) => (
-                <button
-                  class="project-media"
-                  type="button"
-                  data-media-index={index}
-                  data-cursor="view"
-                  aria-label={`Open media ${index + 1}`}
-                >
+  {
+    media.length ? (
+      <div class="project-masonry">
+        {
+          media.map((item, index) => {
+            const isGroup = item.type === "group";
+
+            const preview =
+              isGroup
+                ? item.items?.[0]
+                : item;
+
+            const itemCount =
+              isGroup
+                ? item.items?.length || 0
+                : 1;
+
+            return (
+              <button
+                class="project-media"
+                type="button"
+                data-media-index={index}
+                data-media-category={item.category || "all"}
+                data-cursor="view"
+                aria-label={`Open ${item.title || `media ${index + 1}`}`}
+              >
+
+                <div class="project-media__visual">
                   {
-                    item.type === "video" ? (
+                    preview?.type === "video" ? (
                       <video
                         class="project-media__asset"
-                        src={item.src}
+                        src={preview.src}
                         muted
                         playsinline
                         preload="metadata"
@@ -107,27 +154,44 @@ const media = project.media || [];
                     ) : (
                       <img
                         class="project-media__asset"
-                        src={item.src}
-                        alt={item.alt || ""}
+                        src={preview?.src}
+                        alt={preview?.alt || ""}
                         loading="lazy"
                         decoding="async"
                       />
                     )
                   }
-                </button>
-              ))
-            }
-          </div>
-        ) : (
-          <div class="project-showcase__empty">
-            <span class="note">
-              Media coming soon.
-            </span>
-          </div>
-        )
-      }
+                </div>
 
-    </section>
+                <div class="project-media__meta">
+                  <span class="note">
+                    {item.title}
+                  </span>
+
+                  {
+                    isGroup && (
+                      <span class="note project-media__count">
+                        {String(itemCount).padStart(2, "0")} items
+                      </span>
+                    )
+                  }
+                </div>
+
+              </button>
+            );
+          })
+        }
+      </div>
+    ) : (
+      <div class="project-showcase__empty">
+        <span class="note">
+          Media coming soon.
+        </span>
+      </div>
+    )
+  }
+
+</section>
 
 
     <section class="project-next wrap">
@@ -163,120 +227,400 @@ const media = project.media || [];
 
 
     <div
-      class="project-lightbox"
-      data-project-lightbox
-      hidden
-      role="dialog"
-      aria-modal="true"
-      aria-label="Expanded project media"
-    >
+  class="project-lightbox"
+  data-project-lightbox
+  hidden
+  role="dialog"
+  aria-modal="true"
+  aria-label="Expanded project media"
+>
+  <button
+    class="project-lightbox__backdrop"
+    type="button"
+    data-lightbox-close
+    aria-label="Close media viewer"
+  ></button>
+
+  <div class="project-lightbox__window">
+
+    <header class="project-lightbox__head">
+
+      <div class="project-lightbox__identity note">
+        <span data-lightbox-number>01</span>
+        <span>/</span>
+        <span data-lightbox-category>EDITORIAL</span>
+        <span>·</span>
+        <span data-lightbox-title></span>
+      </div>
+
       <button
-        class="project-lightbox__backdrop"
+        class="project-lightbox__close"
         type="button"
         data-lightbox-close
+        data-cursor="close"
         aria-label="Close media viewer"
-      ></button>
+      >
+        ×
+      </button>
 
-      <div class="project-lightbox__window">
+    </header>
 
-        <button
-          class="project-lightbox__close note"
-          type="button"
-          data-lightbox-close
-          data-cursor="close"
-        >
-          Close ×
-        </button>
+    <div
+      class="project-lightbox__media"
+      data-lightbox-media
+    ></div>
 
-        <div
-          class="project-lightbox__media"
-          data-lightbox-media
-        ></div>
+    <footer
+      class="project-lightbox__nav"
+      data-lightbox-nav
+      hidden
+    >
+      <button
+        class="project-lightbox__nav-button note"
+        type="button"
+        data-lightbox-prev
+        data-cursor="previous"
+      >
+        ← Previous
+      </button>
 
-      </div>
-    </div>
+      <span
+        class="project-lightbox__counter note"
+        data-lightbox-counter
+      ></span>
+
+      <button
+        class="project-lightbox__nav-button note"
+        type="button"
+        data-lightbox-next
+        data-cursor="next"
+      >
+        Next →
+      </button>
+    </footer>
+
+  </div>
+</div>
 
   </main>
 
   <script
-    is:inline
-    define:vars={{ media }}
-  >
-    (() => {
-      const lightbox =
-        document.querySelector("[data-project-lightbox]");
+  is:inline
+  define:vars={{ media }}
+>
+  (() => {
 
-      const lightboxMedia =
-        document.querySelector("[data-lightbox-media]");
+    const lightbox =
+      document.querySelector("[data-project-lightbox]");
 
-      const triggers =
-        document.querySelectorAll("[data-media-index]");
+    const lightboxMedia =
+      document.querySelector("[data-lightbox-media]");
 
-      if (!lightbox || !lightboxMedia) return;
+    const lightboxNumber =
+      document.querySelector("[data-lightbox-number]");
 
-      let lastTrigger = null;
+    const lightboxCategory =
+      document.querySelector("[data-lightbox-category]");
 
-      function closeLightbox() {
-        lightbox.hidden = true;
-        document.documentElement.classList.remove("project-lightbox-open");
+    const lightboxTitle =
+      document.querySelector("[data-lightbox-title]");
 
-        lightboxMedia.innerHTML = "";
+    const lightboxNav =
+      document.querySelector("[data-lightbox-nav]");
 
-        if (lastTrigger) {
-          lastTrigger.focus({ preventScroll: true });
-        }
-      }
+    const lightboxCounter =
+      document.querySelector("[data-lightbox-counter]");
 
-      function openLightbox(index, trigger) {
-        const item = media[index];
+    const prevButton =
+      document.querySelector("[data-lightbox-prev]");
 
-        if (!item) return;
+    const nextButton =
+      document.querySelector("[data-lightbox-next]");
 
-        lastTrigger = trigger;
+    const triggers =
+      document.querySelectorAll("[data-media-index]");
 
-        lightboxMedia.innerHTML = "";
+    const filterButtons =
+      document.querySelectorAll("[data-showcase-filter]");
 
-        let asset;
+    if (!lightbox || !lightboxMedia) return;
 
-        if (item.type === "video") {
-          asset = document.createElement("video");
-          asset.src = item.src;
-          asset.controls = true;
-          asset.autoplay = true;
-          asset.playsInline = true;
-        } else {
-          asset = document.createElement("img");
-          asset.src = item.src;
-          asset.alt = item.alt || "";
-        }
+    let lastTrigger = null;
+    let activeEntry = null;
+    let activeItems = [];
+    let activeItemIndex = 0;
 
-        lightboxMedia.appendChild(asset);
 
-        lightbox.hidden = false;
-        document.documentElement.classList.add("project-lightbox-open");
-      }
+    /* ---------------------------------------------
+       FILTERS
+       --------------------------------------------- */
 
-      triggers.forEach((trigger) => {
-        trigger.addEventListener("click", () => {
-          openLightbox(
-            Number(trigger.dataset.mediaIndex),
-            trigger
+    filterButtons.forEach((button) => {
+
+      button.addEventListener("click", () => {
+
+        const filter =
+          button.dataset.showcaseFilter;
+
+        filterButtons.forEach((item) => {
+          const active = item === button;
+
+          item.classList.toggle(
+            "is-active",
+            active
+          );
+
+          item.setAttribute(
+            "aria-pressed",
+            active ? "true" : "false"
           );
         });
-      });
 
-      document
-        .querySelectorAll("[data-lightbox-close]")
-        .forEach((button) => {
-          button.addEventListener("click", closeLightbox);
+        triggers.forEach((trigger) => {
+
+          const category =
+            trigger.dataset.mediaCategory;
+
+          const show =
+            filter === "all" ||
+            category === filter;
+
+          trigger.hidden = !show;
         });
 
-      document.addEventListener("keydown", (event) => {
-        if (event.key === "Escape" && !lightbox.hidden) {
+      });
+
+    });
+
+
+    /* ---------------------------------------------
+       LIGHTBOX
+       --------------------------------------------- */
+
+    function createAsset(item) {
+
+      let asset;
+
+      if (item.type === "video") {
+
+        asset =
+          document.createElement("video");
+
+        asset.src = item.src;
+        asset.controls = true;
+        asset.autoplay = true;
+        asset.playsInline = true;
+
+      } else {
+
+        asset =
+          document.createElement("img");
+
+        asset.src = item.src;
+        asset.alt = item.alt || "";
+
+      }
+
+      return asset;
+    }
+
+
+    function renderLightboxItem() {
+
+      const item =
+        activeItems[activeItemIndex];
+
+      if (!item) return;
+
+      lightboxMedia.innerHTML = "";
+
+      lightboxMedia.appendChild(
+        createAsset(item)
+      );
+
+      if (lightboxCounter) {
+
+        lightboxCounter.textContent =
+          activeItems.length > 1
+            ? `${String(activeItemIndex + 1).padStart(2, "0")} / ${String(activeItems.length).padStart(2, "0")}`
+            : "";
+
+      }
+
+      if (lightboxNav) {
+
+        lightboxNav.hidden =
+          activeItems.length <= 1;
+
+      }
+
+    }
+
+
+    function openLightbox(index, trigger) {
+
+      const entry = media[index];
+
+      if (!entry) return;
+
+      activeEntry = entry;
+      activeItemIndex = 0;
+
+      activeItems =
+        entry.type === "group"
+          ? entry.items || []
+          : [entry];
+
+      if (!activeItems.length) return;
+
+      lastTrigger = trigger;
+
+      if (lightboxNumber) {
+
+        lightboxNumber.textContent =
+          String(index + 1).padStart(2, "0");
+
+      }
+
+      if (lightboxCategory) {
+
+        lightboxCategory.textContent =
+          (entry.category || "media").toUpperCase();
+
+      }
+
+      if (lightboxTitle) {
+
+        lightboxTitle.textContent =
+          entry.title || "";
+
+      }
+
+      renderLightboxItem();
+
+      lightbox.hidden = false;
+
+      document.documentElement.classList.add(
+        "project-lightbox-open"
+      );
+
+    }
+
+
+    function closeLightbox() {
+
+      lightbox.hidden = true;
+
+      document.documentElement.classList.remove(
+        "project-lightbox-open"
+      );
+
+      lightboxMedia.innerHTML = "";
+
+      activeEntry = null;
+      activeItems = [];
+      activeItemIndex = 0;
+
+      if (lastTrigger) {
+
+        lastTrigger.focus({
+          preventScroll: true
+        });
+
+      }
+
+    }
+
+
+    function nextItem() {
+
+      if (activeItems.length <= 1) return;
+
+      activeItemIndex =
+        (activeItemIndex + 1) %
+        activeItems.length;
+
+      renderLightboxItem();
+
+    }
+
+
+    function previousItem() {
+
+      if (activeItems.length <= 1) return;
+
+      activeItemIndex =
+        (
+          activeItemIndex -
+          1 +
+          activeItems.length
+        ) %
+        activeItems.length;
+
+      renderLightboxItem();
+
+    }
+
+
+    triggers.forEach((trigger) => {
+
+      trigger.addEventListener("click", () => {
+
+        openLightbox(
+          Number(trigger.dataset.mediaIndex),
+          trigger
+        );
+
+      });
+
+    });
+
+
+    document
+      .querySelectorAll("[data-lightbox-close]")
+      .forEach((button) => {
+
+        button.addEventListener(
+          "click",
+          closeLightbox
+        );
+
+      });
+
+
+    prevButton?.addEventListener(
+      "click",
+      previousItem
+    );
+
+    nextButton?.addEventListener(
+      "click",
+      nextItem
+    );
+
+
+    document.addEventListener(
+      "keydown",
+      (event) => {
+
+        if (lightbox.hidden) return;
+
+        if (event.key === "Escape") {
           closeLightbox();
         }
-      });
-    })();
-  </script>
+
+        if (event.key === "ArrowRight") {
+          nextItem();
+        }
+
+        if (event.key === "ArrowLeft") {
+          previousItem();
+        }
+
+      }
+    );
+
+  })();
+</script>
 
 </Base>
