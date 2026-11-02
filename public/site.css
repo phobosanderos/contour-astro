@@ -1263,8 +1263,8 @@ html.has-cursor .project-lightbox a{
   width:auto;
   height:auto;
 
-  max-width:100%;
-  max-height:100%;
+  max-width:calc(100vw - 5rem);
+  max-height:calc(100dvh - 11rem);
 
   object-fit:contain;
 }
