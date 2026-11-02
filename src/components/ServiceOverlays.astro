@@ -176,18 +176,36 @@
 
   
 
-function bringCursorForward() {
-  // Keep the custom cursor in its original location.
-  // Native dialog controls will use the normal system cursor.
+const customCursor =
+  document.querySelector(".cursor");
+
+const cursorHome =
+  customCursor?.parentElement || null;
+
+
+function bringCursorForward(dialog) {
+
+  if (
+    customCursor &&
+    dialog instanceof HTMLDialogElement &&
+    customCursor.parentElement !== dialog
+  ) {
+    dialog.appendChild(customCursor);
+  }
+
 }
 
 
 function restoreCursor() {
-  const customCursor = document.querySelector(".cursor");
 
-  if (customCursor && customCursor.parentElement !== document.body) {
-    document.body.appendChild(customCursor);
+  if (
+    customCursor &&
+    cursorHome &&
+    customCursor.parentElement !== cursorHome
+  ) {
+    cursorHome.appendChild(customCursor);
   }
+
 }
 
 function resetDialogScroll(dialog) {
