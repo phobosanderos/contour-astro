@@ -929,7 +929,7 @@ html.js:not(.motion-ready) :is(
    --------------------------------------------------------- */
 
 .project-page{
-  padding-top:clamp(7rem,10vw,9rem);
+  padding-top:5rem;
 }
 
 
@@ -938,7 +938,7 @@ html.js:not(.motion-ready) :is(
    --------------------------------------------------------- */
 
 .project-intro__back{
-  margin-bottom:clamp(3rem,6vw,5rem);
+  margin-bottom:1.5rem;
 }
 
 .project-back{
@@ -967,7 +967,7 @@ html.js:not(.motion-ready) :is(
 }
 
 .project-intro__title{
-  margin-top:clamp(1.5rem,3vw,3rem);
+  margin-top:1.25rem;
 
   font-size:clamp(3rem,9vw,9rem);
   font-weight:500;
@@ -976,12 +976,12 @@ html.js:not(.motion-ready) :is(
 }
 
 .project-intro__description{
-  width:min(100%,42ch);
+  width:min(100%,52ch);
 
-  margin-top:clamp(2rem,4vw,4rem);
-  margin-left:auto;
+  margin-top:1.75rem;
+  margin-left:0;
 
-  font-size:clamp(1.35rem,2.4vw,2.5rem);
+  font-size:clamp(1.35rem,2.2vw,2.35rem);
   letter-spacing:-.025em;
   line-height:1.18;
 }
@@ -992,11 +992,11 @@ html.js:not(.motion-ready) :is(
    --------------------------------------------------------- */
 
 .project-showcase{
-  padding-top:clamp(5rem,9vw,9rem);
+  padding-top:3.5rem;
 }
 
 .project-showcase__head{
-  margin-bottom:clamp(2rem,4vw,4rem);
+  margin-bottom:1.75rem;
 }
 
 .project-showcase__empty{
@@ -1141,8 +1141,8 @@ html.project-lightbox-open{
    --------------------------------------------------------- */
 
 .project-next{
-  padding-top:clamp(5rem,9vw,9rem);
-  padding-bottom:clamp(4rem,7vw,7rem);
+  padding-top:3.5rem;
+  padding-bottom:3rem;
 }
 
 .project-next__head{
