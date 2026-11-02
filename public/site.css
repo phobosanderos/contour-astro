@@ -1144,22 +1144,6 @@ html.js:not(.motion-ready) :is(
   background:transparent;
   color:var(--ink);
 }
-.project-lightbox{
-  width:100vw;
-  height:100dvh;
-
-  max-width:none;
-  max-height:none;
-
-  margin:0;
-  padding:0;
-  border:0;
-
-  overflow:hidden;
-
-  background:transparent;
-  color:var(--ink);
-}
 
 /* native cursor inside media dialog */
 
@@ -1176,13 +1160,6 @@ html.js:not(.motion-ready) :is(
   cursor:pointer;
 }
 
-.project-lightbox::backdrop{
-  background:
-    color-mix(in oklab,var(--bg) 42%,transparent);
-
-  backdrop-filter:blur(12px);
-  -webkit-backdrop-filter:blur(12px);
-}
 .project-lightbox::backdrop{
   background:
     color-mix(in oklab,var(--bg) 42%,transparent);
