@@ -223,7 +223,7 @@ function openInfoDialog(dialog) {
   if (window.__lenis) window.__lenis.stop();
 
   dialog.showModal();
-
+  bringCursorForward(dialog);
   // Reset after opening as well, once the dialog is displayed.
   resetDialogScroll(dialog);
 
