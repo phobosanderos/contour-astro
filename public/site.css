@@ -1150,13 +1150,15 @@ html.js:not(.motion-ready) :is(
    so these must also use !important. */
 
 html.has-cursor .project-lightbox,
-html.has-cursor .project-lightbox__window,
-html.has-cursor .project-lightbox__head,
-html.has-cursor .project-lightbox__media,
-html.has-cursor .project-lightbox__nav,
-html.has-cursor .project-lightbox img,
-html.has-cursor .project-lightbox video{
+html.has-cursor .project-lightbox *{
   cursor:default!important;
+}
+
+html.has-cursor .project-lightbox button,
+html.has-cursor .project-lightbox button *,
+html.has-cursor .project-lightbox a,
+html.has-cursor .project-lightbox a *{
+  cursor:pointer!important;
 }
 
 html.has-cursor .project-lightbox button,
@@ -1255,6 +1257,19 @@ html.has-cursor .project-lightbox a{
   -webkit-overflow-scrolling:touch;
 
   background:var(--bg);
+}
+.project-lightbox__media img,
+.project-lightbox__media video{
+  display:block;
+
+  width:auto;
+  height:auto;
+
+  max-width:calc(100vw - 4rem);
+  max-height:calc(100dvh - 10rem);
+
+  object-fit:contain;
+  flex:0 0 auto;
 }
 /* grouped-item navigation */
 
