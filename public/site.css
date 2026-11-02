@@ -983,7 +983,7 @@ html.js:not(.motion-ready) :is(
 .project-intro__description{
   width:min(100%,52ch);
 
-  margin-top:1.75rem;
+  margin-top:1.25rem;
   margin-left:0;
 
   font-size:clamp(1.35rem,2.2vw,2.35rem);
@@ -997,11 +997,7 @@ html.js:not(.motion-ready) :is(
    --------------------------------------------------------- */
 
 .project-showcase{
-  padding-top:3.5rem;
-}
-
-.project-showcase__head{
-  margin-bottom:.75rem;
+  padding-top:1.5rem;
 }
 
 .project-showcase__empty{
@@ -1309,7 +1305,7 @@ html.js:not(.motion-ready) :is(
 
 .project-next{
   padding-top:3.5rem;
-  padding-bottom:3rem;
+  padding-bottom:0;
 }
 
 .project-next__head{
