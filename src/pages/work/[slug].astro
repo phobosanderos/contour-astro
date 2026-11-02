@@ -125,7 +125,7 @@ const showcaseFilters = [
 
             const preview =
               isGroup
-                ? item.items?.[0]
+                ? item.items?.[item.coverIndex ?? 0]
                 : item;
 
             const itemCount =
