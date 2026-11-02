@@ -1,5 +1,11 @@
 ---
 import c from "../content.json";
+
+const {
+  title = c.site.title,
+  description = c.site.description
+} = Astro.props;
+
 const buildStamp = Date.now();
 ---
 
