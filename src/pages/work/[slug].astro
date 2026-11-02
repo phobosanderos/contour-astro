@@ -226,21 +226,11 @@ const showcaseFilters = [
     </section>
 
 
-    <div
+<dialog
   class="project-lightbox"
   data-project-lightbox
-  hidden
-  role="dialog"
-  aria-modal="true"
   aria-label="Expanded project media"
 >
-  <button
-    class="project-lightbox__backdrop"
-    type="button"
-    data-lightbox-close
-    aria-label="Close media viewer"
-  ></button>
-
   <div class="project-lightbox__window">
 
     <header class="project-lightbox__head">
@@ -248,16 +238,13 @@ const showcaseFilters = [
       <div class="project-lightbox__identity note">
         <span data-lightbox-number>01</span>
         <span>/</span>
-        <span data-lightbox-category>EDITORIAL</span>
-        <span>·</span>
         <span data-lightbox-title></span>
       </div>
 
       <button
-        class="project-lightbox__close"
+        class="info-dialog__close project-lightbox__close"
         type="button"
         data-lightbox-close
-        data-cursor="close"
         aria-label="Close media viewer"
       >
         ×
@@ -268,6 +255,7 @@ const showcaseFilters = [
     <div
       class="project-lightbox__media"
       data-lightbox-media
+      tabindex="0"
     ></div>
 
     <footer
@@ -280,6 +268,7 @@ const showcaseFilters = [
         type="button"
         data-lightbox-prev
         data-cursor="previous"
+        hidden
       >
         ← Previous
       </button>
@@ -300,7 +289,7 @@ const showcaseFilters = [
     </footer>
 
   </div>
-</div>
+</dialog>
 
   </main>
 
