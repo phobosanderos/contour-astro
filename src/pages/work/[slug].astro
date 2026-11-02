@@ -23,8 +23,24 @@ export function getStaticPaths() {
 
 const { project, nextProject } = Astro.props;
 
+const stripYear = (title = "") => {
+  const parts = title.trim().split(" ");
+  const lastPart = parts[parts.length - 1];
+
+  const isYear =
+    lastPart?.length === 4 &&
+    !Number.isNaN(Number(lastPart));
+
+  return isYear
+    ? parts.slice(0, -1).join(" ")
+    : title;
+};
+
 const displayTitle =
-  project.title.replace(/\s+\d{4}$/, "");
+  stripYear(project.title);
+
+const nextDisplayTitle =
+  stripYear(nextProject.title);
 
 const media = project.media || [];
 const hasShowcaseFilters =
@@ -198,7 +214,7 @@ const showcaseFilters = [
         data-cursor="open →"
       >
         <span class="project-next__title">
-          {nextProject.title.replace(/\s+\d{4}$/, "")}
+          {nextDisplayTitle}
         </span>
 
         <span
