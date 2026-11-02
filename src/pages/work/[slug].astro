@@ -424,7 +424,131 @@ const showcaseFilters = [
       return asset;
     }
 
+function fitWindowToAsset(asset) {
 
+  const lightboxWindow =
+    lightbox.querySelector(".project-lightbox__window");
+
+  if (!lightboxWindow || !asset) return;
+
+
+  const applySize = () => {
+
+    const naturalWidth =
+      asset.tagName === "VIDEO"
+        ? asset.videoWidth
+        : asset.naturalWidth;
+
+    const naturalHeight =
+      asset.tagName === "VIDEO"
+        ? asset.videoHeight
+        : asset.naturalHeight;
+
+
+    if (!naturalWidth || !naturalHeight) return;
+
+
+    const ratio =
+      naturalWidth / naturalHeight;
+
+
+    const mediaStyle =
+      getComputedStyle(lightboxMedia);
+
+    const horizontalPadding =
+      parseFloat(mediaStyle.paddingLeft) +
+      parseFloat(mediaStyle.paddingRight);
+
+    const verticalPadding =
+      parseFloat(mediaStyle.paddingTop) +
+      parseFloat(mediaStyle.paddingBottom);
+
+
+    const head =
+      lightbox.querySelector(".project-lightbox__head");
+
+    const nav =
+      lightbox.querySelector(".project-lightbox__nav");
+
+
+    const headHeight =
+      head?.offsetHeight || 0;
+
+    const navHeight =
+      nav && !nav.hidden
+        ? nav.offsetHeight
+        : 0;
+
+
+    const viewportMargin = 32;
+
+
+    const availableAssetWidth =
+      window.innerWidth -
+      viewportMargin -
+      horizontalPadding;
+
+
+    const availableAssetHeight =
+      window.innerHeight -
+      viewportMargin -
+      headHeight -
+      navHeight -
+      verticalPadding;
+
+
+    const widthFromHeight =
+      availableAssetHeight * ratio;
+
+
+    const renderedWidth =
+      Math.min(
+        naturalWidth,
+        availableAssetWidth,
+        widthFromHeight
+      );
+
+
+    const windowWidth =
+      renderedWidth +
+      horizontalPadding;
+
+
+    lightboxWindow.style.setProperty(
+      "--lightbox-window-width",
+      `${Math.ceil(windowWidth)}px`
+    );
+
+  };
+
+
+  if (asset.tagName === "VIDEO") {
+
+    if (asset.readyState >= 1) {
+      applySize();
+    } else {
+      asset.addEventListener(
+        "loadedmetadata",
+        applySize,
+        { once:true }
+      );
+    }
+
+  } else {
+
+    if (asset.complete) {
+      applySize();
+    } else {
+      asset.addEventListener(
+        "load",
+        applySize,
+        { once:true }
+      );
+    }
+
+  }
+
+}
     /* ---------------------------------------------
        RENDER CURRENT ITEM
        --------------------------------------------- */
@@ -435,13 +559,14 @@ const showcaseFilters = [
         activeItems[activeItemIndex];
 
       if (!item) return;
+const lightboxWindow =
+  lightbox.querySelector(".project-lightbox__window");
 
+lightboxWindow?.style.removeProperty(
+  "--lightbox-window-width"
+);
 
-      lightboxMedia.innerHTML = "";
-
-      lightboxMedia.appendChild(
-        createAsset(item)
-      );
+      function renderLightboxItem() {
 
 
       const multiple =
