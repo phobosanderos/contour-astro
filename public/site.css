@@ -1144,7 +1144,45 @@ html.js:not(.motion-ready) :is(
   background:transparent;
   color:var(--ink);
 }
+.project-lightbox{
+  width:100vw;
+  height:100dvh;
 
+  max-width:none;
+  max-height:none;
+
+  margin:0;
+  padding:0;
+  border:0;
+
+  overflow:hidden;
+
+  background:transparent;
+  color:var(--ink);
+}
+
+/* native cursor inside media dialog */
+
+.project-lightbox,
+.project-lightbox__window,
+.project-lightbox__head,
+.project-lightbox__media,
+.project-lightbox__nav{
+  cursor:default;
+}
+
+.project-lightbox button,
+.project-lightbox a{
+  cursor:pointer;
+}
+
+.project-lightbox::backdrop{
+  background:
+    color-mix(in oklab,var(--bg) 42%,transparent);
+
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+}
 .project-lightbox::backdrop{
   background:
     color-mix(in oklab,var(--bg) 42%,transparent);
@@ -1290,14 +1328,6 @@ html.js:not(.motion-ready) :is(
   color:var(--muted);
 }
 
-
-/* custom cursor is visual only — never intercept clicks/wheel */
-
-.project-lightbox > .cursor,
-.info-dialog > .cursor{
-  z-index:9999;
-  pointer-events:none;
-}
 
 /* ---------------------------------------------------------
    NEXT PROJECT
