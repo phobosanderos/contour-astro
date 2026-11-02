@@ -52,25 +52,19 @@ const showcaseFilters = [
   >
     <section class="project-intro wrap">
 
-      <div class="project-intro__back">
-        <a
-          href="/#work"
-          class="note project-back"
-          data-cursor="back ←"
-        >
-          ← Back to Work
-        </a>
-      </div>
+     <div class="project-intro__top">
+  <a
+    href="/#work"
+    class="note project-back"
+    data-cursor="back ←"
+  >
+    ← Back to Work
+  </a>
 
-      <div class="project-intro__meta">
-        <span class="note">
-          {project.category} · {project.type}
-        </span>
-
-        <span class="note">
-          {project.year}
-        </span>
-      </div>
+  <span class="note project-intro__year">
+    {project.year}
+  </span>
+</div>
 
       <h1 class="project-intro__title">
         {displayTitle}
