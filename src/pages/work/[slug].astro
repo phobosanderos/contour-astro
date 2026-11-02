@@ -25,6 +25,8 @@ const { project, nextProject } = Astro.props;
 
 const displayTitle =
   project.title.replace(/\s+\d{4}$/, "");
+
+const media = project.media || [];
 ---
 
 <Base
@@ -38,9 +40,9 @@ const displayTitle =
     class="project-page"
     tabindex="-1"
   >
-    <section class="project-hero wrap">
+    <section class="project-intro wrap">
 
-      <div class="project-hero__back">
+      <div class="project-intro__back">
         <a
           href="/#work"
           class="note project-back"
@@ -50,101 +52,101 @@ const displayTitle =
         </a>
       </div>
 
-      <header class="project-hero__header">
+      <div class="project-intro__meta">
+        <span class="note">
+          {project.category} · {project.type}
+        </span>
 
-        <div class="project-hero__top">
-          <span class="note">
-            {project.category} · {project.type}
-          </span>
-
-          <span class="note">
-            {project.year}
-          </span>
-        </div>
-
-        <h1 class="project-hero__title">
-          {displayTitle}
-        </h1>
-
-      </header>
-
-      <figure class="project-hero__media">
-        <img
-          src={project.primaryImage}
-          alt={project.alt}
-          decoding="async"
-        />
-      </figure>
-
-    </section>
-
-
-    <section class="project-info wrap">
-
-      <div class="project-info__grid">
-
-        <div class="project-info__meta">
-          <div>
-            <span class="note">Client</span>
-            <p>{project.client}</p>
-          </div>
-
-          <div>
-            <span class="note">Role</span>
-            <p>{project.role}</p>
-          </div>
-
-          <div>
-            <span class="note">Year</span>
-            <p>{project.year}</p>
-          </div>
-        </div>
-
-        <div class="project-info__copy">
-          <p>
-            {project.description}
-          </p>
-        </div>
-
+        <span class="note">
+          {project.year}
+        </span>
       </div>
 
+      <h1 class="project-intro__title">
+        {displayTitle}
+      </h1>
+
+      <p class="project-intro__description">
+        {project.description}
+      </p>
+
     </section>
 
 
-    <section class="project-content wrap">
+    <section class="project-showcase wrap">
 
-      <header class="section-head">
+      <header class="section-head project-showcase__head">
         <span class="note note--ink">
-          Project
+          Media showcase
         </span>
 
-        <span class="note">
-          Selected work
-        </span>
+        <span aria-hidden="true"></span>
       </header>
 
-      <div class="project-content__placeholder">
-        <span class="note">
-          Additional project media will be added here.
-        </span>
-      </div>
+      {
+        media.length ? (
+          <div class="project-masonry">
+            {
+              media.map((item, index) => (
+                <button
+                  class="project-media"
+                  type="button"
+                  data-media-index={index}
+                  data-cursor="view"
+                  aria-label={`Open media ${index + 1}`}
+                >
+                  {
+                    item.type === "video" ? (
+                      <video
+                        class="project-media__asset"
+                        src={item.src}
+                        muted
+                        playsinline
+                        preload="metadata"
+                      />
+                    ) : (
+                      <img
+                        class="project-media__asset"
+                        src={item.src}
+                        alt={item.alt || ""}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    )
+                  }
+                </button>
+              ))
+            }
+          </div>
+        ) : (
+          <div class="project-showcase__empty">
+            <span class="note">
+              Media coming soon.
+            </span>
+          </div>
+        )
+      }
 
     </section>
 
 
-    <nav
-      class="project-next wrap"
-      aria-label="Next project"
-    >
-      <a
-        href={`/work/${nextProject.slug}/`}
-        class="project-next__link"
-        data-cursor="next →"
-      >
-        <span class="note">
+    <section class="project-next wrap">
+
+      <header class="section-head project-next__head">
+        <span class="note note--ink">
           Next project
         </span>
 
+        <span class="note">
+          {nextProject.year}
+        </span>
+      </header>
+
+      <a
+        href={`/work/${nextProject.slug}/`}
+        class="project-next__link"
+        data-cursor="open →"
+      >
         <span class="project-next__title">
           {nextProject.title.replace(/\s+\d{4}$/, "")}
         </span>
@@ -153,10 +155,128 @@ const displayTitle =
           class="project-next__arrow"
           aria-hidden="true"
         >
-          ↗
+          →
         </span>
       </a>
-    </nav>
+
+    </section>
+
+
+    <div
+      class="project-lightbox"
+      data-project-lightbox
+      hidden
+      role="dialog"
+      aria-modal="true"
+      aria-label="Expanded project media"
+    >
+      <button
+        class="project-lightbox__backdrop"
+        type="button"
+        data-lightbox-close
+        aria-label="Close media viewer"
+      ></button>
+
+      <div class="project-lightbox__window">
+
+        <button
+          class="project-lightbox__close note"
+          type="button"
+          data-lightbox-close
+          data-cursor="close"
+        >
+          Close ×
+        </button>
+
+        <div
+          class="project-lightbox__media"
+          data-lightbox-media
+        ></div>
+
+      </div>
+    </div>
 
   </main>
+
+  <script
+    is:inline
+    define:vars={{ media }}
+  >
+    (() => {
+      const lightbox =
+        document.querySelector("[data-project-lightbox]");
+
+      const lightboxMedia =
+        document.querySelector("[data-lightbox-media]");
+
+      const triggers =
+        document.querySelectorAll("[data-media-index]");
+
+      if (!lightbox || !lightboxMedia) return;
+
+      let lastTrigger = null;
+
+      function closeLightbox() {
+        lightbox.hidden = true;
+        document.documentElement.classList.remove("project-lightbox-open");
+
+        lightboxMedia.innerHTML = "";
+
+        if (lastTrigger) {
+          lastTrigger.focus({ preventScroll: true });
+        }
+      }
+
+      function openLightbox(index, trigger) {
+        const item = media[index];
+
+        if (!item) return;
+
+        lastTrigger = trigger;
+
+        lightboxMedia.innerHTML = "";
+
+        let asset;
+
+        if (item.type === "video") {
+          asset = document.createElement("video");
+          asset.src = item.src;
+          asset.controls = true;
+          asset.autoplay = true;
+          asset.playsInline = true;
+        } else {
+          asset = document.createElement("img");
+          asset.src = item.src;
+          asset.alt = item.alt || "";
+        }
+
+        lightboxMedia.appendChild(asset);
+
+        lightbox.hidden = false;
+        document.documentElement.classList.add("project-lightbox-open");
+      }
+
+      triggers.forEach((trigger) => {
+        trigger.addEventListener("click", () => {
+          openLightbox(
+            Number(trigger.dataset.mediaIndex),
+            trigger
+          );
+        });
+      });
+
+      document
+        .querySelectorAll("[data-lightbox-close]")
+        .forEach((button) => {
+          button.addEventListener("click", closeLightbox);
+        });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && !lightbox.hidden) {
+          closeLightbox();
+        }
+      });
+    })();
+  </script>
+
 </Base>
