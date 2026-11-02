@@ -1243,10 +1243,11 @@ html.has-cursor .project-lightbox a{
   align-items:center;
   justify-content:center;
 
+  width:100%;
   min-width:0;
   min-height:0;
 
-  padding:clamp(1rem,2vw,2rem);
+  padding:1rem;
 
   overflow:auto;
 
@@ -1255,21 +1256,6 @@ html.has-cursor .project-lightbox a{
 
   background:var(--bg);
 }
-
-.project-lightbox__media img,
-.project-lightbox__media video{
-  display:block;
-
-  width:auto;
-  height:auto;
-
-  max-width:calc(100vw - 5rem);
-  max-height:calc(100dvh - 11rem);
-
-  object-fit:contain;
-}
-
-
 /* grouped-item navigation */
 
 .project-lightbox__nav{
