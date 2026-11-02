@@ -293,7 +293,7 @@ const showcaseFilters = [
 
   </main>
 
-  <script
+<script
   is:inline
   define:vars={{ media }}
 >
@@ -307,9 +307,6 @@ const showcaseFilters = [
 
     const lightboxNumber =
       document.querySelector("[data-lightbox-number]");
-
-    const lightboxCategory =
-      document.querySelector("[data-lightbox-category]");
 
     const lightboxTitle =
       document.querySelector("[data-lightbox-title]");
@@ -332,12 +329,53 @@ const showcaseFilters = [
     const filterButtons =
       document.querySelectorAll("[data-showcase-filter]");
 
-    if (!lightbox || !lightboxMedia) return;
+
+    if (
+      !(lightbox instanceof HTMLDialogElement) ||
+      !lightboxMedia
+    ) return;
+
 
     let lastTrigger = null;
-    let activeEntry = null;
     let activeItems = [];
     let activeItemIndex = 0;
+
+
+    /* ---------------------------------------------
+       CURSOR
+       --------------------------------------------- */
+
+    const customCursor =
+      document.querySelector(".cursor");
+
+    const cursorHome =
+      customCursor?.parentElement || null;
+
+
+    function bringCursorForward(dialog) {
+
+      if (
+        customCursor &&
+        dialog instanceof HTMLDialogElement &&
+        customCursor.parentElement !== dialog
+      ) {
+        dialog.appendChild(customCursor);
+      }
+
+    }
+
+
+    function restoreCursor() {
+
+      if (
+        customCursor &&
+        cursorHome &&
+        customCursor.parentElement !== cursorHome
+      ) {
+        cursorHome.appendChild(customCursor);
+      }
+
+    }
 
 
     /* ---------------------------------------------
@@ -351,8 +389,11 @@ const showcaseFilters = [
         const filter =
           button.dataset.showcaseFilter;
 
+
         filterButtons.forEach((item) => {
-          const active = item === button;
+
+          const active =
+            item === button;
 
           item.classList.toggle(
             "is-active",
@@ -363,7 +404,9 @@ const showcaseFilters = [
             "aria-pressed",
             active ? "true" : "false"
           );
+
         });
+
 
         triggers.forEach((trigger) => {
 
@@ -375,6 +418,7 @@ const showcaseFilters = [
             category === filter;
 
           trigger.hidden = !show;
+
         });
 
       });
@@ -383,12 +427,13 @@ const showcaseFilters = [
 
 
     /* ---------------------------------------------
-       LIGHTBOX
+       BUILD MEDIA
        --------------------------------------------- */
 
     function createAsset(item) {
 
       let asset;
+
 
       if (item.type === "video") {
 
@@ -410,9 +455,14 @@ const showcaseFilters = [
 
       }
 
+
       return asset;
     }
 
+
+    /* ---------------------------------------------
+       RENDER CURRENT ITEM
+       --------------------------------------------- */
 
     function renderLightboxItem() {
 
@@ -421,38 +471,86 @@ const showcaseFilters = [
 
       if (!item) return;
 
+
       lightboxMedia.innerHTML = "";
 
       lightboxMedia.appendChild(
         createAsset(item)
       );
 
+
+      const multiple =
+        activeItems.length > 1;
+
+
       if (lightboxCounter) {
 
         lightboxCounter.textContent =
-          activeItems.length > 1
+          multiple
             ? `${String(activeItemIndex + 1).padStart(2, "0")} / ${String(activeItems.length).padStart(2, "0")}`
             : "";
 
       }
 
+
       if (lightboxNav) {
 
         lightboxNav.hidden =
-          activeItems.length <= 1;
+          !multiple;
 
       }
+
+
+      /*
+        First item:
+        Previous hidden.
+
+        Last item:
+        Next hidden.
+      */
+
+      if (prevButton) {
+
+        prevButton.hidden =
+          !multiple ||
+          activeItemIndex === 0;
+
+      }
+
+
+      if (nextButton) {
+
+        nextButton.hidden =
+          !multiple ||
+          activeItemIndex ===
+            activeItems.length - 1;
+
+      }
+
+
+      /*
+        Every grouped-page switch starts from
+        the top/centre of its own media viewport.
+      */
+
+      lightboxMedia.scrollTop = 0;
+      lightboxMedia.scrollLeft = 0;
 
     }
 
 
+    /* ---------------------------------------------
+       OPEN
+       --------------------------------------------- */
+
     function openLightbox(index, trigger) {
 
-      const entry = media[index];
+      const entry =
+        media[index];
 
       if (!entry) return;
 
-      activeEntry = entry;
+
       activeItemIndex = 0;
 
       activeItems =
@@ -460,9 +558,19 @@ const showcaseFilters = [
           ? entry.items || []
           : [entry];
 
+
       if (!activeItems.length) return;
 
+
       lastTrigger = trigger;
+
+
+      /*
+        Header:
+        NUMBER / TITLE
+
+        No category name.
+      */
 
       if (lightboxNumber) {
 
@@ -471,12 +579,6 @@ const showcaseFilters = [
 
       }
 
-      if (lightboxCategory) {
-
-        lightboxCategory.textContent =
-          (entry.category || "media").toUpperCase();
-
-      }
 
       if (lightboxTitle) {
 
@@ -485,49 +587,63 @@ const showcaseFilters = [
 
       }
 
+
       renderLightboxItem();
 
-      lightbox.hidden = false;
 
-      document.documentElement.classList.add(
-        "project-lightbox-open"
-      );
+      /*
+        Stop smooth page scrolling before
+        opening the top-layer dialog.
+      */
+
+      if (window.__lenis) {
+        window.__lenis.stop();
+      }
+
+
+      lightbox.showModal();
+
+      bringCursorForward(lightbox);
+
+
+      requestAnimationFrame(() => {
+
+        lightboxMedia.focus({
+          preventScroll:true
+        });
+
+      });
 
     }
 
 
+    /* ---------------------------------------------
+       CLOSE
+       --------------------------------------------- */
+
     function closeLightbox() {
 
-      lightbox.hidden = true;
-
-      document.documentElement.classList.remove(
-        "project-lightbox-open"
-      );
-
-      lightboxMedia.innerHTML = "";
-
-      activeEntry = null;
-      activeItems = [];
-      activeItemIndex = 0;
-
-      if (lastTrigger) {
-
-        lastTrigger.focus({
-          preventScroll: true
-        });
-
+      if (lightbox.open) {
+        lightbox.close();
       }
 
     }
 
 
+    /* ---------------------------------------------
+       GROUP NAVIGATION
+       --------------------------------------------- */
+
     function nextItem() {
 
-      if (activeItems.length <= 1) return;
+      if (
+        activeItems.length <= 1 ||
+        activeItemIndex >=
+          activeItems.length - 1
+      ) return;
 
-      activeItemIndex =
-        (activeItemIndex + 1) %
-        activeItems.length;
+
+      activeItemIndex += 1;
 
       renderLightboxItem();
 
@@ -536,34 +652,43 @@ const showcaseFilters = [
 
     function previousItem() {
 
-      if (activeItems.length <= 1) return;
+      if (
+        activeItems.length <= 1 ||
+        activeItemIndex <= 0
+      ) return;
 
-      activeItemIndex =
-        (
-          activeItemIndex -
-          1 +
-          activeItems.length
-        ) %
-        activeItems.length;
+
+      activeItemIndex -= 1;
 
       renderLightboxItem();
 
     }
 
 
+    /* ---------------------------------------------
+       OPEN TRIGGERS
+       --------------------------------------------- */
+
     triggers.forEach((trigger) => {
 
-      trigger.addEventListener("click", () => {
+      trigger.addEventListener(
+        "click",
+        () => {
 
-        openLightbox(
-          Number(trigger.dataset.mediaIndex),
-          trigger
-        );
+          openLightbox(
+            Number(trigger.dataset.mediaIndex),
+            trigger
+          );
 
-      });
+        }
+      );
 
     });
 
+
+    /* ---------------------------------------------
+       CLOSE BUTTON
+       --------------------------------------------- */
 
     document
       .querySelectorAll("[data-lightbox-close]")
@@ -577,6 +702,10 @@ const showcaseFilters = [
       });
 
 
+    /* ---------------------------------------------
+       PREVIOUS / NEXT
+       --------------------------------------------- */
+
     prevButton?.addEventListener(
       "click",
       previousItem
@@ -588,19 +717,109 @@ const showcaseFilters = [
     );
 
 
+    /* ---------------------------------------------
+       WHEEL
+       --------------------------------------------- */
+
+    lightbox.addEventListener(
+      "wheel",
+      (event) => {
+
+        /*
+          Prevent Lenis/page listeners from
+          receiving wheel input while open.
+
+          The .project-lightbox__media element
+          remains normally scrollable.
+        */
+
+        event.stopPropagation();
+
+      },
+      { passive:true }
+    );
+
+
+    /* ---------------------------------------------
+       CLICK OUTSIDE WINDOW
+       --------------------------------------------- */
+
+    lightbox.addEventListener(
+      "click",
+      (event) => {
+
+        if (event.target === lightbox) {
+          closeLightbox();
+        }
+
+      }
+    );
+
+
+    /* ---------------------------------------------
+       NATIVE DIALOG CLOSE CLEANUP
+       --------------------------------------------- */
+
+    lightbox.addEventListener(
+      "close",
+      () => {
+
+        lightboxMedia.innerHTML = "";
+
+        activeItems = [];
+        activeItemIndex = 0;
+
+
+        restoreCursor();
+
+
+        if (window.__lenis) {
+          window.__lenis.start();
+        }
+
+
+        if (lastTrigger) {
+
+          lastTrigger.focus({
+            preventScroll:true
+          });
+
+        }
+
+      }
+    );
+
+
+    /* ---------------------------------------------
+       KEYBOARD
+       --------------------------------------------- */
+
     document.addEventListener(
       "keydown",
       (event) => {
 
-        if (lightbox.hidden) return;
+        if (!lightbox.open) return;
+
 
         if (event.key === "Escape") {
+
+          /*
+            Prevent the browser's default dialog
+            close so all cleanup goes through
+            closeLightbox()/close event.
+          */
+
+          event.preventDefault();
+
           closeLightbox();
+
         }
+
 
         if (event.key === "ArrowRight") {
           nextItem();
         }
+
 
         if (event.key === "ArrowLeft") {
           previousItem();
@@ -611,5 +830,4 @@ const showcaseFilters = [
 
   })();
 </script>
-
 </Base>
