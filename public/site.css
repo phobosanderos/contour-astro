@@ -674,6 +674,9 @@ html.js:not(.motion-ready) :is(
   border:1px solid var(--line);
   overflow:hidden;
   background:var(--bg);
+
+  color:inherit;
+  text-decoration:none;
 }
 
 
