@@ -1,19 +1,19 @@
 {
   "featured": [
-    {
-      "number": "01",
-      "slug": "achievers-2026",
-      "title": "Achievers 2026",
-      "category": "Campaigns",
-      "type": "Event Identity",
-      "client": "NISAU / Achievers",
-      "year": "2026",
-      "role": "Editorial + Campaign Design",
-      "description": "A visual system for Achievers 2026 spanning editorial, print, digital campaign assets and event merchandise.",
-      "primaryImage": "/img/work/living-bridge-2026/cover-in-context.jpg",
-      "coverPosition": "13% center",
-      "alt": "Printed copy of Living Bridge 2026 featuring the magazine cover design",
-      "media": [
+ {
+  "number": "01",
+  "slug": "achievers-2026",
+  "title": "Achievers 2026",
+  "category": "Campaigns",
+  "type": "Event Identity",
+  "client": "NISAU / Achievers",
+  "year": "2026",
+  "role": "Editorial + Campaign Design",
+  "description": "A visual system for Achievers 2026 spanning editorial, print, digital campaign assets and event merchandise.",
+  "primaryImage": "/img/work/achievers-2026/cover-in-context.jpg",
+  "coverPosition": "13% center",
+  "alt": "Achievers 2026 campaign and Living Bridge editorial work",
+  "media": [
     {
       "type": "group",
       "category": "editorial",
@@ -21,12 +21,12 @@
       "items": [
         {
           "type": "image",
-          "src": "/img/work/living-bridge-2026/editorial/Living-bridge magazine-cover-front.jpg",
+          "src": "/img/work/achievers-2026/editorial/Living-bridge magazine-cover-front.webp",
           "alt": "Living Bridge 2026 magazine front cover"
         },
         {
           "type": "image",
-          "src": "/img/work/living-bridge-2026/editorial/Living-bridge magazine-cover-back.jpg",
+          "src": "/img/work/achievers-2026/editorial/Living-bridge magazine-cover-back.webp",
           "alt": "Living Bridge 2026 magazine back cover"
         }
       ]
@@ -38,13 +38,13 @@
       "items": [
         {
           "type": "image",
-          "src": "/img/work/living-bridge-2026/editorial/booklet-cover-front.png",
-          "alt": "Living Bridge event booklet front cover"
+          "src": "/img/work/achievers-2026/editorial/booklet-cover-front.webp",
+          "alt": "Achievers event booklet front cover"
         },
         {
           "type": "image",
-          "src": "/img/work/living-bridge-2026/editorial/booklet-cover-back.jpg",
-          "alt": "Living Bridge event booklet back cover"
+          "src": "/img/work/achievers-2026/editorial/booklet-cover-back.webp",
+          "alt": "Achievers event booklet back cover"
         }
       ]
     },
@@ -52,7 +52,7 @@
       "type": "image",
       "category": "editorial",
       "title": "Meet Your Class 2026",
-      "src": "/img/work/living-bridge-2026/editorial/meet-your-class-2026.jpg",
+      "src": "/img/work/achievers-2026/editorial/meet-your-class-2026.webp",
       "alt": "Meet Your Class 2026 editorial design"
     },
 
@@ -60,51 +60,72 @@
       "type": "image",
       "category": "digital",
       "title": "Deadline Extended",
-      "src": "/img/work/living-bridge-2026/digital/Deadline extended (ver 1).png",
-      "alt": "Living Bridge deadline extended digital campaign post"
+      "src": "/img/work/achievers-2026/digital/Deadline extended (ver 1).webp",
+      "alt": "Achievers deadline extended digital campaign post"
     },
     {
       "type": "image",
       "category": "digital",
       "title": "I'm Attending",
-      "src": "/img/work/living-bridge-2026/digital/I'm attending post (ver 1).png",
-      "alt": "Living Bridge I'm attending digital campaign post"
+      "src": "/img/work/achievers-2026/digital/I'm attending post (ver 1).webp",
+      "alt": "Achievers I'm attending digital campaign post"
     },
     {
       "type": "image",
       "category": "digital",
       "title": "Meet Our Jury",
-      "src": "/img/work/living-bridge-2026/digital/Meet our jury grid post (ver 4).png",
-      "alt": "Living Bridge Meet Our Jury digital campaign post"
-    },
-    {
-      "type": "image",
-      "category": "digital",
-      "title": "Nominations Closed",
-      "src": "/img/work/living-bridge-2026/digital/Nominations are closed.png",
-      "alt": "Living Bridge nominations closed digital campaign post"
+      "src": "/img/work/achievers-2026/digital/Meet our jury grid post (ver 4).webp",
+      "alt": "Achievers Meet Our Jury digital campaign post"
     },
     {
       "type": "image",
       "category": "digital",
       "title": "Nominations Open",
-      "src": "/img/work/living-bridge-2026/digital/Nominations now open.png",
-      "alt": "Living Bridge nominations open digital campaign post"
+      "src": "/img/work/achievers-2026/digital/Nominations now open.webp",
+      "alt": "Achievers nominations open campaign post"
     },
     {
       "type": "image",
       "category": "digital",
-      "title": "Outreach Email",
-      "src": "/img/work/living-bridge-2026/digital/Outreach email boiler plate (Chevening).png",
-      "alt": "Living Bridge Chevening outreach email design"
+      "title": "Nominations Closing Soon",
+      "src": "/img/work/achievers-2026/digital/Nominations closing soon.webp",
+      "alt": "Achievers nominations closing soon campaign post"
+    },
+    {
+      "type": "image",
+      "category": "digital",
+      "title": "Nominations Closed",
+      "src": "/img/work/achievers-2026/digital/Nominations are closed.webp",
+      "alt": "Achievers nominations closed campaign post"
+    },
+    {
+      "type": "image",
+      "category": "digital",
+      "title": "Chevening Outreach Email",
+      "src": "/img/work/achievers-2026/digital/Outreach email boiler plate (Chevening).webp",
+      "alt": "Achievers Chevening outreach email design"
+    },
+    {
+      "type": "image",
+      "category": "digital",
+      "title": "UUKI Outreach Email",
+      "src": "/img/work/achievers-2026/digital/Achievers email boiler plate (UUKI).webp",
+      "alt": "Achievers UUKI outreach email design"
+    },
+    {
+      "type": "image",
+      "category": "digital",
+      "title": "Work With NISAU Email",
+      "src": "/img/work/achievers-2026/digital/Email boiler plate (Work with NISAU + how to apply).webp",
+      "alt": "Work with NISAU digital email design"
     },
 
     {
       "type": "image",
       "category": "print",
       "title": "A4 Partners Leaflet",
-      "src": "/img/work/living-bridge-2026/print/A4-leaflet.png",
-      "alt": "Living Bridge A4 partners leaflet"
+      "src": "/img/work/achievers-2026/print/A4-leaflet.webp",
+      "alt": "Achievers A4 partners leaflet"
     },
     {
       "type": "group",
@@ -113,13 +134,13 @@
       "items": [
         {
           "type": "image",
-          "src": "/img/work/living-bridge-2026/print/congratulations-front.png",
-          "alt": "Living Bridge congratulations card front"
+          "src": "/img/work/achievers-2026/print/congratulations-front.webp",
+          "alt": "Achievers congratulations card front"
         },
         {
           "type": "image",
-          "src": "/img/work/living-bridge-2026/print/congratulations-back.png",
-          "alt": "Living Bridge congratulations card back"
+          "src": "/img/work/achievers-2026/print/congratulations-back.webp",
+          "alt": "Achievers congratulations card back"
         }
       ]
     },
@@ -127,22 +148,22 @@
       "type": "image",
       "category": "print",
       "title": "Share Your Moments Banner",
-      "src": "/img/work/living-bridge-2026/print/Share-your-moments-banner.jpg",
-      "alt": "Living Bridge Share Your Moments event banner"
+      "src": "/img/work/achievers-2026/print/Share-your-moments-banner.webp",
+      "alt": "Achievers Share Your Moments event banner"
     },
     {
       "type": "image",
       "category": "print",
       "title": "Welcome to Achievers Roll-up",
-      "src": "/img/work/living-bridge-2026/print/Welcome-to-Achievers-roll-up-banner.jpg",
+      "src": "/img/work/achievers-2026/print/Welcome-to-Achievers-roll-up-banner.webp",
       "alt": "Welcome to Achievers roll-up banner"
     },
     {
       "type": "image",
       "category": "print",
       "title": "Partners Roll-up Banner",
-      "src": "/img/work/living-bridge-2026/print/partners-roll-up-banner.jpg",
-      "alt": "Living Bridge partners roll-up banner"
+      "src": "/img/work/achievers-2026/print/partners-roll-up-banner.webp",
+      "alt": "Achievers partners roll-up banner"
     },
 
     {
@@ -152,12 +173,12 @@
       "items": [
         {
           "type": "image",
-          "src": "/img/work/living-bridge-2026/merch/Achievers-ticket-front.jpg",
+          "src": "/img/work/achievers-2026/merch/Achievers ticket-02.webp",
           "alt": "Achievers event ticket front"
         },
         {
           "type": "image",
-          "src": "/img/work/living-bridge-2026/merch/Achievers-ticket-back.jpg",
+          "src": "/img/work/achievers-2026/merch/Achievers-ticket-back.webp",
           "alt": "Achievers event ticket back"
         }
       ]
@@ -169,12 +190,12 @@
       "items": [
         {
           "type": "image",
-          "src": "/img/work/living-bridge-2026/merch/Lanyard-mock-up-1.png",
+          "src": "/img/work/achievers-2026/merch/Lanyard-mock-up-1.webp",
           "alt": "Achievers lanyard mockup one"
         },
         {
           "type": "image",
-          "src": "/img/work/living-bridge-2026/merch/Lanyard-mock-up-2.png",
+          "src": "/img/work/achievers-2026/merch/Lanyard-mock-up-2.webp",
           "alt": "Achievers lanyard mockup two"
         }
       ]
@@ -186,12 +207,12 @@
       "items": [
         {
           "type": "image",
-          "src": "/img/work/living-bridge-2026/merch/Tote-bag-design-front.png",
+          "src": "/img/work/achievers-2026/merch/Tote-bag-design-front.webp",
           "alt": "Achievers tote bag front design"
         },
         {
           "type": "image",
-          "src": "/img/work/living-bridge-2026/merch/Tote-bag-design-back.png",
+          "src": "/img/work/achievers-2026/merch/Tote-bag-design-back.webp",
           "alt": "Achievers tote bag back design"
         }
       ]
