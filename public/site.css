@@ -768,7 +768,8 @@ html.js:not(.motion-ready) :is(
 }
 
 .featured-card__body{
-  margin-top:1rem;
+  margin-top:1.15rem;
+  margin-bottom:1.25rem;
 }
 
 .featured-card__top{
