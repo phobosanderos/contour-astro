@@ -526,59 +526,90 @@ const showcaseFilters = [
             : 0;
 
 
-        const horizontalPadding = 32;
-        const verticalPadding = 32;
-        const outerMargin = 32;
+const horizontalPadding = 32;
+const verticalPadding = 32;
+
+/*
+  Space kept between the modal and browser edges.
+*/
+const outerGap = 32;
 
 
-        const maxAssetHeight =
-          window.innerHeight -
-          headHeight -
-          navHeight -
-          verticalPadding -
-          outerMargin;
+/*
+  Maximum space available to the actual artwork.
+*/
+const maxAssetWidth =
+  Math.max(
+    240,
+    window.innerWidth -
+      horizontalPadding -
+      outerGap
+  );
+
+const maxAssetHeight =
+  Math.max(
+    240,
+    window.innerHeight -
+      headHeight -
+      navHeight -
+      verticalPadding -
+      outerGap
+  );
 
 
-        const maxAssetWidth =
-          window.innerWidth -
-          horizontalPadding -
-          outerMargin;
+/*
+  Start width-first.
+
+  This makes landscape artwork use substantially
+  more horizontal screen space.
+*/
+let renderedWidth =
+  Math.min(
+    naturalWidth,
+    maxAssetWidth
+  );
+
+let renderedHeight =
+  renderedWidth / ratio;
 
 
-        let renderedHeight =
-          Math.min(
-            naturalHeight,
-            maxAssetHeight
-          );
+/*
+  Portrait/tall artwork may exceed the available
+  height, so constrain by height when necessary.
+*/
+if (renderedHeight > maxAssetHeight) {
 
-        let renderedWidth =
-          renderedHeight * ratio;
+  renderedHeight =
+    maxAssetHeight;
 
+  renderedWidth =
+    renderedHeight * ratio;
 
-        if (renderedWidth > maxAssetWidth) {
-
-          renderedWidth =
-            maxAssetWidth;
-
-          renderedHeight =
-            renderedWidth / ratio;
-
-        }
+}
 
 
-        asset.style.width =
-          `${Math.round(renderedWidth)}px`;
+/*
+  Apply exact fitted dimensions.
+*/
+asset.style.width =
+  `${Math.floor(renderedWidth)}px`;
 
-        asset.style.height =
-          `${Math.round(renderedHeight)}px`;
+asset.style.height =
+  `${Math.floor(renderedHeight)}px`;
 
 
-        if (lightboxWindow) {
+/*
+  Window hugs the media + its 1rem padding.
+*/
+if (lightboxWindow) {
 
-          lightboxWindow.style.width =
-            `${Math.round(renderedWidth + horizontalPadding)}px`;
+  lightboxWindow.style.width =
+    `${Math.ceil(
+      renderedWidth +
+      horizontalPadding
+    )}px`;
 
-        }
+}
 
       };
 
