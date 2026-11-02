@@ -78,13 +78,12 @@ const showcaseFilters = [
 
 <section class="project-showcase wrap">
 
-  <header class="section-head project-showcase__head">
-    <span class="note note--ink">
-      Media showcase
-    </span>
-
-    <span aria-hidden="true"></span>
-  </header>
+  {
+    hasShowcaseFilters && media.length > 0 && (
+      <div
+        class="project-filters"
+        aria-label="Filter Achievers media"
+      >
 
   {
     hasShowcaseFilters && media.length > 0 && (
