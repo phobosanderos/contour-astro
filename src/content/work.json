@@ -170,6 +170,7 @@
       "type": "group",
       "category": "merch",
       "title": "Achievers Ticket",
+      "coverIndex": 1,
       "items": [
         {
           "type": "image",
