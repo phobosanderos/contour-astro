@@ -1145,19 +1145,23 @@ html.js:not(.motion-ready) :is(
   color:var(--ink);
 }
 
-/* native cursor inside media dialog */
+/* Restore the native system cursor inside the media dialog.
+   The site's custom cursor globally uses cursor:none!important,
+   so these must also use !important. */
 
-.project-lightbox,
-.project-lightbox__window,
-.project-lightbox__head,
-.project-lightbox__media,
-.project-lightbox__nav{
-  cursor:default;
+html.has-cursor .project-lightbox,
+html.has-cursor .project-lightbox__window,
+html.has-cursor .project-lightbox__head,
+html.has-cursor .project-lightbox__media,
+html.has-cursor .project-lightbox__nav,
+html.has-cursor .project-lightbox img,
+html.has-cursor .project-lightbox video{
+  cursor:default!important;
 }
 
-.project-lightbox button,
-.project-lightbox a{
-  cursor:pointer;
+html.has-cursor .project-lightbox button,
+html.has-cursor .project-lightbox a{
+  cursor:pointer!important;
 }
 
 .project-lightbox::backdrop{
@@ -1173,8 +1177,14 @@ html.js:not(.motion-ready) :is(
 
 .project-lightbox__window{
   position:absolute;
+  top:50%;
+  left:50%;
 
-  inset:clamp(1rem,3vw,3rem);
+  width:var(--lightbox-window-width,auto);
+  max-width:calc(100vw - 2rem);
+  max-height:calc(100dvh - 2rem);
+
+  transform:translate(-50%,-50%);
 
   display:grid;
   grid-template-rows:auto minmax(0,1fr) auto;
