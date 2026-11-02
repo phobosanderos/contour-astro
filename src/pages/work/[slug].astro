@@ -1,1 +1,162 @@
+---
+import Base from "../../layouts/Base.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
+import work from "../../content/work.json";
 
+export function getStaticPaths() {
+  return work.featured.map((project, index) => {
+    const nextProject =
+      work.featured[(index + 1) % work.featured.length];
+
+    return {
+      params: {
+        slug: project.slug
+      },
+
+      props: {
+        project,
+        nextProject
+      }
+    };
+  });
+}
+
+const { project, nextProject } = Astro.props;
+
+const displayTitle =
+  project.title.replace(/\s+\d{4}$/, "");
+---
+
+<Base
+  title={`${project.title} · Phobos & Eros`}
+  description={project.description}
+>
+  <SectionHeader />
+
+  <main
+    id="main"
+    class="project-page"
+    tabindex="-1"
+  >
+    <section class="project-hero wrap">
+
+      <div class="project-hero__back">
+        <a
+          href="/#work"
+          class="note project-back"
+          data-cursor="back ←"
+        >
+          ← Back to Work
+        </a>
+      </div>
+
+      <header class="project-hero__header">
+
+        <div class="project-hero__top">
+          <span class="note">
+            {project.category} · {project.type}
+          </span>
+
+          <span class="note">
+            {project.year}
+          </span>
+        </div>
+
+        <h1 class="project-hero__title">
+          {displayTitle}
+        </h1>
+
+      </header>
+
+      <figure class="project-hero__media">
+        <img
+          src={project.primaryImage}
+          alt={project.alt}
+          decoding="async"
+        />
+      </figure>
+
+    </section>
+
+
+    <section class="project-info wrap">
+
+      <div class="project-info__grid">
+
+        <div class="project-info__meta">
+          <div>
+            <span class="note">Client</span>
+            <p>{project.client}</p>
+          </div>
+
+          <div>
+            <span class="note">Role</span>
+            <p>{project.role}</p>
+          </div>
+
+          <div>
+            <span class="note">Year</span>
+            <p>{project.year}</p>
+          </div>
+        </div>
+
+        <div class="project-info__copy">
+          <p>
+            {project.description}
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <section class="project-content wrap">
+
+      <header class="section-head">
+        <span class="note note--ink">
+          Project
+        </span>
+
+        <span class="note">
+          Selected work
+        </span>
+      </header>
+
+      <div class="project-content__placeholder">
+        <span class="note">
+          Additional project media will be added here.
+        </span>
+      </div>
+
+    </section>
+
+
+    <nav
+      class="project-next wrap"
+      aria-label="Next project"
+    >
+      <a
+        href={`/work/${nextProject.slug}/`}
+        class="project-next__link"
+        data-cursor="next →"
+      >
+        <span class="note">
+          Next project
+        </span>
+
+        <span class="project-next__title">
+          {nextProject.title.replace(/\s+\d{4}$/, "")}
+        </span>
+
+        <span
+          class="project-next__arrow"
+          aria-hidden="true"
+        >
+          ↗
+        </span>
+      </a>
+    </nav>
+
+  </main>
+</Base>
