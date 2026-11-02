@@ -751,7 +751,6 @@ html.js:not(.motion-ready) :is(
 .featured-card__info{
   display:flex;
   flex-direction:column;
-  flex:1;
 
   padding:1.25rem;
 
@@ -768,8 +767,8 @@ html.js:not(.motion-ready) :is(
 }
 
 .featured-card__body{
-  margin-top:1.15rem;
-  margin-bottom:1.25rem;
+  margin-top:.85rem;
+  margin-bottom:0;
 }
 
 .featured-card__top{
@@ -786,10 +785,6 @@ html.js:not(.motion-ready) :is(
   opacity:.68;
 }
 
-.featured-card__body{
-  margin-top:1.1rem;
-}
-
 .featured-card__description{
   line-height:1.45;
 }
@@ -804,8 +799,8 @@ html.js:not(.motion-ready) :is(
   justify-content:space-between;
   gap:1rem;
 
-  margin-top:auto;
-  padding-top:2.75rem;
+  margin-top:1.25rem;
+  padding-top:0;
 
   color:var(--accent);
 }
