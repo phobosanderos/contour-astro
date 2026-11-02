@@ -31,6 +31,7 @@ const featured = work.featured;
               class="featured-card__image"
               src={project.primaryImage}
               alt={project.alt}
+              style={`object-position:${project.coverPosition || "center center"};`}
               loading={index === 0 ? "eager" : "lazy"}
               decoding="async"
             />
