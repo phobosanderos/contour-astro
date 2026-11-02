@@ -941,10 +941,6 @@ html.js:not(.motion-ready) :is(
    INTRO
    --------------------------------------------------------- */
 
-.project-intro__back{
-  margin-bottom:1.5rem;
-}
-
 .project-back{
   display:inline-block;
   color:var(--accent);
@@ -961,17 +957,22 @@ html.js:not(.motion-ready) :is(
   background-size:100% 1px;
 }
 
-.project-intro__meta{
+.project-intro__top{
   display:flex;
+  align-items:center;
   justify-content:space-between;
   gap:1rem;
 
-  padding-top:.75rem;
-  border-top:1px solid var(--line);
+  padding-bottom:.75rem;
+  border-bottom:1px solid var(--line);
 }
 
+.project-intro__year{
+  margin-left:auto;
+  color:var(--muted);
+}
 .project-intro__title{
-  margin-top:1.25rem;
+  margin-top:.75rem;
 
   font-size:clamp(3rem,9vw,9rem);
   font-weight:500;
