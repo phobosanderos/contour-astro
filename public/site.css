@@ -1504,16 +1504,47 @@ html.has-cursor .project-lightbox a{
 /* services */
 .services{position:relative;isolation:isolate;border-bottom:1px solid var(--line)}
 .service{border-top:1px solid var(--line)}
-.service__link{position:relative;align-items:baseline;row-gap:.75rem;padding-block:clamp(1.5rem,3vw,2.75rem);transition:color var(--dur-1) var(--ease-out)}
-.service__link::before{content:"";position:absolute;inset:0 calc(-1*var(--gutter));z-index:-1;background:var(--ink);transform:scaleY(0);transform-origin:bottom;transition:transform var(--dur-2) var(--ease-in-out)}
-html:not(.fill-js) .service__link:hover,.service__link[data-hot]{color:var(--bg)}
-html:not(.fill-js) .service__link:hover::before,.service__link[data-hot]::before{transform:scaleY(1);transform-origin:top}
-html:not(.fill-js) .service__link:hover .note,.service__link[data-hot] .note{color:color-mix(in oklab,var(--bg) 65%,transparent)}
-.service__n{grid-column:1/span 1}
-.service__title{grid-column:2/span 6}
-.service__body{grid-column:8/span 4;opacity:.8}
-.service__tags{grid-column:8/span 4;display:flex;flex-wrap:wrap;gap:.4rem 1rem}
-.service__arrow{grid-area:1/12;justify-self:end;font-size:var(--step-2);transition:transform var(--dur-2) var(--ease-in-out),color var(--dur-1)}
+.service__link{
+  position:relative;
+
+  align-items:center;
+  row-gap:0;
+
+  padding-block:clamp(1.35rem,2.4vw,2.15rem);
+
+  transition:
+    color var(--dur-1) var(--ease-out);
+}
+
+.service__n{
+  grid-column:1/span 1;
+  align-self:center;
+}
+
+.service__title{
+  grid-column:2/span 6;
+  align-self:center;
+}
+
+.service__body{
+  grid-column:8/span 4;
+  align-self:center;
+  opacity:.8;
+}
+
+.service__arrow{
+  grid-column:12;
+  grid-row:1;
+
+  align-self:center;
+  justify-self:end;
+
+  font-size:var(--step-2);
+
+  transition:
+    transform var(--dur-2) var(--ease-in-out),
+    color var(--dur-1);
+}
 html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot] .service__arrow{color:var(--accent-text);transform:rotate(-45deg)}
 
 /* process */
