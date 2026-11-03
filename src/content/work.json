@@ -442,7 +442,112 @@
       "description": "Visual direction and campaign design for a welcome event created for Indian students arriving in London.",
       "primaryImage": "/img/work/ldn-2025/welcome-to-ldn.png",
       "alt": "LDN 2025 welcome event campaign banner",
-      "media": []
+      "media": [
+    {
+      "type": "image",
+      "category": "campaign",
+      "title": "LDN 2025",
+      "src": "/img/work/ldn-2025/LDN-2025.webp",
+      "alt": "LDN 2025 campaign artwork"
+    },
+    {
+      "type": "image",
+      "category": "campaign",
+      "title": "Calling All Desi Students",
+      "src": "/img/work/ldn-2025/CALLING-ALL-DESI-STUDENTS.webp",
+      "alt": "Calling All Desi Students campaign artwork"
+    },
+    {
+      "type": "image",
+      "category": "campaign",
+      "title": "Eventbrite Banner",
+      "src": "/img/work/ldn-2025/Eventbrite-banner.webp",
+      "alt": "LDN 2025 Eventbrite banner"
+    },
+    {
+      "type": "group",
+      "category": "merch",
+      "title": "Event T-shirts",
+      "items": [
+        {
+          "type": "image",
+          "src": "/img/work/ldn-2025/Black T-shirt (front).webp",
+          "alt": "LDN 2025 black T-shirt front"
+        },
+        {
+          "type": "image",
+          "src": "/img/work/ldn-2025/Black T-shirt (back).webp",
+          "alt": "LDN 2025 black T-shirt back"
+        },
+        {
+          "type": "image",
+          "src": "/img/work/ldn-2025/Grey T-shirt (front).webp",
+          "alt": "LDN 2025 grey T-shirt front"
+        },
+        {
+          "type": "image",
+          "src": "/img/work/ldn-2025/Grey T-shirt (back).webp",
+          "alt": "LDN 2025 grey T-shirt back"
+        }
+      ]
+    },
+    {
+      "type": "group",
+      "category": "campaign",
+      "title": "Welcome to LDN",
+      "items": [
+        {
+          "type": "image",
+          "src": "/img/work/ldn-2025/welcome-to-ldn-1.webp",
+          "alt": "Welcome to LDN campaign slide one"
+        },
+        {
+          "type": "image",
+          "src": "/img/work/ldn-2025/welcome-to-ldn-2.webp",
+          "alt": "Welcome to LDN campaign slide two"
+        },
+        {
+          "type": "image",
+          "src": "/img/work/ldn-2025/welcome-to-ldn-3.webp",
+          "alt": "Welcome to LDN campaign slide three"
+        },
+        {
+          "type": "image",
+          "src": "/img/work/ldn-2025/welcome-to-ldn-4.webp",
+          "alt": "Welcome to LDN campaign slide four"
+        },
+        {
+          "type": "image",
+          "src": "/img/work/ldn-2025/welcome-to-ldn-5.webp",
+          "alt": "Welcome to LDN campaign slide five"
+        },
+        {
+          "type": "image",
+          "src": "/img/work/ldn-2025/welcome-to-ldn-7.webp",
+          "alt": "Welcome to LDN campaign slide seven"
+        }
+      ]
+    },
+    {
+      "type": "video",
+      "category": "motion",
+      "title": "3 Days to Go",
+      "src": "/img/work/ldn-2025/3 days to go.mp4",
+      "alt": "LDN 2025 three days to go motion piece"
+    },
+    {
+      "type": "video",
+      "category": "motion",
+      "title": "First Night in London",
+      "src": "/img/work/ldn-2025/1st night in london.mp4",
+      "alt": "LDN 2025 First Night in London motion piece"
+    },
+    {
+      "type": "video",
+      "category": "motion",
+      "title": "Highlight Reel",
+      "src": "/img/work/ldn-2025/highlight reel.mp4",
+      "alt": "LDN 2025 event highlight reel"
     }
   ]
 }
