@@ -533,6 +533,7 @@
       "category": "motion",
       "title": "3 Days to Go",
       "src": "/img/work/ldn-2025/3 days to go.mp4",
+      "poster": "/img/work/ldn-2025/3-days-to-go-thumb.webp",
       "alt": "LDN 2025 three days to go motion piece"
     },
     {
@@ -547,6 +548,7 @@
       "category": "motion",
       "title": "Highlight Reel",
       "src": "/img/work/ldn-2025/highlight reel.mp4",
+      "poster": "/img/work/ldn-2025/highlight-reel-thumb.webp",
       "alt": "LDN 2025 event highlight reel"
        }
   ]
