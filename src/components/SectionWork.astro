@@ -2,6 +2,15 @@
 import work from "../content/work.json";
 
 const featured = work.featured;
+const archive = work.archive || [];
+
+const archiveFilters = [
+  "all",
+  "visuals",
+  "motion",
+  "campaigns",
+  "identity"
+];
 
 const stripYear = (title = "") => {
   const parts = title.trim().split(" ");
@@ -90,11 +99,149 @@ const stripYear = (title = "") => {
     }
   </div>
 
-  <header
-    class="section-head work__archive-head"
-    id="archive"
-  >
-    <span aria-hidden="true"></span>
-    <span class="note">THE ARCHIVE</span>
+  <div
+  class="work__archive"
+  id="archive"
+>
+  <header class="section-head work__archive-head">
+    <span class="note note--ink">
+      THE ARCHIVE
+    </span>
+
+    <span class="note">
+      {archive.length
+        ? `${String(archive.length).padStart(2, "0")} projects`
+        : "More work"}
+    </span>
   </header>
+
+
+  {
+    archive.length > 0 && (
+      <>
+        <div
+          class="archive-filters"
+          aria-label="Filter archive"
+        >
+          {
+            archiveFilters.map((filter, index) => (
+              <button
+                class={`archive-filter note${index === 0 ? " is-active" : ""}`}
+                type="button"
+                data-archive-filter={filter}
+                aria-pressed={index === 0 ? "true" : "false"}
+              >
+                {filter}
+              </button>
+            ))
+          }
+        </div>
+
+
+        <div class="archive-grid">
+          {
+            archive.map((project) => (
+              <a
+                class="archive-card"
+                href={`/work/${project.slug}/`}
+                data-archive-item
+                data-archive-category={project.category?.toLowerCase()}
+                data-cursor="open →"
+              >
+                <div class="archive-card__media">
+                  <img
+                    class="archive-card__image"
+                    src={project.primaryImage}
+                    alt={project.alt || ""}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
+
+                <div class="archive-card__meta">
+                  <div class="archive-card__title-row">
+                    <h3 class="archive-card__title">
+                      {project.title}
+                    </h3>
+
+                    <span class="note archive-card__year">
+                      {project.year}
+                    </span>
+                  </div>
+
+                  <span class="note archive-card__category">
+                    {project.category}
+                  </span>
+                </div>
+              </a>
+            ))
+          }
+        </div>
+      </>
+    )
+  }
+</div>
 </section>
+<script is:inline>
+  (() => {
+    const filters =
+      document.querySelectorAll(
+        "[data-archive-filter]"
+      );
+
+    const items =
+      document.querySelectorAll(
+        "[data-archive-item]"
+      );
+
+
+    if (!filters.length || !items.length) {
+      return;
+    }
+
+
+    filters.forEach((button) => {
+
+      button.addEventListener("click", () => {
+
+        const filter =
+          button.dataset.archiveFilter;
+
+
+        filters.forEach((item) => {
+
+          const active =
+            item === button;
+
+          item.classList.toggle(
+            "is-active",
+            active
+          );
+
+          item.setAttribute(
+            "aria-pressed",
+            active
+              ? "true"
+              : "false"
+          );
+
+        });
+
+
+        items.forEach((item) => {
+
+          const category =
+            item.dataset.archiveCategory;
+
+          item.hidden =
+            filter !== "all" &&
+            category !== filter;
+
+        });
+
+      });
+
+    });
+
+  })();
+</script>
