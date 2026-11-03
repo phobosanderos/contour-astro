@@ -44,20 +44,15 @@ const featured = work.featured;
             </span>
           </div>
 
-          <div class="featured-card__info">
-            <div class="featured-card__top">
-              <p class="featured-card__eyebrow note">
-                {project.category} · {project.type}
-              </p>
+          <div class="featured-card__title-row">
+  <h3 class="h3 featured-card__title">
+    {project.title.replace(/\s+\d{4}$/, "")}
+  </h3>
 
-              <span class="featured-card__year note">
-                {project.year}
-              </span>
-            </div>
-
-            <h3 class="h3 featured-card__title">
-              {project.title.replace(/\s+\d{4}$/, "")}
-            </h3>
+  <span class="featured-card__year note">
+    {project.year}
+  </span>
+</div>
 
             <div class="featured-card__body">
               <p class="featured-card__description">
