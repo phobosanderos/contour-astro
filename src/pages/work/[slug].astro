@@ -45,7 +45,8 @@ const nextDisplayTitle =
 const media = project.media || [];
 const hasShowcaseFilters =
   project.slug === "achievers-2026";
-
+const hasShowcaseDivider =
+  project.slug === "unity-cup-2026";
 const showcaseFilters = [
   "all",
   "editorial",
@@ -115,7 +116,14 @@ const showcaseFilters = [
       </div>
     )
   }
-
+  {
+  hasShowcaseDivider && media.length > 0 && (
+    <div
+      class="project-showcase__divider"
+      aria-hidden="true"
+    ></div>
+  )
+}
   {
     media.length ? (
       <div class="project-masonry">
