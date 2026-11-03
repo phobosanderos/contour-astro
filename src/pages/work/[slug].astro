@@ -4,9 +4,16 @@ import SectionHeader from "../../components/SectionHeader.astro";
 import work from "../../content/work.json";
 
 export function getStaticPaths() {
-  return work.featured.map((project, index) => {
+  const allProjects = [
+    ...work.featured,
+    ...(work.archive || [])
+  ];
+
+  return allProjects.map((project, index) => {
     const nextProject =
-      work.featured[(index + 1) % work.featured.length];
+      allProjects[
+        (index + 1) % allProjects.length
+      ];
 
     return {
       params: {
@@ -20,7 +27,6 @@ export function getStaticPaths() {
     };
   });
 }
-
 const { project, nextProject } = Astro.props;
 
 const stripYear = (title = "") => {
