@@ -1207,6 +1207,10 @@ html.has-cursor .project-lightbox a{
   color:var(--ink);
 
   border:1px solid var(--line-strong);
+
+  transition:
+    width .28s var(--ease-in-out),
+    height .28s var(--ease-in-out);
 }
 
 
@@ -1277,6 +1281,15 @@ html.has-cursor .project-lightbox a{
 
   object-fit:contain;
   flex:0 0 auto;
+
+  opacity:1;
+
+  transition:
+    opacity .18s var(--ease-out);
+}
+.project-lightbox__media.is-switching img,
+.project-lightbox__media.is-switching video{
+  opacity:0;
 }
 /* grouped-item navigation */
 
