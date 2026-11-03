@@ -1509,7 +1509,10 @@ html.has-cursor .project-lightbox a{
   .project-media__asset,
   .project-next__link,
   .project-next__link::before,
-  .project-next__arrow{
+  .project-next__arrow,
+  .project-lightbox__window,
+  .project-lightbox__media img,
+  .project-lightbox__media video{
     transition:none;
   }
 
