@@ -752,7 +752,7 @@ html.js:not(.motion-ready) :is(
   display:flex;
   flex-direction:column;
 
-  padding:1.25rem;
+  padding:1.75rem 1.25rem 1.25rem;
 
   background:var(--bg);
   color:var(--ink);
@@ -764,7 +764,7 @@ html.js:not(.motion-ready) :is(
 
 .featured-card__title-row{
   display:flex;
-  align-items:baseline;
+  align-items:flex-start;
   justify-content:space-between;
   gap:1rem;
 }
@@ -773,9 +773,10 @@ html.js:not(.motion-ready) :is(
   margin:0;
 }
 
-.featured-card__year{
+..featured-card__year{
   flex:0 0 auto;
   margin-left:auto;
+  padding-top:.15rem;
   color:inherit;
   opacity:.68;
 }
@@ -1510,7 +1511,7 @@ html.has-cursor .project-lightbox a{
   align-items:center;
   row-gap:0;
 
-  padding-block:clamp(1.35rem,2.4vw,2.15rem);
+  padding-block:clamp(2.5rem,4.5vw,4.25rem);
 
   transition:
     color var(--dur-1) var(--ease-out);
