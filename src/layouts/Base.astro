@@ -46,15 +46,46 @@ const buildStamp = Date.now();
     </script>
 
     <script is:inline>
-      try {
-        const root = document.documentElement;
-        const savedTheme = localStorage.getItem("ct-theme");
-        const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        const initialTheme = savedTheme || (systemDark ? "dark" : "light");
-        root.dataset.theme = initialTheme;
-        root.classList.add("js");
-      } catch (e) {}
-    </script>
+  try {
+    const root = document.documentElement;
+
+    /* theme */
+    const savedTheme =
+      localStorage.getItem("ct-theme");
+
+    const systemDark =
+      window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      ).matches;
+
+    const initialTheme =
+      savedTheme ||
+      (systemDark ? "dark" : "light");
+
+    root.dataset.theme =
+      initialTheme;
+
+
+    /* accent */
+    const savedAccent =
+      localStorage.getItem("ct-accent");
+
+    const allowedAccents = [
+      "blue",
+      "orange",
+      "lime"
+    ];
+
+    root.dataset.accent =
+      allowedAccents.includes(savedAccent)
+        ? savedAccent
+        : "blue";
+
+
+    root.classList.add("js");
+
+  } catch (e) {}
+</script>
 
     <link rel="stylesheet" href={`/site.css?v=${buildStamp}`}>
   </head>
