@@ -435,226 +435,305 @@ const showcaseFilters = [
     /* ---------------------------------------------
        RENDER CURRENT ITEM
        --------------------------------------------- */
+function renderLightboxItem() {
 
-    function renderLightboxItem() {
+  const item =
+    activeItems[activeItemIndex];
 
-      const item =
-        activeItems[activeItemIndex];
-
-      if (!item) return;
+  if (!item) return;
 
 
-      const lightboxWindow =
-        lightbox.querySelector(
-          ".project-lightbox__window"
-        );
+  const lightboxWindow =
+    lightbox.querySelector(
+      ".project-lightbox__window"
+    );
 
+
+  const multiple =
+    activeItems.length > 1;
+
+
+  /* ---------------------------------------------
+     UPDATE NAV
+     --------------------------------------------- */
+
+  if (lightboxCounter) {
+
+    lightboxCounter.textContent =
+      multiple
+        ? `${String(activeItemIndex + 1).padStart(2, "0")} / ${String(activeItems.length).padStart(2, "0")}`
+        : "";
+
+  }
+
+
+  if (lightboxNav) {
+    lightboxNav.hidden = !multiple;
+  }
+
+
+  if (prevButton) {
+    prevButton.hidden =
+      !multiple ||
+      activeItemIndex === 0;
+  }
+
+
+  if (nextButton) {
+    nextButton.hidden =
+      !multiple ||
+      activeItemIndex ===
+        activeItems.length - 1;
+  }
+
+
+  /* ---------------------------------------------
+     CREATE NEXT ASSET OFF-DOM
+     --------------------------------------------- */
+
+  const nextAsset =
+    createAsset(item);
+
+
+  const swapAsset = () => {
+
+    const naturalWidth =
+      nextAsset.tagName === "VIDEO"
+        ? nextAsset.videoWidth
+        : nextAsset.naturalWidth;
+
+    const naturalHeight =
+      nextAsset.tagName === "VIDEO"
+        ? nextAsset.videoHeight
+        : nextAsset.naturalHeight;
+
+
+    if (!naturalWidth || !naturalHeight) {
+      return;
+    }
+
+
+    const ratio =
+      naturalWidth / naturalHeight;
+
+
+    const head =
+      lightbox.querySelector(
+        ".project-lightbox__head"
+      );
+
+    const nav =
+      lightbox.querySelector(
+        ".project-lightbox__nav"
+      );
+
+
+    const headHeight =
+      head?.offsetHeight || 0;
+
+    const navHeight =
+      nav && !nav.hidden
+        ? nav.offsetHeight
+        : 0;
+
+
+    const horizontalPadding = 32;
+    const verticalPadding = 32;
+    const outerGap = 32;
+
+
+    const maxAssetWidth =
+      Math.max(
+        240,
+        window.innerWidth -
+          horizontalPadding -
+          outerGap
+      );
+
+
+    const maxAssetHeight =
+      Math.max(
+        240,
+        window.innerHeight -
+          headHeight -
+          navHeight -
+          verticalPadding -
+          outerGap
+      );
+
+
+    let renderedWidth =
+      Math.min(
+        naturalWidth,
+        maxAssetWidth
+      );
+
+
+    let renderedHeight =
+      renderedWidth / ratio;
+
+
+    if (renderedHeight > maxAssetHeight) {
+
+      renderedHeight =
+        maxAssetHeight;
+
+      renderedWidth =
+        renderedHeight * ratio;
+
+    }
+
+
+    nextAsset.style.width =
+      `${Math.floor(renderedWidth)}px`;
+
+    nextAsset.style.height =
+      `${Math.floor(renderedHeight)}px`;
+
+
+    /*
+      Fade current media first.
+      Crucially, we do NOT clear the old media yet.
+    */
+
+    lightboxMedia.classList.add(
+      "is-switching"
+    );
+
+
+    window.setTimeout(() => {
+
+      /*
+        Resize while the old asset is faded.
+      */
+
+      if (lightboxWindow) {
+
+        lightboxWindow.style.width =
+          `${Math.ceil(
+            renderedWidth +
+            horizontalPadding
+          )}px`;
+
+      }
+
+
+      /*
+        Now swap content.
+      */
 
       lightboxMedia.innerHTML = "";
 
-
-      const asset =
-        createAsset(item);
-
-      lightboxMedia.appendChild(asset);
+      lightboxMedia.appendChild(
+        nextAsset
+      );
 
 
-      const multiple =
-        activeItems.length > 1;
+      /*
+        Force the new asset to begin hidden.
+      */
+
+      nextAsset.style.opacity = "0";
 
 
-      if (lightboxCounter) {
+      requestAnimationFrame(() => {
 
-        lightboxCounter.textContent =
-          multiple
-            ? `${String(activeItemIndex + 1).padStart(2, "0")} / ${String(activeItems.length).padStart(2, "0")}`
-            : "";
+        lightboxMedia.classList.remove(
+          "is-switching"
+        );
 
-      }
+        requestAnimationFrame(() => {
 
+          nextAsset.style.opacity = "1";
 
-      if (lightboxNav) {
-        lightboxNav.hidden = !multiple;
-      }
+        });
 
-
-      if (prevButton) {
-        prevButton.hidden =
-          !multiple ||
-          activeItemIndex === 0;
-      }
-
-
-      if (nextButton) {
-        nextButton.hidden =
-          !multiple ||
-          activeItemIndex ===
-            activeItems.length - 1;
-      }
-
-
-      const fitAsset = () => {
-
-        const naturalWidth =
-          asset.tagName === "VIDEO"
-            ? asset.videoWidth
-            : asset.naturalWidth;
-
-        const naturalHeight =
-          asset.tagName === "VIDEO"
-            ? asset.videoHeight
-            : asset.naturalHeight;
-
-
-        if (!naturalWidth || !naturalHeight) {
-          return;
-        }
-
-
-        const ratio =
-          naturalWidth / naturalHeight;
-
-
-        const head =
-          lightbox.querySelector(
-            ".project-lightbox__head"
-          );
-
-        const nav =
-          lightbox.querySelector(
-            ".project-lightbox__nav"
-          );
-
-
-        const headHeight =
-          head?.offsetHeight || 0;
-
-        const navHeight =
-          nav && !nav.hidden
-            ? nav.offsetHeight
-            : 0;
-
-
-const horizontalPadding = 32;
-const verticalPadding = 32;
-
-/*
-  Space kept between the modal and browser edges.
-*/
-const outerGap = 32;
-
-
-/*
-  Maximum space available to the actual artwork.
-*/
-const maxAssetWidth =
-  Math.max(
-    240,
-    window.innerWidth -
-      horizontalPadding -
-      outerGap
-  );
-
-const maxAssetHeight =
-  Math.max(
-    240,
-    window.innerHeight -
-      headHeight -
-      navHeight -
-      verticalPadding -
-      outerGap
-  );
-
-
-/*
-  Start width-first.
-
-  This makes landscape artwork use substantially
-  more horizontal screen space.
-*/
-let renderedWidth =
-  Math.min(
-    naturalWidth,
-    maxAssetWidth
-  );
-
-let renderedHeight =
-  renderedWidth / ratio;
-
-
-/*
-  Portrait/tall artwork may exceed the available
-  height, so constrain by height when necessary.
-*/
-if (renderedHeight > maxAssetHeight) {
-
-  renderedHeight =
-    maxAssetHeight;
-
-  renderedWidth =
-    renderedHeight * ratio;
-
-}
-
-
-/*
-  Apply exact fitted dimensions.
-*/
-asset.style.width =
-  `${Math.floor(renderedWidth)}px`;
-
-asset.style.height =
-  `${Math.floor(renderedHeight)}px`;
-
-
-/*
-  Window hugs the media + its 1rem padding.
-*/
-if (lightboxWindow) {
-
-  lightboxWindow.style.width =
-    `${Math.ceil(
-      renderedWidth +
-      horizontalPadding
-    )}px`;
-
-}
-
-      };
-
-
-      if (asset.tagName === "VIDEO") {
-
-        if (asset.readyState >= 1) {
-          fitAsset();
-        } else {
-          asset.addEventListener(
-            "loadedmetadata",
-            fitAsset,
-            { once:true }
-          );
-        }
-
-      } else {
-
-        if (asset.complete) {
-          fitAsset();
-        } else {
-          asset.addEventListener(
-            "load",
-            fitAsset,
-            { once:true }
-          );
-        }
-
-      }
+      });
 
 
       lightboxMedia.scrollTop = 0;
       lightboxMedia.scrollLeft = 0;
 
+    }, 150);
+
+  };
+
+
+  /* ---------------------------------------------
+     WAIT UNTIL NEXT ASSET IS READY
+     --------------------------------------------- */
+
+  if (nextAsset.tagName === "VIDEO") {
+
+    if (nextAsset.readyState >= 1) {
+
+      swapAsset();
+
+    } else {
+
+      nextAsset.addEventListener(
+        "loadedmetadata",
+        swapAsset,
+        { once:true }
+      );
+
     }
 
+  } else {
+
+    if (nextAsset.complete) {
+
+      swapAsset();
+
+    } else {
+
+      nextAsset.addEventListener(
+        "load",
+        swapAsset,
+        { once:true }
+      );
+
+    }
+
+  }
+
+}
+function preloadNearbyItems() {
+
+  const indexes = [
+    activeItemIndex - 1,
+    activeItemIndex + 1
+  ];
+
+
+  indexes.forEach((index) => {
+
+    const item =
+      activeItems[index];
+
+    if (!item) return;
+
+
+    if (item.type === "video") {
+
+      const video =
+        document.createElement("video");
+
+      video.preload = "metadata";
+      video.src = item.src;
+
+    } else {
+
+      const image =
+        new Image();
+
+      image.src = item.src;
+
+    }
+
+  });
+
+}
     /* ---------------------------------------------
        OPEN
        --------------------------------------------- */
