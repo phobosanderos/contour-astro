@@ -156,11 +156,12 @@ const showcaseFilters = [
                   {
                     preview?.type === "video" ? (
                       <video
-                        class="project-media__asset"
-                        src={preview.src}
-                        muted
-                        playsinline
-                        preload="metadata"
+                      class="project-media__asset"
+                      src={preview.src}
+                      poster={preview.poster}
+                      muted
+                      playsinline
+                      preload="metadata"
                       />
                     ) : (
                       <img
