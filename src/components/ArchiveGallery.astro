@@ -1,0 +1,228 @@
+---
+import archive from "../content/archive.json";
+const filters = ["all", "visuals", "motion", "campaigns", "identity"];
+const first = (item) => item.media?.[0];
+const imageFor = (item) => item.thumbnail || (first(item)?.type === "image" ? first(item)?.src : null);
+---
+<div class="work__archive" id="archive">
+  <header class="section-head work__archive-head">
+    <span class="note note--ink">THE ARCHIVE</span>
+    <span class="note">{String(archive.length).padStart(2, "0")} works</span>
+  </header>
+
+  <div class="archive-filters" aria-label="Filter archive">
+    {filters.map((filter, i) => (
+      <button type="button" class={`archive-filter note${i === 0 ? " is-active" : ""}`}
+        data-archive-filter={filter} aria-pressed={i === 0 ? "true" : "false"}>
+        {filter}
+      </button>
+    ))}
+  </div>
+
+  <div class="archive-gallery__grid">
+    {archive.map((item, i) => (
+      <button class="archive-gallery__card" type="button"
+        data-archive-index={i} data-archive-categories={item.categories.join("|").toLowerCase()}
+        data-cursor="view" aria-label={`Open ${item.title}`}>
+        <div class="archive-gallery__visual">
+          {imageFor(item) ? (
+            <img src={imageFor(item)} alt={first(item)?.alt || item.title}
+              loading="lazy" decoding="async" />
+          ) : (
+            <video src={first(item)?.src} muted playsinline preload="metadata"
+              aria-label={item.title} data-archive-thumbnail />
+          )}
+          {first(item)?.type === "video" && (
+            <span class="archive-gallery__play" aria-hidden="true">▶</span>
+          )}
+        </div>
+        <div class="archive-gallery__meta">
+          <span class="archive-gallery__title">{item.title}</span>
+          {item.media?.length > 1 && (
+            <span class="archive-gallery__count note">{String(item.media.length).padStart(2, "0")} ITEMS</span>
+          )}
+        </div>
+      </button>
+    ))}
+  </div>
+</div>
+
+<dialog class="project-lightbox archive-lightbox" data-archive-dialog aria-label="Archive media viewer">
+  <div class="project-lightbox__window archive-lightbox__window" data-archive-window>
+    <header class="project-lightbox__head">
+      <div class="project-lightbox__identity note">
+        <span data-archive-number></span><span>/</span><span data-archive-title></span>
+      </div>
+      <div class="archive-lightbox__tools">
+        <button type="button" class="archive-lightbox__info-toggle note" data-archive-info hidden
+          aria-expanded="false">ABOUT +</button>
+        <button type="button" class="info-dialog__close project-lightbox__close" data-archive-close
+          aria-label="Close archive viewer">×</button>
+      </div>
+    </header>
+    <div class="project-lightbox__media archive-lightbox__media" data-archive-media tabindex="0"></div>
+    <footer class="project-lightbox__nav archive-lightbox__nav" data-archive-nav hidden>
+      <button class="project-lightbox__nav-button note" type="button" data-archive-prev>← Previous</button>
+      <span class="project-lightbox__counter note" data-archive-counter></span>
+      <button class="project-lightbox__nav-button note" type="button" data-archive-next>Next →</button>
+    </footer>
+  </div>
+  <!-- Optional description is OUTSIDE the media/window sizing flow. -->
+  <aside class="archive-lightbox__about" data-archive-about hidden>
+    <p data-archive-description></p>
+  </aside>
+</dialog>
+
+<script is:inline define:vars={{ archive }}>
+(() => {
+  const $ = (s, el = document) => el.querySelector(s);
+  const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+  const dialog = $('[data-archive-dialog]');
+  if (!(dialog instanceof HTMLDialogElement)) return;
+  const windowEl = $('[data-archive-window]', dialog);
+  const mediaEl = $('[data-archive-media]', dialog);
+  const navEl = $('[data-archive-nav]', dialog);
+  const counterEl = $('[data-archive-counter]', dialog);
+  const prevEl = $('[data-archive-prev]', dialog);
+  const nextEl = $('[data-archive-next]', dialog);
+  const aboutEl = $('[data-archive-about]', dialog);
+  const descEl = $('[data-archive-description]', dialog);
+  const infoEl = $('[data-archive-info]', dialog);
+  let entryIndex = 0, itemIndex = 0, sequence = 0, lastTrigger = null;
+
+  $$("[data-archive-filter]").forEach(button => {
+    button.addEventListener('click', () => {
+      const filter = button.dataset.archiveFilter;
+      $$("[data-archive-filter]").forEach(b => {
+        const active = b === button;
+        b.classList.toggle('is-active', active);
+        b.setAttribute('aria-pressed', String(active));
+      });
+      $$("[data-archive-index]").forEach(card => {
+        card.hidden = filter !== 'all' &&
+          !(card.dataset.archiveCategories || '').split('|').includes(filter);
+      });
+    });
+  });
+
+  // Seek a fraction into un-postered WebM files to expose a thumbnail frame.
+  $$("[data-archive-thumbnail]").forEach(video => {
+    video.addEventListener('loadedmetadata', () => {
+      if (Number.isFinite(video.duration) && video.duration > 0.1) {
+        try { video.currentTime = Math.min(0.15, video.duration / 2); } catch (_) {}
+      }
+    }, { once: true });
+  });
+
+  function assetFor(item) {
+    const asset = document.createElement(item.type === 'video' ? 'video' : 'img');
+    asset.src = item.src;
+    if (item.type === 'video') {
+      asset.controls = true;
+      asset.controlsList = 'nodownload';
+      asset.playsInline = true;
+      asset.preload = 'metadata';
+      if (item.poster) asset.poster = item.poster;
+    } else { asset.alt = item.alt || ''; }
+    return asset;
+  }
+
+  function render() {
+    const entry = archive[entryIndex];
+    const item = entry?.media?.[itemIndex];
+    if (!item) return;
+    const ticket = ++sequence;
+    const count = entry.media.length;
+    navEl.hidden = count <= 1;
+    prevEl.hidden = itemIndex === 0;
+    nextEl.hidden = itemIndex === count - 1;
+    counterEl.textContent = `${String(itemIndex + 1).padStart(2, '0')} / ${String(count).padStart(2, '0')}`;
+    const asset = assetFor(item);
+
+    const apply = () => {
+      if (ticket !== sequence || !dialog.open) return;
+      const w = asset.tagName === 'VIDEO' ? asset.videoWidth : asset.naturalWidth;
+      const h = asset.tagName === 'VIDEO' ? asset.videoHeight : asset.naturalHeight;
+      if (!(w > 0 && h > 0)) return;
+      const head = $('.project-lightbox__head', windowEl);
+      const nav = navEl.hidden ? 0 : navEl.offsetHeight;
+      const maxW = Math.max(160, innerWidth - 64);
+      const maxH = Math.max(160, innerHeight - (head?.offsetHeight || 0) - nav - 64);
+      const ratio = Math.min(1, maxW / w, maxH / h);
+      const rw = Math.floor(w * ratio), rh = Math.floor(h * ratio);
+      asset.style.width = rw + 'px';
+      asset.style.height = rh + 'px';
+      mediaEl.classList.add('is-switching');
+      window.setTimeout(() => {
+        if (ticket !== sequence || !dialog.open) return;
+        $('video', mediaEl)?.pause();
+        windowEl.style.width = Math.ceil(rw + 32) + 'px';
+        mediaEl.replaceChildren(asset);
+        mediaEl.classList.remove('is-switching');
+        if (asset.tagName === 'VIDEO') asset.play().catch(() => {});
+      }, 150);
+    };
+    if (asset.tagName === 'VIDEO') {
+      if (asset.readyState >= 1) apply();
+      else asset.addEventListener('loadedmetadata', apply, { once: true });
+    } else if (asset.complete && asset.naturalWidth) apply();
+    else asset.addEventListener('load', apply, { once: true });
+  }
+
+  function writeDescription(entry) {
+    descEl.replaceChildren();
+    const description = entry.description || '';
+    if (!description) { infoEl.hidden = true; return; }
+    infoEl.hidden = false;
+    const link = entry.link;
+    if (!link || !description.includes(link.text)) {
+      descEl.textContent = description; return;
+    }
+    const at = description.indexOf(link.text);
+    descEl.append(document.createTextNode(description.slice(0, at)));
+    const anchor = document.createElement('a');
+    anchor.href = link.url;
+    anchor.textContent = link.text;
+    anchor.target = '_blank';
+    anchor.rel = 'noopener noreferrer';
+    descEl.append(anchor, document.createTextNode(description.slice(at + link.text.length)));
+  }
+
+  function open(index, trigger) {
+    entryIndex = index; itemIndex = 0; lastTrigger = trigger;
+    const entry = archive[index];
+    if (!entry?.media?.length) return;
+    $('[data-archive-number]', dialog).textContent = String(index + 1).padStart(2, '0');
+    $('[data-archive-title]', dialog).textContent = entry.title;
+    writeDescription(entry);
+    aboutEl.hidden = true;
+    infoEl.setAttribute('aria-expanded', 'false');
+    windowEl.style.width = '';
+    window.__lenis?.stop?.();
+    dialog.showModal();
+    render();
+    requestAnimationFrame(() => mediaEl.focus({preventScroll:true}));
+  }
+  $$("[data-archive-index]").forEach(card => card.addEventListener('click', () => open(Number(card.dataset.archiveIndex), card)));
+  $('[data-archive-close]',dialog).addEventListener('click', () => dialog.close());
+  nextEl.addEventListener('click', () => { if (itemIndex < archive[entryIndex].media.length - 1) { itemIndex++; render(); } });
+  prevEl.addEventListener('click', () => { if (itemIndex > 0) { itemIndex--; render(); } });
+  infoEl.addEventListener('click', () => {
+    aboutEl.hidden = !aboutEl.hidden;
+    infoEl.setAttribute('aria-expanded', String(!aboutEl.hidden));
+  });
+  dialog.addEventListener('close', () => {
+    sequence++;
+    $('video', mediaEl)?.pause();
+    mediaEl.replaceChildren();
+    aboutEl.hidden = true;
+    window.__lenis?.start?.();
+    lastTrigger?.focus({preventScroll:true});
+  });
+  dialog.addEventListener('click', e => { if (e.target === dialog) dialog.close(); });
+  dialog.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' && itemIndex < archive[entryIndex].media.length - 1) { e.preventDefault(); itemIndex++; render(); }
+    if (e.key === 'ArrowLeft' && itemIndex > 0) { e.preventDefault(); itemIndex--; render(); }
+  });
+})();
+</script>
