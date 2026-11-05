@@ -2,7 +2,7 @@
   {
   "slug": "caleb-alvarez-reel",
   "title": "Caleb Alvarez reel",
-  "categories": "Motion",
+  "categories": ["Motion"],
   "media": [
     {
       "type": "video",
@@ -14,7 +14,7 @@
 {
   "slug": "in-another-life",
   "title": "In another life",
-  "categories": "Motion",
+  "categories": ["Motion"],
   "description": "Short audio/lyric visualiser for \"Swim Good\" by Frank Ocean.",
   "media": [
     {
