@@ -90,9 +90,9 @@ const seoTitle = seoTitles[project.slug] || `${project.title} | Vipul M.R`;
   <a
     href="/#work"
     class="note project-back"
-    data-cursor="back ←"
+    data-cursor="back"
   >
-    ← Back to Work
+    <svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#arrow-left"></use></svg> Back to Work
   </a>
 
   <span class="note project-intro__year">
@@ -237,7 +237,7 @@ const seoTitle = seoTitles[project.slug] || `${project.title} | Vipul M.R`;
       <a
         href={`/work/${nextProject.slug}/`}
         class="project-next__link"
-        data-cursor="open →"
+        data-cursor="open"
       >
         <span class="project-next__title">
           {nextDisplayTitle}
@@ -246,9 +246,7 @@ const seoTitle = seoTitles[project.slug] || `${project.title} | Vipul M.R`;
         <span
           class="project-next__arrow"
           aria-hidden="true"
-        >
-          →
-        </span>
+        ><svg class="ui-icon" focusable="false"><use href="/img/ui-icons.svg#arrow-right"></use></svg></span>
       </a>
 
     </section>
@@ -276,7 +274,7 @@ const seoTitle = seoTitles[project.slug] || `${project.title} | Vipul M.R`;
         data-lightbox-close
         aria-label="Close"
       >
-        ×
+        <svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#close"></use></svg>
       </button>
 
     </header>
@@ -299,7 +297,7 @@ const seoTitle = seoTitles[project.slug] || `${project.title} | Vipul M.R`;
         data-cursor="previous"
         hidden
       >
-        ← Previous
+        <svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#arrow-left"></use></svg> Previous
       </button>
 
       <span
@@ -313,7 +311,7 @@ const seoTitle = seoTitles[project.slug] || `${project.title} | Vipul M.R`;
         data-lightbox-next
         data-cursor="next"
       >
-        Next →
+        Next <svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#arrow-right"></use></svg>
       </button>
     </footer>
 
