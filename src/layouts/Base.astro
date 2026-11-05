@@ -150,6 +150,7 @@ const buildStamp = Date.now();
     <link rel="stylesheet" href={`/site.css?v=${buildStamp}`}>
   </head>
   <body>
+    <a class="skip" href="#main">Skip to content</a>
     <div class="preloader" aria-hidden="true">
       <div class="preloader__inner">
         <div class="preloader__ring" aria-hidden="true"></div>
@@ -158,6 +159,38 @@ const buildStamp = Date.now();
     </div>
 
     <slot />
+    <script is:inline>
+      // Native showModal() traps focus in modern browsers; keep Tab
+      // cycling within the visible dialog for keyboard consistency.
+      document.addEventListener("keydown", (event) => {
+        if (event.key !== "Tab") return;
+        const dialogs = [...document.querySelectorAll("dialog[open]")];
+        const dialog = dialogs[dialogs.length - 1];
+        if (!dialog) return;
+
+        const focusable = [...dialog.querySelectorAll(
+          'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])'
+        )].filter(element =>
+          !element.hidden && element.getClientRects().length &&
+          getComputedStyle(element).visibility !== "hidden"
+        );
+        if (!focusable.length) {
+          event.preventDefault();
+          dialog.setAttribute("tabindex", "-1");
+          dialog.focus({ preventScroll: true });
+          return;
+        }
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+        if (event.shiftKey && (document.activeElement === first || !dialog.contains(document.activeElement))) {
+          event.preventDefault();
+          last.focus({ preventScroll: true });
+        } else if (!event.shiftKey && (document.activeElement === last || !dialog.contains(document.activeElement))) {
+          event.preventDefault();
+          first.focus({ preventScroll: true });
+        }
+      }, true);
+    </script>
     <script is:inline src={`/site.js?v=${buildStamp}`} defer></script>
   </body>
 </html>
