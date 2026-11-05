@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true">
+  <!-- Shared UI icon sprite. All symbols inherit the parent SVG's currentColor. -->
+  <symbol id="arrow-up-right" viewBox="0 0 24 24">
+    <path d="M5 19 19 5M7 5h12v12"/>
+  </symbol>
+  <symbol id="arrow-right" viewBox="0 0 24 24">
+    <path d="M4 12h16m-7-7 7 7-7 7"/>
+  </symbol>
+  <symbol id="arrow-down-right" viewBox="0 0 24 24">
+    <path d="M5 5 19 19M7 19h12V7"/>
+  </symbol>
+  <symbol id="arrow-down" viewBox="0 0 24 24">
+    <path d="M12 4v16m-7-7 7 7 7-7"/>
+  </symbol>
+  <symbol id="arrow-left" viewBox="0 0 24 24">
+    <path d="M20 12H4m7 7-7-7 7-7"/>
+  </symbol>
+  <symbol id="play" viewBox="0 0 24 24">
+    <path d="m8 5 11 7-11 7z" stroke-linejoin="round"/>
+  </symbol>
+  <symbol id="close" viewBox="0 0 24 24">
+    <path d="M5 5 19 19M19 5 5 19"/>
+  </symbol>
+</svg>
