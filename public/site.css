@@ -3083,3 +3083,26 @@ body:has(dialog[open]) { overflow: hidden; }
   .archive-gallery__visual video,
   .archive-lightbox__about a{transition:none}
 }
+
+
+/* Project-page footer: reduce only the gap below the next-project link. */
+.project-page + .site-footer {
+  padding-top: clamp(.35rem, 1vw, .9rem);
+}
+.project-page + .site-footer .footer-top {
+  padding-top: clamp(.75rem, 1.5vw, 1.4rem);
+}
+
+/* Refine shared external-link arrow: slimmer, smaller and separated from text. */
+.site-footer .footer-top a[target="_blank"] {
+  display: inline-flex;
+  align-items: baseline;
+  gap: .32em;
+}
+.site-footer .footer-top a[target="_blank"] .ui-icon {
+  width: .78em;
+  height: .78em;
+  stroke-width: 1.15;
+  vertical-align: baseline;
+  transform: translateY(.04em);
+}
