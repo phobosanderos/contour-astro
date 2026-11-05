@@ -1537,6 +1537,43 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   font-size: .9rem;
 }
 
+/* Contact email replaces the decorative sphere and aligns to the action row. */
+.cta__email {
+  grid-column: 8 / -1;
+  justify-self: end;
+  align-self: end;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: .5rem;
+  min-width: 0;
+  max-width: 100%;
+  padding-bottom: 1rem;
+  text-align: right;
+}
+.cta__email-link {
+  max-width: 100%;
+  font-size: var(--step-1);
+  line-height: 1.2;
+  letter-spacing: -.015em;
+  overflow-wrap: anywhere;
+}
+.cta__email-link:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 4px;
+}
+@media (max-width: 767px) {
+  .cta__email {
+    width: 100%;
+    margin-top: clamp(1.5rem, 3vw, 2.5rem);
+    padding-bottom: 0;
+  }
+  .cta__email-link {
+    font-size: clamp(.95rem, 4vw, var(--step-1));
+  }
+}
+
+
 .cta__toggle .arrow {
   display: inline-grid;
   place-items: center;
@@ -1575,30 +1612,11 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   border-radius: 0;
 }
 
-.cta__sphere {
-  grid-column: 7 / -1;
-  grid-row: 1;
-  position: absolute;
-  top: 0;
-  right: calc(-1 * var(--gutter));
-  bottom: 0;
-  width: 53%;
-  overflow: hidden;
-  pointer-events: auto;
-}
 
-.particle-sphere {
-  display: block;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  touch-action: pan-y;
-  cursor: grab;
-}
 
-.particle-sphere:active {
-  cursor: grabbing;
-}
+
+
+
 
 /* The open form expands naturally and pushes the footer down. */
 .cta__expanded {
@@ -1620,27 +1638,11 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   min-width: 0;
 }
 
-.cta__booking {
-  grid-column: 9 / -1;
-  justify-self: end;
-  width: 100%;
-  max-width: 24rem;
-  padding-top: .25rem;
-}
 
-.cta__booking-title {
-  max-width: 16ch;
-  margin-bottom: .9rem;
-  font-size: clamp(1.65rem, 2.6vw, 3rem);
-  line-height: 1.02;
-  letter-spacing: -.045em;
-}
 
-.cta__booking .footer-cta-link {
-  margin-top: .1rem;
-  font-size: clamp(1.65rem, 2.6vw, 3rem);
-  line-height: 1;
-}
+
+
+
 
 .fg {
   position: relative;
@@ -1710,6 +1712,14 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   align-items: center;
   gap: 1.2rem;
 }
+.fg-consent {
+  flex-basis: 100%;
+  color: var(--muted);
+  text-transform: none;
+  letter-spacing: normal;
+}
+.fg-consent a { color: var(--accent-text); }
+
 
 .fg-status {
   font-size: .9rem;
@@ -1806,14 +1816,7 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
     white-space: normal;
   }
 
-  .cta__sphere {
-    top: 0;
-    right: calc(-1 * var(--gutter));
-    bottom: auto;
-    width: 65%;
-    height: 250px;
-    opacity: .9;
-  }
+
 
   .cta__expanded {
     grid-template-columns: minmax(0, 1fr);
@@ -1821,25 +1824,15 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
     margin-top: 2.5rem;
   }
 
-  .cta__form-area,
-  .cta__booking {
+  .cta__form-area {
     grid-column: 1 / -1;
   }
 
-  .cta__booking {
-    justify-self: start;
-    max-width: none;
-    padding-top: 0;
-  }
 
-  .cta__booking-title {
-    max-width: 22ch;
-    font-size: clamp(1.8rem, 8vw, 2.8rem);
-  }
 
-  .cta__booking .footer-cta-link {
-    font-size: clamp(1.8rem, 8vw, 2.8rem);
-  }
+
+
+
 
   .fg-fields {
     grid-template-columns: minmax(0, 1fr);
@@ -2068,30 +2061,16 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
 }
 
 /* Align the booking message to the right side */
-.cta__booking {
-  justify-self: end;
-  text-align: right;
-}
 
-.cta__booking-title {
-  margin-left: auto;
-}
 
-.cta__booking .footer-cta-link {
-  align-items: flex-end;
-  margin-left: auto;
-}
+
+
+
 
 /* Enlarge the sphere and keep it fully visible on the right */
-.cta__sphere {
-  right: 0;
-  width: 49%;
-}
 
-.particle-sphere {
-  width: 100%;
-  height: 100%;
-}
+
+
 
 /* Reduce the gap between the contact section and the footer */
 .site-footer {
@@ -2116,30 +2095,18 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
     min-height: 0;
   }
 
-  .cta__sphere {
-    right: 0;
-    width: 62%;
-    height: 280px;
-  }
+
 
   .cta__expanded {
     margin-top: 1.75rem;
     padding-top: 1.25rem;
   }
 
-  .cta__booking {
-    justify-self: stretch;
-    text-align: left;
-  }
 
-  .cta__booking-title {
-    margin-left: 0;
-  }
 
-  .cta__booking .footer-cta-link {
-    align-items: flex-start;
-    margin-left: 0;
-  }
+
+
+
 
   .site-footer {
     padding-top: 2rem;
@@ -2163,21 +2130,12 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   }
 }
 /* Larger particle sphere */
-.cta__sphere {
-  width: 55%;
-  right: 0;
-}
 
-.particle-sphere {
-  width: 100%;
-  height: 100%;
-}
+
+
 
 @media (max-width: 767px) {
-  .cta__sphere {
-    width: 68%;
-    height: 300px;
-  }
+
 }
 /* Rotate the same arrow instead of swapping characters */
 .cta__toggle .cta__arrow {
@@ -2243,13 +2201,12 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   padding-top: calc(var(--section) + 1.5rem);
 }
 
-/* Bring [06] Next / Reply within one working day
-   closer to the headline and sphere */
+/* Bring Next / Reply within one working day closer to the headline */
 .cta > .section-head {
   margin-bottom: clamp(1rem, 2vw, 1.75rem);
 }
 
-/* Reduce the vertical space occupied by the headline and sphere */
+/* Keep contact intro spacing compact */
 .cta__intro {
   min-height: clamp(260px, 26vw, 350px);
 }
@@ -2309,16 +2266,10 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   overscroll-behavior: contain;
 }
 /* Slightly enlarge the contact particle sphere */
-.cta__sphere {
-  width: 58%;
-  right: 0;
-}
+
 
 @media (max-width: 767px) {
-  .cta__sphere {
-    width: 72%;
-    height: 300px;
-  }
+
 }
 
 
@@ -2332,7 +2283,7 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   margin-bottom: 0.75rem;
 }
 
-/* Preserve the original headline and sphere size */
+/* Preserve the original headline size */
 .cta.is-brief-open .cta__intro {
   transform: none;
 }
@@ -2568,9 +2519,7 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   font-size: .9rem;
 }
 
-.info-dialog__foot .btn {
-  flex: 0 0 auto;
-}
+
 
 @keyframes info-dialog-in {
   from {
@@ -2616,12 +2565,7 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
     font-size: .6rem;
   }
 
-  .info-dialog__foot .btn {
-    height: 2.8rem;
-    padding-inline: .9rem;
-    gap: .4rem;
-    font-size: .8rem;
-  }
+
 
   .info-dialog__title {
     margin-bottom: 1.5rem;
@@ -2696,8 +2640,7 @@ html.has-cursor dialog.info-dialog a {
   z-index: 2;
 }
 
-.info-dialog__close,
-.info-dialog__foot .btn {
+.info-dialog__close {
   position: relative;
   pointer-events: auto;
 }
@@ -2733,15 +2676,13 @@ html.has-cursor dialog.info-dialog a {
   pointer-events: auto;
 }
 /* Discuss a project: match the Send a brief arrow animation */
-.info-dialog__foot .btn .arrow {
-  display: inline-block;
-  transform: rotate(0deg);
-  transition: transform var(--dur-1) var(--ease-out);
-}
 
-.info-dialog__foot .btn:hover .arrow,
-.info-dialog__foot .btn:focus-visible .arrow {
-  transform: rotate(90deg);
+
+
+/* Keep the new two-line contact heading contained at narrow widths. */
+.cta__title { max-width: 100%; }
+@media (max-width: 767px) {
+  .cta__title { font-size: clamp(2rem, 7.4vw, 3.8rem); }
 }
 /* Remove the gap between the final service and the Next strip */
 #contact.section {
