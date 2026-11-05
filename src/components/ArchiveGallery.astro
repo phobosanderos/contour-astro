@@ -26,8 +26,7 @@ const imageFor = (item) => item.thumbnail || (first(item)?.type === "image" ? fi
         data-cursor="view" aria-label={`Open ${item.title}`}>
         <div class="archive-gallery__visual">
           {imageFor(item) ? (
-            <img src={imageFor(item)} alt={first(item)?.alt || item.title}
-              loading="lazy" decoding="async" />
+            loading="lazy" decoding="async" />
           ) : (
             <video
   data-src={first(item)?.src}
@@ -153,7 +152,7 @@ const thumbnailObserver =
       });
     },
     {
-      rootMargin: "300px 0px",
+      rootMargin: "900px 0px",
       threshold: 0
     }
   );
