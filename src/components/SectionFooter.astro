@@ -1,6 +1,7 @@
 
 ---
 import c from "../content.json";
+const currentYear = new Date().getFullYear();
 ---
 
 <footer class="site-footer wrap">
@@ -8,12 +9,12 @@ import c from "../content.json";
     <div class="footer-col footer-col--overview">
       <p class="note">{c.footer.p_6}</p>
 
-      <ul>
+      <nav aria-label="Overview"><ul>
         <li>
-          <a class="link" href="#work">{c.footer.a_3}</a>
+          <a class="link" href="/#work">{c.footer.a_3}</a>
         </li>
         <li>
-          <a class="link" href="#services">{c.footer.a_4}</a>
+          <a class="link" href="/#services">{c.footer.a_4}</a>
         </li>
         <li>
           <a
@@ -22,16 +23,16 @@ import c from "../content.json";
             target="_blank"
             rel="noopener noreferrer"
           >
-            Prints<span class="sr-only"> (opens in a new tab)</span>
+            Prints<svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#arrow-up-right"></use></svg><span class="sr-only"> (opens in a new tab)</span>
           </a>
         </li>
       </ul>
-    </div>
+    </nav></div>
 
     <div class="footer-col footer-col--elsewhere">
       <p class="note">{c.footer.p_7}</p>
 
-      <ul>
+      <nav aria-label="Elsewhere"><ul>
         <li>
           <a
             class="link"
@@ -39,7 +40,7 @@ import c from "../content.json";
             target="_blank"
             rel="noopener noreferrer"
           >
-            LinkedIn<span class="sr-only"> (opens in a new tab)</span>
+            LinkedIn<svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#arrow-up-right"></use></svg><span class="sr-only"> (opens in a new tab)</span>
           </a>
         </li>
         <li>
@@ -49,7 +50,7 @@ import c from "../content.json";
             target="_blank"
             rel="noopener noreferrer"
           >
-            Instagram<span class="sr-only"> (opens in a new tab)</span>
+            Instagram<svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#arrow-up-right"></use></svg><span class="sr-only"> (opens in a new tab)</span>
           </a>
         </li>
         <li>
@@ -59,20 +60,21 @@ import c from "../content.json";
             target="_blank"
             rel="noopener noreferrer"
           >
-            Behance<span class="sr-only"> (opens in a new tab)</span>
+            Behance<svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#arrow-up-right"></use></svg><span class="sr-only"> (opens in a new tab)</span>
           </a>
         </li>
-      </ul>
+      </ul></nav>
     </div>
   </div>
 
   <div class="footer-bottom note">
     <p class="copy">
-      <span>{c.footer.span_23}</span>
+      <span>© {currentYear} Phobos &amp; Eros</span>
       <span>{c.footer.span_24}</span>
     </p>
 
     <nav class="legal-links" aria-label="Legal">
+      <a class="link" href="/?rates=terms#services">Rates and terms</a>
       <a class="link" href="/privacy/">{c.footer.a_26}</a>
     </nav>
   </div>
