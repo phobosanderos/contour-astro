@@ -1589,8 +1589,8 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   border-top: 1px solid var(--line);
 }
 
-.cta__expanded[hidden] {
-  display: none !important;
+#contact .cta__expanded[hidden] {
+  display: none;
 }
 
 .cta__form-area {
@@ -2583,6 +2583,7 @@ html.has-cursor dialog.info-dialog a {
   .cta__title { font-size: clamp(2rem, 7.4vw, 3.8rem); }
 }
 /* Contact two-column layout and shared action-button sizing. */
+#contact { --contact-copy-size: clamp(var(--step-0), 1.7vw, var(--step-1)); }
 #contact .cta__intro {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -2707,7 +2708,7 @@ html.has-cursor dialog.info-dialog a {
   text-align: left;
 }
 #contact .cta__email-link {
-  font-size: clamp(var(--step-0), 1.7vw, var(--step-1));
+  font-size: var(--contact-copy-size);
   max-width: 100%;
   overflow-wrap: anywhere;
 }
@@ -2729,7 +2730,7 @@ html.has-cursor dialog.info-dialog a {
   width: auto;
 }
 #contact .fg-sent-h {
-  font-size: var(--step-1);
+  font-size: var(--contact-copy-size);
   line-height: 1.2;
   letter-spacing: -.015em;
   font-weight: 400;
@@ -2803,7 +2804,7 @@ body:has(#contact:focus-within) .cursor {
     white-space: nowrap;
   }
   #contact .cta__actions { max-width: 28rem; }
-  #contact .cta__email-link { font-size: var(--step-1); }
+  #contact { --contact-copy-size: var(--step-1); }
   #contact .cta__expanded { margin-top: var(--col-gap); }
 }
 @media (max-width: 767px) {
@@ -2812,9 +2813,7 @@ body:has(#contact:focus-within) .cursor {
     padding-block: 1.5rem .5rem;
   }
   
-  #contact .cta__email-link {
-    font-size: clamp(var(--step-0), 4vw, var(--step-1));
-  }
+  #contact { --contact-copy-size: clamp(var(--step-0), 4vw, var(--step-1)); }
   #contact .fg-consent { flex-basis: 100%; }
 }
 @media (prefers-reduced-motion: reduce) {
