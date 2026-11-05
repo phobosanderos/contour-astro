@@ -85,12 +85,23 @@
 
   /* ---------- theme, accent, grid ---------- */
   function themeColor() { var m = $("meta[name=theme-color]"); if (m) m.setAttribute("content", getComputedStyle(root).getPropertyValue("--bg").trim()); }
-  function toggleTheme() { var t = root.dataset.theme === "dark" ? "light" : "dark"; root.dataset.theme = t; store.set("ct-theme", t); themeColor(); }
-  function nextAccent() { var a = ACCENTS[(ACCENTS.indexOf(root.dataset.accent || "blue") + 1) % ACCENTS.length]; root.dataset.accent = a; store.set("ct-accent", a); }
+  function syncToggleNames() {
+    var themeButton = $('[data-action="theme"]'), accentButton = $('[data-action="accent"]');
+    if (themeButton) {
+      themeButton.setAttribute("aria-label", "Dark mode");
+      themeButton.setAttribute("aria-pressed", String(root.dataset.theme === "dark"));
+    }
+    if (accentButton) {
+      accentButton.setAttribute("aria-label", "Cycle accent color (current: " + (root.dataset.accent || "blue") + ")");
+    }
+  }
+  function toggleTheme() { var t = root.dataset.theme === "dark" ? "light" : "dark"; root.dataset.theme = t; store.set("ct-theme", t); themeColor(); syncToggleNames(); }
+  function nextAccent() { var a = ACCENTS[(ACCENTS.indexOf(root.dataset.accent || "blue") + 1) % ACCENTS.length]; root.dataset.accent = a; store.set("ct-accent", a); syncToggleNames(); }
   function toggleGrid() { root.dataset.grid = root.dataset.grid === "on" ? "off" : "on"; }
   themeColor();
+  syncToggleNames();
 
-  /* ---------- command palette (it is also the phone menu) ---------- */
+  /* ---------- keyboard command palette ---------- */
   var pal, palItems = [], palShown = [], palSel = 0;
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
   function go(a) {
@@ -160,7 +171,7 @@
   doc.addEventListener("click", function (e) {
     var t = e.target.closest("[data-action]"); if (!t) return;
     var a = t.dataset.action;
-    if (a === "theme") toggleTheme(); else if (a === "accent") nextAccent(); else if (a === "palette") openPalette(); else if (a === "grid") toggleGrid();
+    if (a === "theme") toggleTheme(); else if (a === "accent") nextAccent(); else if (a === "grid") toggleGrid();
   });
   doc.addEventListener("keydown", function (e) {
     var tag = (e.target.tagName || "");
