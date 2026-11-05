@@ -2769,6 +2769,7 @@ html.has-cursor dialog.info-dialog a {
 #contact .fg-fields > .fg-row {
   grid-column: 1 / -1;
   grid-row: 3;
+  margin-top: clamp(.75rem, 1.5vw, 1.25rem);
 }
 #contact .fld {
   gap: .5rem;
