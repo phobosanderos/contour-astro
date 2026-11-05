@@ -26,7 +26,12 @@ const imageFor = (item) => item.thumbnail || (first(item)?.type === "image" ? fi
         data-cursor="view" aria-label={`Open ${item.title}`}>
         <div class="archive-gallery__visual">
           {imageFor(item) ? (
-            loading="lazy" decoding="async" />
+    <img
+      src={imageFor(item)}
+      alt={first(item)?.alt || item.title}
+      loading={i < 6 ? "eager" : "lazy"}
+      decoding="async"
+    />
           ) : (
             <video
   data-src={first(item)?.src}
