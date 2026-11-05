@@ -44,7 +44,9 @@
   var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   /* ---------- featured cards: prepare before the preloader curtain lifts ---------- */
   var featuredCards = $$(".featured-projects .featured-card");
-  var featuredMotion = !reduce && !!window.gsap && !!window.ScrollTrigger;
+  var featuredSeen = false;
+  try { featuredSeen = sessionStorage.getItem("ct-featured-revealed") === "1"; } catch (e) {}
+  var featuredMotion = !reduce && !featuredSeen && !!window.gsap && !!window.ScrollTrigger;
   var featuredRevealStarted = false;
   var featuredRevealFallback = 0;
 
@@ -62,7 +64,9 @@
     if (featuredRevealStarted) return;
     featuredRevealStarted = true;
     if (featuredRevealFallback) clearTimeout(featuredRevealFallback);
-    if (!featuredMotion || !featuredCards.length) return;
+    if (!featuredCards.length) return;
+    try { sessionStorage.setItem("ct-featured-revealed", "1"); } catch (e) {}
+    if (!featuredMotion) return;
     window.gsap.to(featuredCards, {
       autoAlpha: 1, y: 0,
       duration: 1.3, ease: "power3.out", stagger: .09,
