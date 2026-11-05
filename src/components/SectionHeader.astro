@@ -7,8 +7,8 @@ const { home = false } = Astro.props;
   <a class="brand" href="/#main" aria-label={`${c.site.title}, back to top`}>
     {home ? (
       <>
-        <span class="brand__name note note--int">{c.site.name}</span>
-        <span class="brand__role note">Visual design and motion.</span>
+        <span class="brand__name note note--int">{c.header.span_5_html}</span>
+        <span class="brand__role note">| Visual design and motion.</span>
       </>
     ) : (
       <span class="brand__name note note--int" set:html={c.header.span_5_html}></span>
