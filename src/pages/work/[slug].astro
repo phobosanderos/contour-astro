@@ -254,8 +254,7 @@ const showcaseFilters = [
     <header class="project-lightbox__head">
 
       <div class="project-lightbox__identity note">
-        <span data-lightbox-number>01</span>
-        <span>/</span>
+        <span data-lightbox-number></span>
         <span data-lightbox-title></span>
       </div>
 
@@ -459,6 +458,11 @@ function renderLightboxItem() {
 
   const multiple =
     activeItems.length > 1;
+
+  if (lightboxNumber) {
+    lightboxNumber.textContent =
+      `${String(activeItemIndex + 1).padStart(2, "0")} / ${String(activeItems.length).padStart(2, "0")}`;
+  }
 
 
   /* ---------------------------------------------
@@ -776,14 +780,6 @@ function preloadNearbyItems() {
 
         No category name.
       */
-
-      if (lightboxNumber) {
-
-        lightboxNumber.textContent =
-          String(index + 1).padStart(2, "0");
-
-      }
-
 
       if (lightboxTitle) {
 
