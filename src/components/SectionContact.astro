@@ -185,9 +185,12 @@ const contactPanel = document.querySelector("#brief-panel");
 
 function focusContactControl() {
   const open = contactPanel && !contactPanel.hidden;
-  const destination = open
-    ? contactPanel.querySelector('input[name="name"]')
-    : contactToggle;
+  const success = open && contactPanel.querySelector("form.fg.is-sent");
+  const destination = success
+    ? contactPanel.querySelector("[data-again]")
+    : open
+      ? contactPanel.querySelector('input[name="name"]')
+      : contactToggle;
   destination?.focus({ preventScroll: true });
 }
 
@@ -198,17 +201,18 @@ function navigateToContact(updateHash = false) {
   if (updateHash && location.hash !== "#contact") {
     history.pushState(history.state, "", "#contact");
   }
+  // Use a numeric target: Lenis otherwise subtracts scroll-margin and
+  // scroll-padding in addition to its own offset.
+  const top = Math.max(0, contactAnchor.getBoundingClientRect().top + scrollY - offset);
   if (window.__lenis && !reduced) {
-    window.__lenis.scrollTo(contactAnchor, {
-      offset: -offset,
+    window.__lenis.scrollTo(top, {
       duration: .9,
       onComplete: focusContactControl
     });
     return;
   }
-  const top = Math.max(0, contactAnchor.getBoundingClientRect().top + scrollY - offset);
   if (reduced) {
-    window.scrollTo({ top, behavior: "instant" });
+    window.scrollTo({ top, behavior: "auto" });
     focusContactControl();
     return;
   }
