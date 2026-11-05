@@ -1581,20 +1581,6 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
 
 
 
-.cta__toggle:hover .arrow-down,
-.cta__toggle:focus-visible .arrow-down,
-.cta.is-brief-open 
-
-
-
-
-
-
-
-
-
-
-
 /* The open form expands naturally and pushes the footer down. */
 .cta__expanded {
   display: grid;
@@ -2101,14 +2087,6 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
 
 }
 /* Rotate the same arrow instead of swapping characters */
-
-
-.cta__toggle:hover .cta__arrow,
-.cta__toggle:focus-visible .cta__arrow,
-.cta.is-brief-open 
-
-
-
 
 
 /* Footer navigation positioning */
@@ -2761,6 +2739,9 @@ html.has-cursor dialog.info-dialog a {
 #contact .cta__form-area {
   width: 100%;
   min-width: 0;
+}
+#contact .fg-sent .cta__button {
+  width: auto;
 }
 #contact .fg-sent-h {
   font-size: var(--step-1);
