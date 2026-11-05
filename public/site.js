@@ -332,7 +332,7 @@ history.replaceState(history.state, "", "#" + id);
     doc.addEventListener("pointerover", function (e) {
       var n = e.target.closest("a, button, summary, select, input, textarea, [data-cursor]");
       if (n === hover) return; hover = n; c.classList.toggle("is-hover", !!n);
-      if (n) lab.textContent = n.dataset.cursor || (n.tagName === "A" && n.href.indexOf("mailto:") === 0 ? "write" : n.tagName === "A" && n.origin !== location.origin ? "visit ↗" : n.tagName === "A" ? "open →" : /INPUT|TEXTAREA|SELECT/.test(n.tagName) ? "type" : "click");
+      if (n) lab.textContent = n.dataset.cursor || (n.tagName === "A" && n.href.indexOf("mailto:") === 0 ? "write" : n.tagName === "A" && n.origin !== location.origin ? "visit" : n.tagName === "A" ? "open" : /INPUT|TEXTAREA|SELECT/.test(n.tagName) ? "type" : "click");
     }, { passive: true });
     root.addEventListener("pointerleave", function () { c.classList.remove("is-visible"); });
     addEventListener("pointerdown", function () { c.classList.add("is-down"); });
