@@ -159,6 +159,9 @@ const imageFor = (item) => item.thumbnail || (first(item)?.type === "image" ? fi
         if (ticket !== sequence || !dialog.open) return;
         $('video', mediaEl)?.pause();
         windowEl.style.width = Math.ceil(rw + 32) + 'px';
+        if (!aboutEl.hidden) {
+        requestAnimationFrame(positionAbout);
+        }
         mediaEl.replaceChildren(asset);
         mediaEl.classList.remove('is-switching');
         if (asset.tagName === 'VIDEO') asset.play().catch(() => {});
@@ -209,10 +212,73 @@ const imageFor = (item) => item.thumbnail || (first(item)?.type === "image" ? fi
   $('[data-archive-close]',dialog).addEventListener('click', () => dialog.close());
   nextEl.addEventListener('click', () => { if (itemIndex < archive[entryIndex].media.length - 1) { itemIndex++; render(); } });
   prevEl.addEventListener('click', () => { if (itemIndex > 0) { itemIndex--; render(); } });
+  function positionAbout() {
+  if (aboutEl.hidden || !dialog.open) return;
+
+  const rect = windowEl.getBoundingClientRect();
+
+  const padding = 12;
+  const width = aboutEl.offsetWidth;
+  const height = aboutEl.offsetHeight;
+
+  const rightSpace = innerWidth - rect.right;
+  const leftSpace = rect.left;
+  const bottomSpace = innerHeight - rect.bottom;
+  const topSpace = rect.top;
+
+  let left;
+  let top;
+
+  if (rightSpace >= width + padding) {
+    // Dock to right edge
+    left = rect.right;
+    top = rect.top;
+  } else if (leftSpace >= width + padding) {
+    // Dock to left edge
+    left = rect.left - width;
+    top = rect.top;
+  } else if (bottomSpace >= height + padding) {
+    // Dock directly below the window
+    left = rect.right - width;
+    top = rect.bottom;
+  } else if (topSpace >= height + padding) {
+    // Dock directly above the window
+    left = rect.right - width;
+    top = rect.top - height;
+  } else {
+    // Small viewport fallback
+    left = innerWidth - width - padding;
+    top = innerHeight - height - padding;
+  }
+
+  left = Math.max(
+    padding,
+    Math.min(left, innerWidth - width - padding)
+  );
+
+  top = Math.max(
+    padding,
+    Math.min(top, innerHeight - height - padding)
+  );
+
+  aboutEl.style.left = `${left}px`;
+  aboutEl.style.top = `${top}px`;
+}
   infoEl.addEventListener('click', () => {
-    aboutEl.hidden = !aboutEl.hidden;
-    infoEl.setAttribute('aria-expanded', String(!aboutEl.hidden));
-  });
+  aboutEl.hidden = !aboutEl.hidden;
+
+  infoEl.setAttribute(
+    'aria-expanded',
+    String(!aboutEl.hidden)
+  );
+
+  if (!aboutEl.hidden) {
+    positionAbout();
+  }
+});
+
+window.addEventListener('resize', positionAbout);
+
   dialog.addEventListener('close', () => {
     sequence++;
     $('video', mediaEl)?.pause();
