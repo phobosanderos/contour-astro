@@ -26,7 +26,7 @@ import c from "../content.json";
             aria-controls="brief-panel"
             data-brief-toggle
           >
-            <span>Send a short brief</span>
+            <span data-brief-label>Send a short brief</span>
             <span class="arrow cta__button-icon" aria-hidden="true"><span class="cta__arrow">↘</span></span>
           </button>
 
@@ -41,7 +41,7 @@ import c from "../content.json";
           </a>
         </div>
         <div class="cta__email">
-          <span class="note note--ink">EMAIL</span>
+          <span class="note note--ink cta__email-label">EMAIL</span>
           <a class="link cta__email-link" href="mailto:phobosanderos@gmail.com">phobosanderos@gmail.com</a>
         </div>
       </div>
@@ -128,13 +128,13 @@ import c from "../content.json";
             <p class="fg-field-error note" id="brief-budget-error" hidden></p>
           </div>
 
-          <div class="fld fld-wide">
+          <div class="fld fld-wide fg-message">
             <label class="note" for="brief-message">{c.contact.span_17}</label>
             <textarea
             id="brief-message"
               name="message"
               aria-describedby="brief-message-error"
-            rows="4"
+            rows="6"
             required
             
             ></textarea>
