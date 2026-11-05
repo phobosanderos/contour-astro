@@ -1,5 +1,30 @@
 [
   {
+  "slug": "caleb-alvarez-reel",
+  "title": "Caleb Alvarez reel",
+  "categories": "Motion",
+  "media": [
+    {
+      "type": "video",
+      "src": "/img/work/archive/singles/Caleb Alvarez reel.webm",
+      "alt": "Caleb Alvarez reel"
+    }
+  ]
+},
+{
+  "slug": "in-another-life",
+  "title": "In another life",
+  "categories": "Motion",
+  "description": "Short audio/lyric visualiser for \"Swim Good\" by Frank Ocean.",
+  "media": [
+    {
+      "type": "video",
+      "src": "/img/work/archive/singles/In another life.webm",
+      "alt": "In another life audio and lyric visualiser"
+    }
+  ]
+},
+  {
     "slug": "bite-me-savor-me",
     "title": "BITE ME/SAVOR ME",
     "categories": [
