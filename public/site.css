@@ -2904,7 +2904,7 @@ html.has-cursor dialog.info-dialog a {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 1rem var(--col-gap);
   }
-  #contact .fg-fields > .fld:nth-child(n) {
+  #contact .fg-fields > .fld:nth-child(-n+4) {
     grid-column: auto;
     grid-row: auto;
   }
@@ -2917,7 +2917,7 @@ html.has-cursor dialog.info-dialog a {
 }
 @media (max-width: 767px) {
   #contact .fg-fields { grid-template-columns: minmax(0, 1fr); }
-  #contact .fg-fields > .fld:nth-child(n),
+  #contact .fg-fields > .fld:nth-child(-n+4),
   #contact .fg-fields > .fg-message,
   #contact .fg-fields > .fg-row {
     grid-column: 1;
