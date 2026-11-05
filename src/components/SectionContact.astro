@@ -12,7 +12,7 @@ import c from "../content.json";
   <div class="cta__intro grid-12">
     <div class="cta__intro-copy">
       <h2 class="display cta__title" id="c-h">
-      Tell me what<br />we'll be making.
+      Tell me what<br />you want to make.
       </h2>
 
       <div class="cta__actions">
@@ -31,18 +31,18 @@ import c from "../content.json";
 
         <a
           class="btn btn--ghost"
-          href="mailto:phobosanderos@gmail.com"
+          href="https://cal.com/phobosanderos"
+          target="_blank"
+          rel="noopener noreferrer"
         >
-          Or write to phobosanderos@gmail.com
+          Book a call
         </a>
       </div>
     </div>
 
-    <div class="cta__sphere" aria-hidden="true">
-      <canvas
-        class="particle-sphere"
-        data-particle-sphere
-      ></canvas>
+    <div class="cta__email">
+      <span class="note note--ink">EMAIL</span>
+      <a class="link cta__email-link" href="mailto:phobosanderos@gmail.com">phobosanderos@gmail.com</a>
     </div>
   </div>
 
@@ -115,14 +115,14 @@ import c from "../content.json";
             <label class="note" for="brief-budget">{c.contact.span_11}</label>
             <select id="brief-budget"
               name="budget"
-              aria-describedby="brief-budget-error">
-              <option value="" selected disabled>
-                {c.contact.option_12}
-              </option>
-              <option>{c.contact.option_13}</option>
-              <option>{c.contact.option_14}</option>
-              <option>{c.contact.option_15}</option>
-              <option>{c.contact.option_16}</option>
+              aria-describedby="brief-budget-error"
+              required>
+              <option value="" disabled selected hidden>Select a range</option>
+              <option value={c.contact.option_12}>{c.contact.option_12}</option>
+              <option value={c.contact.option_13}>{c.contact.option_13}</option>
+              <option value={c.contact.option_14}>{c.contact.option_14}</option>
+              <option value={c.contact.option_15}>{c.contact.option_15}</option>
+              <option value={c.contact.option_16}>{c.contact.option_16}</option>
             </select>
             <p class="fg-field-error note" id="brief-budget-error" hidden></p>
           </div>
@@ -145,6 +145,7 @@ import c from "../content.json";
               <span data-label>{c.contact.span_18}</span>
               <span class="arrow" aria-hidden="true">↗</span>
             </button>
+            <p class="fg-consent note">Your details are used only to reply to your message. <a class="link link--inline" href="/privacy/">Privacy</a></p>
 
             <p
               class="fg-status"
@@ -172,44 +173,76 @@ import c from "../content.json";
       </form>
     </div>
 
-    <aside class="cta__booking">
-      <p class="cta__booking-title">
-        Have a project that needs to move?
-      </p>
-
-      <a
-        class="footer-cta-link"
-        href="https://cal.com/phobosanderos"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        <span>Book a call.</span>
-      </a>
-    </aside>
   </div>
 </section>
 
 <script>
-// Make the header's "Start a project" button reveal the page bottom.
-const startProjectButton = document.querySelector(".header-cta");
+// Keep homepage and cross-page #contact links clear of the fixed header.
+const contactAnchor = document.querySelector("#contact");
+const header = document.querySelector(".site-header");
+const contactToggle = document.querySelector("[data-brief-toggle]");
+const contactPanel = document.querySelector("#brief-panel");
 
-startProjectButton?.addEventListener("click", (event) => {
-  const footer = document.querySelector(".site-footer");
+function focusContactControl() {
+  const open = contactPanel && !contactPanel.hidden;
+  const destination = open
+    ? contactPanel.querySelector('input[name="name"]')
+    : contactToggle;
+  destination?.focus({ preventScroll: true });
+}
 
-  if (!footer) return;
-
-  event.preventDefault();
-
-  window.setTimeout(() => {
-    window.scrollTo({
-      top: document.documentElement.scrollHeight,
-      behavior: "smooth",
+function navigateToContact(updateHash = false) {
+  if (!contactAnchor) return;
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const offset = (header?.getBoundingClientRect().height || 72) + 12;
+  if (updateHash && location.hash !== "#contact") {
+    history.pushState(history.state, "", "#contact");
+  }
+  if (window.__lenis && !reduced) {
+    window.__lenis.scrollTo(contactAnchor, {
+      offset: -offset,
+      duration: .9,
+      onComplete: focusContactControl
     });
-  }, 50);
+    return;
+  }
+  const top = Math.max(0, contactAnchor.getBoundingClientRect().top + scrollY - offset);
+  if (reduced) {
+    window.scrollTo({ top, behavior: "instant" });
+    focusContactControl();
+    return;
+  }
+  let finished = false;
+  const finish = () => {
+    if (finished) return;
+    finished = true;
+    window.removeEventListener("scrollend", finish);
+    focusContactControl();
+  };
+  window.addEventListener("scrollend", finish, { once: true });
+  window.scrollTo({ top, behavior: "smooth" });
+  setTimeout(finish, 1200);
+}
+
+// Capture before the shared smooth-scroll listener to avoid competing scrolls.
+window.addEventListener("click", (event) => {
+  const link = event.target instanceof Element
+    ? event.target.closest('a[href="#contact"], a[href="/#contact"]')
+    : null;
+  if (!link || event.defaultPrevented || event.button !== 0 ||
+      event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+  event.preventDefault();
+  event.stopPropagation();
+  navigateToContact(true);
+}, true);
+
+window.addEventListener("hashchange", () => {
+  if (location.hash === "#contact") navigateToContact();
 });
-  
-  
-  
+window.addEventListener("load", () => {
+  if (location.hash === "#contact") requestAnimationFrame(() => navigateToContact());
+});
+
   // Brief disclosure: keep the viewport anchored while the form expands
   const contactSection = document.querySelector(".cta");
   const briefToggle = document.querySelector("[data-brief-toggle]");
@@ -335,293 +368,4 @@ startProjectButton?.addEventListener("click", (event) => {
     });
   }
 
-  // Native canvas recreation of the interactive particle sphere.
-  const sphereCanvas = document.querySelector("[data-particle-sphere]");
-
-  if (sphereCanvas instanceof HTMLCanvasElement) {
-    const canvas = sphereCanvas;
-    const ctx = canvas.getContext("2d");
-
-    if (ctx) {
-      const reducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      );
-
-      const PARTICLE_COUNT = 4200;
-      const points = [];
-
-      // Fibonacci sphere distribution gives the dots an even spread.
-      const goldenAngle = Math.PI * (3 - Math.sqrt(5));
-
-      for (let i = 0; i < PARTICLE_COUNT; i++) {
-        const y = 1 - (i / (PARTICLE_COUNT - 1)) * 2;
-        const radius = Math.sqrt(Math.max(0, 1 - y * y));
-        const angle = goldenAngle * i;
-
-        points.push({
-          x: Math.cos(angle) * radius,
-          y,
-          z: Math.sin(angle) * radius,
-        });
-      }
-
-      let width = 0;
-      let height = 0;
-      let dpr = 1;
-      let frameId = 0;
-      let lastTime = 0;
-      let rotationY = 0.25;
-      let rotationX = -0.08;
-      let dragVelocityX = 0;
-      let dragVelocityY = 0;
-      let isDragging = false;
-      let isVisible = true;
-      let pointerX = -10000;
-      let pointerY = -10000;
-      let previousPointerX = 0;
-      let previousPointerY = 0;
-
-      const ROTATION_SPEED = .00012, DRAG_SPEED = .005, SMOOTHING = .94;
-
-      function resizeSphere() {
-        const rect = canvas.getBoundingClientRect();
-
-        width = Math.max(1, rect.width);
-        height = Math.max(1, rect.height);
-        dpr = Math.min(window.devicePixelRatio || 1, 1.5);
-
-        canvas.width = Math.round(width * dpr);
-        canvas.height = Math.round(height * dpr);
-
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-        drawSphere(0);
-      }
-
-      function drawSphere(deltaTime) {
-        if (!ctx || !width || !height) return;
-
-        ctx.clearRect(0, 0, width, height);
-
-        // Position of sphere
-        const centerX = width * 0.5;
-        const centerY = height * 0.5;
-        const radius = Math.min(height * 0.78, width * 0.78);
-
-        if (!reducedMotion.matches && !isDragging) {
-          rotationY += ROTATION_SPEED * deltaTime;
-          rotationY += dragVelocityX;
-          rotationX += dragVelocityY;
-
-          dragVelocityX *= SMOOTHING;
-          dragVelocityY *= SMOOTHING;
-        }
-
-        const cosY = Math.cos(rotationY);
-        const sinY = Math.sin(rotationY);
-        const cosX = Math.cos(rotationX);
-        const sinX = Math.sin(rotationX);
-        const projected = [];
-
-        for (const point of points) {
-          // Rotate around the vertical axis.
-          const x1 = point.x * cosY - point.z * sinY;
-          const z1 = point.x * sinY + point.z * cosY;
-
-          // Rotate around the horizontal axis.
-          const y2 = point.y * cosX - z1 * sinX;
-          const z2 = point.y * sinX + z1 * cosX;
-
-          const perspective = 1 / (2.35 - z2 * 0.7);
-
-          let x = centerX + x1 * radius * perspective;
-          let y = centerY + y2 * radius * perspective;
-
-          
-          // A soft cursor repulsion makes nearby particles react.
-          const dx = x - pointerX;
-          const dy = y - pointerY;
-          const distanceSquared = dx * dx + dy * dy;
-          const influenceRadius = 100;
-
-          if (
-            distanceSquared > 0 &&
-            distanceSquared < influenceRadius * influenceRadius
-          ) {
-            const distance = Math.sqrt(distanceSquared);
-            const falloff = Math.pow(1 - distance / influenceRadius, 2);
-            const force = falloff * 10;
-
-            // Gently push nearby particles away from the cursor.
-            x += (dx / distance) * force;
-            y += (dy / distance) * force;
-
-            // Gently spread affected particles near the outer edge.
-            const edgeX = x - centerX;
-            const edgeY = y - centerY;
-            const edgeDistance = Math.sqrt(edgeX * edgeX + edgeY * edgeY);
-
-            if (edgeDistance > radius * 0.65) {
-              const edgeForce = falloff * 2;
-              x += (edgeX / Math.max(edgeDistance, 1)) * edgeForce;
-              y += (edgeY / Math.max(edgeDistance, 1)) * edgeForce;
-            }
-          }
-
-          // Save each particle for drawing.
-          projected.push({
-            x,
-            y,
-            z: z2,
-            size: Math.max(0.25, (z2 + 1.25) * 0.42),
-            alpha: Math.max(0.2, Math.min(0.95, 0.48 + z2 * 0.38)),
-          });
-        }
-
-        // Draw rear particles first and front particles last.
-        projected.sort((a, b) => a.z - b.z);
-
-        const particleColor =
-          getComputedStyle(document.documentElement)
-            .getPropertyValue("--ink")
-            .trim() || "#0e0e0d";
-
-        for (const p of projected) {
-          ctx.globalAlpha = p.alpha;
-          ctx.fillStyle = particleColor;
-          ctx.beginPath();
-          ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-          ctx.fill();
-        }
-
-        ctx.globalAlpha = 1;
-      }
-
-      function animate(now) {
-        frameId = 0;
-
-        if (!isVisible || document.hidden) return;
-
-        const deltaTime = lastTime
-          ? Math.min(now - lastTime, 40)
-          : 16;
-
-        lastTime = now;
-
-        drawSphere(deltaTime);
-
-        if (!reducedMotion.matches || isDragging) {
-          frameId = requestAnimationFrame(animate);
-        }
-      }
-
-      function startAnimation() {
-        if (!frameId && isVisible && !document.hidden) {
-          lastTime = 0;
-          frameId = requestAnimationFrame(animate);
-        }
-      }
-
-      function stopAnimation() {
-        if (frameId) {
-          cancelAnimationFrame(frameId);
-          frameId = 0;
-        }
-      }
-
-      function getCanvasPointer(event) {
-        const rect = canvas.getBoundingClientRect();
-
-        return {
-          x: event.clientX - rect.left,
-          y: event.clientY - rect.top,
-        };
-      }
-
-      canvas.addEventListener("pointerdown", (event) => {
-        isDragging = true;
-
-        const point = getCanvasPointer(event);
-        previousPointerX = point.x;
-        previousPointerY = point.y;
-
-        canvas.setPointerCapture?.(event.pointerId);
-      });
-
-      canvas.addEventListener("pointermove", (event) => {
-        const point = getCanvasPointer(event);
-
-        pointerX = point.x;
-        pointerY = point.y;
-
-        if (isDragging) {
-          const dx = point.x - previousPointerX;
-          const dy = point.y - previousPointerY;
-
-          dragVelocityX = dx * DRAG_SPEED;
-          dragVelocityY = dy * DRAG_SPEED;
-
-          rotationY += dx * DRAG_SPEED;
-          rotationX += dy * DRAG_SPEED;
-
-          previousPointerX = point.x;
-          previousPointerY = point.y;
-        }
-
-        startAnimation();
-      });
-
-      function releaseDrag() {
-        isDragging = false;
-        startAnimation();
-      }
-
-      canvas.addEventListener("pointerup", releaseDrag);
-      canvas.addEventListener("pointercancel", releaseDrag);
-
-      canvas.addEventListener("pointerleave", () => {
-        if (!isDragging) {
-          pointerX = -10000;
-          pointerY = -10000;
-        }
-      });
-
-      const resizeObserver = new ResizeObserver(resizeSphere);
-      resizeObserver.observe(canvas);
-
-      const visibilityObserver = new IntersectionObserver(([entry]) => {
-        isVisible = entry.isIntersecting;
-
-        if (isVisible) {
-          startAnimation();
-        } else {
-          stopAnimation();
-        }
-      });
-
-      visibilityObserver.observe(canvas);
-
-      document.addEventListener("visibilitychange", () => {
-        if (document.hidden) {
-          stopAnimation();
-        } else {
-          startAnimation();
-        }
-      });
-
-      reducedMotion.addEventListener?.("change", () => {
-        stopAnimation();
-        drawSphere(0);
-
-        if (!reducedMotion.matches) {
-          startAnimation();
-        }
-      });
-
-      resizeSphere();
-
-      if (!reducedMotion.matches) {
-        startAnimation();
-      }
-    }
-  }
 </script>
