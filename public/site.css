@@ -1671,14 +1671,6 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   display: none;
 }
 
-.fg.is-sent .fg-fields {
-  display: none;
-}
-
-.fg.is-sent .fg-sent {
-  display: block;
-}
-
 .fg-sent-h {
   margin-bottom: 1rem;
 }
@@ -2862,6 +2854,80 @@ html.has-cursor dialog.info-dialog a {
     grid-column: 1;
     grid-row: auto;
   }
+}
+
+/* Always-visible brief and compact Web3Forms confirmation dialog. */
+#contact .cta__intro {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+}
+#contact .cta__expanded {
+  grid-column: 1 / -1;
+  grid-row: 2;
+}
+#contact .fg-row {
+  gap: var(--col-gap);
+}
+#contact .fg-row .fg-or {
+  flex: 0 0 auto;
+  color: var(--muted);
+}
+#contact .fg-row .fg-mail {
+  flex: 0 0 auto;
+  width: auto;
+  min-width: max-content;
+}
+#contact .fld select,
+#contact .fld select option {
+  font-family: var(--font-sans);
+  font-size: var(--step-1);
+  font-weight: 400;
+  letter-spacing: -.015em;
+  line-height: 1.4;
+  text-transform: none;
+}
+#contact .fg-sent {
+  box-sizing: border-box;
+  width: min(38rem, calc(100% - 2rem));
+  max-width: 38rem;
+  max-height: calc(100dvh - 2rem);
+  margin: auto;
+  padding: clamp(1.5rem, 3vw, 2.5rem);
+  border: 1px solid var(--line-strong);
+  border-radius: 0;
+  background: var(--bg);
+  color: var(--ink);
+  overflow: auto;
+}
+#contact .fg-sent[open] { display: block; }
+#contact .fg-sent::backdrop {
+  background: color-mix(in oklab, var(--ink) 65%, transparent);
+}
+#contact .fg-sent-close {
+  position: absolute;
+  top: .75rem;
+  right: .75rem;
+}
+#contact .fg-sent-h {
+  margin: 2.5rem 0 clamp(1.5rem, 3vw, 2.5rem);
+  font-size: var(--step-1);
+  line-height: 1.35;
+}
+#contact .fg-sent-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+#contact .fg-sent-actions .cta__button {
+  width: auto;
+}
+html.has-cursor #contact .fg-sent,
+html.has-cursor #contact .fg-sent * {
+  cursor: auto !important;
+}
+html.has-cursor #contact .fg-sent button {
+  cursor: pointer !important;
+}
+@media (max-width: 767px) {
+  #contact .fg-row .fg-mail { max-width: 100%; }
 }
 
 /* Remove the gap between the final service and the Next strip */
