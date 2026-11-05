@@ -193,6 +193,11 @@ html[data-preloaded="true"] .preloader{
   visibility:hidden;
 }
 
+/* No-JS visitors must never be covered by the loader. */
+html:not(.js) body:has(#work) .preloader{
+  display:none;
+}
+
 .preloader__inner{
   position:fixed;
   right:24px;
@@ -363,277 +368,6 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
 .cursor.is-hover .cursor__label{top:-6px;left:30px;color:var(--accent-text)}
 
 
-/* hero */
-[data-hero] {
-  position: relative;
-  isolation: isolate;
-}
-
-.hero {
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  gap: 1.5rem;
-  min-height: 100svh;
-  padding-top: 4.5rem;
-  padding-bottom: 2rem;
-}
-
-.hero__top {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
-  padding-top: 0.5rem;
-  border-top: none;
-}
-
-/* Main headline and supporting copy */
-.hero__copy {
-  align-self: end;
-  position: relative;
-  z-index: 1;
-  padding-bottom: clamp(1rem, 3vh, 2.5rem);
-  transform: translateY(1.5rem);
-}
-
-.hero__title {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: clamp(1.25rem, 3vw, 3rem);
-  margin: 0;
-  font-weight: 500;
-}
-
-.hero__human {
-  display: block;
-  margin-left: -0.02em;
-  transform: translateY(0.5rem);
-  color: var(--ink);
-  font-family: "Instrument Serif", serif;
-  font-style: italic;
-  font-weight: 400;
-  -webkit-text-stroke: 0 var(--ink);
-  font-size: var(--step-5);
-  letter-spacing: -0.035em;
-  line-height: 0.95;
-}
-
- {
-  display: block;
-  max-width: none;
-  color: var(--ink);
-  font-size: clamp(2.5rem, 6.5vw, 7rem);
-  letter-spacing: -0.05em;
-  line-height: 0.95;
-}
-
-.hero__intro {
-  transform: translateY(0);
-  margin-top: 1rem;
-  position: relative;
-  z-index: 2;
-}
-
-/* Keep the existing intro animation hook */
-html.js:not(.motion-ready) :is(
-  [data-hero-generate],
-  [data-hero-human],
-  [data-hero-fade]
-) {
-  visibility: hidden;
-}
-
-/* Three discipline labels */
-.hero__notes {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1rem 2rem;
-  align-self: end;
-  border-top: 1px solid var(--line);
-  padding-top: 1rem;
-}
-
-.hero__note {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 0.4rem;
-  margin: 0;
-  min-width: 0;
-}
-
-.hero__note:nth-child(1) {
-  align-items: flex-start;
-  text-align: left;
-}
-
-.hero__note:nth-child(2) {
-  align-items: center;
-  text-align: center;
-}
-
-.hero__note:nth-child(3) {
-  align-items: flex-end;
-  text-align: right;
-}
-.hero__label {
-  color: var(--ink);
-  font-family: var(--font-mono);
-  font-size: clamp(0.85rem, 1.1vw, 1.05rem);
-  font-weight: 500;
-  line-height: 1.4;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-.hero__symbol {
-  display: inline-block;
-  margin-right: 0.45rem;
-  font-family: var(--font-sans);
-  font-size: 0.9em;
-  line-height: 1;
-  vertical-align: baseline;
-}
-.hero__label-desc {
-  color: var(--muted);
-  font-family: var(--font-mono);
-  font-size: clamp(0.75rem, 0.9vw, 0.9rem);
-  line-height: 1.5;
-  letter-spacing: 0.01em;
-  text-transform: none;
-}
-
-.hero__terrain {
-  display: flex;
-}
-
-.hero-gl {
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  opacity: 0;
-  transition: opacity 2s var(--ease-out);
-}
-
-.hero-gl.is-on {
-  opacity: 1;
-}
-
-.bp {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.bp__box {
-  position: absolute;
-  outline: 1px dashed color-mix(in oklab, var(--accent) 70%, transparent);
-  outline-offset: 4px;
-  background: color-mix(in oklab, var(--accent) 4%, transparent);
-}
-
-.bp__box::before,
-.bp__box::after {
-  content: "";
-  position: absolute;
-  width: 9px;
-  height: 9px;
-  border: solid var(--accent-text);
-}
-
-.bp__box::before {
-  border-width: 1px 0 0 1px;
-  top: -8px;
-  left: -8px;
-}
-
-.bp__box::after {
-  border-width: 0 1px 1px 0;
-  bottom: -8px;
-  right: -8px;
-}
-
-.bp__label {
-  position: absolute;
-  bottom: calc(100% + 8px);
-  left: -4px;
-  white-space: nowrap;
-  color: var(--accent-text);
-  font-size: 0.65rem;
-}
-
-.bp__guide {
-  position: absolute;
-  background: color-mix(in oklab, var(--accent) 45%, transparent);
-}
-
-.bp__guide--h {
-  left: 0;
-  right: 0;
-  height: 1px;
-  transform-origin: 0;
-}
-
-.bp__guide--v {
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  transform-origin: top;
-}
-
-@media (max-width: 767px) {
-  .hide-sm {
-    display: none;
-  }
-
-  .hero {
-    min-height: 100svh;
-    padding-top: 4.25rem;
-    padding-bottom: 1.5rem;
-    gap: 1rem;
-  }
-
-  .hero__copy {
-    padding-bottom: 0;
-  }
-
-  .hero__human {
-    font-size: clamp(3.5rem, 13vw, 6rem);
-  }
-
-  .hero__machine {
-    font-size: clamp(3.5rem, 8vw, 8rem);
-    transform: translateY(-0.7rem);
-  }
-  .hero__intro {
-  max-width: 34ch;
-  margin: 1.25rem 0 0;
-  color: var(--muted);
-  font-size: clamp(1rem, 1.25vw, 1.2rem);
-  transform: translateY(-1.5rem);
-  line-height: 1.5;
-}
-  .hero__notes {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 0.75rem;
-    padding-top: 0.85rem;
-  }
-
-  .hero__label {
-    font-size: 0.62rem;
-  }
-
-  .hero__label-desc {
-    font-size: 0.58rem;
-    overflow-wrap: anywhere;
-  }
-}
-
-
 /* manifesto */
 .wf{font:inherit;letter-spacing:inherit}
 .wf-row{display:block;position:relative}
@@ -650,6 +384,11 @@ html.js:not(.motion-ready) :is(
 /* ---------------------------------------------------------
    WORK · FEATURED PROJECTS
    --------------------------------------------------------- */
+
+/* The homepage Work section begins directly below the fixed header. */
+#main > .work:first-child{
+  padding-top:calc(4.5rem + clamp(1rem,2.5vw,2rem));
+}
 
 .work__head{
   margin-bottom:clamp(2.5rem,5vw,4.5rem);
@@ -2257,13 +1996,6 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
     align-items: flex-start;
   }
 }
-
-/* Restore the size of "made visible." */
-.hero__machine {
-  font-size: clamp(2.5rem, 6.5vw, 7rem) !important;
-  transform: translateY(-0.7rem);
-}
-
 
 /* Contact section — spacing, sizing and alignment refinements */
 
