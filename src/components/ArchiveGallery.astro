@@ -37,7 +37,9 @@ const imageFor = (item) => item.thumbnail || (first(item)?.type === "image" ? fi
           )}
         </div>
         <div class="archive-gallery__meta">
-          <span class="archive-gallery__title">{item.title}</span>
+          <span class="archive-gallery__title note">
+          {item.title}
+          </span>
           {item.media?.length > 1 && (
             <span class="archive-gallery__count note">{String(item.media.length).padStart(2, "0")} ITEMS</span>
           )}
