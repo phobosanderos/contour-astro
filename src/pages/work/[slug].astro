@@ -356,6 +356,7 @@ const showcaseFilters = [
     let lastTrigger = null;
     let activeItems = [];
     let activeItemIndex = 0;
+    let touchStart = null;
 
 
     /* ---------------------------------------------
@@ -916,6 +917,28 @@ function preloadNearbyItems() {
 
 
     /* ---------------------------------------------
+       TOUCH NAVIGATION
+       --------------------------------------------- */
+    lightboxMedia.addEventListener("touchstart", (event) => {
+      if (!lightbox.open || event.touches.length !== 1) return;
+      touchStart = {
+        x: event.touches[0].clientX,
+        y: event.touches[0].clientY
+      };
+    }, { passive: true });
+
+    lightboxMedia.addEventListener("touchend", (event) => {
+      if (!lightbox.open || !touchStart || !event.changedTouches.length) return;
+      const dx = event.changedTouches[0].clientX - touchStart.x;
+      const dy = event.changedTouches[0].clientY - touchStart.y;
+      touchStart = null;
+      if (Math.abs(dx) < 55 || Math.abs(dx) < Math.abs(dy) * 1.3) return;
+      if (dx < 0) nextItem();
+      if (dx > 0) previousItem();
+    }, { passive: true });
+
+
+    /* ---------------------------------------------
        WHEEL
        --------------------------------------------- */
 
@@ -970,6 +993,7 @@ function preloadNearbyItems() {
 
         activeItems = [];
         activeItemIndex = 0;
+        touchStart = null;
 
         if (window.__lenis) {
           window.__lenis.start();
