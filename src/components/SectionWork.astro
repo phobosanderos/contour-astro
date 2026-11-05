@@ -3,16 +3,6 @@ import work from "../content/work.json";
 import ArchiveGallery from "./ArchiveGallery.astro";
 
 const featured = work.featured;
-const archive = work.archive || [];
-
-const archiveFilters = [
-  "all",
-  "visuals",
-  "motion",
-  "campaigns",
-  "identity"
-];
-
 const stripYear = (title = "") => {
   const parts = title.trim().split(" ");
   const lastPart = parts[parts.length - 1];

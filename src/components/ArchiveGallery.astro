@@ -1,32 +1,47 @@
 ---
-import archive from "../content/archive.json";
-const filters = ["all", "visuals", "motion", "campaigns", "identity"];
-const first = (item) => item.media?.[0];
-const imageFor = (item) => item.thumbnail || (first(item)?.type === "image" ? first(item)?.src : null);
+import archiveData from "../content/archive.json";
+import { imageDimensions } from "../lib/archive-image-dimensions";
+
+const filters = ["all", "design", "motion", "illustration"];
+const tags = ["all", "personal", "client"];
+// Editorial flags stay in JSON but are excluded from client-side data.
+const archive = archiveData.map(({needsReview, ...entry}) => ({
+  ...entry,
+  items: entry.items.map(item => ({...item, ...imageDimensions(item.type === "image" ? item.src : item.poster)})),
+  coverDimensions: imageDimensions(entry.cover || entry.items.find(item => item.type === "image")?.src),
+}));
+const first = item => item.items[0];
+const imageFor = item => item.cover || (first(item)?.type === "image" ? first(item).src : null);
 ---
 <div class="work__archive" id="archive">
   <header class="section-head work__archive-head">
     <span class="note note--ink">THE ARCHIVE</span>
-    <span class="note">{String(archive.length).padStart(2, "0")} works</span>
+    <span class="note">{String(archive.length).padStart(2, "0")} projects</span>
   </header>
 
-  <div class="archive-filters" aria-label="Filter archive">
-    {filters.map((filter, i) => (
-      <button type="button" class={`archive-filter note${i === 0 ? " is-active" : ""}`}
-        data-archive-filter={filter} aria-pressed={i === 0 ? "true" : "false"}>
-        {filter}
-      </button>
-    ))}
+  <div class="archive-filters" aria-label="Archive filters">
+    <div class="archive-filter-group" role="group" aria-label="Discipline">
+      {filters.map((filter, i) => (
+        <button type="button" class={`archive-filter note${i === 0 ? " is-active" : ""}`}
+          data-archive-filter={filter} aria-pressed={i === 0 ? "true" : "false"}>{filter}</button>
+      ))}
+    </div>
+    <div class="archive-filter-group" role="group" aria-label="Project type">
+      {tags.map((tag, i) => (
+        <button type="button" class={`archive-filter note${i === 0 ? " is-active" : ""}`}
+          data-archive-tag={tag} aria-pressed={i === 0 ? "true" : "false"}>{tag}</button>
+      ))}
+    </div>
   </div>
 
   <div class="archive-gallery__grid">
     {archive.map((item, i) => (
       <button class="archive-gallery__card" type="button"
-        data-archive-index={i} data-archive-categories={item.categories.join("|").toLowerCase()}
+        data-archive-index={i} data-archive-category={item.category} data-archive-project-tag={item.tag}
         data-cursor="view" aria-label={`Open ${item.title}`}>
         <div class="archive-gallery__visual">
           {imageFor(item) ? (
-            <img src={imageFor(item)} alt={first(item)?.alt || item.title}
+            <img src={imageFor(item)} alt={item.alt} width={item.coverDimensions.width} height={item.coverDimensions.height}
               loading="lazy" decoding="async" />
           ) : (
             <video
@@ -44,10 +59,10 @@ const imageFor = (item) => item.thumbnail || (first(item)?.type === "image" ? fi
         </div>
         <div class="archive-gallery__meta">
           <span class="archive-gallery__title note">
-          {item.title}
+          {item.slug === "dont-be-different" ? <><s>{"Don\u0027t"}</s> be different</> : item.title}
           </span>
-          {item.media?.length > 1 && (
-            <span class="archive-gallery__count note">{String(item.media.length).padStart(2, "0")} ITEMS</span>
+          {item.items.length > 1 && (
+            <span class="archive-gallery__count note">{String(item.items.length).padStart(2, "0")} ITEMS</span>
           )}
         </div>
       </button>
@@ -101,7 +116,7 @@ const imageFor = (item) => item.thumbnail || (first(item)?.type === "image" ? fi
   let nextImage = null;
 
   function preloadNextImage() {
-    const next = archive[entryIndex]?.media?.[itemIndex + 1];
+    const next = archive[entryIndex]?.items?.[itemIndex + 1];
     nextImage = null;
     if (next?.type !== 'image' || !next.src) return;
     nextImage = new Image();
@@ -110,20 +125,29 @@ const imageFor = (item) => item.thumbnail || (first(item)?.type === "image" ? fi
   }
 
 
-  $$("[data-archive-filter]").forEach(button => {
-    button.addEventListener('click', () => {
-      const filter = button.dataset.archiveFilter;
-      $$("[data-archive-filter]").forEach(b => {
-        const active = b === button;
-        b.classList.toggle('is-active', active);
-        b.setAttribute('aria-pressed', String(active));
-      });
-      $$("[data-archive-index]").forEach(card => {
-        card.hidden = filter !== 'all' &&
-          !(card.dataset.archiveCategories || '').split('|').includes(filter);
-      });
+  let activePillar = "all";
+  let activeTag = "all";
+  function applyFilters() {
+    $$("[data-archive-index]").forEach(card => {
+      card.hidden = (activePillar !== "all" && card.dataset.archiveCategory !== activePillar) ||
+        (activeTag !== "all" && card.dataset.archiveProjectTag !== activeTag);
     });
-  });
+  }
+  for (const [selector, update] of [
+    ["[data-archive-filter]", value => { activePillar = value; }],
+    ["[data-archive-tag]", value => { activeTag = value; }]
+  ]) {
+    $$(selector).forEach(button => button.addEventListener("click", () => {
+      const value = button.dataset.archiveFilter ?? button.dataset.archiveTag;
+      update(value);
+      $$(selector).forEach(other => {
+        const on = other === button;
+        other.classList.toggle("is-active", on);
+        other.setAttribute("aria-pressed", String(on));
+      });
+      applyFilters();
+    }));
+  }
 
   const thumbnailVideos = $$(
   "[data-archive-thumbnail]"
@@ -182,16 +206,20 @@ thumbnailVideos.forEach((video) => {
       asset.playsInline = true;
       asset.preload = 'metadata';
       if (item.poster) asset.poster = item.poster;
-    } else { asset.alt = item.alt || ''; }
+    } else {
+      asset.alt = item.alt;
+      if (item.width && item.height) { asset.width = item.width; asset.height = item.height; }
+      asset.decoding = 'async';
+    }
     return asset;
   }
 
   function render() {
     const entry = archive[entryIndex];
-    const item = entry?.media?.[itemIndex];
+    const item = entry?.items?.[itemIndex];
     if (!item) return;
     const ticket = ++sequence;
-    const count = entry.media.length;
+    const count = entry.items.length;
     navEl.hidden = count <= 1;
     prevEl.hidden = itemIndex === 0;
     nextEl.hidden = itemIndex === count - 1;
@@ -248,7 +276,7 @@ requestAnimationFrame(() => {
 
   function writeDescription(entry) {
     descEl.replaceChildren();
-    const description = entry.description || '';
+    const description = entry.notes || '';
     if (!description) { infoEl.hidden = true; return; }
     infoEl.hidden = false;
     const link = entry.link;
@@ -272,9 +300,14 @@ requestAnimationFrame(() => {
   function open(index, trigger) {
     entryIndex = index; itemIndex = 0; lastTrigger = trigger;
     const entry = archive[index];
-    if (!entry?.media?.length) return;
+    if (!entry?.items?.length) return;
 
-    $('[data-archive-title]', dialog).textContent = entry.title;
+    const heading = $('[data-archive-title]', dialog);
+    heading.replaceChildren();
+    if (entry.slug === 'dont-be-different') {
+      const strike = document.createElement('s'); strike.textContent = "Don't";
+      heading.append(strike, document.createTextNode(' be different'));
+    } else heading.textContent = entry.title;
     writeDescription(entry);
     aboutEl.hidden = true;
     infoEl.setAttribute('aria-expanded', 'false');
@@ -286,7 +319,7 @@ requestAnimationFrame(() => {
   }
   $$("[data-archive-index]").forEach(card => card.addEventListener('click', () => open(Number(card.dataset.archiveIndex), card)));
   $('[data-archive-close]',dialog).addEventListener('click', () => dialog.close());
-  nextEl.addEventListener('click', () => { if (itemIndex < archive[entryIndex].media.length - 1) { itemIndex++; render(); } });
+  nextEl.addEventListener('click', () => { if (itemIndex < archive[entryIndex].items.length - 1) { itemIndex++; render(); } });
   prevEl.addEventListener('click', () => { if (itemIndex > 0) { itemIndex--; render(); } });
   function positionAbout() {
   if (aboutEl.hidden || !dialog.open) return;
@@ -372,7 +405,7 @@ window.addEventListener('resize', positionAbout);
   dialog.addEventListener('keydown', e => {
     if (!dialog.open) return;
     if (e.key === 'Escape') { e.preventDefault(); dialog.close(); return; }
-    if (e.key === 'ArrowRight' && itemIndex < archive[entryIndex].media.length - 1) { e.preventDefault(); itemIndex++; render(); }
+    if (e.key === 'ArrowRight' && itemIndex < archive[entryIndex].items.length - 1) { e.preventDefault(); itemIndex++; render(); }
     if (e.key === 'ArrowLeft' && itemIndex > 0) { e.preventDefault(); itemIndex--; render(); }
   });
 
@@ -387,7 +420,7 @@ window.addEventListener('resize', positionAbout);
     const dy = e.changedTouches[0].clientY - touchStart.y;
     touchStart = null;
     if (Math.abs(dx) < 55 || Math.abs(dx) < Math.abs(dy) * 1.3) return;
-    const count = archive[entryIndex]?.media?.length || 0;
+    const count = archive[entryIndex]?.items?.length || 0;
     if (dx < 0 && itemIndex < count - 1) { itemIndex++; render(); }
     if (dx > 0 && itemIndex > 0) { itemIndex--; render(); }
   }, { passive: true });

@@ -1,1066 +1,1272 @@
 [
   {
-  "slug": "caleb-alvarez-reel",
-  "title": "Caleb Alvarez reel",
-  "categories": ["Motion"],
-  "media": [
-    {
-      "type": "video",
-      "src": "/img/work/archive/singles/Caleb Alvarez reel.webm",
-      "alt": "Caleb Alvarez reel"
-    }
-  ]
-},
-{
-  "slug": "in-another-life",
-  "title": "In another life",
-  "categories": ["Motion"],
-  "description": "Short audio/lyric visualiser for \"Swim Good\" by Frank Ocean.",
-  "media": [
-    {
-      "type": "video",
-      "src": "/img/work/archive/singles/In another life.webm",
-      "alt": "In another life audio and lyric visualiser"
-    }
-  ]
-},
-  {
-    "slug": "bite-me-savor-me",
-    "title": "BITE ME/SAVOR ME",
-    "categories": [
-      "Visuals",
-      "Motion"
-    ],
-    "media": [
+    "id": "caleb-alvarez-reel",
+    "slug": "caleb-alvarez-reel",
+    "title": "Caleb Alvarez reel",
+    "category": "motion",
+    "type": "video",
+    "cover": null,
+    "items": [
       {
         "type": "video",
-        "src": "/img/work/archive/bite me-savor me/BITE ME SAVOR ME.webm",
-        "alt": "BITE ME SAVOR ME"
-      },
-      {
-        "type": "image",
-        "src": "/img/work/archive/bite me-savor me/BITE ME.webp",
-        "alt": "BITE ME"
-      },
-      {
-        "type": "image",
-        "src": "/img/work/archive/bite me-savor me/SAVOR ME.webp",
-        "alt": "SAVOR ME"
+        "src": "/img/work/archive/singles/caleb-alvarez-reel.webm",
+        "alt": "Caleb Alvarez reel motion work"
       }
     ],
-    "thumbnail": "/img/work/archive/bite me-savor me/BITE ME.webp"
+    "alt": "Caleb Alvarez reel motion work",
+    "tag": "personal",
+    "notes": "Motion reel associated with Caleb Alvarez. Confirm the subject, purpose, credit and whether this is client work.",
+    "needsReview": true
   },
   {
+    "id": "in-another-life",
+    "slug": "in-another-life",
+    "title": "In another life",
+    "category": "motion",
+    "type": "video",
+    "cover": null,
+    "items": [
+      {
+        "type": "video",
+        "src": "/img/work/archive/singles/in-another-life.webm",
+        "alt": "In another life motion work — Short audio/lyric visualiser for \"Swim Good\" by Frank Ocean."
+      }
+    ],
+    "alt": "In another life motion work — Short audio/lyric visualiser for \"Swim Good\" by Frank Ocean.",
+    "tag": "personal",
+    "notes": "Short audio/lyric visualiser for \"Swim Good\" by Frank Ocean.",
+    "needsReview": true
+  },
+  {
+    "id": "bite-me-savor-me",
+    "slug": "bite-me-savor-me",
+    "title": "Bite me / Savor me",
+    "category": "design",
+    "type": "series",
+    "cover": "/img/work/archive/bite-me-savor-me/bite-me.webp",
+    "items": [
+      {
+        "type": "video",
+        "src": "/img/work/archive/bite-me-savor-me/bite-me-savor-me.webm",
+        "alt": "Bite me / Savor me: bite me savor me animation"
+      },
+      {
+        "type": "image",
+        "src": "/img/work/archive/bite-me-savor-me/bite-me.webp",
+        "alt": "Bite me / Savor me: bite me visual"
+      },
+      {
+        "type": "image",
+        "src": "/img/work/archive/bite-me-savor-me/savor-me.webp",
+        "alt": "Bite me / Savor me: savor me visual"
+      }
+    ],
+    "alt": "Bite me / Savor me: bite me visual",
+    "tag": "personal",
+    "notes": "",
+    "needsReview": true
+  },
+  {
+    "id": "every-angel-is-terrifying",
     "slug": "every-angel-is-terrifying",
-    "title": "every angel is terrifying.",
-    "categories": [
-      "Visuals"
-    ],
-    "media": [
+    "title": "Every angel is terrifying",
+    "category": "illustration",
+    "type": "image",
+    "cover": "/img/work/archive/singles/angel.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/singles/Angel.webp",
-        "alt": "Angel"
+        "src": "/img/work/archive/singles/angel.webp",
+        "alt": "Illustration titled Every angel is terrifying"
       }
     ],
-    "description": "A photo-bash poster made entirely by using pictures of my hands/my tattoos"
+    "alt": "Illustration titled Every angel is terrifying",
+    "tag": "personal",
+    "notes": "A photo-bash poster made entirely by using pictures of my hands/my tattoos",
+    "needsReview": true
   },
   {
+    "id": "tooth-artisan",
     "slug": "tooth-artisan",
-    "title": "tooth artisan",
-    "categories": [
-      "Identity"
-    ],
-    "media": [
+    "title": "Tooth artisan",
+    "category": "design",
+    "type": "series",
+    "cover": "/img/work/archive/tooth-artisan/tooth-artisan.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/tooth artisan/tooth artisan.webp",
-        "alt": "tooth artisan"
+        "src": "/img/work/archive/tooth-artisan/tooth-artisan.webp",
+        "alt": "Tooth artisan: tooth artisan visual"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/tooth artisan/LOGO SHEET-01.webp",
-        "alt": "LOGO SHEET-01"
+        "src": "/img/work/archive/tooth-artisan/logo-sheet-01.webp",
+        "alt": "Tooth artisan logo design, logo sheet 01 variant"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/tooth artisan/LOGO SHEET-02.webp",
-        "alt": "LOGO SHEET-02"
+        "src": "/img/work/archive/tooth-artisan/logo-sheet-02.webp",
+        "alt": "Tooth artisan logo design, logo sheet 02 variant"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/tooth artisan/LOGO SHEET-03.webp",
-        "alt": "LOGO SHEET-03"
+        "src": "/img/work/archive/tooth-artisan/logo-sheet-03.webp",
+        "alt": "Tooth artisan logo design, logo sheet 03 variant"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/tooth artisan/LOGO SHEET-04.webp",
-        "alt": "LOGO SHEET-04"
+        "src": "/img/work/archive/tooth-artisan/logo-sheet-04.webp",
+        "alt": "Tooth artisan logo design, logo sheet 04 variant"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/tooth artisan/business card-01.webp",
-        "alt": "business card-01"
+        "src": "/img/work/archive/tooth-artisan/business-card-01.webp",
+        "alt": "Tooth artisan: business card 01 visual"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/tooth artisan/business card-02.webp",
-        "alt": "business card-02"
+        "src": "/img/work/archive/tooth-artisan/business-card-02.webp",
+        "alt": "Tooth artisan: business card 02 visual"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/tooth artisan/letterhead-01.webp",
-        "alt": "letterhead-01"
+        "src": "/img/work/archive/tooth-artisan/letterhead-01.webp",
+        "alt": "Tooth artisan: letterhead 01 visual"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/tooth artisan/envelope layout.webp",
-        "alt": "envelope layout"
+        "src": "/img/work/archive/tooth-artisan/envelope-layout.webp",
+        "alt": "Tooth artisan: envelope layout visual"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/tooth artisan/envelope-01.webp",
-        "alt": "envelope-01"
+        "src": "/img/work/archive/tooth-artisan/envelope-01.webp",
+        "alt": "Tooth artisan: envelope 01 visual"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/tooth artisan/envelope-03.webp",
-        "alt": "envelope-03"
+        "src": "/img/work/archive/tooth-artisan/envelope-03.webp",
+        "alt": "Tooth artisan: envelope 03 visual"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/tooth artisan/mock up.webp",
-        "alt": "mock up"
+        "src": "/img/work/archive/tooth-artisan/mock-up.webp",
+        "alt": "Tooth artisan: mock up visual"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/tooth artisan/packaging 1.webp",
-        "alt": "packaging 1"
+        "src": "/img/work/archive/tooth-artisan/packaging-1.webp",
+        "alt": "Tooth artisan: packaging 1 visual"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/tooth artisan/packaging.webp",
-        "alt": "packaging"
+        "src": "/img/work/archive/tooth-artisan/packaging.webp",
+        "alt": "Tooth artisan: packaging visual"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/tooth artisan/ad mock up.webp",
-        "alt": "ad mock up"
+        "src": "/img/work/archive/tooth-artisan/ad-mock-up.webp",
+        "alt": "Tooth artisan: ad mock up visual"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/tooth artisan/ad2.webp",
-        "alt": "ad2"
+        "src": "/img/work/archive/tooth-artisan/ad2.webp",
+        "alt": "Tooth artisan: ad2 visual"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/tooth artisan/ad3.webp",
-        "alt": "ad3"
+        "src": "/img/work/archive/tooth-artisan/ad3.webp",
+        "alt": "Tooth artisan: ad3 visual"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/tooth artisan/launch ad.webp",
-        "alt": "launch ad"
+        "src": "/img/work/archive/tooth-artisan/launch-ad.webp",
+        "alt": "Tooth artisan: launch ad visual"
       }
     ],
-    "description": "A case study and full fledged campaign for branding, identity and advertisements leading up to initial stages of product launch."
+    "alt": "Tooth artisan: tooth artisan visual",
+    "tag": "client",
+    "notes": "A case study and full fledged campaign for branding, identity and advertisements leading up to initial stages of product launch.",
+    "needsReview": true
   },
   {
+    "id": "chainsaw-man",
     "slug": "chainsaw-man",
-    "title": "Chainsaw man",
-    "categories": [
-      "Visuals"
-    ],
-    "media": [
+    "title": "Chainsaw Man",
+    "category": "illustration",
+    "type": "image",
+    "cover": "/img/work/archive/singles/chainsaw-man.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/singles/Chainsaw man.webp",
-        "alt": "Chainsaw man"
+        "src": "/img/work/archive/singles/chainsaw-man.webp",
+        "alt": "Illustration titled Chainsaw Man"
       }
     ],
-    "description": "Fan illustration for the manga/anime \"Chainsaw man\"."
+    "alt": "Illustration titled Chainsaw Man",
+    "tag": "personal",
+    "notes": "Fan illustration for the manga/anime \"Chainsaw man\".",
+    "needsReview": true
   },
   {
+    "id": "nexora",
     "slug": "nexora",
-    "title": "nexora",
-    "categories": [
-      "Visuals",
-      "Campaigns"
-    ],
-    "media": [
+    "title": "Nexora",
+    "category": "design",
+    "type": "series",
+    "cover": "/img/work/archive/nexora/3rd-carousel-post-1.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/nexora/3rd carousel post-1.webp",
-        "alt": "3rd carousel post-1"
+        "src": "/img/work/archive/nexora/3rd-carousel-post-1.webp",
+        "alt": "Nexora series, 3rd carousel post 1"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/nexora/3rd carousel post-2.webp",
-        "alt": "3rd carousel post-2"
+        "src": "/img/work/archive/nexora/3rd-carousel-post-2.webp",
+        "alt": "Nexora series, 3rd carousel post 2"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/nexora/3rd carousel post-3.webp",
-        "alt": "3rd carousel post-3"
+        "src": "/img/work/archive/nexora/3rd-carousel-post-3.webp",
+        "alt": "Nexora series, 3rd carousel post 3"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/nexora/3rd carousel post-4.webp",
-        "alt": "3rd carousel post-4"
+        "src": "/img/work/archive/nexora/3rd-carousel-post-4.webp",
+        "alt": "Nexora series, 3rd carousel post 4"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/nexora/3rd carousel post-5.webp",
-        "alt": "3rd carousel post-5"
+        "src": "/img/work/archive/nexora/3rd-carousel-post-5.webp",
+        "alt": "Nexora series, 3rd carousel post 5"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/nexora/3rd carousel post-6.webp",
-        "alt": "3rd carousel post-6"
+        "src": "/img/work/archive/nexora/3rd-carousel-post-6.webp",
+        "alt": "Nexora series, 3rd carousel post 6"
       }
-    ]
+    ],
+    "alt": "Nexora series, 3rd carousel post 1",
+    "tag": "client",
+    "notes": "",
+    "needsReview": true
   },
   {
+    "id": "don-t-be-different",
     "slug": "don-t-be-different",
     "title": "Don't be different",
-    "categories": [
-      "Visuals",
-      "Motion"
-    ],
-    "media": [
+    "category": "design",
+    "type": "series",
+    "cover": "/img/work/archive/be-different/be-different-poster.webp",
+    "items": [
       {
         "type": "video",
-        "src": "/img/work/archive/be different/Be different.webm",
-        "alt": "Be different"
+        "src": "/img/work/archive/be-different/be-different.webm",
+        "alt": "Don't be different: be different animation"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/be different/Be different poster.webp",
-        "alt": "Be different poster"
+        "src": "/img/work/archive/be-different/be-different-poster.webp",
+        "alt": "Don't be different poster design, be different poster"
       }
     ],
-    "description": "Credits to @grant_rat for capturing this beautiful sighting in the first place that inspired me to make this motion visual.",
+    "alt": "Don't be different poster design, be different poster",
+    "tag": "personal",
+    "notes": "Credits to @grant_rat for capturing this beautiful sighting in the first place that inspired me to make this motion visual. Title should display Don't with a strikethrough; credit @grant_rat for the source sighting.",
     "link": {
       "text": "@grant_rat",
       "url": "https://www.instagram.com/grant_rat/"
     },
-    "thumbnail": "/img/work/archive/be different/Be different poster.webp"
+    "needsReview": true
   },
   {
+    "id": "a-quick-fix",
     "slug": "a-quick-fix",
     "title": "A quick fix",
-    "categories": [
-      "Visuals"
-    ],
-    "media": [
+    "category": "design",
+    "type": "image",
+    "cover": "/img/work/archive/singles/a-quick-fix.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/singles/A quick fix.webp",
-        "alt": "A quick fix"
+        "src": "/img/work/archive/singles/a-quick-fix.webp",
+        "alt": "A quick fix graphic design artwork — A personal take on the sensationalized media coverage during the mid 20th century framing "
       }
     ],
-    "description": "A personal take on the sensationalized media coverage during the mid 20th century framing the lobotomy as a \"miracle cure\"."
+    "alt": "A quick fix graphic design artwork — A personal take on the sensationalized media coverage during the mid 20th century framing ",
+    "tag": "personal",
+    "notes": "A personal take on the sensationalized media coverage during the mid 20th century framing the lobotomy as a \"miracle cure\".",
+    "needsReview": true
   },
   {
+    "id": "cognoo-logo",
     "slug": "cognoo-logo",
     "title": "COGNOO logo",
-    "categories": [
-      "Identity"
-    ],
-    "media": [
+    "category": "design",
+    "type": "series",
+    "cover": "/img/work/archive/cognoo/gradient-logo.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/cognoo/gradient logo.webp",
-        "alt": "gradient logo"
+        "src": "/img/work/archive/cognoo/gradient-logo.webp",
+        "alt": "COGNOO logo logo design, gradient logo variant"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/cognoo/gradient logo mark.webp",
-        "alt": "gradient logo mark"
+        "src": "/img/work/archive/cognoo/gradient-logo-mark.webp",
+        "alt": "COGNOO logo logo design, gradient logo mark variant"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/cognoo/one tone logo.webp",
-        "alt": "one tone logo"
+        "src": "/img/work/archive/cognoo/one-tone-logo.webp",
+        "alt": "COGNOO logo logo design, one tone logo variant"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/cognoo/one tone logo mark.webp",
-        "alt": "one tone logo mark"
+        "src": "/img/work/archive/cognoo/one-tone-logo-mark.webp",
+        "alt": "COGNOO logo logo design, one tone logo mark variant"
       }
     ],
-    "description": "A logo re-brand commission for a client that wanted it in a short turnover for user testing."
+    "alt": "COGNOO logo logo design, gradient logo variant",
+    "tag": "client",
+    "notes": "A logo re-brand commission for a client that wanted it in a short turnover for user testing.",
+    "needsReview": true
   },
   {
+    "id": "self-sabotage",
     "slug": "self-sabotage",
     "title": "Self-sabotage",
-    "categories": [
-      "Visuals"
-    ],
-    "media": [
+    "category": "illustration",
+    "type": "image",
+    "cover": "/img/work/archive/singles/self-sabotage.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/singles/Self-sabotage.webp",
-        "alt": "Self-sabotage"
+        "src": "/img/work/archive/singles/self-sabotage.webp",
+        "alt": "Illustration titled Self-sabotage"
       }
     ],
-    "description": "An indonesian pig inspired this."
+    "alt": "Illustration titled Self-sabotage",
+    "tag": "personal",
+    "notes": "An indonesian pig inspired this.",
+    "needsReview": true
   },
   {
+    "id": "tutorial-video",
     "slug": "tutorial-video",
     "title": "Tutorial video",
-    "categories": [
-      "Motion"
-    ],
-    "media": [
+    "category": "motion",
+    "type": "video",
+    "cover": null,
+    "items": [
       {
         "type": "video",
-        "src": "/img/work/archive/singles/Im watching you watching me.webm",
-        "alt": "Im watching you watching me"
+        "src": "/img/work/archive/singles/im-watching-you-watching-me.webm",
+        "alt": "Tutorial video motion work — How to draw realistic eyes in just 5 simple steps."
       }
     ],
-    "description": "How to draw realistic eyes in just 5 simple steps."
+    "alt": "Tutorial video motion work — How to draw realistic eyes in just 5 simple steps.",
+    "tag": "personal",
+    "notes": "How to draw realistic eyes in just 5 simple steps.",
+    "needsReview": true
   },
   {
+    "id": "revelation",
     "slug": "revelation",
-    "title": "revelation",
-    "categories": [
-      "Visuals",
-      "Motion"
-    ],
-    "media": [
+    "title": "Revelation",
+    "category": "motion",
+    "type": "series",
+    "cover": "/img/work/archive/revelation/clarity.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/revelation/Clarity.webp",
-        "alt": "Clarity"
+        "src": "/img/work/archive/revelation/clarity.webp",
+        "alt": "Revelation: clarity visual"
       },
       {
         "type": "video",
         "src": "/img/work/archive/revelation/anger.webm",
-        "alt": "anger"
+        "alt": "Revelation: anger animation"
       },
       {
         "type": "video",
         "src": "/img/work/archive/revelation/laziness.webm",
-        "alt": "laziness"
+        "alt": "Revelation: laziness animation"
       },
       {
         "type": "video",
         "src": "/img/work/archive/revelation/rejection.webm",
-        "alt": "rejection"
+        "alt": "Revelation: rejection animation"
       },
       {
         "type": "video",
         "src": "/img/work/archive/revelation/thoughts.webm",
-        "alt": "thoughts"
+        "alt": "Revelation: thoughts animation"
       },
       {
         "type": "video",
-        "src": "/img/work/archive/revelation/what are you grateful for.webm",
-        "alt": "what are you grateful for"
+        "src": "/img/work/archive/revelation/what-are-you-grateful-for.webm",
+        "alt": "Revelation: what are you grateful for animation"
       },
       {
         "type": "video",
-        "src": "/img/work/archive/revelation/you stopped settling.webm",
-        "alt": "you stopped settling"
+        "src": "/img/work/archive/revelation/you-stopped-settling.webm",
+        "alt": "Revelation: you stopped settling animation"
       },
       {
         "type": "video",
-        "src": "/img/work/archive/revelation/you're not behind.webm",
-        "alt": "you're not behind"
+        "src": "/img/work/archive/revelation/you-re-not-behind.webm",
+        "alt": "Revelation: you're not behind animation"
       }
     ],
-    "description": "An array of social media self-help/hope-core style videos for social media to attract a younger audience seeking for motivation and direction in digestable manner."
+    "alt": "Revelation: clarity visual",
+    "tag": "personal",
+    "notes": "An array of social media self-help/hope-core style videos for social media to attract a younger audience seeking for motivation and direction in digestable manner.",
+    "needsReview": true
   },
   {
+    "id": "silent-clowns",
     "slug": "silent-clowns",
-    "title": "silent clowns",
-    "categories": [
-      "Visuals"
-    ],
-    "media": [
+    "title": "Silent clowns",
+    "category": "illustration",
+    "type": "image",
+    "cover": "/img/work/archive/singles/silent-clowns.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/singles/silent clowns.webp",
-        "alt": "silent clowns"
+        "src": "/img/work/archive/singles/silent-clowns.webp",
+        "alt": "Illustration titled Silent clowns"
       }
     ],
-    "description": "Illustration commission."
+    "alt": "Illustration titled Silent clowns",
+    "tag": "personal",
+    "notes": "Illustration commission.",
+    "needsReview": true
   },
   {
+    "id": "turning-the-tide",
     "slug": "turning-the-tide",
-    "title": "turning the tide",
-    "categories": [
-      "Identity",
-      "Visuals"
-    ],
-    "media": [
+    "title": "Turning the tide",
+    "category": "design",
+    "type": "series",
+    "cover": "/img/work/archive/turning-the-tide/img-1836.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/turning the tide/IMG_1836.webp",
-        "alt": "IMG_1836"
+        "src": "/img/work/archive/turning-the-tide/img-1836.webp",
+        "alt": "Design image 1 in the Turning the tide project"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/turning the tide/IMG_1821.webp",
-        "alt": "IMG_1821"
+        "src": "/img/work/archive/turning-the-tide/img-1821.webp",
+        "alt": "Design image 2 in the Turning the tide project"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/turning the tide/IMG_1834.webp",
-        "alt": "IMG_1834"
+        "src": "/img/work/archive/turning-the-tide/img-1834.webp",
+        "alt": "Design image 3 in the Turning the tide project"
       }
     ],
-    "description": "Book cover commission for Turning the Tide by H.T. Pote.",
+    "alt": "Design image 1 in the Turning the tide project",
+    "tag": "client",
+    "notes": "Book cover commission for Turning the Tide by H.T. Pote.",
     "link": {
       "text": "Turning the Tide",
       "url": "https://www.amazon.in/TURNING-TIDE-BREAKING-FETTERS-AUTOBIOGRAPHICAL/dp/9354564011"
-    }
+    },
+    "needsReview": true
   },
   {
+    "id": "ddtt",
     "slug": "ddtt",
-    "title": "DDTT",
-    "categories": [
-      "Visuals"
-    ],
-    "media": [
+    "title": "DDTTI",
+    "category": "motion",
+    "type": "video",
+    "cover": null,
+    "items": [
       {
         "type": "video",
-        "src": "/img/work/archive/singles/DDTT.webm",
-        "alt": "DDTT"
+        "src": "/img/work/archive/singles/ddtti.webm",
+        "alt": "DDTTI motion work — Bob vylan is not the problem, he is simply a carrier of the truth that is constantly being sile"
       }
     ],
-    "description": "Bob vylan is not the problem, he is simply a carrier of the truth that is constantly being silenced."
+    "alt": "DDTTI motion work — Bob vylan is not the problem, he is simply a carrier of the truth that is constantly being sile",
+    "tag": "personal",
+    "notes": "Bob vylan is not the problem, he is simply a carrier of the truth that is constantly being silenced. Title corrected to DDTTI as specified; confirm the expanded meaning if the project needs it.",
+    "needsReview": true
   },
   {
+    "id": "intruder",
     "slug": "intruder",
-    "title": "intruder",
-    "categories": [
-      "Motion"
-    ],
-    "media": [
+    "title": "Intruder",
+    "category": "motion",
+    "type": "series",
+    "cover": "/img/work/archive/intruder/nosy.webp",
+    "items": [
       {
         "type": "video",
         "src": "/img/work/archive/intruder/intruder.webm",
-        "alt": "intruder"
+        "alt": "Intruder: intruder animation"
       },
       {
         "type": "image",
         "src": "/img/work/archive/intruder/nosy.webp",
-        "alt": "nosy"
+        "alt": "Intruder: nosy visual"
       }
     ],
-    "thumbnail": "/img/work/archive/intruder/nosy.webp"
+    "alt": "Intruder: nosy visual",
+    "tag": "personal",
+    "notes": "",
+    "needsReview": true
   },
   {
+    "id": "documentation",
     "slug": "documentation",
     "title": "Documentation",
-    "categories": [
-      "Visuals"
-    ],
-    "media": [
+    "category": "design",
+    "type": "image",
+    "cover": "/img/work/archive/singles/documentation.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/singles/Documentation.webp",
-        "alt": "Documentation"
+        "src": "/img/work/archive/singles/documentation.webp",
+        "alt": "Documentation graphic design artwork — Documentation is a threat to the oppressor."
       }
     ],
-    "description": "Documentation is a threat to the oppressor."
+    "alt": "Documentation graphic design artwork — Documentation is a threat to the oppressor.",
+    "tag": "personal",
+    "notes": "Documentation is a threat to the oppressor.",
+    "needsReview": true
   },
   {
+    "id": "verge",
     "slug": "verge",
-    "title": "verge",
-    "categories": [
-      "Visuals",
-      "Campaigns"
-    ],
-    "media": [
+    "title": "Verge",
+    "category": "design",
+    "type": "series",
+    "cover": "/img/work/archive/verge/1st-carousel-post-1.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/verge/1st carousel post-1.webp",
-        "alt": "1st carousel post-1"
+        "src": "/img/work/archive/verge/1st-carousel-post-1.webp",
+        "alt": "Verge series, 1st carousel post 1"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/verge/1st carousel post-2.webp",
-        "alt": "1st carousel post-2"
+        "src": "/img/work/archive/verge/1st-carousel-post-2.webp",
+        "alt": "Verge series, 1st carousel post 2"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/verge/1st carousel post-3.webp",
-        "alt": "1st carousel post-3"
+        "src": "/img/work/archive/verge/1st-carousel-post-3.webp",
+        "alt": "Verge series, 1st carousel post 3"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/verge/2nd carousel post-1.webp",
-        "alt": "2nd carousel post-1"
+        "src": "/img/work/archive/verge/2nd-carousel-post-1.webp",
+        "alt": "Verge series, 2nd carousel post 1"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/verge/2nd carousel post-2.webp",
-        "alt": "2nd carousel post-2"
+        "src": "/img/work/archive/verge/2nd-carousel-post-2.webp",
+        "alt": "Verge series, 2nd carousel post 2"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/verge/2nd carousel post-3.webp",
-        "alt": "2nd carousel post-3"
+        "src": "/img/work/archive/verge/2nd-carousel-post-3.webp",
+        "alt": "Verge series, 2nd carousel post 3"
       }
-    ]
+    ],
+    "alt": "Verge series, 1st carousel post 1",
+    "tag": "client",
+    "notes": "",
+    "needsReview": true
   },
   {
+    "id": "a-quote-from-poe",
     "slug": "a-quote-from-poe",
-    "title": "A quote from poe",
-    "categories": [
-      "Visuals"
-    ],
-    "media": [
+    "title": "A quote from Poe",
+    "category": "design",
+    "type": "image",
+    "cover": "/img/work/archive/singles/edgar-allan-poe.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/singles/Edgar allen poe.webp",
-        "alt": "Edgar allen poe"
+        "src": "/img/work/archive/singles/edgar-allan-poe.webp",
+        "alt": "A quote from Poe graphic design artwork"
       }
-    ]
+    ],
+    "alt": "A quote from Poe graphic design artwork",
+    "tag": "personal",
+    "notes": "Text artwork featuring an Edgar Allan Poe quotation; verify the exact quotation against the image.",
+    "needsReview": true
   },
   {
+    "id": "nisau-anniversary-logo",
     "slug": "nisau-anniversary-logo",
-    "title": "nisau anniversary logo",
-    "categories": [
-      "Identity",
-      "Motion"
-    ],
-    "media": [
+    "title": "NISAU anniversary logo",
+    "category": "design",
+    "type": "series",
+    "cover": "/img/work/archive/nisau-anniversary/nisau-logo.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/nisau anniversary/nisau logo.webp",
-        "alt": "nisau logo"
+        "src": "/img/work/archive/nisau-anniversary/nisau-logo.webp",
+        "alt": "NISAU anniversary logo logo design, nisau logo variant"
       },
       {
         "type": "video",
-        "src": "/img/work/archive/nisau anniversary/logo reveal.webm",
-        "alt": "logo reveal"
+        "src": "/img/work/archive/nisau-anniversary/logo-reveal.webm",
+        "alt": "NISAU anniversary logo logo design, logo reveal variant"
       }
     ],
-    "description": "A milestone mark logo branding for NISAU's 15 year anniversary using a Logo Hijack / Integrated Mark to highlight the year without disrupting the existing identity."
+    "alt": "NISAU anniversary logo logo design, nisau logo variant",
+    "tag": "client",
+    "notes": "A milestone mark logo branding for NISAU's 15 year anniversary using a Logo Hijack / Integrated Mark to highlight the year without disrupting the existing identity.",
+    "needsReview": true
   },
   {
+    "id": "behelit",
     "slug": "behelit",
-    "title": "BEHELIT",
-    "categories": [
-      "Visuals"
-    ],
-    "media": [
+    "title": "Behelit",
+    "category": "illustration",
+    "type": "image",
+    "cover": "/img/work/archive/singles/behelit.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/singles/BEHELIT.webp",
-        "alt": "BEHELIT"
+        "src": "/img/work/archive/singles/behelit.webp",
+        "alt": "Illustration titled Behelit"
       }
     ],
-    "description": "Fan illustration for the manga \"Berserk\"."
+    "alt": "Illustration titled Behelit",
+    "tag": "personal",
+    "notes": "Fan illustration for the manga \"Berserk\".",
+    "needsReview": true
   },
   {
+    "id": "memories",
     "slug": "memories",
-    "title": "memories?",
-    "categories": [
-      "Visuals"
-    ],
-    "media": [
+    "title": "Memories",
+    "category": "design",
+    "type": "series",
+    "cover": "/img/work/archive/memories/good-memories.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/memories/Good memories.webp",
-        "alt": "Good memories"
+        "src": "/img/work/archive/memories/good-memories.webp",
+        "alt": "Memories: good memories visual"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/memories/Our sweet memories.webp",
-        "alt": "Our sweet memories"
+        "src": "/img/work/archive/memories/our-sweet-memories.webp",
+        "alt": "Memories: our sweet memories visual"
       }
-    ]
+    ],
+    "alt": "Memories: good memories visual",
+    "tag": "personal",
+    "notes": "Title corrected from memories? to Memories.",
+    "needsReview": true
   },
   {
+    "id": "farzi",
     "slug": "farzi",
     "title": "Farzi",
-    "categories": [
-      "Visuals",
-      "Campaigns"
-    ],
-    "media": [
+    "category": "design",
+    "type": "image",
+    "cover": "/img/work/archive/singles/farzi.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/singles/Farzi.webp",
-        "alt": "Farzi"
+        "src": "/img/work/archive/singles/farzi.webp",
+        "alt": "Farzi graphic design artwork — Fan poster for the movie \"Farzi\"."
       }
     ],
-    "description": "Fan poster for the movie \"Farzi\"."
+    "alt": "Farzi graphic design artwork — Fan poster for the movie \"Farzi\".",
+    "tag": "personal",
+    "notes": "Fan poster for the movie \"Farzi\".",
+    "needsReview": true
   },
   {
+    "id": "weekly-career-tips",
     "slug": "weekly-career-tips",
-    "title": "weekly career tips",
-    "categories": [
-      "Visuals"
-    ],
-    "media": [
+    "title": "Weekly career tips",
+    "category": "design",
+    "type": "series",
+    "cover": "/img/work/archive/weekly-career-tips/build-skills-tips.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/weekly career tips/Build skills tips.webp",
-        "alt": "Build skills tips"
+        "src": "/img/work/archive/weekly-career-tips/build-skills-tips.webp",
+        "alt": "Weekly career tips series, build skills tips"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/weekly career tips/CV tips.webp",
-        "alt": "CV tips"
+        "src": "/img/work/archive/weekly-career-tips/cv-tips.webp",
+        "alt": "Weekly career tips series, cv tips"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/weekly career tips/LinkedIn tips.webp",
-        "alt": "LinkedIn tips"
+        "src": "/img/work/archive/weekly-career-tips/linkedin-tips.webp",
+        "alt": "Weekly career tips series, linkedin tips"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/weekly career tips/Networking tips.webp",
-        "alt": "Networking tips"
+        "src": "/img/work/archive/weekly-career-tips/networking-tips.webp",
+        "alt": "Weekly career tips series, networking tips"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/weekly career tips/Research the company tips.webp",
-        "alt": "Research the company tips"
+        "src": "/img/work/archive/weekly-career-tips/research-the-company-tips.webp",
+        "alt": "Weekly career tips series, research the company tips"
       }
-    ]
+    ],
+    "alt": "Weekly career tips series, build skills tips",
+    "tag": "client",
+    "notes": "",
+    "needsReview": true
   },
   {
+    "id": "don-t-cry-j-dilla",
     "slug": "don-t-cry-j-dilla",
-    "title": "Don't Cry - J Dilla",
-    "categories": [
-      "Visuals",
-      "Motion"
-    ],
-    "media": [
+    "title": "Don't cry — J Dilla",
+    "category": "motion",
+    "type": "video",
+    "cover": null,
+    "items": [
       {
         "type": "video",
-        "src": "/img/work/archive/singles/Don't cry.webm",
-        "alt": "Don't cry"
+        "src": "/img/work/archive/singles/don-t-cry.webm",
+        "alt": "Don't Cry — J Dilla motion work — Audio/lyric visualiser for the song \"Don't Cry\" by J Dilla"
       }
     ],
-    "description": "Audio/lyric visualiser for the song \"Don't Cry\" by J Dilla"
+    "alt": "Don't Cry — J Dilla motion work — Audio/lyric visualiser for the song \"Don't Cry\" by J Dilla",
+    "tag": "personal",
+    "notes": "Audio/lyric visualiser for the song \"Don't Cry\" by J Dilla",
+    "needsReview": true
   },
   {
+    "id": "unarmed-soldier",
     "slug": "unarmed-soldier",
-    "title": "unarmed soldier",
-    "categories": [
-      "Visuals",
-      "Campaigns"
-    ],
-    "media": [
+    "title": "Unarmed soldier",
+    "category": "design",
+    "type": "series",
+    "cover": "/img/work/archive/unarmed-soldier/movie-poster-version-1.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/Unarmed soldier/Movie poster (version 1).webp",
-        "alt": "Movie poster (version 1)"
+        "src": "/img/work/archive/unarmed-soldier/movie-poster-version-1.webp",
+        "alt": "Unarmed soldier poster design, movie poster (version 1)"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/Unarmed soldier/Movie poster (version 2 - blue).webp",
-        "alt": "Movie poster (version 2 - blue)"
+        "src": "/img/work/archive/unarmed-soldier/movie-poster-version-2-blue.webp",
+        "alt": "Unarmed soldier poster design, movie poster (version 2   blue)"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/Unarmed soldier/Movie poster (version 2 - red).webp",
-        "alt": "Movie poster (version 2 - red)"
+        "src": "/img/work/archive/unarmed-soldier/movie-poster-version-2-red.webp",
+        "alt": "Unarmed soldier poster design, movie poster (version 2   red)"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/Unarmed soldier/Movie poster (version 3).webp",
-        "alt": "Movie poster (version 3)"
+        "src": "/img/work/archive/unarmed-soldier/movie-poster-version-3.webp",
+        "alt": "Unarmed soldier poster design, movie poster (version 3)"
       }
     ],
-    "description": "A commission for different variants of launch/teaser posters for a movie called Unarmed Soldier.",
+    "alt": "Unarmed soldier poster design, movie poster (version 1)",
+    "tag": "client",
+    "notes": "A commission for different variants of launch/teaser posters for a movie called Unarmed Soldier.",
     "link": {
       "text": "Unarmed Soldier",
       "url": "https://www.pickleentertainment.com/"
-    }
+    },
+    "needsReview": true
   },
   {
+    "id": "revenant",
     "slug": "revenant",
     "title": "Revenant",
-    "categories": [
-      "Visuals"
-    ],
-    "media": [
+    "category": "illustration",
+    "type": "image",
+    "cover": "/img/work/archive/singles/revenant.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/singles/Revenant.webp",
-        "alt": "Revenant"
+        "src": "/img/work/archive/singles/revenant.webp",
+        "alt": "Illustration titled Revenant"
       }
     ],
-    "description": "Fan illustration for the video game \"Apex Legends\"."
+    "alt": "Illustration titled Revenant",
+    "tag": "personal",
+    "notes": "Fan illustration for the video game \"Apex Legends\".",
+    "needsReview": true
   },
   {
+    "id": "why",
     "slug": "why",
-    "title": "WHY",
-    "categories": [
-      "Visuals",
-      "Motion"
-    ],
-    "media": [
+    "title": "Why",
+    "category": "motion",
+    "type": "series",
+    "cover": "/img/work/archive/why/why-1.webp",
+    "items": [
       {
         "type": "video",
-        "src": "/img/work/archive/WHY/WHY.webm",
-        "alt": "WHY"
+        "src": "/img/work/archive/why/why.webm",
+        "alt": "Why: why animation"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/WHY/WHY (1).webp",
-        "alt": "WHY (1)"
+        "src": "/img/work/archive/why/why-1.webp",
+        "alt": "Why: why (1) visual"
       },
       {
         "type": "image",
-        "src": "/img/work/archive/WHY/WHY (2).webp",
-        "alt": "WHY (2)"
+        "src": "/img/work/archive/why/why-2.webp",
+        "alt": "Why: why (2) visual"
       }
     ],
-    "thumbnail": "/img/work/archive/WHY/WHY (1).webp"
+    "alt": "Why: why (1) visual",
+    "tag": "personal",
+    "notes": "",
+    "needsReview": true
   },
   {
+    "id": "unlimited-love",
     "slug": "unlimited-love",
-    "title": "Unlimited Love",
-    "categories": [
-      "Visuals"
-    ],
-    "media": [
+    "title": "Unlimited love",
+    "category": "design",
+    "type": "image",
+    "cover": "/img/work/archive/singles/unlimited-love.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/singles/Unlimited Love.webp",
-        "alt": "Unlimited Love"
+        "src": "/img/work/archive/singles/unlimited-love.webp",
+        "alt": "Unlimited Love graphic design artwork — Fan song cover art for Unlimited Love by Underscores."
       }
     ],
-    "description": "Fan song cover art for Unlimited Love by Underscores."
+    "alt": "Unlimited Love graphic design artwork — Fan song cover art for Unlimited Love by Underscores.",
+    "tag": "personal",
+    "notes": "Fan song cover art for Unlimited Love by Underscores.",
+    "needsReview": true
   },
   {
+    "id": "makima",
     "slug": "makima",
-    "title": "makima",
-    "categories": [
-      "Visuals"
-    ],
-    "media": [
+    "title": "Makima",
+    "category": "illustration",
+    "type": "image",
+    "cover": "/img/work/archive/singles/makima.webp",
+    "items": [
       {
         "type": "image",
         "src": "/img/work/archive/singles/makima.webp",
-        "alt": "makima"
+        "alt": "Illustration titled Makima"
       }
     ],
-    "description": "Fan illustration for the manga/anime \"Chainsaw man\"."
+    "alt": "Illustration titled Makima",
+    "tag": "personal",
+    "notes": "Fan illustration for the manga/anime \"Chainsaw man\".",
+    "needsReview": true
   },
   {
+    "id": "cycle-of-life",
     "slug": "cycle-of-life",
     "title": "Cycle of life",
-    "categories": [
-      "Motion"
-    ],
-    "media": [
+    "category": "motion",
+    "type": "video",
+    "cover": null,
+    "items": [
       {
         "type": "video",
-        "src": "/img/work/archive/singles/Cycle of life.webm",
-        "alt": "Cycle of life"
+        "src": "/img/work/archive/singles/cycle-of-life.webm",
+        "alt": "Cycle of life motion work"
       }
     ],
-    "categoryNeedsReview": true
+    "alt": "Cycle of life motion work",
+    "tag": "personal",
+    "notes": "",
+    "needsReview": true
   },
   {
+    "id": "david-and-jonathan",
     "slug": "david-and-jonathan",
     "title": "David and Jonathan",
-    "categories": [
-      "Visuals"
-    ],
-    "media": [
+    "category": "illustration",
+    "type": "image",
+    "cover": "/img/work/archive/singles/david-and-jonathan.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/singles/David and Jonathan.webp",
-        "alt": "David and Jonathan"
+        "src": "/img/work/archive/singles/david-and-jonathan.webp",
+        "alt": "Illustration titled David and Jonathan"
       }
     ],
-    "categoryNeedsReview": true
+    "alt": "Illustration titled David and Jonathan",
+    "tag": "personal",
+    "notes": "",
+    "needsReview": true
   },
   {
+    "id": "guardian-angel-1",
     "slug": "guardian-angel-1",
-    "title": "Guardian angel_1",
-    "categories": [
-      "Visuals"
-    ],
-    "media": [
+    "title": "Guardian angel",
+    "category": "illustration",
+    "type": "image",
+    "cover": "/img/work/archive/singles/guardian-angel-1.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/singles/Guardian angel_1.webp",
-        "alt": "Guardian angel_1"
+        "src": "/img/work/archive/singles/guardian-angel-1.webp",
+        "alt": "Illustration titled Guardian angel"
       }
     ],
-    "categoryNeedsReview": true
+    "alt": "Illustration titled Guardian angel",
+    "tag": "personal",
+    "notes": "",
+    "needsReview": true
   },
   {
+    "id": "howling-dogs",
     "slug": "howling-dogs",
     "title": "Howling dogs",
-    "categories": [
-      "Visuals"
-    ],
-    "media": [
+    "category": "illustration",
+    "type": "image",
+    "cover": "/img/work/archive/singles/howling-dogs.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/singles/Howling dogs.webp",
-        "alt": "Howling dogs"
+        "src": "/img/work/archive/singles/howling-dogs.webp",
+        "alt": "Illustration titled Howling dogs"
       }
     ],
-    "categoryNeedsReview": true
+    "alt": "Illustration titled Howling dogs",
+    "tag": "personal",
+    "notes": "",
+    "needsReview": true
   },
   {
+    "id": "rilakkuma",
     "slug": "rilakkuma",
     "title": "Rilakkuma",
-    "categories": [
-      "Visuals"
-    ],
-    "media": [
+    "category": "illustration",
+    "type": "image",
+    "cover": "/img/work/archive/singles/rilakkuma.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/singles/Rilakkuma.webp",
-        "alt": "Rilakkuma"
+        "src": "/img/work/archive/singles/rilakkuma.webp",
+        "alt": "Illustration titled Rilakkuma"
       }
     ],
-    "categoryNeedsReview": true
+    "alt": "Illustration titled Rilakkuma",
+    "tag": "personal",
+    "notes": "",
+    "needsReview": true
   },
   {
+    "id": "rishi-kapoor-x-lse-reel",
     "slug": "rishi-kapoor-x-lse-reel",
-    "title": "Rishi Kapoor x LSE reel",
-    "categories": [
-      "Motion"
-    ],
-    "media": [
+    "title": "Rishi Kapoor × LSE reel",
+    "category": "motion",
+    "type": "video",
+    "cover": null,
+    "items": [
       {
         "type": "video",
-        "src": "/img/work/archive/singles/Rishi Kapoor x LSE reel.webm",
-        "alt": "Rishi Kapoor x LSE reel"
+        "src": "/img/work/archive/singles/rishi-kapoor-x-lse-reel.webm",
+        "alt": "Rishi Kapoor × LSE reel motion work"
       }
     ],
-    "categoryNeedsReview": true
+    "alt": "Rishi Kapoor × LSE reel motion work",
+    "tag": "client",
+    "notes": "",
+    "needsReview": true
   },
   {
+    "id": "sisters",
     "slug": "sisters",
-    "title": "Sisters_",
-    "categories": [
-      "Visuals"
-    ],
-    "media": [
+    "title": "Sisters",
+    "category": "illustration",
+    "type": "image",
+    "cover": "/img/work/archive/singles/sisters.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/singles/Sisters_.webp",
-        "alt": "Sisters_"
+        "src": "/img/work/archive/singles/sisters.webp",
+        "alt": "Illustration titled Sisters"
       }
     ],
-    "categoryNeedsReview": true
+    "alt": "Illustration titled Sisters",
+    "tag": "personal",
+    "notes": "",
+    "needsReview": true
   },
   {
+    "id": "untitled-1",
     "slug": "untitled-1",
-    "title": "Untitled-1",
-    "categories": [
-      "Visuals"
-    ],
-    "media": [
+    "title": "Untitled 1",
+    "category": "design",
+    "type": "image",
+    "cover": "/img/work/archive/singles/untitled-1.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/singles/Untitled-1.webp",
-        "alt": "Untitled-1"
+        "src": "/img/work/archive/singles/untitled-1.webp",
+        "alt": "Untitled 1 graphic design artwork"
       }
     ],
-    "categoryNeedsReview": true
+    "alt": "Untitled 1 graphic design artwork",
+    "tag": "personal",
+    "notes": "Working title only; replace when the visual can be identified.",
+    "needsReview": true
   },
   {
+    "id": "untitled-2",
     "slug": "untitled-2",
-    "title": "Untitled-2",
-    "categories": [
-      "Visuals"
-    ],
-    "media": [
+    "title": "Untitled 2",
+    "category": "design",
+    "type": "image",
+    "cover": "/img/work/archive/singles/untitled-2.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/singles/Untitled-2.webp",
-        "alt": "Untitled-2"
+        "src": "/img/work/archive/singles/untitled-2.webp",
+        "alt": "Untitled 2 graphic design artwork"
       }
     ],
-    "categoryNeedsReview": true
+    "alt": "Untitled 2 graphic design artwork",
+    "tag": "personal",
+    "notes": "Working title only; replace when the visual can be identified.",
+    "needsReview": true
   },
   {
+    "id": "untitled-3",
     "slug": "untitled-3",
-    "title": "Untitled-3",
-    "categories": [
-      "Visuals"
-    ],
-    "media": [
+    "title": "Untitled 3",
+    "category": "design",
+    "type": "image",
+    "cover": "/img/work/archive/singles/untitled-3.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/singles/Untitled-3.webp",
-        "alt": "Untitled-3"
+        "src": "/img/work/archive/singles/untitled-3.webp",
+        "alt": "Untitled 3 graphic design artwork"
       }
     ],
-    "categoryNeedsReview": true
+    "alt": "Untitled 3 graphic design artwork",
+    "tag": "personal",
+    "notes": "Working title only; replace when the visual can be identified.",
+    "needsReview": true
   },
   {
+    "id": "video-46",
     "slug": "video-46",
-    "title": "Video-46",
-    "categories": [
-      "Motion"
-    ],
-    "media": [
+    "title": "Untitled video 46",
+    "category": "motion",
+    "type": "video",
+    "cover": null,
+    "items": [
       {
         "type": "video",
-        "src": "/img/work/archive/singles/Video-46.webm",
-        "alt": "Video-46"
+        "src": "/img/work/archive/singles/video-46.webm",
+        "alt": "Motion piece 1 in the Untitled video 46 project"
       }
     ],
-    "categoryNeedsReview": true
+    "alt": "Motion piece 1 in the Untitled video 46 project",
+    "tag": "personal",
+    "notes": "Video label lacks context; identify the intended title.",
+    "needsReview": true
   },
   {
+    "id": "we-all-bloom",
     "slug": "we-all-bloom",
     "title": "We all bloom",
-    "categories": [
-      "Visuals"
-    ],
-    "media": [
+    "category": "illustration",
+    "type": "image",
+    "cover": "/img/work/archive/singles/we-all-bloom.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/singles/We all bloom.webp",
-        "alt": "We all bloom"
+        "src": "/img/work/archive/singles/we-all-bloom.webp",
+        "alt": "Illustration titled We all bloom"
       }
     ],
-    "categoryNeedsReview": true
+    "alt": "Illustration titled We all bloom",
+    "tag": "personal",
+    "notes": "",
+    "needsReview": true
   },
   {
+    "id": "word-vomit-1",
     "slug": "word-vomit-1",
-    "title": "Word_vomit_1",
-    "categories": [
-      "Motion"
-    ],
-    "media": [
+    "title": "Word vomit",
+    "category": "motion",
+    "type": "video",
+    "cover": null,
+    "items": [
       {
         "type": "video",
-        "src": "/img/work/archive/singles/Word_vomit_1.webm",
-        "alt": "Word_vomit_1"
+        "src": "/img/work/archive/singles/word-vomit-1.webm",
+        "alt": "Word vomit motion work"
       }
     ],
-    "categoryNeedsReview": true
+    "alt": "Word vomit motion work",
+    "tag": "personal",
+    "notes": "",
+    "needsReview": true
   },
   {
+    "id": "you-re-the-flesh-maggots-adore",
     "slug": "you-re-the-flesh-maggots-adore",
     "title": "You're the flesh maggots adore",
-    "categories": [
-      "Visuals"
-    ],
-    "media": [
+    "category": "illustration",
+    "type": "image",
+    "cover": "/img/work/archive/singles/you-re-the-flesh-maggots-adore.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/singles/You're the flesh maggots adore.webp",
-        "alt": "You're the flesh maggots adore"
+        "src": "/img/work/archive/singles/you-re-the-flesh-maggots-adore.webp",
+        "alt": "Illustration titled You're the flesh maggots adore"
       }
     ],
-    "categoryNeedsReview": true
+    "alt": "Illustration titled You're the flesh maggots adore",
+    "tag": "personal",
+    "notes": "",
+    "needsReview": true
   },
   {
+    "id": "bento-box",
     "slug": "bento-box",
-    "title": "bento box",
-    "categories": [
-      "Visuals"
-    ],
-    "media": [
+    "title": "Bento box",
+    "category": "illustration",
+    "type": "image",
+    "cover": "/img/work/archive/singles/bento-box.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/singles/bento box.webp",
-        "alt": "bento box"
+        "src": "/img/work/archive/singles/bento-box.webp",
+        "alt": "Illustration titled Bento box"
       }
     ],
-    "categoryNeedsReview": true
+    "alt": "Illustration titled Bento box",
+    "tag": "personal",
+    "notes": "",
+    "needsReview": true
   },
   {
+    "id": "blog-infographic",
     "slug": "blog-infographic",
-    "title": "blog infographic",
-    "categories": [
-      "Visuals"
-    ],
-    "media": [
+    "title": "Blog infographic",
+    "category": "design",
+    "type": "image",
+    "cover": "/img/work/archive/singles/blog-infographic.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/singles/blog infographic.webp",
-        "alt": "blog infographic"
+        "src": "/img/work/archive/singles/blog-infographic.webp",
+        "alt": "Blog infographic graphic design artwork"
       }
     ],
-    "categoryNeedsReview": true
+    "alt": "Blog infographic graphic design artwork",
+    "tag": "client",
+    "notes": "",
+    "needsReview": true
   },
   {
+    "id": "kiss",
     "slug": "kiss",
-    "title": "kiss",
-    "categories": [
-      "Visuals"
-    ],
-    "media": [
+    "title": "Kiss",
+    "category": "illustration",
+    "type": "image",
+    "cover": "/img/work/archive/singles/kiss.webp",
+    "items": [
       {
         "type": "image",
         "src": "/img/work/archive/singles/kiss.webp",
-        "alt": "kiss"
+        "alt": "Illustration titled Kiss"
       }
     ],
-    "categoryNeedsReview": true
+    "alt": "Illustration titled Kiss",
+    "tag": "personal",
+    "notes": "",
+    "needsReview": true
   },
   {
+    "id": "rotten-to-the-core",
     "slug": "rotten-to-the-core",
-    "title": "rotten to the core",
-    "categories": [
-      "Visuals"
-    ],
-    "media": [
+    "title": "Rotten to the core",
+    "category": "illustration",
+    "type": "image",
+    "cover": "/img/work/archive/singles/rotten-to-the-core.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/singles/rotten to the core.webp",
-        "alt": "rotten to the core"
+        "src": "/img/work/archive/singles/rotten-to-the-core.webp",
+        "alt": "Illustration titled Rotten to the core"
       }
     ],
-    "categoryNeedsReview": true
+    "alt": "Illustration titled Rotten to the core",
+    "tag": "personal",
+    "notes": "",
+    "needsReview": true
   },
   {
+    "id": "the-void-and-the-light",
     "slug": "the-void-and-the-light",
-    "title": "the void and the light",
-    "categories": [
-      "Visuals"
-    ],
-    "media": [
+    "title": "The void and the light",
+    "category": "illustration",
+    "type": "image",
+    "cover": "/img/work/archive/singles/the-void-and-the-light.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/singles/the void and the light.webp",
-        "alt": "the void and the light"
+        "src": "/img/work/archive/singles/the-void-and-the-light.webp",
+        "alt": "Illustration titled The void and the light"
       }
     ],
-    "categoryNeedsReview": true
+    "alt": "Illustration titled The void and the light",
+    "tag": "personal",
+    "notes": "",
+    "needsReview": true
   },
   {
+    "id": "vices-vices-vices",
     "slug": "vices-vices-vices",
-    "title": "vices vices vices",
-    "categories": [
-      "Visuals"
-    ],
-    "media": [
+    "title": "Vices, vices, vices",
+    "category": "illustration",
+    "type": "image",
+    "cover": "/img/work/archive/singles/vices-vices-vices.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/singles/vices vices vices.webp",
-        "alt": "vices vices vices"
+        "src": "/img/work/archive/singles/vices-vices-vices.webp",
+        "alt": "Illustration titled Vices, vices, vices"
       }
     ],
-    "categoryNeedsReview": true
+    "alt": "Illustration titled Vices, vices, vices",
+    "tag": "personal",
+    "notes": "",
+    "needsReview": true
   },
   {
+    "id": "entry",
     "slug": "entry",
-    "title": "¡さくらくま!",
-    "categories": [
-      "Visuals"
-    ],
-    "media": [
+    "title": "Sakura kuma",
+    "category": "illustration",
+    "type": "image",
+    "cover": "/img/work/archive/singles/sakura-kuma.webp",
+    "items": [
       {
         "type": "image",
-        "src": "/img/work/archive/singles/¡さくらくま!.webp",
-        "alt": "¡さくらくま!"
+        "src": "/img/work/archive/singles/sakura-kuma.webp",
+        "alt": "Illustration titled Sakura kuma"
       }
     ],
-    "categoryNeedsReview": true
+    "alt": "Illustration titled Sakura kuma",
+    "tag": "personal",
+    "notes": "Japanese-lettered original title is retained in the notes; display title and filename transliterated to Sakura kuma.",
+    "needsReview": true
   }
 ]

@@ -3117,3 +3117,8 @@ body:has(dialog[open]) { overflow: hidden; }
 .site-footer .footer-top a[target="_blank"] .ui-icon {
   stroke-width: 1.15;
 }
+
+/* Separate discipline and commission-type archive filters without changing the grid. */
+.archive-filters { justify-content: space-between; gap: .85rem 2rem; }
+.archive-filter-group { display: flex; align-items: center; flex-wrap: wrap; gap: .6rem 1.25rem; }
+.archive-gallery__title s { text-decoration-thickness: 1px; text-decoration-color: currentColor; }
