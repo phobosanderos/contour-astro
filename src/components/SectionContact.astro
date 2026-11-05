@@ -52,6 +52,7 @@ import c from "../content.json";
   class="fg"
   action="https://api.web3forms.com/submit"
   method="POST"
+  novalidate
 >
   <input
     type="hidden"
@@ -70,43 +71,51 @@ import c from "../content.json";
     name="subject"
     value="New project brief"
   >
-        <input
-          type="hidden"
-          name="subject"
-          value="New project brief"
-        >
 
         <div class="fg-fields">
-          <label class="fld">
-            <span class="note">{c.contact.span_8}</span>
+          <div class="fld">
+            <label class="note" for="brief-name">{c.contact.span_8}</label>
             <input
+              id="brief-name"
               name="name"
+              type="text"
+              aria-describedby="brief-name-error"
               autocomplete="name"
               required
             >
-          </label>
+            <p class="fg-field-error note" id="brief-name-error" hidden></p>
+          </div>
 
-          <label class="fld">
-            <span class="note">{c.contact.span_9}</span>
+          <div class="fld">
+            <label class="note" for="brief-email">{c.contact.span_9}</label>
             <input
+              id="brief-email"
               name="email"
               type="email"
+              aria-describedby="brief-email-error"
               autocomplete="email"
               required
             >
-          </label>
+            <p class="fg-field-error note" id="brief-email-error" hidden></p>
+          </div>
 
-          <label class="fld">
-            <span class="note">{c.contact.span_10}</span>
+          <div class="fld">
+            <label class="note" for="brief-company">{c.contact.span_10}</label>
             <input
+              id="brief-company"
               name="company"
+              type="text"
+              aria-describedby="brief-company-error"
               autocomplete="organization"
             >
-          </label>
+            <p class="fg-field-error note" id="brief-company-error" hidden></p>
+          </div>
 
-          <label class="fld">
-            <span class="note">{c.contact.span_11}</span>
-            <select name="budget">
+          <div class="fld">
+            <label class="note" for="brief-budget">{c.contact.span_11}</label>
+            <select id="brief-budget"
+              name="budget"
+              aria-describedby="brief-budget-error">
               <option value="" selected disabled>
                 {c.contact.option_12}
               </option>
@@ -115,17 +124,21 @@ import c from "../content.json";
               <option>{c.contact.option_15}</option>
               <option>{c.contact.option_16}</option>
             </select>
-          </label>
+            <p class="fg-field-error note" id="brief-budget-error" hidden></p>
+          </div>
 
-          <label class="fld fld-wide">
-            <span class="note">{c.contact.span_17}</span>
+          <div class="fld fld-wide">
+            <label class="note" for="brief-message">{c.contact.span_17}</label>
             <textarea
-            name="message"
+            id="brief-message"
+              name="message"
+              aria-describedby="brief-message-error"
             rows="4"
             required
-            aria-label="Project brief message"
+            
             ></textarea>
-          </label>
+            <p class="fg-field-error note" id="brief-message-error" hidden></p>
+          </div>
 
           <div class="fld-wide fg-row">
             <button class="btn" type="submit">
@@ -137,17 +150,16 @@ import c from "../content.json";
               class="fg-status"
               data-status
               aria-live="polite"
+              hidden
             ></p>
+            <a class="link fg-fallback" data-form-fallback href="mailto:phobosanderos@gmail.com" hidden>Email phobosanderos@gmail.com instead</a>
           </div>
         </div>
 
-        <div class="fg-sent" tabindex="-1">
+        <div class="fg-sent" tabindex="-1" aria-live="polite" hidden>
           <p
             class="fg-sent-h h3"
-            set:html={c.contact.p_19_html}
-          ></p>
-
-          <p>{c.contact.p_20}</p>
+          >{c.contact.p_19_html}</p>
 
           <button
             class="btn btn--ghost"
