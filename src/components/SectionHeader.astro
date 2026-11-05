@@ -43,9 +43,8 @@ const { home = false } = Astro.props;
 </nav>
 
   <div class="tools">
-  <button class="tool" type="button" data-action="theme" aria-label="Toggle light / dark theme"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.25"/><path d="M10 .2V2.75 M10 17.25V19.8 M.2 10H2.75 M17.25 10H19.8 M3.07 3.07L4.85 4.85 M15.15 15.15L16.93 16.93 M16.93 3.07L15.15 4.85 M4.85 15.15L3.07 16.93"></path></svg></button>
-  <button class="tool" type="button" data-action="accent"><span class="swatch" aria-hidden="true"></span></button>
-  <button class="tool tool--menu note" type="button" data-action="palette" aria-label="Open menu">{c.header.button_15}</button>
+  <button class="tool" type="button" data-action="theme" aria-label="Dark theme" aria-pressed="false"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.25"/><path d="M10 .2V2.75 M10 17.25V19.8 M.2 10H2.75 M17.25 10H19.8 M3.07 3.07L4.85 4.85 M15.15 15.15L16.93 16.93 M16.93 3.07L15.15 4.85 M4.85 15.15L3.07 16.93"></path></svg></button>
+  <button class="tool" type="button" data-action="accent" aria-label="Cycle accent color (current: blue)"><span class="swatch" aria-hidden="true"></span></button>
   <a class="btn header-cta" href="/#contact">{c.header.a_16}</a>
 </div>
 </header>
