@@ -326,12 +326,11 @@ html:not(.js) .preloader{
 .tool svg{width:1.05rem;height:1.05rem;fill:none;stroke:currentColor;stroke-width:1.5px}
 .tool svg path{fill:currentColor;stroke:none}
 .swatch{width:.9rem;height:.9rem;border-radius:999px;background:var(--accent);transition:background var(--dur-1) var(--ease-out)}
-.tool--menu{display:none;width:auto;padding-inline:.9rem;color:var(--ink)}
 .header-cta{height:2.25rem;margin-left:.25rem;padding-inline:1rem;font-size:.85rem}
-@media (max-width:960px){.site-header{grid-template-columns:1fr auto}.nav,.tool--kbd{display:none}.tool--menu{display:grid}}
+@media (max-width:960px){.site-header{grid-template-columns:1fr auto}.nav,.tool--kbd{display:none}}
 @media (max-width:480px){.header-cta{display:none}}
 
-/* command palette (also the phone menu) */
+/* keyboard command palette */
 .palette{width:min(640px,calc(100vw - 2*var(--gutter)));max-height:70vh;margin:12vh auto auto;padding:0;border:0;background:none;color:var(--ink);overflow:visible}
 .palette::backdrop{background:color-mix(in oklab,var(--bg) 55%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
 .palette[open] .palette__box{animation:palette-in var(--dur-1) var(--ease-out)}
@@ -2975,6 +2974,25 @@ body:has(#services .service:last-child .service__link[data-hot]) #contact > .sec
   text-transform:uppercase;
   color:var(--muted);
   overflow-wrap:anywhere;
+}
+
+/* Visible keyboard focus on Archive filters, independent of hover state. */
+.archive-filter:focus-visible {
+  outline: 2px solid var(--accent-text);
+  outline-offset: 4px;
+}
+
+/* The browser places modal dialogs in the top layer; prevent body scrolling. */
+body:has(dialog[open]) { overflow: hidden; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 .archive-gallery__count{
