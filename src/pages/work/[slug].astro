@@ -964,6 +964,10 @@ function preloadNearbyItems() {
 
         lightboxMedia.innerHTML = "";
 
+        if (lightboxNumber) lightboxNumber.textContent = "";
+        if (lightboxTitle) lightboxTitle.textContent = "";
+        if (lightboxCounter) lightboxCounter.textContent = "";
+
         activeItems = [];
         activeItemIndex = 0;
 
