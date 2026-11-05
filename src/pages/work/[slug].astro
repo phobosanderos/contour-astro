@@ -257,7 +257,9 @@ const seoTitle = seoTitles[project.slug] || `${project.title} | Vipul M.R`;
 <dialog
   class="project-lightbox"
   data-project-lightbox
-  aria-label="Expanded project media"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="project-lightbox-title"
 >
   <div class="project-lightbox__window">
 
@@ -265,14 +267,14 @@ const seoTitle = seoTitles[project.slug] || `${project.title} | Vipul M.R`;
 
       <div class="project-lightbox__identity note">
         <span data-lightbox-number></span>
-        <span data-lightbox-title></span>
+        <span data-lightbox-title id="project-lightbox-title"></span>
       </div>
 
       <button
         class="info-dialog__close project-lightbox__close"
         type="button"
         data-lightbox-close
-        aria-label="Close media viewer"
+        aria-label="Close"
       >
         ×
       </button>
@@ -656,21 +658,16 @@ function renderLightboxItem() {
         Force the new asset to begin hidden.
       */
 
-      nextAsset.style.opacity = "0";
+      nextAsset.style.opacity = matchMedia("(prefers-reduced-motion: reduce)").matches ? "1" : "0";
 
 
       requestAnimationFrame(() => {
-
-        lightboxMedia.classList.remove(
-          "is-switching"
-        );
-
-        requestAnimationFrame(() => {
-
+        lightboxMedia.classList.remove("is-switching");
+        if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
           nextAsset.style.opacity = "1";
-
-        });
-
+        } else {
+          requestAnimationFrame(() => { nextAsset.style.opacity = "1"; });
+        }
       });
 
 
@@ -679,7 +676,7 @@ function renderLightboxItem() {
 
       preloadNearbyItems();
 
-    }, 150);
+    }, matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 150);
 
   };
 
