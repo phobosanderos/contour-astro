@@ -2604,7 +2604,7 @@ html.has-cursor dialog.info-dialog a {
 }
 #contact .cta__stack {
   grid-column: 8 / -1;
-  grid-row: 1 / span 2;
+  grid-row: 1;
   align-self: stretch;
   min-width: 0;
 }
@@ -2614,10 +2614,7 @@ html.has-cursor dialog.info-dialog a {
   min-height: calc(1.8 * clamp(3rem, 5.8vw, 6.8rem));
   padding-top: .35rem;
 }
-#contact.is-brief-open .cta__stack-inner {
-  position: sticky;
-  top: calc(4.5rem + var(--gutter));
-}
+
 #contact .cta__actions {
   display: flex;
   flex-direction: column;
@@ -2634,7 +2631,8 @@ html.has-cursor dialog.info-dialog a {
   min-width: 0;
   height: 3.25rem;
   padding: 0 1.4rem;
-  border: 1px solid transparent;
+  border: 1px solid var(--line-strong);
+  box-sizing: border-box;
   border-radius: 999px;
   gap: .75rem;
   font-family: var(--font-sans);
@@ -2675,13 +2673,14 @@ html.has-cursor dialog.info-dialog a {
   --btn-fg: var(--ink);
   background: transparent;
   color: var(--ink);
-  box-shadow: inset 0 0 0 1px var(--line-strong);
+  border-color: var(--line-strong);
+  box-shadow: none;
 }
 #contact .cta__button--outline::before { display: none; }
 #contact .cta__button--outline:hover {
   background: transparent;
   color: var(--accent-text);
-  box-shadow: inset 0 0 0 1px var(--accent-text);
+  border-color: var(--accent-text);
 }
 #contact .cta__button:focus-visible {
   outline: 2px solid var(--accent-text);
@@ -2713,7 +2712,7 @@ html.has-cursor dialog.info-dialog a {
 }
 #contact .cta__expanded {
   display: block;
-  grid-column: 1 / span 7;
+  grid-column: 1 / -1;
   grid-row: 2;
   align-self: start;
   min-width: 0;
@@ -2817,6 +2816,98 @@ html.has-cursor dialog.info-dialog a {
   #contact .cta__button::before,
   #contact .cta__toggle .cta__arrow {
     transition: none;
+  }
+}
+
+
+/* Open contact: full-width compact form and distinct action state. */
+#contact.is-brief-open:not(.is-sent) .cta__toggle {
+  --btn-bg: var(--accent);
+  --btn-fg: var(--accent-ink);
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+#contact .cta__email-link:hover,
+#contact .cta__email-link:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: .2em;
+}
+#contact .cta__expanded { min-width: 0; }
+#contact .fg-fields {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 1rem var(--col-gap);
+}
+#contact .fg-fields > .fld:nth-child(1) { grid-column: 1 / span 3; grid-row: 1; }
+#contact .fg-fields > .fld:nth-child(2) { grid-column: 4 / span 3; grid-row: 1; }
+#contact .fg-fields > .fld:nth-child(3) { grid-column: 1 / span 3; grid-row: 2; }
+#contact .fg-fields > .fld:nth-child(4) { grid-column: 4 / span 3; grid-row: 2; }
+#contact .fg-fields > .fg-message {
+  grid-column: 7 / -1;
+  grid-row: 1 / span 2;
+}
+#contact .fg-fields > .fg-row {
+  grid-column: 1 / -1;
+  grid-row: 3;
+}
+#contact .fld {
+  gap: .5rem;
+}
+#contact .fld input,
+#contact .fld select,
+#contact .fld textarea {
+  font-size: var(--step-1);
+  line-height: 1.4;
+}
+#contact .fld input,
+#contact .fld select {
+  height: 44px;
+  min-height: 44px;
+  padding-block: .25rem;
+}
+#contact .fld select:invalid { color: var(--muted); }
+#contact .fld select option { color: var(--ink); }
+#contact .fg-message textarea {
+  box-sizing: border-box;
+  height: calc(8.4em + .7rem);
+  min-height: calc(8.4em + .7rem);
+  max-height: calc(8.4em + .7rem);
+  resize: none;
+  overflow-y: auto;
+}
+#contact.is-sent .cta__intro-copy { display: none; }
+#contact.is-sent .cta__stack-inner { min-height: 0; }
+#contact.is-sent .cta__email { margin-top: var(--col-gap); }
+#contact.is-sent .cta__expanded {
+  grid-column: 1 / span 7;
+  grid-row: 1;
+  margin-top: 0;
+  padding-top: .35rem;
+  border-top: 0;
+}
+#contact.is-brief-open .cta__email-label { display: none; }
+@media (max-width: 1023px) {
+  #contact .fg-fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem var(--col-gap);
+  }
+  #contact .fg-fields > .fld:nth-child(n) {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  #contact .fg-fields > .fg-message,
+  #contact .fg-fields > .fg-row {
+    grid-column: 1 / -1;
+    grid-row: auto;
+  }
+  #contact.is-sent .cta__expanded { order: -1; }
+}
+@media (max-width: 767px) {
+  #contact .fg-fields { grid-template-columns: minmax(0, 1fr); }
+  #contact .fg-fields > .fld:nth-child(n),
+  #contact .fg-fields > .fg-message,
+  #contact .fg-fields > .fg-row {
+    grid-column: 1;
+    grid-row: auto;
   }
 }
 
