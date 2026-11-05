@@ -2,11 +2,11 @@
 ---
 ---
 
-<dialog class="info-dialog" id="service-dialog" aria-labelledby="service-dialog-title">
+<dialog class="info-dialog" id="service-dialog" role="dialog" aria-modal="true" aria-labelledby="service-dialog-title">
   <div class="info-dialog__shell">
     <header class="info-dialog__head">
       <p class="note note--accent" id="service-dialog-kicker">SERVICE DETAILS</p>
-      <button class="info-dialog__close" type="button" data-dialog-close aria-label="Close service details">×</button>
+      <button class="info-dialog__close" type="button" data-dialog-close aria-label="Close">×</button>
     </header>
 
     <div class="info-dialog__content" tabindex="0">
@@ -21,11 +21,11 @@
   </div>
 </dialog>
 
-<dialog class="info-dialog" id="policy-dialog" aria-labelledby="policy-dialog-title">
+<dialog class="info-dialog" id="policy-dialog" role="dialog" aria-modal="true" aria-labelledby="policy-dialog-title">
   <div class="info-dialog__shell">
     <header class="info-dialog__head">
       <p class="note note--accent">PROJECT INFORMATION</p>
-      <button class="info-dialog__close" type="button" data-dialog-close aria-label="Close rates and working terms">×</button>
+      <button class="info-dialog__close" type="button" data-dialog-close aria-label="Close">×</button>
     </header>
 
     <div class="info-dialog__content" tabindex="0">
@@ -95,6 +95,7 @@
   const serviceTitle = document.querySelector("#service-dialog-title");
   const serviceKicker = document.querySelector("#service-dialog-kicker");
   const serviceBody = document.querySelector("#service-dialog-body");
+  const dialogOpeners = new WeakMap();
 
   const services = {
     identity: {
@@ -181,17 +182,18 @@ function resetDialogScroll(dialog) {
   }
 }
 
-function openInfoDialog(dialog) {
+function openInfoDialog(dialog, opener) {
   if (!(dialog instanceof HTMLDialogElement)) return;
 
+  if (opener instanceof HTMLElement) dialogOpeners.set(dialog, opener);
   if (window.__lenis) window.__lenis.stop();
 
   dialog.showModal();
-  // Reset after opening as well, once the dialog is displayed.
   resetDialogScroll(dialog);
 
   requestAnimationFrame(() => {
     resetDialogScroll(dialog);
+    dialog.querySelector("[data-dialog-close]")?.focus({ preventScroll: true });
   });
 }
 function closeDialog(dialog) {
@@ -209,14 +211,14 @@ function closeDialog(dialog) {
       serviceKicker.textContent = item.number;
       serviceTitle.textContent = item.title;
       serviceBody.innerHTML = item.content;
-      openInfoDialog(serviceDialog);
+      openInfoDialog(serviceDialog, button);
     });
   });
 
  document.querySelectorAll("[data-policy-open]").forEach((button) => {
   button.addEventListener("click", () => {
     if (policyDialog instanceof HTMLDialogElement) {
-      openInfoDialog(policyDialog);
+      openInfoDialog(policyDialog, button);
     }
   });
 });
@@ -245,6 +247,8 @@ function closeDialog(dialog) {
 
   // Resume normal page scrolling after the window closes.
   if (window.__lenis) window.__lenis.start();
+  const opener = dialogOpeners.get(dialog);
+  if (opener?.isConnected) opener.focus({ preventScroll: true });
 });
 });
 
