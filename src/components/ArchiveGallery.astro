@@ -55,17 +55,17 @@ const imageFor = (item) => item.thumbnail || (first(item)?.type === "image" ? fi
   </div>
 </div>
 
-<dialog class="project-lightbox archive-lightbox" data-archive-dialog aria-label="Archive media viewer">
+<dialog class="project-lightbox archive-lightbox" data-archive-dialog role="dialog" aria-modal="true" aria-labelledby="archive-dialog-title">
   <div class="project-lightbox__window archive-lightbox__window" data-archive-window>
     <header class="project-lightbox__head">
       <div class="project-lightbox__identity note">
-        <span data-archive-number></span><span data-archive-title></span>
+        <span data-archive-number></span><span data-archive-title id="archive-dialog-title"></span>
       </div>
       <div class="archive-lightbox__tools">
         <button type="button" class="archive-lightbox__info-toggle note" data-archive-info hidden
           aria-expanded="false">ABOUT +</button>
         <button type="button" class="info-dialog__close project-lightbox__close" data-archive-close
-          aria-label="Close archive viewer">×</button>
+          aria-label="Close">×</button>
       </div>
     </header>
     <div class="project-lightbox__media archive-lightbox__media" data-archive-media tabindex="0"></div>
@@ -225,26 +225,19 @@ thumbnailVideos.forEach((video) => {
         /* Swap the asset while the previous one is faded out */
 mediaEl.replaceChildren(asset);
 
-/* Keep the new asset invisible initially */
-asset.style.opacity = '0';
-
-/* Fade the new asset in using the Featured transition */
+/* Skip the image fade for reduced-motion visitors. */
+const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)").matches;
+asset.style.opacity = reducedMotion ? '1' : '0';
 requestAnimationFrame(() => {
-
   mediaEl.classList.remove('is-switching');
-
-  requestAnimationFrame(() => {
-
+  const show = () => {
     asset.style.opacity = '1';
-
-    if (asset.tagName === 'VIDEO') {
-      asset.play().catch(() => {});
-    }
-
-  });
-
+    if (asset.tagName === 'VIDEO') asset.play().catch(() => {});
+  };
+  if (reducedMotion) show();
+  else requestAnimationFrame(show);
 });
-      }, 150);
+      }, matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 150);
     };
     if (asset.tagName === 'VIDEO') {
       if (asset.readyState >= 1) apply();
