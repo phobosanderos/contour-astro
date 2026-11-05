@@ -1,10 +1,18 @@
 ---
 import c from "../content.json";
+const { home = false } = Astro.props;
 ---
 
 <header class="site-header wrap">
   <a class="brand" href="/#main" aria-label={`${c.site.title}, back to top`}>
-    <span class="brand__name note note--int" set:html={c.header.span_5_html}></span>
+    {home ? (
+      <>
+        <span class="brand__name note note--int">{c.site.name}</span>
+        <span class="brand__role note">Visual design and motion.</span>
+      </>
+    ) : (
+      <span class="brand__name note note--int" set:html={c.header.span_5_html}></span>
+    )}
   </a>
 
   <nav class="nav" aria-label="Main Navigation">
