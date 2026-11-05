@@ -324,7 +324,7 @@ html:not(.js) body:has(#work) .preloader{
 .swatch{width:.9rem;height:.9rem;border-radius:999px;background:var(--accent);transition:background var(--dur-1) var(--ease-out)}
 .tool--menu{display:none;width:auto;padding-inline:.9rem;color:var(--ink)}
 .header-cta{height:2.25rem;margin-left:.25rem;padding-inline:1rem;font-size:.85rem}
-@media (max-width:960px){.site-header{grid-template-columns:1fr auto}.nav,.brand__role,.tool--kbd{display:none}.tool--menu{display:grid}}
+@media (max-width:960px){.site-header{grid-template-columns:1fr auto}.nav,.tool--kbd{display:none}.tool--menu{display:grid}}
 @media (max-width:480px){.header-cta{display:none}}
 
 /* command palette (also the phone menu) */
