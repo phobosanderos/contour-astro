@@ -3,8 +3,31 @@ import c from "../content.json";
 
 const {
   title = c.site.title,
-  description = c.site.description
+  description = c.site.description,
+  canonicalPath = Astro.url.pathname,
+  image = "/img/og-home.png",
+  imageAlt = "Vipul M.R — Phobos & Eros visual design and motion portfolio",
+  imageWidth,
+  imageHeight,
+  homepage = false
 } = Astro.props;
+
+const siteOrigin = "https://phobosanderos.vercel.app";
+const canonical = new URL(canonicalPath, siteOrigin).href;
+const ogImage = new URL(image, siteOrigin).href;
+const structuredData = homepage ? {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Vipul M.R",
+  brand: { "@type": "Brand", name: "Phobos & Eros" },
+  url: siteOrigin + "/",
+  email: "phobosanderos@gmail.com",
+  sameAs: [
+    "https://www.linkedin.com/in/vipul-m-r",
+    "https://www.instagram.com/phobosanderos",
+    "https://www.behance.net/phobosanderos"
+  ]
+} : null;
 
 const buildStamp = Date.now();
 ---
@@ -16,7 +39,28 @@ const buildStamp = Date.now();
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{title}</title>
     <meta name="description" content={description}>
-    <link rel="icon" href="/img/favicon-light.svg" id="site-favicon">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#f4f4f0" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#0b0b0c" media="(prefers-color-scheme: dark)">
+    <link rel="canonical" href={canonical}>
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content={description}>
+    <meta property="og:type" content="website">
+    <meta property="og:url" content={canonical}>
+    <meta property="og:image" content={ogImage}>
+    {imageWidth && <meta property="og:image:width" content={String(imageWidth)} />}
+    {imageHeight && <meta property="og:image:height" content={String(imageHeight)} />}
+    <meta property="og:image:alt" content={imageAlt}>
+    <meta property="og:site_name" content="Phobos & Eros">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content={title}>
+    <meta name="twitter:description" content={description}>
+    <meta name="twitter:image" content={ogImage}>
+    <meta name="twitter:image:alt" content={imageAlt}>
+    {structuredData && <script type="application/ld+json" set:html={JSON.stringify(structuredData).replace(/</g, "\\u003c")} />}
+    <link rel="icon" type="image/svg+xml" href="/img/favicon-light.svg" id="site-favicon">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/apple-touch-icon.png">
 
     <script is:inline>
       function updateFavicon() {
