@@ -6,6 +6,7 @@ import c from "../content.json";
 <section class="section wrap cta" id="contact" aria-labelledby="c-h">
   <header class="section-head">
     <span class="note note--ink">{c.contact.span_1}</span>
+    <span class="note">{c.contact.span_2}</span>
   </header>
 
   <div class="cta__intro grid-12">
@@ -16,35 +17,7 @@ import c from "../content.json";
 
     </div>
 
-    <div class="cta__stack">
-      <div class="cta__stack-inner">
-        <div class="cta__actions">
-          <button
-            class="btn cta__button cta__toggle"
-            type="button"
-            aria-expanded="false"
-            aria-controls="brief-panel"
-            data-brief-toggle
-          >
-            <span data-brief-label>Send a short brief</span>
-            <span class="arrow cta__button-icon" aria-hidden="true"><span class="cta__arrow">↘</span></span>
-          </button>
-
-          <a
-            class="btn btn--ghost cta__button cta__button--outline"
-            href="https://cal.com/phobosanderos"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span data-contact-secondary-label>Book a call</span>
-            <span class="arrow cta__button-icon" aria-hidden="true">↗</span>
-          </a>
-        </div>
-        <p class="note note--ink cta__reply">{c.contact.span_2}.</p>
-      </div>
-    </div>
-
-    <div class="cta__expanded" id="brief-panel" hidden>
+    <div class="cta__expanded" id="brief-panel">
     <div class="cta__form-area">
       <form
   class="fg"
@@ -143,6 +116,14 @@ import c from "../content.json";
               <span data-label>{c.contact.span_18}</span>
               <span class="arrow cta__button-icon" aria-hidden="true">↗</span>
             </button>
+            <span class="note fg-or" aria-hidden="true">OR</span>
+            <a
+              class="btn btn--ghost cta__button cta__button--outline fg-mail"
+              href="mailto:phobosanderos@gmail.com"
+            >
+              <span>Write a mail</span>
+              <span class="arrow cta__button-icon" aria-hidden="true">↗</span>
+            </a>
 
             <p
               class="fg-status"
@@ -154,19 +135,17 @@ import c from "../content.json";
           </div>
         </div>
 
-        <div class="fg-sent" tabindex="-1" aria-live="polite" hidden>
-          <p
-            class="fg-sent-h h3"
-          >{c.contact.p_19_html}</p>
-
-          <button
-            class="btn btn--ghost cta__button cta__button--outline"
-            type="button"
-            data-again
-          >
-            {c.contact.button_21}
-          </button>
-        </div>
+        <dialog class="fg-sent" aria-labelledby="brief-success-title" aria-modal="true" hidden>
+          <button class="info-dialog__close fg-sent-close" type="button" data-success-close aria-label="Close confirmation">×</button>
+          <p class="fg-sent-h h3" id="brief-success-title">{c.contact.p_19_html}</p>
+          <div class="fg-sent-actions">
+            <button
+              class="btn btn--ghost cta__button cta__button--outline"
+              type="button"
+              data-again
+            >{c.contact.button_21}</button>
+          </div>
+        </dialog>
       </form>
     </div>
     </div>
@@ -177,18 +156,10 @@ import c from "../content.json";
 // Keep homepage and cross-page #contact links clear of the fixed header.
 const contactAnchor = document.querySelector("#contact");
 const header = document.querySelector(".site-header");
-const contactToggle = document.querySelector("[data-brief-toggle]");
 const contactPanel = document.querySelector("#brief-panel");
 
 function focusContactControl() {
-  const open = contactPanel && !contactPanel.hidden;
-  const success = open && contactPanel.querySelector("form.fg.is-sent");
-  const destination = success
-    ? contactPanel.querySelector("[data-again]")
-    : open
-      ? contactPanel.querySelector('input[name="name"]')
-      : contactToggle;
-  destination?.focus({ preventScroll: true });
+  contactPanel?.querySelector('input[name="name"]')?.focus({ preventScroll: true });
 }
 
 function navigateToContact(updateHash = false) {
@@ -243,186 +214,5 @@ window.addEventListener("hashchange", () => {
 window.addEventListener("load", () => {
   if (location.hash === "#contact") requestAnimationFrame(() => navigateToContact());
 });
-
-  // Brief disclosure and confirmation: preserve Web3Forms' existing form handler.
-  const contactSection = document.querySelector("#contact");
-  const briefToggle = document.querySelector("[data-brief-toggle]");
-  const briefPanel = document.querySelector("#brief-panel");
-
-  if (
-    contactSection instanceof HTMLElement &&
-    briefToggle instanceof HTMLButtonElement &&
-    briefPanel instanceof HTMLElement
-  ) {
-    const form = briefPanel.querySelector("form.fg");
-    const sent = form?.querySelector(".fg-sent");
-    const again = form?.querySelector("[data-again]");
-    const primaryLabel = briefToggle.querySelector("[data-brief-label]");
-    const secondary = contactSection.querySelector(".cta__actions a");
-    const secondaryLabel = secondary?.querySelector("[data-contact-secondary-label]");
-    const calHref = secondary?.getAttribute("href") || "";
-    const calTarget = secondary?.getAttribute("target");
-    const calRel = secondary?.getAttribute("rel");
-    const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
-    let panelAnimation = null;
-    let sectionAnimation = null;
-    let lastSectionHeight = 0;
-    let closing = false;
-
-    function duration() {
-      const raw = getComputedStyle(document.documentElement)
-        .getPropertyValue("--dur-2").trim();
-      const n = parseFloat(raw);
-      return Number.isFinite(n) ? n * (raw.endsWith("ms") ? 1 : 1000) : 300;
-    }
-
-    function ease() {
-      return getComputedStyle(document.documentElement)
-        .getPropertyValue("--ease-out").trim() || "ease-out";
-    }
-
-    function showActionState(open) {
-      if (primaryLabel) primaryLabel.textContent = open ? "Write a short brief" : "Send a short brief";
-      if (secondary && secondaryLabel) {
-        secondaryLabel.textContent = open ? "Send a mail" : "Book a call";
-        secondary.setAttribute("href", open ? "mailto:phobosanderos@gmail.com" : calHref);
-        if (open) {
-          secondary.removeAttribute("target");
-          secondary.removeAttribute("rel");
-        } else {
-          if (calTarget !== null) secondary.setAttribute("target", calTarget);
-          if (calRel !== null) secondary.setAttribute("rel", calRel);
-        }
-      }
-    }
-
-    function clearPanelStyles() {
-      briefPanel.style.height = "";
-      briefPanel.style.opacity = "";
-      briefPanel.style.overflow = "";
-    }
-
-    function animateSectionFrom(oldHeight) {
-      sectionAnimation?.cancel();
-      contactSection.style.height = "";
-      contactSection.style.overflow = "";
-      if (reducedMotion.matches || !oldHeight) return;
-      const newHeight = contactSection.getBoundingClientRect().height;
-      if (Math.abs(newHeight - oldHeight) < 2) return;
-      contactSection.style.height = oldHeight + "px";
-      contactSection.style.overflow = "clip";
-      sectionAnimation = contactSection.animate(
-        [{ height: oldHeight + "px" }, { height: newHeight + "px" }],
-        { duration: duration(), easing: ease() }
-      );
-      sectionAnimation.onfinish = () => {
-        sectionAnimation = null;
-        contactSection.style.height = "";
-        contactSection.style.overflow = "";
-      };
-      sectionAnimation.oncancel = () => {
-        sectionAnimation = null;
-      };
-    }
-
-    function scrollToForm() {
-      if (briefPanel.hidden) return;
-      const headerHeight = document.querySelector(".site-header")
-        ?.getBoundingClientRect().height || 72;
-      const gap = parseFloat(getComputedStyle(document.documentElement)
-        .getPropertyValue("--gutter")) || 16;
-      const top = Math.max(0, briefPanel.getBoundingClientRect().top +
-        scrollY - headerHeight - gap);
-      if (!reducedMotion.matches && window.__lenis) {
-        window.__lenis.scrollTo(top, { duration: .8 });
-      } else {
-        window.scrollTo({ top, behavior: reducedMotion.matches ? "auto" : "smooth" });
-      }
-    }
-
-    if (form instanceof HTMLFormElement) {
-      // Capture the current height before Web3Forms swaps fields for confirmation.
-      form.addEventListener("submit", () => {
-        lastSectionHeight = contactSection.getBoundingClientRect().height;
-      }, true);
-      again?.addEventListener("click", () => {
-        lastSectionHeight = contactSection.getBoundingClientRect().height;
-      }, true);
-
-      new MutationObserver(() => {
-        if (closing) return;
-        const successful = form.classList.contains("is-sent");
-        contactSection.classList.toggle("is-sent", successful);
-        showActionState(!successful && !briefPanel.hidden);
-        animateSectionFrom(lastSectionHeight);
-        lastSectionHeight = 0;
-      }).observe(form, { attributes: true, attributeFilter: ["class"] });
-    }
-
-    briefToggle.addEventListener("click", () => {
-      const nextOpen = briefToggle.getAttribute("aria-expanded") !== "true";
-      if (panelAnimation) panelAnimation.cancel();
-      panelAnimation = null;
-      if (sectionAnimation) sectionAnimation.cancel();
-      sectionAnimation = null;
-      contactSection.style.height = "";
-      contactSection.style.overflow = "";
-
-      briefToggle.setAttribute("aria-expanded", String(nextOpen));
-      contactSection.classList.toggle("is-brief-open", nextOpen);
-
-      if (nextOpen) {
-        closing = false;
-        contactSection.classList.remove("is-sent");
-        showActionState(true);
-        briefPanel.hidden = false;
-        if (reducedMotion.matches) {
-          clearPanelStyles();
-          requestAnimationFrame(scrollToForm);
-          return;
-        }
-        briefPanel.style.overflow = "hidden";
-        briefPanel.style.height = "0px";
-        briefPanel.style.opacity = "0";
-        const height = briefPanel.scrollHeight;
-        panelAnimation = briefPanel.animate(
-          [{ height: "0px", opacity: 0 }, { height: height + "px", opacity: 1 }],
-          { duration: duration(), easing: ease() }
-        );
-        panelAnimation.onfinish = () => {
-          panelAnimation = null;
-          clearPanelStyles();
-        };
-        requestAnimationFrame(scrollToForm);
-      } else {
-        closing = true;
-        // Closing a confirmation resets the form through the existing reset handler.
-        if (form?.classList.contains("is-sent")) again?.click();
-        contactSection.classList.remove("is-sent");
-        showActionState(false);
-        briefToggle.focus({ preventScroll: true });
-        if (reducedMotion.matches) {
-          briefPanel.hidden = true;
-          clearPanelStyles();
-          closing = false;
-          return;
-        }
-        const startHeight = briefPanel.getBoundingClientRect().height;
-        briefPanel.style.height = startHeight + "px";
-        briefPanel.style.opacity = "1";
-        briefPanel.style.overflow = "hidden";
-        panelAnimation = briefPanel.animate(
-          [{ height: startHeight + "px", opacity: 1 }, { height: "0px", opacity: 0 }],
-          { duration: duration(), easing: ease() }
-        );
-        panelAnimation.onfinish = () => {
-          panelAnimation = null;
-          briefPanel.hidden = true;
-          clearPanelStyles();
-          closing = false;
-        };
-      }
-    });
-  }
 
 </script>
