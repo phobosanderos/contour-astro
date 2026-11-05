@@ -199,6 +199,7 @@ if (pc && ring && preloader && !root.dataset.preloaded) {
     bootStarted = true;
 
     preloader.removeEventListener("transitionend", onPreloaderFadeEnd);
+    try { sessionStorage.setItem("ct-preloaded", "1"); } catch (e) {}
     bootAnimations();
   }
 
@@ -254,12 +255,15 @@ if (pc && ring && preloader && !root.dataset.preloaded) {
   }
   if (!reduce) tbCount();
 
-  if (!root.dataset.preloaded) { try { sessionStorage.setItem("ct-preloaded", "1"); } catch (e) {} }
 
   formInit();
 
   var G = window.gsap, ST = window.ScrollTrigger, Split = window.SplitText;
-  if (!G || !ST || reduce) { root.classList.add("motion-ready"); return; }
+  if (!G || !ST || reduce) {
+    root.classList.add("motion-ready");
+    if (root.dataset.preloaded === "true") bootAnimations();
+    return;
+  }
   G.registerPlugin(ST); if (Split) G.registerPlugin(Split);
 
   /* ---------- smooth scroll ---------- */
@@ -355,7 +359,7 @@ history.replaceState(history.state, "", "#" + id);
     root.dataset.motionBooted = "true";
     root.classList.add("motion-ready");
     revealFeaturedCards();
-    ST.refresh();
+    if (ST && !reduce) ST.refresh();
   }
 
   // Also support a previously completed or skipped preloader.
@@ -363,56 +367,132 @@ history.replaceState(history.state, "", "#" + id);
     bootAnimations();
   }
 
-  /* ---------- Formgong form: success only when the server answers success: true ---------- */
+  /* ---------- Web3Forms: validate, submit and offer email on failure ---------- */
   function formInit() {
     $$("form.fg").forEach(function (form) {
-      var send = $("button[type=submit]", form), label = $("[data-label]", form), status = $("[data-status]", form), text = label ? label.textContent : "";
-      form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        send.disabled = true; if (label) label.textContent = "Sending…"; status.textContent = ""; status.classList.remove("err");
-        var first = ((form.elements.namedItem("name") || {}).value || "").trim().split(/\s+/)[0];
-        fetch(form.action, {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json",
-    "Accept": "application/json"
-  },
-  body: JSON.stringify(
-    Object.fromEntries(new FormData(form).entries())
-  )
-})
-  .then(function (r) {
-    return r.json();
-  })
-  .then(function (res) {
-    if (res && String(res.success) === "true") {
-      var nm = $("[data-name]", form);
-      if (nm) nm.textContent = first || "there";
+      var send = $("button[type=submit]", form);
+      var label = $("[data-label]", form);
+      var status = $("[data-status]", form);
+      var fallback = $("[data-form-fallback]", form);
+      var sent = $(".fg-sent", form);
+      var fields = $$("input:not([type=hidden]):not([name=botcheck]), select, textarea", form);
+      var idleLabel = label ? label.textContent : "Send the brief";
+      var sending = false;
 
-      form.reset();
-      form.classList.add("is-sent");
+      function clearStatus() {
+        status.textContent = "";
+        status.hidden = true;
+        status.classList.remove("err");
+        fallback.hidden = true;
+      }
 
-      var s = $(".fg-sent", form);
-      if (s) s.focus();
-    } else {
-      status.textContent =
-        (res && res.message) || "Could not send. Please try again.";
+      function showFailure(message) {
+        status.textContent = message;
+        status.classList.add("err");
+        status.hidden = false;
+        fallback.hidden = false;
+      }
 
-      status.classList.add("err");
-    }
-  })
-  .catch(function (error) {
-    console.error("Form submission error:", error);
+      function errorFor(field) {
+        if (field.required && !field.value.trim()) return "This field is required.";
+        if (field.validity.typeMismatch && field.type === "email") return "Enter a valid email address.";
+        if (!field.checkValidity()) return field.validationMessage || "Please check this field.";
+        return "";
+      }
 
-    status.textContent =
-      "Could not send. Please try again or email me directly.";
+      function validateField(field) {
+        var error = errorFor(field);
+        var message = doc.getElementById(field.id + "-error");
+        if (message) {
+          message.textContent = error;
+          message.hidden = !error;
+        }
+        if (error) field.setAttribute("aria-invalid", "true");
+        else field.removeAttribute("aria-invalid");
+        return !error;
+      }
 
-    status.classList.add("err");
-  })
-          .finally(function () { send.disabled = false; if (label) label.textContent = text; });
+      fields.forEach(function (field) {
+        field.addEventListener("input", function () {
+          if (field.hasAttribute("aria-invalid")) validateField(field);
+        });
+        field.addEventListener("change", function () {
+          if (field.hasAttribute("aria-invalid")) validateField(field);
+        });
       });
+
+      form.addEventListener("submit", function (event) {
+        event.preventDefault();
+        if (sending) return;
+        clearStatus();
+
+        var firstInvalid = null;
+        fields.forEach(function (field) {
+          if (!validateField(field) && !firstInvalid) firstInvalid = field;
+        });
+        if (firstInvalid) {
+          firstInvalid.focus();
+          return;
+        }
+
+        sending = true;
+        send.disabled = true;
+        send.setAttribute("aria-busy", "true");
+        if (label) label.textContent = "Sending...";
+
+        fetch(form.action, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+          },
+          body: JSON.stringify(Object.fromEntries(new FormData(form).entries()))
+        })
+          .then(function (response) {
+            return response.json().then(function (data) {
+              if (!response.ok || !data || data.success !== true) {
+                throw new Error((data && data.message) || "The form could not be sent.");
+              }
+              return data;
+            });
+          })
+          .then(function () {
+            form.reset();
+            fields.forEach(function (field) {
+              field.removeAttribute("aria-invalid");
+              var message = doc.getElementById(field.id + "-error");
+              if (message) { message.textContent = ""; message.hidden = true; }
+            });
+            clearStatus();
+            sent.hidden = false;
+            form.classList.add("is-sent");
+            sent.focus({ preventScroll: true });
+          })
+          .catch(function (error) {
+            console.error("Web3Forms submission failed:", error);
+            showFailure("Unable to send your brief right now. Please try again or use email.");
+          })
+          .finally(function () {
+            sending = false;
+            send.disabled = false;
+            send.removeAttribute("aria-busy");
+            if (label) label.textContent = idleLabel;
+          });
+      });
+
       var again = $("[data-again]", form);
-      if (again) again.addEventListener("click", function () { form.classList.remove("is-sent"); form.elements.namedItem("name").focus(); });
+      if (again) again.addEventListener("click", function () {
+        form.reset();
+        sent.hidden = true;
+        form.classList.remove("is-sent");
+        clearStatus();
+        fields.forEach(function (field) {
+          field.removeAttribute("aria-invalid");
+          var message = doc.getElementById(field.id + "-error");
+          if (message) { message.textContent = ""; message.hidden = true; }
+        });
+        form.elements.namedItem("name")?.focus({ preventScroll: true });
+      });
     });
   }
 })();
