@@ -248,7 +248,7 @@ window.addEventListener("load", () => {
   if (location.hash === "#contact") requestAnimationFrame(() => navigateToContact());
 });
 
-  // Brief disclosure: height/opacity animation with the form kept in the left grid column.
+  // Brief disclosure and confirmation: preserve Web3Forms' existing form handler.
   const contactSection = document.querySelector("#contact");
   const briefToggle = document.querySelector("[data-brief-toggle]");
   const briefPanel = document.querySelector("#brief-panel");
@@ -259,127 +259,171 @@ window.addEventListener("load", () => {
     briefPanel instanceof HTMLElement
   ) {
     const form = briefPanel.querySelector("form.fg");
-    const formArea = briefPanel.querySelector(".cta__form-area");
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-    let activeAnimation = null;
-    let lastFormHeight = 0;
+    const sent = form?.querySelector(".fg-sent");
+    const again = form?.querySelector("[data-again]");
+    const primaryLabel = briefToggle.querySelector("[data-brief-label]");
+    const secondary = contactSection.querySelector(".cta__actions a");
+    const secondaryLabel = secondary?.querySelector("[data-contact-secondary-label]");
+    const calHref = secondary?.getAttribute("href") || "";
+    const calTarget = secondary?.getAttribute("target");
+    const calRel = secondary?.getAttribute("rel");
+    const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
+    let panelAnimation = null;
+    let sectionAnimation = null;
+    let lastSectionHeight = 0;
+    let closing = false;
 
-    const motionDuration = () => {
+    function duration() {
       const raw = getComputedStyle(document.documentElement)
         .getPropertyValue("--dur-2").trim();
-      const value = Number.parseFloat(raw);
-      return Number.isFinite(value)
-        ? value * (raw.endsWith("ms") ? 1 : 1000)
-        : 800;
-    };
-    const motionEase = () =>
-      getComputedStyle(document.documentElement)
-        .getPropertyValue("--ease-out").trim() || "ease-out";
+      const n = parseFloat(raw);
+      return Number.isFinite(n) ? n * (raw.endsWith("ms") ? 1 : 1000) : 300;
+    }
 
-    const resetPanelStyles = () => {
+    function ease() {
+      return getComputedStyle(document.documentElement)
+        .getPropertyValue("--ease-out").trim() || "ease-out";
+    }
+
+    function showActionState(open) {
+      if (primaryLabel) primaryLabel.textContent = open ? "Write a short brief" : "Send a short brief";
+      if (secondary && secondaryLabel) {
+        secondaryLabel.textContent = open ? "Send a mail" : "Book a call";
+        secondary.setAttribute("href", open ? "mailto:phobosanderos@gmail.com" : calHref);
+        if (open) {
+          secondary.removeAttribute("target");
+          secondary.removeAttribute("rel");
+        } else {
+          if (calTarget !== null) secondary.setAttribute("target", calTarget);
+          if (calRel !== null) secondary.setAttribute("rel", calRel);
+        }
+      }
+    }
+
+    function clearPanelStyles() {
       briefPanel.style.height = "";
       briefPanel.style.opacity = "";
       briefPanel.style.overflow = "";
-    };
+    }
+
+    function animateSectionFrom(oldHeight) {
+      sectionAnimation?.cancel();
+      contactSection.style.height = "";
+      contactSection.style.overflow = "";
+      if (reducedMotion.matches || !oldHeight) return;
+      const newHeight = contactSection.getBoundingClientRect().height;
+      if (Math.abs(newHeight - oldHeight) < 2) return;
+      contactSection.style.height = oldHeight + "px";
+      contactSection.style.overflow = "clip";
+      sectionAnimation = contactSection.animate(
+        [{ height: oldHeight + "px" }, { height: newHeight + "px" }],
+        { duration: duration(), easing: ease() }
+      );
+      sectionAnimation.onfinish = () => {
+        sectionAnimation = null;
+        contactSection.style.height = "";
+        contactSection.style.overflow = "";
+      };
+      sectionAnimation.oncancel = () => {
+        sectionAnimation = null;
+      };
+    }
 
     function scrollToForm() {
       if (briefPanel.hidden) return;
       const headerHeight = document.querySelector(".site-header")
         ?.getBoundingClientRect().height || 72;
-      const gap = Number.parseFloat(
-        getComputedStyle(document.documentElement).getPropertyValue("--gutter")
-      ) || 16;
-      const top = Math.max(0, briefPanel.getBoundingClientRect().top + window.scrollY - headerHeight - gap);
+      const gap = parseFloat(getComputedStyle(document.documentElement)
+        .getPropertyValue("--gutter")) || 16;
+      const top = Math.max(0, briefPanel.getBoundingClientRect().top +
+        scrollY - headerHeight - gap);
       if (!reducedMotion.matches && window.__lenis) {
         window.__lenis.scrollTo(top, { duration: .8 });
       } else {
-        window.scrollTo({
-          top,
-          behavior: reducedMotion.matches ? "auto" : "smooth"
-        });
+        window.scrollTo({ top, behavior: reducedMotion.matches ? "auto" : "smooth" });
       }
     }
 
-    // Capture the fully laid-out form before Web3Forms replaces it with success.
-    if (form instanceof HTMLFormElement && formArea instanceof HTMLElement) {
+    if (form instanceof HTMLFormElement) {
+      // Capture the current height before Web3Forms swaps fields for confirmation.
       form.addEventListener("submit", () => {
-        if (!form.classList.contains("is-sent")) {
-          const measured = form.getBoundingClientRect().height;
-          if (measured > 0) lastFormHeight = measured;
-        }
+        lastSectionHeight = contactSection.getBoundingClientRect().height;
+      }, true);
+      again?.addEventListener("click", () => {
+        lastSectionHeight = contactSection.getBoundingClientRect().height;
       }, true);
 
       new MutationObserver(() => {
-        if (form.classList.contains("is-sent") && lastFormHeight > 0) {
-          formArea.style.minHeight = lastFormHeight + "px";
-        }
-        // Keep the same minimum while the Send another control resets the fields.
+        if (closing) return;
+        const successful = form.classList.contains("is-sent");
+        contactSection.classList.toggle("is-sent", successful);
+        showActionState(!successful && !briefPanel.hidden);
+        animateSectionFrom(lastSectionHeight);
+        lastSectionHeight = 0;
       }).observe(form, { attributes: true, attributeFilter: ["class"] });
     }
 
     briefToggle.addEventListener("click", () => {
       const nextOpen = briefToggle.getAttribute("aria-expanded") !== "true";
+      if (panelAnimation) panelAnimation.cancel();
+      panelAnimation = null;
+      if (sectionAnimation) sectionAnimation.cancel();
+      sectionAnimation = null;
+      contactSection.style.height = "";
+      contactSection.style.overflow = "";
+
       briefToggle.setAttribute("aria-expanded", String(nextOpen));
       contactSection.classList.toggle("is-brief-open", nextOpen);
 
-      if (activeAnimation) {
-        activeAnimation.cancel();
-        activeAnimation = null;
-      }
-
       if (nextOpen) {
+        closing = false;
+        contactSection.classList.remove("is-sent");
+        showActionState(true);
         briefPanel.hidden = false;
         if (reducedMotion.matches) {
-          resetPanelStyles();
+          clearPanelStyles();
           requestAnimationFrame(scrollToForm);
           return;
         }
-
         briefPanel.style.overflow = "hidden";
         briefPanel.style.height = "0px";
         briefPanel.style.opacity = "0";
-        const endHeight = briefPanel.scrollHeight;
-        activeAnimation = briefPanel.animate(
-          [
-            { height: "0px", opacity: 0 },
-            { height: endHeight + "px", opacity: 1 }
-          ],
-          { duration: motionDuration(), easing: motionEase() }
+        const height = briefPanel.scrollHeight;
+        panelAnimation = briefPanel.animate(
+          [{ height: "0px", opacity: 0 }, { height: height + "px", opacity: 1 }],
+          { duration: duration(), easing: ease() }
         );
-        activeAnimation.onfinish = () => {
-          activeAnimation = null;
-          resetPanelStyles();
-        };
-        activeAnimation.oncancel = () => {
-          activeAnimation = null;
+        panelAnimation.onfinish = () => {
+          panelAnimation = null;
+          clearPanelStyles();
         };
         requestAnimationFrame(scrollToForm);
       } else {
+        closing = true;
+        // Closing a confirmation resets the form through the existing reset handler.
+        if (form?.classList.contains("is-sent")) again?.click();
+        contactSection.classList.remove("is-sent");
+        showActionState(false);
         briefToggle.focus({ preventScroll: true });
         if (reducedMotion.matches) {
           briefPanel.hidden = true;
-          resetPanelStyles();
+          clearPanelStyles();
+          closing = false;
           return;
         }
-
         const startHeight = briefPanel.getBoundingClientRect().height;
-        briefPanel.style.overflow = "hidden";
         briefPanel.style.height = startHeight + "px";
         briefPanel.style.opacity = "1";
-        activeAnimation = briefPanel.animate(
-          [
-            { height: startHeight + "px", opacity: 1 },
-            { height: "0px", opacity: 0 }
-          ],
-          { duration: motionDuration(), easing: motionEase() }
+        briefPanel.style.overflow = "hidden";
+        panelAnimation = briefPanel.animate(
+          [{ height: startHeight + "px", opacity: 1 }, { height: "0px", opacity: 0 }],
+          { duration: duration(), easing: ease() }
         );
-        activeAnimation.onfinish = () => {
-          activeAnimation = null;
+        panelAnimation.onfinish = () => {
+          panelAnimation = null;
           briefPanel.hidden = true;
-          resetPanelStyles();
-        };
-        activeAnimation.oncancel = () => {
-          activeAnimation = null;
+          clearPanelStyles();
+          closing = false;
         };
       }
     });
