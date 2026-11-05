@@ -9,7 +9,8 @@ const currentYear = new Date().getFullYear();
     <div class="footer-col footer-col--overview">
       <p class="note">{c.footer.p_6}</p>
 
-      <nav aria-label="Overview"><ul>
+      <nav aria-label="Overview">
+        <ul>
         <li>
           <a class="link" href="/#work">{c.footer.a_3}</a>
         </li>
@@ -26,13 +27,15 @@ const currentYear = new Date().getFullYear();
             Prints<svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#arrow-up-right"></use></svg><span class="sr-only"> (opens in a new tab)</span>
           </a>
         </li>
-      </ul>
-    </nav></div>
+        </ul>
+      </nav>
+    </div>
 
     <div class="footer-col footer-col--elsewhere">
       <p class="note">{c.footer.p_7}</p>
 
-      <nav aria-label="Elsewhere"><ul>
+      <nav aria-label="Elsewhere">
+        <ul>
         <li>
           <a
             class="link"
@@ -63,13 +66,14 @@ const currentYear = new Date().getFullYear();
             Behance<svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#arrow-up-right"></use></svg><span class="sr-only"> (opens in a new tab)</span>
           </a>
         </li>
-      </ul></nav>
+        </ul>
+      </nav>
     </div>
   </div>
 
   <div class="footer-bottom note">
     <p class="copy">
-      <span>© {currentYear} Phobos &amp; Eros</span>
+      <span>© <span data-copyright-year>{currentYear}</span> Phobos &amp; Eros</span>
       <span>{c.footer.span_24}</span>
     </p>
 
@@ -79,3 +83,9 @@ const currentYear = new Date().getFullYear();
     </nav>
   </div>
 </footer>
+
+<script is:inline>
+  document.querySelectorAll("[data-copyright-year]").forEach((year) => {
+    year.textContent = String(new Date().getFullYear());
+  });
+</script>
