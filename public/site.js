@@ -379,6 +379,7 @@ history.replaceState(history.state, "", "#" + id);
       var status = $("[data-status]", form);
       var fallback = $("[data-form-fallback]", form);
       var sent = $(".fg-sent", form);
+      var closeSuccess = $("[data-success-close]", sent);
       var fields = $$("input:not([type=hidden]):not([name=botcheck]), select, textarea", form);
       var idleLabel = label ? label.textContent : "Send the brief";
       var sending = false;
@@ -469,8 +470,10 @@ history.replaceState(history.state, "", "#" + id);
             });
             clearStatus();
             sent.hidden = false;
-            form.classList.add("is-sent");
-            sent.focus({ preventScroll: true });
+            if (sent instanceof HTMLDialogElement && !sent.open) {
+              sent.showModal();
+              closeSuccess?.focus({ preventScroll: true });
+            }
           })
           .catch(function (error) {
             console.error("Web3Forms submission failed:", error);
@@ -486,15 +489,13 @@ history.replaceState(history.state, "", "#" + id);
 
       var again = $("[data-again]", form);
       if (again) again.addEventListener("click", function () {
-        form.reset();
+        if (sent.open) sent.close();
+      });
+      if (closeSuccess) closeSuccess.addEventListener("click", function () {
+        if (sent.open) sent.close();
+      });
+      sent.addEventListener("close", function () {
         sent.hidden = true;
-        form.classList.remove("is-sent");
-        clearStatus();
-        fields.forEach(function (field) {
-          field.removeAttribute("aria-invalid");
-          var message = doc.getElementById(field.id + "-error");
-          if (message) { message.textContent = ""; message.hidden = true; }
-        });
         form.elements.namedItem("name")?.focus({ preventScroll: true });
       });
     });
