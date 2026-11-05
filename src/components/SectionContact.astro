@@ -249,8 +249,8 @@ window.addEventListener("load", () => {
   if (location.hash === "#contact") requestAnimationFrame(() => navigateToContact());
 });
 
-  // Brief disclosure: keep the viewport anchored while the form expands
-  const contactSection = document.querySelector(".cta");
+  // Brief disclosure: height/opacity animation with the form kept in the left grid column.
+  const contactSection = document.querySelector("#contact");
   const briefToggle = document.querySelector("[data-brief-toggle]");
   const briefPanel = document.querySelector("#brief-panel");
 
@@ -259,117 +259,129 @@ window.addEventListener("load", () => {
     briefToggle instanceof HTMLButtonElement &&
     briefPanel instanceof HTMLElement
   ) {
-    let anchorFrame = 0;
-    let bottomGap = 0;
+    const form = briefPanel.querySelector("form.fg");
+    const formArea = briefPanel.querySelector(".cta__form-area");
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let activeAnimation = null;
+    let lastFormHeight = 0;
 
-    const keepBottomAnchored = () => {
-      const maxScroll = Math.max(
-        0,
-        document.documentElement.scrollHeight - window.innerHeight
-      );
+    const motionDuration = () => {
+      const raw = getComputedStyle(document.documentElement)
+        .getPropertyValue("--dur-2").trim();
+      const value = Number.parseFloat(raw);
+      return Number.isFinite(value)
+        ? value * (raw.endsWith("ms") ? 1 : 1000)
+        : 800;
+    };
+    const motionEase = () =>
+      getComputedStyle(document.documentElement)
+        .getPropertyValue("--ease-out").trim() || "ease-out";
 
-      window.scrollTo(0, Math.max(0, maxScroll - bottomGap));
+    const resetPanelStyles = () => {
+      briefPanel.style.height = "";
+      briefPanel.style.opacity = "";
+      briefPanel.style.overflow = "";
     };
 
-    const stopAnchoring = () => {
-      if (anchorFrame) {
-        cancelAnimationFrame(anchorFrame);
-        anchorFrame = 0;
+    function scrollToForm() {
+      if (briefPanel.hidden) return;
+      const headerHeight = document.querySelector(".site-header")
+        ?.getBoundingClientRect().height || 72;
+      const gap = Number.parseFloat(
+        getComputedStyle(document.documentElement).getPropertyValue("--gutter")
+      ) || 16;
+      const top = Math.max(0, briefPanel.getBoundingClientRect().top + window.scrollY - headerHeight - gap);
+      if (!reducedMotion.matches && window.__lenis) {
+        window.__lenis.scrollTo(top, { duration: .8 });
+      } else {
+        window.scrollTo({
+          top,
+          behavior: reducedMotion.matches ? "auto" : "smooth"
+        });
       }
-    };
+    }
 
-    const startAnchoring = () => {
-      stopAnchoring();
+    // Capture the fully laid-out form before Web3Forms replaces it with success.
+    if (form instanceof HTMLFormElement && formArea instanceof HTMLElement) {
+      form.addEventListener("submit", () => {
+        if (!form.classList.contains("is-sent")) {
+          const measured = form.getBoundingClientRect().height;
+          if (measured > 0) lastFormHeight = measured;
+        }
+      }, true);
 
-      const track = () => {
-        keepBottomAnchored();
-        anchorFrame = requestAnimationFrame(track);
-      };
-
-      anchorFrame = requestAnimationFrame(track);
-    };
+      new MutationObserver(() => {
+        if (form.classList.contains("is-sent") && lastFormHeight > 0) {
+          formArea.style.minHeight = lastFormHeight + "px";
+        }
+        // Keep the same minimum while the Send another control resets the fields.
+      }).observe(form, { attributes: true, attributeFilter: ["class"] });
+    }
 
     briefToggle.addEventListener("click", () => {
-      const nextOpen =
-        briefToggle.getAttribute("aria-expanded") !== "true";
-
+      const nextOpen = briefToggle.getAttribute("aria-expanded") !== "true";
       briefToggle.setAttribute("aria-expanded", String(nextOpen));
       contactSection.classList.toggle("is-brief-open", nextOpen);
 
-      if (nextOpen) {
-        // Record the current distance from the bottom before expanding.
-        bottomGap = Math.max(
-          0,
-          document.documentElement.scrollHeight -
-            (window.scrollY + window.innerHeight)
-        );
+      if (activeAnimation) {
+        activeAnimation.cancel();
+        activeAnimation = null;
+      }
 
+      if (nextOpen) {
         briefPanel.hidden = false;
+        if (reducedMotion.matches) {
+          resetPanelStyles();
+          requestAnimationFrame(scrollToForm);
+          return;
+        }
 
         briefPanel.style.overflow = "hidden";
         briefPanel.style.height = "0px";
         briefPanel.style.opacity = "0";
-        briefPanel.style.transform = "translateY(12px)";
-
-        const targetHeight = briefPanel.scrollHeight;
-
-        const reducedMotion = window.matchMedia(
-          "(prefers-reduced-motion: reduce)"
-        ).matches;
-
-        if (reducedMotion) {
-          briefPanel.style.height = "auto";
-          briefPanel.style.opacity = "1";
-          briefPanel.style.transform = "none";
-          briefPanel.style.overflow = "";
-
-          requestAnimationFrame(keepBottomAnchored);
+        const endHeight = briefPanel.scrollHeight;
+        activeAnimation = briefPanel.animate(
+          [
+            { height: "0px", opacity: 0 },
+            { height: endHeight + "px", opacity: 1 }
+          ],
+          { duration: motionDuration(), easing: motionEase() }
+        );
+        activeAnimation.onfinish = () => {
+          activeAnimation = null;
+          resetPanelStyles();
+        };
+        activeAnimation.oncancel = () => {
+          activeAnimation = null;
+        };
+        requestAnimationFrame(scrollToForm);
+      } else {
+        briefToggle.focus({ preventScroll: true });
+        if (reducedMotion.matches) {
+          briefPanel.hidden = true;
+          resetPanelStyles();
           return;
         }
 
-        const openingAnimation = briefPanel.animate(
+        const startHeight = briefPanel.getBoundingClientRect().height;
+        briefPanel.style.overflow = "hidden";
+        briefPanel.style.height = startHeight + "px";
+        briefPanel.style.opacity = "1";
+        activeAnimation = briefPanel.animate(
           [
-            {
-              height: "0px",
-              opacity: 0,
-              transform: "translateY(12px)",
-            },
-            {
-              height: `${targetHeight}px`,
-              opacity: 1,
-              transform: "translateY(0)",
-            },
+            { height: startHeight + "px", opacity: 1 },
+            { height: "0px", opacity: 0 }
           ],
-          {
-            duration: 650,
-            easing: "cubic-bezier(0.22, 1, 0.36, 1)",
-          }
+          { duration: motionDuration(), easing: motionEase() }
         );
-
-        // Follow the page height on every frame of the opening animation.
-        startAnchoring();
-
-        openingAnimation.onfinish = () => {
-          briefPanel.style.height = "auto";
-          briefPanel.style.overflow = "";
-          briefPanel.style.opacity = "";
-          briefPanel.style.transform = "";
-
-          keepBottomAnchored();
-          stopAnchoring();
+        activeAnimation.onfinish = () => {
+          activeAnimation = null;
+          briefPanel.hidden = true;
+          resetPanelStyles();
         };
-
-        openingAnimation.oncancel = stopAnchoring;
-      } else {
-        stopAnchoring();
-
-        briefPanel.hidden = true;
-        briefPanel.style.height = "";
-        briefPanel.style.overflow = "";
-        briefPanel.style.opacity = "";
-        briefPanel.style.transform = "";
-
-        briefToggle.focus({ preventScroll: true });
+        activeAnimation.oncancel = () => {
+          activeAnimation = null;
+        };
       }
     });
   }
