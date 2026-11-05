@@ -450,7 +450,7 @@ history.replaceState(history.state, "", "#" + id);
         })
           .then(function (response) {
             return response.json().then(function (data) {
-              if (!response.ok || !data || data.success !== true) {
+              if (!response.ok || !data || String(data.success) !== "true") {
                 throw new Error((data && data.message) || "The form could not be sent.");
               }
               return data;
