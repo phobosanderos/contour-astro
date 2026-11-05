@@ -87,10 +87,26 @@ const buildStamp = Date.now();
   } catch (e) {}
 </script>
 
+    <script is:inline>
+      // Session-level preloader state is set before CSS can paint the curtain.
+      try {
+        if (
+          sessionStorage.getItem("ct-preloaded") === "1" ||
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ) {
+          document.documentElement.dataset.preloaded = "true";
+        }
+      } catch (e) {
+        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          document.documentElement.dataset.preloaded = "true";
+        }
+      }
+    </script>
+
     <link rel="stylesheet" href={`/site.css?v=${buildStamp}`}>
   </head>
   <body>
-    <div class="preloader" aria-live="polite" aria-label="Loading">
+    <div class="preloader" aria-hidden="true">
       <div class="preloader__inner">
         <div class="preloader__ring" aria-hidden="true"></div>
         <span class="preloader__count">0%</span>
