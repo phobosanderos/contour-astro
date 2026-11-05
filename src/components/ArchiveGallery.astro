@@ -29,8 +29,14 @@ const imageFor = (item) => item.thumbnail || (first(item)?.type === "image" ? fi
             <img src={imageFor(item)} alt={first(item)?.alt || item.title}
               loading="lazy" decoding="async" />
           ) : (
-            <video src={first(item)?.src} muted playsinline preload="metadata"
-              aria-label={item.title} data-archive-thumbnail />
+            <video
+  data-src={first(item)?.src}
+  muted
+  playsinline
+  preload="none"
+  aria-label={item.title}
+  data-archive-thumbnail
+/>
           )}
           {first(item)?.type === "video" && (
             <span class="archive-gallery__play" aria-hidden="true">▶</span>
@@ -107,15 +113,54 @@ const imageFor = (item) => item.thumbnail || (first(item)?.type === "image" ? fi
     });
   });
 
-  // Seek a fraction into un-postered WebM files to expose a thumbnail frame.
-  $$("[data-archive-thumbnail]").forEach(video => {
-    video.addEventListener('loadedmetadata', () => {
-      if (Number.isFinite(video.duration) && video.duration > 0.1) {
-        try { video.currentTime = Math.min(0.15, video.duration / 2); } catch (_) {}
-      }
-    }, { once: true });
-  });
+  const thumbnailVideos = $$(
+  "[data-archive-thumbnail]"
+);
 
+const thumbnailObserver =
+  new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        const video = entry.target;
+        const src = video.dataset.src;
+
+        if (!src) return;
+
+        video.addEventListener(
+          "loadedmetadata",
+          () => {
+            if (
+              Number.isFinite(video.duration) &&
+              video.duration > 0.1
+            ) {
+              try {
+                video.currentTime = Math.min(
+                  0.15,
+                  video.duration / 2
+                );
+              } catch (_) {}
+            }
+          },
+          { once: true }
+        );
+
+        video.src = src;
+        video.preload = "metadata";
+
+        observer.unobserve(video);
+      });
+    },
+    {
+      rootMargin: "300px 0px",
+      threshold: 0
+    }
+  );
+
+thumbnailVideos.forEach((video) => {
+  thumbnailObserver.observe(video);
+});
   function assetFor(item) {
     const asset = document.createElement(item.type === 'video' ? 'video' : 'img');
     asset.src = item.src;
