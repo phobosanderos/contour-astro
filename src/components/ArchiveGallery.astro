@@ -26,12 +26,8 @@ const imageFor = (item) => item.thumbnail || (first(item)?.type === "image" ? fi
         data-cursor="view" aria-label={`Open ${item.title}`}>
         <div class="archive-gallery__visual">
           {imageFor(item) ? (
-    <img
-  src={imageFor(item)}
-  alt={first(item)?.alt || item.title}
-  loading="lazy"
-  decoding="async"
-/>
+            <img src={imageFor(item)} alt={first(item)?.alt || item.title}
+              loading="lazy" decoding="async" />
           ) : (
             <video
   data-src={first(item)?.src}
@@ -165,7 +161,6 @@ const thumbnailObserver =
 thumbnailVideos.forEach((video) => {
   thumbnailObserver.observe(video);
 });
-
   function assetFor(item) {
     const asset = document.createElement(item.type === 'video' ? 'video' : 'img');
     asset.src = item.src;
