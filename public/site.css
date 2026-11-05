@@ -193,8 +193,12 @@ html[data-preloaded="true"] .preloader{
   visibility:hidden;
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .preloader { transition: none; }
+}
+
 /* No-JS visitors must never be covered by the loader. */
-html:not(.js) body:has(#work) .preloader{
+html:not(.js) .preloader{
   display:none;
 }
 
@@ -1714,6 +1718,24 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
 
 .fg-status.err {
   color: var(--danger);
+}
+
+.fg-field-error {
+  color: var(--danger);
+}
+
+.fld [aria-invalid="true"] {
+  border-color: var(--danger);
+}
+
+.fg-row button[type="submit"]:disabled {
+  opacity: .65;
+  cursor: wait;
+}
+
+.fg-fallback {
+  color: var(--accent-text);
+  font-size: .9rem;
 }
 
 .fg-status:empty {
