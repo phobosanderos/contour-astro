@@ -27,11 +27,11 @@ const imageFor = (item) => item.thumbnail || (first(item)?.type === "image" ? fi
         <div class="archive-gallery__visual">
           {imageFor(item) ? (
     <img
-      src={imageFor(item)}
-      alt={first(item)?.alt || item.title}
-      loading={i < 6 ? "eager" : "lazy"}
-      decoding="async"
-    />
+  src={imageFor(item)}
+  alt={first(item)?.alt || item.title}
+  loading="lazy"
+  decoding="async"
+/>
           ) : (
             <video
   data-src={first(item)?.src}
@@ -165,33 +165,7 @@ const thumbnailObserver =
 thumbnailVideos.forEach((video) => {
   thumbnailObserver.observe(video);
 });
-/* Load approaching Archive images earlier */
 
-const archiveImages = $$(
-  ".archive-gallery__visual img"
-);
-
-const imageObserver = new IntersectionObserver(
-  (entries, observer) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-
-      const img = entry.target;
-
-      img.loading = "eager";
-
-      observer.unobserve(img);
-    });
-  },
-  {
-    rootMargin: "700px 0px",
-    threshold: 0
-  }
-);
-
-archiveImages.forEach((img) => {
-  imageObserver.observe(img);
-});
   function assetFor(item) {
     const asset = document.createElement(item.type === 'video' ? 'video' : 'img');
     asset.src = item.src;
