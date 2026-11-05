@@ -207,9 +207,28 @@ thumbnailVideos.forEach((video) => {
         if (!aboutEl.hidden) {
         requestAnimationFrame(positionAbout);
         }
-        mediaEl.replaceChildren(asset);
-        mediaEl.classList.remove('is-switching');
-        if (asset.tagName === 'VIDEO') asset.play().catch(() => {});
+        /* Swap the asset while the previous one is faded out */
+mediaEl.replaceChildren(asset);
+
+/* Keep the new asset invisible initially */
+asset.style.opacity = '0';
+
+/* Fade the new asset in using the Featured transition */
+requestAnimationFrame(() => {
+
+  mediaEl.classList.remove('is-switching');
+
+  requestAnimationFrame(() => {
+
+    asset.style.opacity = '1';
+
+    if (asset.tagName === 'VIDEO') {
+      asset.play().catch(() => {});
+    }
+
+  });
+
+});
       }, 150);
     };
     if (asset.tagName === 'VIDEO') {
