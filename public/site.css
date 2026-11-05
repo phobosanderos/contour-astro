@@ -2877,6 +2877,17 @@ html.has-cursor dialog.info-dialog a {
   resize: none;
   overflow-y: auto;
 }
+#contact .fg.is-sent .fg-sent {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--col-gap);
+}
+#contact .fg.is-sent .fg-sent-h {
+  flex: 1 1 19rem;
+  margin-bottom: 0;
+}
+#contact .fg.is-sent [data-again] { flex: 0 0 auto; }
 #contact.is-sent .cta__intro-copy { display: none; }
 #contact.is-sent .cta__stack-inner { min-height: 0; }
 #contact.is-sent .cta__email { margin-top: var(--col-gap); }
