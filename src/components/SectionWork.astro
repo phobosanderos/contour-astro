@@ -54,7 +54,8 @@ const stripYear = (title = "") => {
               src={project.primaryImage}
               alt={project.alt}
               style={`object-position:${project.coverPosition || "center center"};`}
-              loading={index === 0 ? "eager" : "lazy"}
+              loading="eager"
+              fetchpriority={index === 0 ? "auto" : "high"}
               decoding="async"
             />
 
