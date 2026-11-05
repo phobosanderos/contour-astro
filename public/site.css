@@ -2648,8 +2648,9 @@ html.has-cursor dialog.info-dialog a {
   grid-row: 2;
   align-self: start;
   min-width: 0;
-  margin-top: .75rem;
-  padding-top: 1rem;
+  margin-top: clamp(1.75rem, 3vw, 2.75rem);
+  padding-top: 0;
+  border-top: 0;
   scroll-margin-top: calc(4.5rem + var(--gutter));
 }
 #contact .cta__form-area {
@@ -2775,7 +2776,7 @@ html.has-cursor dialog.info-dialog a {
 #contact .fld input,
 #contact .fld select,
 #contact .fld textarea {
-  font-size: var(--step-1);
+  font-size: var(--step-0);
   line-height: 1.4;
 }
 #contact .fld input,
@@ -2835,11 +2836,13 @@ html.has-cursor dialog.info-dialog a {
   grid-row: 2;
 }
 #contact .fg-row {
-  gap: var(--col-gap);
+  column-gap: clamp(1.25rem, 2.5vw, 2.25rem);
+  row-gap: var(--col-gap);
 }
 #contact .fg-row .fg-or {
   flex: 0 0 auto;
   color: var(--muted);
+  font-size: .85rem;
 }
 #contact .fg-row .fg-mail {
   flex: 0 0 auto;
@@ -2849,7 +2852,7 @@ html.has-cursor dialog.info-dialog a {
 #contact .fld select,
 #contact .fld select option {
   font-family: var(--font-sans);
-  font-size: var(--step-1);
+  font-size: var(--step-0);
   font-weight: 400;
   letter-spacing: -.015em;
   line-height: 1.4;
