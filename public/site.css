@@ -3055,7 +3055,21 @@ body:has(#services .service:last-child .service__link[data-hot]) #contact > .sec
   display:block;
   width:100%;
   height:auto;
-  transition:transform var(--dur-2) var(--ease-in-out);
+
+  object-fit:cover;
+
+  transition:
+    transform var(--dur-2) var(--ease-in-out);
+}
+
+/* Reserve space before image dimensions are available */
+.archive-gallery__visual img{
+  aspect-ratio:auto 3 / 4;
+}
+
+/* Reserve space before video metadata loads */
+.archive-gallery__visual video{
+  aspect-ratio:auto 9 / 16;
 }
 .archive-gallery__card:hover .archive-gallery__visual img,
 .archive-gallery__card:hover .archive-gallery__visual video{transform:scale(1.018)}
