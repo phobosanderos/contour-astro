@@ -157,13 +157,40 @@ const thumbnailObserver =
       });
     },
     {
-      rootMargin: "900px 0px",
+      rootMargin: "300px 0px",
       threshold: 0
     }
   );
 
 thumbnailVideos.forEach((video) => {
   thumbnailObserver.observe(video);
+});
+/* Load approaching Archive images earlier */
+
+const archiveImages = $$(
+  ".archive-gallery__visual img"
+);
+
+const imageObserver = new IntersectionObserver(
+  (entries, observer) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+
+      const img = entry.target;
+
+      img.loading = "eager";
+
+      observer.unobserve(img);
+    });
+  },
+  {
+    rootMargin: "700px 0px",
+    threshold: 0
+  }
+);
+
+archiveImages.forEach((img) => {
+  imageObserver.observe(img);
 });
   function assetFor(item) {
     const asset = document.createElement(item.type === 'video' ? 'video' : 'img');
