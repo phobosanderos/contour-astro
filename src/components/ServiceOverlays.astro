@@ -223,6 +223,20 @@ function closeDialog(dialog) {
   });
 });
 
+  // Open the existing rates/terms dialog from the shared footer on any page.
+  const ratesFooterLinks = document.querySelectorAll('a[href="/?rates=terms#services"]');
+  ratesFooterLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      openInfoDialog(policyDialog, link);
+    });
+  });
+
+  if (new URLSearchParams(window.location.search).get("rates") === "terms") {
+    openInfoDialog(policyDialog);
+    window.history.replaceState(null, "", window.location.pathname + window.location.hash);
+  }
+
   document.querySelectorAll("[data-dialog-close]").forEach((button) => {
     button.addEventListener("click", () => {
       closeDialog(button.closest("dialog"));
