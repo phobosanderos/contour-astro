@@ -39,7 +39,7 @@ const imageFor = (item) => item.thumbnail || (first(item)?.type === "image" ? fi
 />
           )}
           {first(item)?.type === "video" && (
-            <span class="archive-gallery__play" aria-hidden="true">▶</span>
+            <span class="archive-gallery__play" aria-hidden="true"><svg class="ui-icon" focusable="false"><use href="/img/ui-icons.svg#play"></use></svg></span>
           )}
         </div>
         <div class="archive-gallery__meta">
@@ -65,14 +65,14 @@ const imageFor = (item) => item.thumbnail || (first(item)?.type === "image" ? fi
         <button type="button" class="archive-lightbox__info-toggle note" data-archive-info hidden
           aria-expanded="false">ABOUT +</button>
         <button type="button" class="info-dialog__close project-lightbox__close" data-archive-close
-          aria-label="Close">×</button>
+          aria-label="Close"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#close"></use></svg></button>
       </div>
     </header>
     <div class="project-lightbox__media archive-lightbox__media" data-archive-media tabindex="0"></div>
     <footer class="project-lightbox__nav archive-lightbox__nav" data-archive-nav hidden>
-      <button class="project-lightbox__nav-button note" type="button" data-archive-prev>← Previous</button>
+      <button class="project-lightbox__nav-button note" type="button" data-archive-prev><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#arrow-left"></use></svg> Previous</button>
       <span class="project-lightbox__counter note" data-archive-counter></span>
-      <button class="project-lightbox__nav-button note" type="button" data-archive-next>Next →</button>
+      <button class="project-lightbox__nav-button note" type="button" data-archive-next>Next <svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#arrow-right"></use></svg></button>
     </footer>
   </div>
   <!-- Optional description is OUTSIDE the media/window sizing flow. -->
@@ -262,6 +262,10 @@ requestAnimationFrame(() => {
     anchor.textContent = link.text;
     anchor.target = '_blank';
     anchor.rel = 'noopener noreferrer';
+    const notice = document.createElement('span');
+    notice.className = 'sr-only';
+    notice.textContent = ' (opens in a new tab)';
+    anchor.append(notice);
     descEl.append(anchor, document.createTextNode(description.slice(at + link.text.length)));
   }
 
