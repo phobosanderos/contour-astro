@@ -45,7 +45,7 @@ const stripYear = (title = "") => {
           class={`featured-card featured-card--${index + 1}`}
           href={`/work/${project.slug}/`}
           data-reveal="up"
-          data-cursor="open →"
+          data-cursor="open"
           aria-label={`View project: ${project.title}`}
         >
           <div class="featured-card__media">
@@ -91,7 +91,7 @@ const stripYear = (title = "") => {
     </span>
 
     <span class="featured-card__arrow">
-      ↗
+      <svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#arrow-right"></use></svg>
     </span>
   </div>
 
