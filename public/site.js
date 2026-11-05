@@ -43,7 +43,7 @@
   var $$ = function (s, c) { return Array.prototype.slice.call((c || doc).querySelectorAll(s)); };
   var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
   /* ---------- featured cards: prepare before the preloader curtain lifts ---------- */
-  var featuredCards = $(".featured-projects .featured-card");
+  var featuredCards = $$(".featured-projects .featured-card");
   var featuredMotion = !reduce && !!window.gsap && !!window.ScrollTrigger;
   var featuredRevealStarted = false;
   var featuredRevealFallback = 0;
@@ -334,7 +334,7 @@ history.replaceState(history.state, "", "#" + id);
     if (Split) $$('[data-reveal="lines"]').forEach(function (el) {
       Split.create(el, { type: "lines", mask: "lines", aria: "none", autoSplit: true, onSplit: function (s) { maskPad(s); return G.from(s.lines, { yPercent: 110, duration: 1.1, ease: EXPO, stagger: .07, scrollTrigger: { trigger: el, start: "top 85%", once: true } }); } });
     });
-    var up = $('[data-reveal="up"]').filter(function (el) { return !el.matches(".featured-projects .featured-card") && el.getBoundingClientRect().top > innerHeight * .88; });
+    var up = $$('[data-reveal="up"]').filter(function (el) { return !el.matches(".featured-projects .featured-card") && el.getBoundingClientRect().top > innerHeight * .88; });
     if (up.length) {
       G.set(up, { autoAlpha: 0, y: 48, force3D: true });
       ST.batch(up, { start: "top 88%", once: true, onEnter: function (els) { G.to(els, { autoAlpha: 1, y: 0, duration: 1.3, ease: "power3.out", stagger: .09, overwrite: true, clearProps: "transform,opacity,visibility" }); } });
