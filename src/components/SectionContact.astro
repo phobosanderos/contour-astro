@@ -12,7 +12,7 @@ import c from "../content.json";
   <div class="cta__intro grid-12">
     <div class="cta__intro-copy">
       <h2 class="display cta__title" id="c-h">
-      Tell me what<br />you want to make.
+      Tell me what you want to make.
       </h2>
 
     </div>
@@ -132,20 +132,11 @@ import c from "../content.json";
               hidden
             ></p>
             <a class="link fg-fallback" data-form-fallback href="mailto:phobosanderos@gmail.com" hidden>Email phobosanderos@gmail.com instead</a>
+            <p class="fg-sent note" role="status" aria-live="polite" hidden>{c.contact.p_19_html}</p>
           </div>
         </div>
 
-        <dialog class="fg-sent" aria-labelledby="brief-success-title" aria-modal="true" hidden>
-          <button class="info-dialog__close fg-sent-close" type="button" data-success-close aria-label="Close confirmation">×</button>
-          <p class="fg-sent-h h3" id="brief-success-title">{c.contact.p_19_html}</p>
-          <div class="fg-sent-actions">
-            <button
-              class="btn btn--ghost cta__button cta__button--outline"
-              type="button"
-              data-again
-            >{c.contact.button_21}</button>
-          </div>
-        </dialog>
+
       </form>
     </div>
     </div>
