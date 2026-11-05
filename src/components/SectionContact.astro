@@ -114,15 +114,17 @@ import c from "../content.json";
           <div class="fld-wide fg-row">
             <button class="btn cta__button" type="submit">
               <span data-label>{c.contact.span_18}</span>
-              <span class="arrow cta__button-icon" aria-hidden="true">↗</span>
             </button>
             <span class="note fg-or" aria-hidden="true">OR</span>
             <a
               class="btn btn--ghost cta__button cta__button--outline fg-mail"
               href="mailto:phobosanderos@gmail.com"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <span>Write a mail</span>
-              <span class="arrow cta__button-icon" aria-hidden="true">↗</span>
+              <svg class="ui-icon arrow cta__button-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#arrow-up-right"></use></svg>
+              <span class="sr-only">(opens your email application)</span>
             </a>
 
             <p
@@ -131,7 +133,7 @@ import c from "../content.json";
               aria-live="polite"
               hidden
             ></p>
-            <a class="link fg-fallback" data-form-fallback href="mailto:phobosanderos@gmail.com" hidden>Email phobosanderos@gmail.com instead</a>
+            <a class="link fg-fallback" data-form-fallback href="mailto:phobosanderos@gmail.com" target="_blank" rel="noopener noreferrer" hidden>Email phobosanderos@gmail.com instead<span class="sr-only"> (opens your email application)</span></a>
             <p class="fg-sent note" role="status" aria-live="polite" tabindex="-1" hidden>{c.contact.p_19_html}</p>
           </div>
         </div>
