@@ -42,6 +42,39 @@
   var $ = function (s, c) { return (c || doc).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || doc).querySelectorAll(s)); };
   var reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  /* ---------- featured cards: prepare before the preloader curtain lifts ---------- */
+  var featuredCards = $(".featured-projects .featured-card");
+  var featuredMotion = !reduce && !!window.gsap && !!window.ScrollTrigger;
+  var featuredRevealStarted = false;
+  var featuredRevealFallback = 0;
+
+  function forceFeaturedCardsVisible() {
+    if (featuredRevealStarted) return;
+    featuredRevealStarted = true;
+    if (featuredRevealFallback) clearTimeout(featuredRevealFallback);
+    if (featuredMotion) {
+      window.gsap.killTweensOf(featuredCards);
+      window.gsap.set(featuredCards, { clearProps: "transform,opacity,visibility" });
+    }
+  }
+
+  function revealFeaturedCards() {
+    if (featuredRevealStarted) return;
+    featuredRevealStarted = true;
+    if (featuredRevealFallback) clearTimeout(featuredRevealFallback);
+    if (!featuredMotion || !featuredCards.length) return;
+    window.gsap.to(featuredCards, {
+      autoAlpha: 1, y: 0,
+      duration: 1.3, ease: "power3.out", stagger: .09,
+      overwrite: true, clearProps: "transform,opacity,visibility"
+    });
+  }
+
+  if (featuredMotion && featuredCards.length) {
+    window.gsap.set(featuredCards, { autoAlpha: 0, y: 48, force3D: true });
+    // Runs only if the existing preloader/boot handoff never completes.
+    featuredRevealFallback = setTimeout(forceFeaturedCardsVisible, 6500);
+  }
   var EMAIL = (($("a[href^='mailto:']") || {}).href || "").replace("mailto:", "");
   var store = { get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
   var ACCENTS = ["blue", "orange", "lime"];
@@ -202,6 +235,9 @@ if (pc && ring && preloader && !root.dataset.preloaded) {
   }
 
   requestAnimationFrame(tick);
+} else if (!preloader || !pc || !ring) {
+  // Missing loader markup: use the normal bootAnimations handoff below.
+  root.dataset.preloaded = "true";
 }
    
   /* ---------- footer title block: 9 → 0 as each cell enters ---------- */
@@ -255,7 +291,6 @@ history.replaceState(history.state, "", "#" + id);
   }
 
   var EXPO = "expo.out", P4 = "power4.inOut";
-  var idle = function (fn) { return "requestIdleCallback" in window ? requestIdleCallback(fn, { timeout: 1500 }) : setTimeout(fn, 200); };
   var maskPad = function (s) { (s.masks || []).forEach(function (m) { m.style.paddingBottom = "0.12em"; m.style.marginBottom = "-0.12em"; }); };
 
   /* ---------- crosshair cursor + magnetic buttons ---------- */
@@ -294,72 +329,12 @@ history.replaceState(history.state, "", "#" + id);
     if (lenis) lenis.on("scroll", function () { if (hot && !hot.matches(":hover")) set(null); });
   })();
 
-  /* ---------- hero intro: blueprint boxes, outline → ink headline, generated subline ---------- */
-  var TYPE = "01<>/_#*+=-xyz";
-  function scramble(el, d) {
-    var txt = el.dataset.text || "", o = { p: 0 }; el.textContent = "";
-    return G.to(o, { p: 1, duration: d || .5, ease: "none", onUpdate: function () { var n = Math.floor(o.p * txt.length), r = ""; for (var i = 0; i < Math.min(4, txt.length - n); i++) r += TYPE[Math.random() * 14 | 0]; el.textContent = txt.slice(0, n) + r; }, onComplete: function () { el.textContent = txt; } });
-  }
-  function blueprint(hero) {
-    var layer = doc.createElement("div"); layer.className = "bp"; layer.setAttribute("aria-hidden", "true"); hero.appendChild(layer);
-    var hr = hero.getBoundingClientRect(), boxes = [], labels = [], ys = {}, xs = {};
-    $$("[data-bp]", hero).forEach(function (el) {
-      var r = el.getBoundingClientRect(), b = doc.createElement("div"), l = doc.createElement("span");
-      b.className = "bp__box"; b.style.cssText = "left:" + (r.left - hr.left) + "px;top:" + (r.top - hr.top) + "px;width:" + r.width + "px;height:" + r.height + "px";
-      l.className = "bp__label note"; l.dataset.text = el.dataset.bp + " · " + Math.round(r.width) + "×" + Math.round(r.height);
-      b.appendChild(l); layer.appendChild(b); boxes.push(b); labels.push(l);
-      ys[Math.round(r.top - hr.top)] = 1; ys[Math.round(r.bottom - hr.top)] = 1; xs[Math.round(r.right - hr.left)] = 1;
-    });
-    var mk = function (cls, prop, v) { var s = doc.createElement("span"); s.className = "bp__guide " + cls; s.style[prop] = v + "px"; layer.appendChild(s); return s; };
-    return { layer: layer, boxes: boxes, labels: labels, gh: Object.keys(ys).map(function (y) { return mk("bp__guide--h", "top", y); }), gv: Object.keys(xs).map(function (x) { return mk("bp__guide--v", "left", x); }) };
-  }
-  function heroIntro(delay) {
-    var hero = $("[data-hero]"), human = $("[data-hero-human]"), gen = $("[data-hero-generate]");
-    var tl = G.timeline({ delay: delay }), bp = hero && innerWidth >= 768 ? blueprint(hero) : null;
-    if (bp) {
-      G.set(bp.gh, { scaleX: 0 }); G.set(bp.gv, { scaleY: 0 }); G.set(bp.boxes, { opacity: 0 });
-      tl.to(bp.gh, { scaleX: 1, duration: 1, ease: "expo.inOut", stagger: .04 }, 0)
-        .to(bp.gv, { scaleY: 1, duration: 1, ease: "expo.inOut", stagger: .06 }, .1)
-        .to(bp.boxes, { opacity: 1, duration: .3, stagger: .07 }, .35);
-      bp.labels.forEach(function (l, i) { tl.add(scramble(l), .4 + i * .07); });
-    }
-    if (human && Split) {
-      var s = Split.create(human, { type: "lines", mask: "lines", aria: "none" }); maskPad(s);
-      var ink = getComputedStyle(root).getPropertyValue("--ink").trim();
-      G.set(human, { color: "rgba(0,0,0,0)", webkitTextStroke: "1.5px " + ink });
-      tl.from(s.lines, { yPercent: 110, duration: 1.1, ease: EXPO, stagger: .08 }, bp ? .55 : 0)
-        .to(human, { color: ink, webkitTextStroke: "0px " + ink, duration: .7, ease: "power2.inOut", clearProps: "color,webkitTextStroke" }, bp ? 1.35 : .8);
-    }
-    if (gen && Split) {
-      var words = Split.create(gen, { type: "words", wordsClass: "gen-word", tag: "span", aria: "none" }).words;
-      var caret = doc.createElement("span"); caret.className = "gen-caret"; caret.setAttribute("aria-hidden", "true"); gen.appendChild(caret);
-      var tok = $("[data-gen-tokens]"), ms = $("[data-gen-ms]"), at = 0, g = G.timeline();
-      G.set(words, { opacity: 0, filter: "blur(8px)", yPercent: 20 });
-      words.forEach(function (w, i) {
-        g.to(w, { opacity: 1, filter: "blur(0px)", yPercent: 0, duration: .5, ease: EXPO, onStart: function () { w.after(caret); if (tok) tok.textContent = String(Math.round((i + 1) * 1.33)); } }, at);
-        at += G.utils.random(.03, .12) + (/[.,:]$/.test(w.textContent) ? .22 : 0);
-      });
-      var m = { v: 0 };
-      g.to(m, { v: Math.round(at * 1000), duration: at, ease: "none", onUpdate: function () { if (ms) ms.textContent = String(Math.round(m.v)); } }, 0);
-      g.add(function () { caret.classList.add("is-idle"); });
-      tl.add(g, bp ? 1.6 : "-=0.7");
-    }
-    // The lead and the buttons rise while the subline types, so the call to action is there within ~3.5 s.
-    tl.from("[data-hero-fade]", { clipPath: "inset(0% 0% 100% 0%)", y: 16, duration: 1, ease: EXPO, stagger: .08, clearProps: "clipPath" }, bp ? 1.9 : 1.1);
-    if (bp) tl.to(bp.labels, { opacity: 0, duration: .4, stagger: .03 }, "+=0.2")
-      .to(bp.boxes, { opacity: 0, duration: .6, stagger: .04 }, "<0.1")
-      .to(bp.gh, { scaleX: 0, transformOrigin: "right center", duration: .9, ease: "expo.inOut", stagger: .03 }, "<")
-      .to(bp.gv, { scaleY: 0, transformOrigin: "center bottom", duration: .9, ease: "expo.inOut" }, "<")
-      .add(function () { bp.layer.remove(); });
-    return tl;
-  }
-
   /* ---------- scroll reveals ---------- */
   function reveals() {
     if (Split) $$('[data-reveal="lines"]').forEach(function (el) {
       Split.create(el, { type: "lines", mask: "lines", aria: "none", autoSplit: true, onSplit: function (s) { maskPad(s); return G.from(s.lines, { yPercent: 110, duration: 1.1, ease: EXPO, stagger: .07, scrollTrigger: { trigger: el, start: "top 85%", once: true } }); } });
     });
-    var up = $$('[data-reveal="up"]').filter(function (el) { return el.getBoundingClientRect().top > innerHeight * .88; });
+    var up = $('[data-reveal="up"]').filter(function (el) { return !el.matches(".featured-projects .featured-card") && el.getBoundingClientRect().top > innerHeight * .88; });
     if (up.length) {
       G.set(up, { autoAlpha: 0, y: 48, force3D: true });
       ST.batch(up, { start: "top 88%", once: true, onEnter: function (els) { G.to(els, { autoAlpha: 1, y: 0, duration: 1.3, ease: "power3.out", stagger: .09, overwrite: true, clearProps: "transform,opacity,visibility" }); } });
@@ -372,99 +347,21 @@ history.replaceState(history.state, "", "#" + id);
     $$("[data-draw]").forEach(function (el) { G.fromTo(el, { scaleX: 0 }, { scaleX: 1, transformOrigin: "left center", ease: P4, scrollTrigger: { trigger: el, start: "top 90%", end: "top 45%", scrub: true } }); });
   }
 
-  /* ---------- hero relief: WebGL contour map, the pointer raises a hill ---------- */
-  function heroGL(hero) {
-    var cv = doc.createElement("canvas"); cv.className = "hero-gl"; cv.setAttribute("aria-hidden", "true");
-    var gl = cv.getContext("webgl2", { premultipliedAlpha: true, antialias: false, alpha: true }); if (!gl) return;
-    hero.insertBefore(cv, hero.firstChild);
-    var sh = function (type, src) { var s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s; };
-    var pr = gl.createProgram();
-    gl.attachShader(pr, sh(gl.VERTEX_SHADER, "#version 300 es\nin vec2 p;void main(){gl_Position=vec4(p,0.,1.);}"));
-    gl.attachShader(pr, sh(gl.FRAGMENT_SHADER, [
-      "#version 300 es", "precision highp float;",
-      "uniform vec2 uRes;uniform float uTime;uniform vec2 uMouse;uniform float uLift;uniform vec3 uInk;uniform vec3 uAcc;out vec4 o;",
-      "float h(vec2 p){return fract(sin(dot(p,vec2(41.3,289.1)))*45758.31);}",
-      "float n(vec2 p){vec2 i=floor(p),f=fract(p),u=f*f*(3.-2.*f);return mix(mix(h(i),h(i+vec2(1,0)),u.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),u.x),u.y);}",
-      "float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*n(p);p=p*2.03+7.9;a*=.5;}return v;}",
-      "float iso(float k,float w){float f=abs(fract(k+.5)-.5);return 1.-smoothstep(0.,fwidth(k)*w,f);}",
-      "void main(){vec2 uv=gl_FragCoord.xy/uRes.y,m=uMouse/uRes.y;float d=distance(uv,m);float b=exp(-d*d*5.)*uLift;",
-      "float e=fbm(uv*1.35+vec2(uTime*.018,uTime*.011))+b*.55;float k=e*18.;float mi=iso(k,1.2),ma=iso(k/5.,2.);float band=step(.5,fract(k/2.));",
-      "float vg=(smoothstep(.25,.85,gl_FragCoord.x/uRes.x)*.85+.15)*smoothstep(0.,.3,gl_FragCoord.y/uRes.y);",
-      "float a=(mi*.34+ma*.62+b*mi*.5+band*b*.1)*vg;vec3 c=mix(uInk,uAcc,clamp(b*1.8,0.,1.));o=vec4(c*a,a);}"
-    ].join("\n")));
-    gl.linkProgram(pr); if (!gl.getProgramParameter(pr, gl.LINK_STATUS)) { cv.remove(); return; }
-    gl.useProgram(pr);
-    gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer()); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
-    var loc = gl.getAttribLocation(pr, "p"); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
-    var U = function (k) { return gl.getUniformLocation(pr, k); }, uRes = U("uRes"), uTime = U("uTime"), uMouse = U("uMouse"), uLift = U("uLift"), uInk = U("uInk"), uAcc = U("uAcc");
-    var rgb = function (v) { var s = doc.createElement("span"); s.style.color = v; doc.body.appendChild(s); var c = getComputedStyle(s).color.match(/\d+(\.\d+)?/g).map(Number); s.remove(); return [c[0] / 255, c[1] / 255, c[2] / 255]; };
-    var colors = function () { var cs = getComputedStyle(root); gl.uniform3fv(uInk, rgb(cs.getPropertyValue("--ink").trim())); gl.uniform3fv(uAcc, rgb(cs.getPropertyValue("--accent").trim())); };
-    colors(); new MutationObserver(function () { colors(); kick(); }).observe(root, { attributes: true, attributeFilter: ["data-theme", "data-accent"] });
-    var dpr = Math.min(devicePixelRatio || 1, 1.5);
-    var size = function () { var r = hero.getBoundingClientRect(); cv.width = Math.round(r.width * dpr); cv.height = Math.round(r.height * dpr); gl.viewport(0, 0, cv.width, cv.height); gl.uniform2f(uRes, cv.width, cv.height); };
-    size(); new ResizeObserver(function () { size(); kick(); }).observe(hero);
-    var M = { x: -1e4, y: -1e4, tx: -1e4, ty: -1e4, lift: 0, target: 0 }, raf = 0, last = performance.now(), awake = last + 4000, time = 0, vis = true;
-    hero.addEventListener("pointermove", function (e) { var r = cv.getBoundingClientRect(); M.tx = (e.clientX - r.left) * dpr; M.ty = (r.bottom - e.clientY) * dpr; if (M.x < -1000) { M.x = M.tx; M.y = M.ty; } M.target = 1; awake = Math.max(awake, performance.now() + 1500); kick(); }, { passive: true });
-    hero.addEventListener("pointerleave", function () { M.target = 0; kick(); });
-    new IntersectionObserver(function (es) { vis = es[0].isIntersecting; if (vis) kick(); }).observe(hero);
-    function frame(now) {
-      raf = 0; if (!vis || doc.hidden) return;
-      var dt = Math.min(now - last, 50) / 1000; last = now;
-      var f = Math.pow(Math.min(1, Math.max(0, (awake + 1000 - now) / 1000)), 2);
-      time += dt * f; M.x += (M.tx - M.x) * .08; M.y += (M.ty - M.y) * .08; M.lift += (M.target - M.lift) * .04;
-      gl.uniform1f(uTime, time); gl.uniform2f(uMouse, M.x, M.y); gl.uniform1f(uLift, M.lift); gl.drawArrays(gl.TRIANGLES, 0, 3);
-      if (!(f === 0 && Math.abs(M.target - M.lift) < .002 && Math.abs(M.tx - M.x) < .5 && Math.abs(M.ty - M.y) < .5)) kick();
-    }
-    function kick() { if (!raf) { last = performance.now(); raf = requestAnimationFrame(frame); } }
-    doc.addEventListener("visibilitychange", kick); kick();
-    requestAnimationFrame(function () { cv.classList.add("is-on"); hero.classList.add("has-terrain"); });
+/* ---------- boot ---------- */
+  function bootAnimations() {
+    if (root.dataset.motionBooted === "true") return;
+    if (root.dataset.preloaded !== "true") return;
+
+    root.dataset.motionBooted = "true";
+    root.classList.add("motion-ready");
+    revealFeaturedCards();
+    ST.refresh();
   }
 
-  
-/* ---------- boot ---------- */
-   function bootAnimations() {
-  // Prevent duplicate initialization.
-  if (root.dataset.motionBooted === "true") return;
-
-  // Do not initialize before the preloader has completed.
-  if (root.dataset.preloaded !== "true") return;
-
-  root.dataset.motionBooted = "true";
-  var delay = 0.1;
-
-  (doc.fonts && doc.fonts.ready
-    ? doc.fonts.ready
-    : Promise.resolve()
-  ).then(function () {
-    var intro = heroIntro(delay);
-
-    // Keep the existing CSS visibility mechanism.
-    root.classList.add("motion-ready");
-
-     ST.refresh();
-
-    var hero = $("[data-hero]");
-
-    if (
-      hero &&
-      matchMedia("(pointer: fine) and (min-width: 900px)").matches
-    ) {
-      var start = function () {
-        idle(function () {
-          heroGL(hero);
-        });
-      };
-
-      intro.eventCallback("onComplete", start);
-    }
-  });
-}
-
-// Also support pages where the preloader has already completed.
-if (root.dataset.preloaded === "true") {
-  bootAnimations();
-}
-
+  // Also support a previously completed or skipped preloader.
+  if (root.dataset.preloaded === "true") {
+    bootAnimations();
+  }
 
   /* ---------- Formgong form: success only when the server answers success: true ---------- */
   function formInit() {
