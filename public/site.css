@@ -1533,10 +1533,7 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   margin-top: clamp(1.5rem, 3vw, 2.5rem);
 }
 
-.cta__actions .btn {
-  max-width: 100%;
-  font-size: .9rem;
-}
+
 
 /* Contact email replaces the decorative sphere and aligns to the action row. */
 .cta__email {
@@ -1701,10 +1698,7 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   border-color: var(--danger);
 }
 
-.fg-row button[type="submit"]:disabled {
-  opacity: .65;
-  cursor: wait;
-}
+
 
 .fg-fallback {
   color: var(--accent-text);
@@ -1772,12 +1766,7 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
     margin-top: 1.5rem;
   }
 
-  .cta__actions .btn {
-    min-height: 3rem;
-    height: auto;
-    padding-block: .8rem;
-    white-space: normal;
-  }
+
 
 
 
@@ -2196,9 +2185,7 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
 }
 
 /* Keep the [06] label and its line together */
-.cta.is-brief-open > .section-head {
-  margin-bottom: 0.75rem;
-}
+
 
 /* Preserve the original headline size */
 .cta.is-brief-open .cta__intro {
@@ -2220,9 +2207,7 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
     padding-top: 0.75rem;
   }
 
-  .cta.is-brief-open > .section-head {
-    margin-bottom: 0.75rem;
-  }
+
 
   .cta.is-brief-open .cta__expanded {
     margin-top: 0.5rem;
@@ -2826,12 +2811,7 @@ body:has(#contact:focus-within) .cursor {
     display: flex;
     padding-block: 1.5rem .5rem;
   }
-  #contact .cta__actions .cta__button {
-    height: 3.25rem;
-    padding: 0 1.4rem;
-    min-height: 3.25rem;
-    white-space: nowrap;
-  }
+  
   #contact .cta__email-link {
     font-size: clamp(var(--step-0), 4vw, var(--step-1));
   }
