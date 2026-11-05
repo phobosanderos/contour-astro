@@ -59,7 +59,7 @@ const imageFor = item => item.cover || (first(item)?.type === "image" ? first(it
         </div>
         <div class="archive-gallery__meta">
           <span class="archive-gallery__title note">
-          {item.slug === "dont-be-different" ? <><s>{"Don\u0027t"}</s> be different</> : item.title}
+          {item.slug === "don-t-be-different" ? <><s>{"Don\u0027t"}</s> be different</> : item.title}
           </span>
           {item.items.length > 1 && (
             <span class="archive-gallery__count note">{String(item.items.length).padStart(2, "0")} ITEMS</span>
@@ -304,7 +304,7 @@ requestAnimationFrame(() => {
 
     const heading = $('[data-archive-title]', dialog);
     heading.replaceChildren();
-    if (entry.slug === 'dont-be-different') {
+    if (entry.slug === 'don-t-be-different') {
       const strike = document.createElement('s'); strike.textContent = "Don't";
       heading.append(strike, document.createTextNode(' be different'));
     } else heading.textContent = entry.title;
