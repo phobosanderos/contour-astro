@@ -59,7 +59,7 @@ const imageFor = (item) => item.thumbnail || (first(item)?.type === "image" ? fi
   <div class="project-lightbox__window archive-lightbox__window" data-archive-window>
     <header class="project-lightbox__head">
       <div class="project-lightbox__identity note">
-        <span data-archive-number></span><span>/</span><span data-archive-title></span>
+        <span data-archive-number></span><span data-archive-title></span>
       </div>
       <div class="archive-lightbox__tools">
         <button type="button" class="archive-lightbox__info-toggle note" data-archive-info hidden
@@ -97,6 +97,18 @@ const imageFor = (item) => item.thumbnail || (first(item)?.type === "image" ? fi
   const descEl = $('[data-archive-description]', dialog);
   const infoEl = $('[data-archive-info]', dialog);
   let entryIndex = 0, itemIndex = 0, sequence = 0, lastTrigger = null;
+  let touchStart = null;
+  let nextImage = null;
+
+  function preloadNextImage() {
+    const next = archive[entryIndex]?.media?.[itemIndex + 1];
+    nextImage = null;
+    if (next?.type !== 'image' || !next.src) return;
+    nextImage = new Image();
+    nextImage.decoding = 'async';
+    nextImage.src = next.src;
+  }
+
 
   $$("[data-archive-filter]").forEach(button => {
     button.addEventListener('click', () => {
@@ -183,7 +195,10 @@ thumbnailVideos.forEach((video) => {
     navEl.hidden = count <= 1;
     prevEl.hidden = itemIndex === 0;
     nextEl.hidden = itemIndex === count - 1;
-    counterEl.textContent = `${String(itemIndex + 1).padStart(2, '0')} / ${String(count).padStart(2, '0')}`;
+    const position = `${String(itemIndex + 1).padStart(2, '0')} / ${String(count).padStart(2, '0')}`;
+    counterEl.textContent = position;
+    $('[data-archive-number]', dialog).textContent = position;
+    preloadNextImage();
     const asset = assetFor(item);
 
     const apply = () => {
@@ -261,7 +276,7 @@ requestAnimationFrame(() => {
     entryIndex = index; itemIndex = 0; lastTrigger = trigger;
     const entry = archive[index];
     if (!entry?.media?.length) return;
-    $('[data-archive-number]', dialog).textContent = String(index + 1).padStart(2, '0');
+
     $('[data-archive-title]', dialog).textContent = entry.title;
     writeDescription(entry);
     aboutEl.hidden = true;
@@ -345,6 +360,11 @@ window.addEventListener('resize', positionAbout);
 
   dialog.addEventListener('close', () => {
     sequence++;
+    touchStart = null;
+    nextImage = null;
+    $('[data-archive-number]', dialog).textContent = '';
+    $('[data-archive-title]', dialog).textContent = '';
+    counterEl.textContent = '';
     $('video', mediaEl)?.pause();
     mediaEl.replaceChildren();
     aboutEl.hidden = true;
@@ -353,8 +373,26 @@ window.addEventListener('resize', positionAbout);
   });
   dialog.addEventListener('click', e => { if (e.target === dialog) dialog.close(); });
   dialog.addEventListener('keydown', e => {
+    if (!dialog.open) return;
+    if (e.key === 'Escape') { e.preventDefault(); dialog.close(); return; }
     if (e.key === 'ArrowRight' && itemIndex < archive[entryIndex].media.length - 1) { e.preventDefault(); itemIndex++; render(); }
     if (e.key === 'ArrowLeft' && itemIndex > 0) { e.preventDefault(); itemIndex--; render(); }
   });
+
+  mediaEl.addEventListener('touchstart', e => {
+    if (!dialog.open || e.touches.length !== 1) return;
+    touchStart = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+  }, { passive: true });
+
+  mediaEl.addEventListener('touchend', e => {
+    if (!dialog.open || !touchStart || !e.changedTouches.length) return;
+    const dx = e.changedTouches[0].clientX - touchStart.x;
+    const dy = e.changedTouches[0].clientY - touchStart.y;
+    touchStart = null;
+    if (Math.abs(dx) < 55 || Math.abs(dx) < Math.abs(dy) * 1.3) return;
+    const count = archive[entryIndex]?.media?.length || 0;
+    if (dx < 0 && itemIndex < count - 1) { itemIndex++; render(); }
+    if (dx > 0 && itemIndex > 0) { itemIndex--; render(); }
+  }, { passive: true });
 })();
 </script>
