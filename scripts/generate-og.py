@@ -41,3 +41,11 @@ im.paste(logo, (1051, 496), logo)
 OUT.parent.mkdir(parents=True, exist_ok=True)
 im.save(OUT, "PNG", optimize=True)
 print(f"Generated {OUT.relative_to(ROOT)}")
+
+# Switch preview metadata only after the PNG has actually been rendered.
+for relative_path in ("src/pages/index.astro", "src/layouts/Base.astro"):
+    target = ROOT / relative_path
+    old = target.read_text()
+    new = old.replace('"/img/og-home.png"', '"/img/og-home-v2.png"')
+    if new != old:
+        target.write_text(new)
