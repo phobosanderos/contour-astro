@@ -1,7 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
 import SectionHeader from "../components/SectionHeader.astro";
-import SectionTop from "../components/SectionTop.astro";
 import SectionWork from "../components/SectionWork.astro";
 import SectionServices from "../components/SectionServices.astro";
 import ServiceOverlays from "../components/ServiceOverlays.astro";
@@ -10,9 +9,8 @@ import SectionFooter from "../components/SectionFooter.astro";
 ---
 
 <Base>
-  <SectionHeader />
+  <SectionHeader home />
   <main id="main" tabindex="-1">
-    <SectionTop />
     <SectionWork />
     <SectionServices />
     <ServiceOverlays />
