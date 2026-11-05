@@ -1667,10 +1667,6 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   overflow: hidden;
 }
 
-.fg-sent {
-  display: none;
-}
-
 .fg-sent-h {
   margin-bottom: 1rem;
 }
@@ -2533,16 +2529,19 @@ html.has-cursor dialog.info-dialog a {
   min-height: 0;
 }
 #contact .cta__intro-copy {
-  grid-column: 1 / span 7;
+  grid-column: 1 / -1;
   grid-row: 1;
   align-self: start;
   padding-block: 0;
   min-width: 0;
 }
 #contact .cta__title {
-  width: 100%;
+  width: max-content;
   max-width: 100%;
-  font-size: clamp(3rem, 5.8vw, 6.8rem);
+  font-size: clamp(2rem, 5.15vw, 5.8rem);
+  line-height: 1;
+  white-space: nowrap;
+  text-wrap: nowrap;
 }
 #contact .cta__stack {
   grid-column: 8 / -1;
@@ -2610,9 +2609,6 @@ html.has-cursor dialog.info-dialog a {
 #contact.is-brief-open:not(.is-sent) .cta__toggle .cta__arrow {
   transform: rotate(45deg);
 }
-#contact.is-sent .cta__toggle .cta__arrow {
-  transform: rotate(0deg);
-}
 #contact .cta__button--outline {
   --btn-bg: transparent;
   --btn-fg: var(--ink);
@@ -2652,22 +2648,13 @@ html.has-cursor dialog.info-dialog a {
   grid-row: 2;
   align-self: start;
   min-width: 0;
-  margin-top: var(--col-gap);
-  padding-top: clamp(1.25rem, 2.5vw, 2rem);
+  margin-top: .75rem;
+  padding-top: 1rem;
   scroll-margin-top: calc(4.5rem + var(--gutter));
 }
 #contact .cta__form-area {
   width: 100%;
   min-width: 0;
-}
-#contact .fg-sent .cta__button {
-  width: auto;
-}
-#contact .fg-sent-h {
-  font-size: var(--contact-copy-size);
-  line-height: 1.2;
-  letter-spacing: -.015em;
-  font-weight: 400;
 }
 #contact .fld > label.note {
   color: var(--ink);
@@ -2727,7 +2714,7 @@ html.has-cursor dialog.info-dialog a {
   }
   #contact .cta__reply { margin-top: var(--col-gap); }
   #contact .cta__title {
-    font-size: clamp(2rem, 7.4vw, 3.8rem);
+    font-size: clamp(2rem, 5.15vw, 3.8rem);
     white-space: nowrap;
   }
   #contact .cta__actions { max-width: 28rem; }
@@ -2739,7 +2726,12 @@ html.has-cursor dialog.info-dialog a {
     display: flex;
     padding-block: 1.5rem .5rem;
   }
-  
+  #contact .cta__title {
+    font-size: clamp(2rem, 7.4vw, 3.8rem);
+    width: 100%;
+    white-space: normal;
+    text-wrap: balance;
+  }
   #contact { --contact-copy-size: clamp(var(--step-0), 4vw, var(--step-1)); }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -2803,27 +2795,6 @@ html.has-cursor dialog.info-dialog a {
   resize: none;
   overflow-y: auto;
 }
-#contact .fg.is-sent .fg-sent {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: var(--col-gap);
-}
-#contact .fg.is-sent .fg-sent-h {
-  flex: 1 1 19rem;
-  margin-bottom: 0;
-}
-#contact .fg.is-sent [data-again] { flex: 0 0 auto; }
-#contact.is-sent .cta__intro-copy { display: none; }
-#contact.is-sent .cta__stack-inner { min-height: 0; }
-#contact.is-sent .cta__reply { margin-top: var(--col-gap); }
-#contact.is-sent .cta__expanded {
-  grid-column: 1 / span 7;
-  grid-row: 1;
-  margin-top: 0;
-  padding-top: .35rem;
-  border-top: 0;
-}
 @media (max-width: 1023px) {
   #contact .fg-fields {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -2844,7 +2815,6 @@ html.has-cursor dialog.info-dialog a {
     min-height: calc(8.4em + .7rem);
     max-height: calc(8.4em + .7rem);
   }
-  #contact.is-sent .cta__expanded { order: -1; }
 }
 @media (max-width: 767px) {
   #contact .fg-fields { grid-template-columns: minmax(0, 1fr); }
@@ -2885,49 +2855,22 @@ html.has-cursor dialog.info-dialog a {
   line-height: 1.4;
   text-transform: none;
 }
-#contact .fg-sent {
-  box-sizing: border-box;
-  width: min(38rem, calc(100% - 2rem));
-  max-width: 38rem;
-  max-height: calc(100dvh - 2rem);
-  margin: auto;
-  padding: clamp(1.5rem, 3vw, 2.5rem);
-  border: 1px solid var(--line-strong);
-  border-radius: 0;
-  background: var(--bg);
-  color: var(--ink);
-  overflow: auto;
-}
-#contact .fg-sent[open] { display: block; }
-#contact .fg-sent::backdrop {
-  background: color-mix(in oklab, var(--ink) 65%, transparent);
-}
-#contact .fg-sent-close {
-  position: absolute;
-  top: .75rem;
-  right: .75rem;
-}
-#contact .fg-sent-h {
-  margin: 2.5rem 0 clamp(1.5rem, 3vw, 2.5rem);
-  font-size: var(--step-1);
-  line-height: 1.35;
-}
-#contact .fg-sent-actions {
-  display: flex;
-  justify-content: flex-end;
-}
-#contact .fg-sent-actions .cta__button {
-  width: auto;
-}
-html.has-cursor #contact .fg-sent,
-html.has-cursor #contact .fg-sent * {
-  cursor: auto !important;
-}
-html.has-cursor #contact .fg-sent button {
-  cursor: pointer !important;
-}
 @media (max-width: 767px) {
   #contact .fg-row .fg-mail { max-width: 100%; }
+}
+
+/* Inline successful submission acknowledgement (matches Contact label typography). */
+#contact .fg-row .fg-sent:not([hidden]) {
+  display: block;
+  flex: 1 1 100%;
+  margin: .5rem 0 0;
+  color: var(--accent-text);
+  font-family: var(--font-mono);
+  font-size: .72rem;
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: .02em;
+  text-transform: uppercase;
 }
 
 /* Remove the gap between the final service and the Next strip */
