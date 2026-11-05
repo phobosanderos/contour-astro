@@ -5,8 +5,7 @@ import c from "../content.json";
 
 <section class="section wrap cta" id="contact" aria-labelledby="c-h">
   <header class="section-head">
-    <span class="note note--ink">{c.contact.span_1}</span>
-    <span class="note">{c.contact.span_2}</span>
+    <span class="note note--ink">Contact</span>
   </header>
 
   <div class="cta__intro grid-12">
@@ -15,38 +14,41 @@ import c from "../content.json";
       Tell me what<br />you want to make.
       </h2>
 
-      <div class="cta__actions">
-        <button
-          class="btn cta__toggle"
-          type="button"
-          aria-expanded="false"
-          aria-controls="brief-panel"
-          data-brief-toggle
-        >
-          <span>Send a short brief</span>
-          <span class="arrow" aria-hidden="true">
-            <span class="arrow cta__arrow" aria-hidden="true">↘</span>
-          </span>
-        </button>
+    </div>
 
-        <a
-          class="btn btn--ghost"
-          href="https://cal.com/phobosanderos"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Book a call
-        </a>
+    <div class="cta__stack">
+      <div class="cta__stack-inner">
+        <div class="cta__actions">
+          <button
+            class="btn cta__button cta__toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="brief-panel"
+            data-brief-toggle
+          >
+            <span>Send a short brief</span>
+            <span class="arrow cta__button-icon" aria-hidden="true"><span class="cta__arrow">↘</span></span>
+          </button>
+
+          <a
+            class="btn btn--ghost cta__button cta__button--outline"
+            href="https://cal.com/phobosanderos"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span>Book a call</span>
+            <span class="arrow cta__button-icon" aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <p class="note cta__reply">{c.contact.span_2}</p>
+        <div class="cta__email">
+          <span class="note note--ink">EMAIL</span>
+          <a class="link cta__email-link" href="mailto:phobosanderos@gmail.com">phobosanderos@gmail.com</a>
+        </div>
       </div>
     </div>
 
-    <div class="cta__email">
-      <span class="note note--ink">EMAIL</span>
-      <a class="link cta__email-link" href="mailto:phobosanderos@gmail.com">phobosanderos@gmail.com</a>
-    </div>
-  </div>
-
-  <div class="cta__expanded" id="brief-panel" hidden>
+    <div class="cta__expanded" id="brief-panel" hidden>
     <div class="cta__form-area">
       <form
   class="fg"
@@ -141,9 +143,9 @@ import c from "../content.json";
           </div>
 
           <div class="fld-wide fg-row">
-            <button class="btn" type="submit">
+            <button class="btn cta__button" type="submit">
               <span data-label>{c.contact.span_18}</span>
-              <span class="arrow" aria-hidden="true">↗</span>
+              <span class="arrow cta__button-icon" aria-hidden="true">↗</span>
             </button>
             <p class="fg-consent note">Your details are used only to reply to your message. <a class="link link--inline" href="/privacy/">Privacy</a></p>
 
@@ -163,7 +165,7 @@ import c from "../content.json";
           >{c.contact.p_19_html}</p>
 
           <button
-            class="btn btn--ghost"
+            class="btn btn--ghost cta__button cta__button--outline"
             type="button"
             data-again
           >
@@ -172,7 +174,7 @@ import c from "../content.json";
         </div>
       </form>
     </div>
-
+    </div>
   </div>
 </section>
 
