@@ -2665,8 +2665,11 @@ html.has-cursor dialog.info-dialog a {
 }
 #contact .cta__toggle:hover .cta__arrow,
 #contact .cta__toggle:focus-visible .cta__arrow,
-#contact.is-brief-open .cta__toggle .cta__arrow {
+#contact.is-brief-open:not(.is-sent) .cta__toggle .cta__arrow {
   transform: rotate(45deg);
+}
+#contact.is-sent .cta__toggle .cta__arrow {
+  transform: rotate(0deg);
 }
 #contact .cta__button--outline {
   --btn-bg: transparent;
