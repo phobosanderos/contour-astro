@@ -1,558 +1,567 @@
 {
   "featured": [
- {
-  "number": "01",
-  "slug": "achievers-2026",
-  "title": "Achievers 2026",
-  "category": "Campaigns",
-  "type": "Event Identity",
-  "client": "NISAU / Achievers",
-  "year": "2026",
-  "role": "Editorial + Campaign Design",
-  "description": "A visual system for Achievers 2026 spanning editorial, print, digital campaign assets and event merchandise.",
-  "primaryImage": "/img/work/achievers-2026/cover-in-context.jpg",
-  "coverPosition": "13% center",
-  "alt": "Achievers 2026 campaign and Living Bridge editorial work",
-  "media": [
     {
-      "type": "group",
-      "category": "editorial",
-      "title": "Living Bridge Magazine Cover",
-      "items": [
+      "number": "01",
+      "slug": "achievers-2026",
+      "title": "Achievers 2026",
+      "category": "Campaigns",
+      "type": "Event Identity",
+      "client": "NISAU, in association with the UK Government",
+      "year": "2026",
+      "role": "Art direction, campaign design and visual system",
+      "description": "A refreshed visual direction carried across print, editorial, social media and merchandise.",
+      "primaryImage": "/img/work/achievers-2026/cover-in-context.jpg",
+      "coverPosition": "13% center",
+      "alt": "Achievers 2026 campaign and Living Bridge editorial work",
+      "media": [
         {
-          "type": "image",
-          "src": "/img/work/achievers-2026/editorial/Living-bridge magazine-cover-front.webp",
-          "alt": "Living Bridge 2026 magazine front cover"
+          "type": "group",
+          "category": "editorial",
+          "title": "Living Bridge Magazine Cover",
+          "items": [
+            {
+              "type": "image",
+              "src": "/img/work/achievers-2026/editorial/Living-bridge magazine-cover-front.webp",
+              "alt": "Living Bridge 2026 magazine front cover"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/achievers-2026/editorial/Living-bridge magazine-cover-back.webp",
+              "alt": "Living Bridge 2026 magazine back cover"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "category": "editorial",
+          "title": "Booklet Cover",
+          "items": [
+            {
+              "type": "image",
+              "src": "/img/work/achievers-2026/editorial/booklet-cover-front.webp",
+              "alt": "Achievers event booklet front cover"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/achievers-2026/editorial/booklet-cover-back.webp",
+              "alt": "Achievers event booklet back cover"
+            }
+          ]
         },
         {
           "type": "image",
-          "src": "/img/work/achievers-2026/editorial/Living-bridge magazine-cover-back.webp",
-          "alt": "Living Bridge 2026 magazine back cover"
-        }
-      ]
-    },
-    {
-      "type": "group",
-      "category": "editorial",
-      "title": "Booklet Cover",
-      "items": [
-        {
-          "type": "image",
-          "src": "/img/work/achievers-2026/editorial/booklet-cover-front.webp",
-          "alt": "Achievers event booklet front cover"
+          "category": "editorial",
+          "title": "Meet Your Class 2026",
+          "src": "/img/work/achievers-2026/editorial/meet-your-class-2026.webp",
+          "alt": "Meet Your Class 2026 editorial design"
         },
         {
           "type": "image",
-          "src": "/img/work/achievers-2026/editorial/booklet-cover-back.webp",
-          "alt": "Achievers event booklet back cover"
-        }
-      ]
-    },
-    {
-      "type": "image",
-      "category": "editorial",
-      "title": "Meet Your Class 2026",
-      "src": "/img/work/achievers-2026/editorial/meet-your-class-2026.webp",
-      "alt": "Meet Your Class 2026 editorial design"
-    },
-
-    {
-      "type": "image",
-      "category": "digital",
-      "title": "Deadline Extended",
-      "src": "/img/work/achievers-2026/digital/Deadline extended (ver 1).webp",
-      "alt": "Achievers deadline extended digital campaign post"
-    },
-    {
-      "type": "image",
-      "category": "digital",
-      "title": "I'm Attending",
-      "src": "/img/work/achievers-2026/digital/I'm attending post (ver 1).webp",
-      "alt": "Achievers I'm attending digital campaign post"
-    },
-    {
-      "type": "image",
-      "category": "digital",
-      "title": "Meet Our Jury",
-      "src": "/img/work/achievers-2026/digital/Meet our jury grid post (ver 4).webp",
-      "alt": "Achievers Meet Our Jury digital campaign post"
-    },
-    {
-      "type": "image",
-      "category": "digital",
-      "title": "Nominations Open",
-      "src": "/img/work/achievers-2026/digital/Nominations now open.webp",
-      "alt": "Achievers nominations open campaign post"
-    },
-    {
-      "type": "image",
-      "category": "digital",
-      "title": "Nominations Closing Soon",
-      "src": "/img/work/achievers-2026/digital/Nominations closing soon.webp",
-      "alt": "Achievers nominations closing soon campaign post"
-    },
-    {
-      "type": "image",
-      "category": "digital",
-      "title": "Nominations Closed",
-      "src": "/img/work/achievers-2026/digital/Nominations are closed.webp",
-      "alt": "Achievers nominations closed campaign post"
-    },
-    {
-      "type": "image",
-      "category": "digital",
-      "title": "Chevening Outreach Email",
-      "src": "/img/work/achievers-2026/digital/Outreach email boiler plate (Chevening).webp",
-      "alt": "Achievers Chevening outreach email design"
-    },
-    {
-      "type": "image",
-      "category": "digital",
-      "title": "UUKI Outreach Email",
-      "src": "/img/work/achievers-2026/digital/Achievers email boiler plate (UUKI).webp",
-      "alt": "Achievers UUKI outreach email design"
-    },
-    {
-      "type": "image",
-      "category": "digital",
-      "title": "Work With NISAU Email",
-      "src": "/img/work/achievers-2026/digital/work-with-nisau-email.webp",
-      "alt": "Work with NISAU digital email design"
-    },
-
-    {
-      "type": "image",
-      "category": "print",
-      "title": "A4 Partners Leaflet",
-      "src": "/img/work/achievers-2026/print/A4-leaflet.webp",
-      "alt": "Achievers A4 partners leaflet"
-    },
-    {
-      "type": "group",
-      "category": "print",
-      "title": "Congratulations Card",
-      "items": [
-        {
-          "type": "image",
-          "src": "/img/work/achievers-2026/print/congratulations-front.webp",
-          "alt": "Achievers congratulations card front"
+          "category": "digital",
+          "title": "Deadline Extended",
+          "src": "/img/work/achievers-2026/digital/Deadline extended (ver 1).webp",
+          "alt": "Achievers deadline extended digital campaign post"
         },
         {
           "type": "image",
-          "src": "/img/work/achievers-2026/print/congratulations-back.webp",
-          "alt": "Achievers congratulations card back"
-        }
-      ]
-    },
-    {
-      "type": "image",
-      "category": "print",
-      "title": "Share Your Moments Banner",
-      "src": "/img/work/achievers-2026/print/Share-your-moments-banner.webp",
-      "alt": "Achievers Share Your Moments event banner"
-    },
-    {
-      "type": "image",
-      "category": "print",
-      "title": "Welcome to Achievers Roll-up",
-      "src": "/img/work/achievers-2026/print/Welcome-to-Achievers-roll-up-banner.webp",
-      "alt": "Welcome to Achievers roll-up banner"
-    },
-    {
-      "type": "image",
-      "category": "print",
-      "title": "Partners Roll-up Banner",
-      "src": "/img/work/achievers-2026/print/partners-roll-up-banner.webp",
-      "alt": "Achievers partners roll-up banner"
-    },
-
-    {
-      "type": "group",
-      "category": "merch",
-      "title": "Achievers Ticket",
-      "coverIndex": 1,
-      "items": [
-        {
-          "type": "image",
-          "src": "/img/work/achievers-2026/merch/Achievers-ticket-02.jpg",
-          "alt": "Achievers event ticket front"
+          "category": "digital",
+          "title": "I'm Attending",
+          "src": "/img/work/achievers-2026/digital/I'm attending post (ver 1).webp",
+          "alt": "Achievers I'm attending digital campaign post"
         },
         {
           "type": "image",
-          "src": "/img/work/achievers-2026/merch/Achievers-ticket-back.jpg",
-          "alt": "Achievers event ticket back"
-        }
-      ]
-    },
-    {
-      "type": "group",
-      "category": "merch",
-      "title": "Lanyard",
-      "items": [
-        {
-          "type": "image",
-          "src": "/img/work/achievers-2026/merch/Lanyard-mock-up-1.webp",
-          "alt": "Achievers lanyard mockup one"
+          "category": "digital",
+          "title": "Meet Our Jury",
+          "src": "/img/work/achievers-2026/digital/Meet our jury grid post (ver 4).webp",
+          "alt": "Achievers Meet Our Jury digital campaign post"
         },
         {
           "type": "image",
-          "src": "/img/work/achievers-2026/merch/Lanyard-mock-up-2.webp",
-          "alt": "Achievers lanyard mockup two"
-        }
-      ]
-    },
-    {
-      "type": "group",
-      "category": "merch",
-      "title": "Tote Bag",
-      "items": [
-        {
-          "type": "image",
-          "src": "/img/work/achievers-2026/merch/Tote-bag-design-front.webp",
-          "alt": "Achievers tote bag front design"
+          "category": "digital",
+          "title": "Nominations Open",
+          "src": "/img/work/achievers-2026/digital/Nominations now open.webp",
+          "alt": "Achievers nominations open campaign post"
         },
         {
           "type": "image",
-          "src": "/img/work/achievers-2026/merch/Tote-bag-design-back.webp",
-          "alt": "Achievers tote bag back design"
+          "category": "digital",
+          "title": "Nominations Closing Soon",
+          "src": "/img/work/achievers-2026/digital/Nominations closing soon.webp",
+          "alt": "Achievers nominations closing soon campaign post"
+        },
+        {
+          "type": "image",
+          "category": "digital",
+          "title": "Nominations Closed",
+          "src": "/img/work/achievers-2026/digital/Nominations are closed.webp",
+          "alt": "Achievers nominations closed campaign post"
+        },
+        {
+          "type": "image",
+          "category": "digital",
+          "title": "Chevening Outreach Email Boilerplate",
+          "src": "/img/work/achievers-2026/digital/Outreach email boiler plate (Chevening).webp",
+          "alt": "Achievers Chevening outreach email design"
+        },
+        {
+          "type": "image",
+          "category": "digital",
+          "title": "UUKI Outreach Email Boilerplate",
+          "src": "/img/work/achievers-2026/digital/Achievers email boiler plate (UUKI).webp",
+          "alt": "Achievers UUKI outreach email design"
+        },
+        {
+          "type": "image",
+          "category": "digital",
+          "title": "Work With NISAU Email",
+          "src": "/img/work/achievers-2026/digital/work-with-nisau-email.webp",
+          "alt": "Work with NISAU digital email design"
+        },
+        {
+          "type": "image",
+          "category": "print",
+          "title": "A4 Partners Leaflet",
+          "src": "/img/work/achievers-2026/print/A4-leaflet.webp",
+          "alt": "Achievers A4 partners leaflet"
+        },
+        {
+          "type": "group",
+          "category": "print",
+          "title": "Congratulations Card",
+          "items": [
+            {
+              "type": "image",
+              "src": "/img/work/achievers-2026/print/congratulations-front.webp",
+              "alt": "Achievers congratulations card front"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/achievers-2026/print/congratulations-back.webp",
+              "alt": "Achievers congratulations card back"
+            }
+          ]
+        },
+        {
+          "type": "image",
+          "category": "print",
+          "title": "Share Your Moments Banner",
+          "src": "/img/work/achievers-2026/print/Share-your-moments-banner.webp",
+          "alt": "Achievers Share Your Moments event banner"
+        },
+        {
+          "type": "image",
+          "category": "print",
+          "title": "Welcome to Achievers Roll-up",
+          "src": "/img/work/achievers-2026/print/Welcome-to-Achievers-roll-up-banner.webp",
+          "alt": "Welcome to Achievers roll-up banner"
+        },
+        {
+          "type": "image",
+          "category": "print",
+          "title": "Partners Roll-up Banner",
+          "src": "/img/work/achievers-2026/print/partners-roll-up-banner.webp",
+          "alt": "Achievers partners roll-up banner"
+        },
+        {
+          "type": "group",
+          "category": "merch",
+          "title": "Achievers Ticket",
+          "coverIndex": 0,
+          "items": [
+            {
+              "type": "image",
+              "src": "/img/work/achievers-2026/merch/Achievers-ticket-02.jpg",
+              "alt": "Achievers event ticket front"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/achievers-2026/merch/Achievers-ticket-back.jpg",
+              "alt": "Achievers event ticket back"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "category": "merch",
+          "title": "Lanyard",
+          "items": [
+            {
+              "type": "image",
+              "src": "/img/work/achievers-2026/merch/Lanyard-mock-up-1.webp",
+              "alt": "Achievers lanyard mockup one"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/achievers-2026/merch/Lanyard-mock-up-2.webp",
+              "alt": "Achievers lanyard mockup two"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "category": "merch",
+          "title": "Tote Bag",
+          "items": [
+            {
+              "type": "image",
+              "src": "/img/work/achievers-2026/merch/Tote-bag-design-front.webp",
+              "alt": "Achievers tote bag front design"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/achievers-2026/merch/Tote-bag-design-back.webp",
+              "alt": "Achievers tote bag back design"
+            }
+          ]
         }
-      ]
-    }
-  ]
-},
+      ],
+      "deliverables": "Theme direction, social media posts, print and editorial collateral, merchandise",
+      "brief": "Achievers refreshes its look each year around the same core ideas: prestige and high class, with a welcoming tone for students. I was asked to reimagine that theme for 2026 and carry it across every medium.",
+      "approach": "I studied events of a similar calibre and built mood boards from them. I then presented several theme directions, each with small variations, so the NISAU team could choose one and finalise it.",
+      "outcome": "My magazine cover and several print collaterals were noticed and appreciated by UK government officials, who praised the cohesiveness of the year's branding and theme."
+    },
     {
       "number": "02",
       "slug": "unity-cup-2026",
-      "title": "Unity Cup 2026",
+      "title": "2026 Unity Cup",
       "category": "Campaigns",
       "type": "Social Campaign",
-      "client": "NISAU / Unity Cup",
+      "client": "NISAU, in partnership with the Unity Cup",
       "year": "2026",
-      "role": "Social Media Design + Motion",
-      "description": "A campaign system for Unity Cup 2026 spanning match promotion, ticket pushes, social statics, carousels and motion content.",
+      "role": "Campaign design and social media system",
+      "description": "Match-day campaign creative across social media, reels, banners and posters for the 2026 Unity Cup.",
       "primaryImage": "/img/work/unity-cup-2026/unity-cup-hero.webp",
-      "alt": "India versus Jamaica Unity Cup 2026 Culture Clash campaign creative",
-       "media": [
-    {
-      "type": "group",
-      "category": "campaign",
-      "title": "Match Promotion",
-      "items": [
+      "alt": "India versus Jamaica 2026 Unity Cup Culture Clash campaign creative",
+      "media": [
         {
-          "type": "image",
-          "src": "/img/work/unity-cup-2026/Unity-cup-match-promo-version-1.webp",
-          "alt": "Unity Cup match promotion version one"
+          "type": "group",
+          "category": "campaign",
+          "title": "Match Promotion",
+          "items": [
+            {
+              "type": "image",
+              "src": "/img/work/unity-cup-2026/Unity-cup-match-promo-version-1.webp",
+              "alt": "Unity Cup match promotion version one"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/unity-cup-2026/Unity-cup-match-promo-version-2.webp",
+              "alt": "Unity Cup match promotion version two"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "category": "campaign",
+          "title": "Reasons to Be at The Valley",
+          "items": [
+            {
+              "type": "image",
+              "src": "/img/work/unity-cup-2026/Reasons-to-be-at-valley-slide-1.webp",
+              "alt": "Reasons to be at The Valley slide one"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/unity-cup-2026/Reasons-to-be-at-valley-slide-2.webp",
+              "alt": "Reasons to be at The Valley slide two"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/unity-cup-2026/Reasons-to-be-at-valley-slide-3.webp",
+              "alt": "Reasons to be at The Valley slide three"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/unity-cup-2026/Reasons-to-be-at-valley-slide-4.webp",
+              "alt": "Reasons to be at The Valley slide four"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/unity-cup-2026/Reasons-to-be-at-valley-slide-5.webp",
+              "alt": "Reasons to be at The Valley slide five"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/unity-cup-2026/Reasons-to-be-at-valley-slide-6.webp",
+              "alt": "Reasons to be at The Valley slide six"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/unity-cup-2026/Reasons-to-be-at-valley-slide-7.webp",
+              "alt": "Reasons to be at The Valley slide seven"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "category": "campaign",
+          "title": "Blue Tigers Arrival",
+          "items": [
+            {
+              "type": "image",
+              "src": "/img/work/unity-cup-2026/Unity-cup-blue-tigers-arrival-slide-1.webp",
+              "alt": "Unity Cup Blue Tigers arrival slide one"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/unity-cup-2026/Unity-cup-blue-tigers-arrival-slide-2.webp",
+              "alt": "Unity Cup Blue Tigers arrival slide two"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/unity-cup-2026/Unity-cup-blue-tigers-arrival-slide-3.webp",
+              "alt": "Unity Cup Blue Tigers arrival slide three"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/unity-cup-2026/Unity-cup-blue-tigers-arrival-slide-4.webp",
+              "alt": "Unity Cup Blue Tigers arrival slide four"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "category": "campaign",
+          "title": "Finals Promotion",
+          "items": [
+            {
+              "type": "image",
+              "src": "/img/work/unity-cup-2026/Unity-cup-finals-promo-slide-1.webp",
+              "alt": "Unity Cup finals promotion slide one"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/unity-cup-2026/Unity-cup-finals-promo-slide-2.webp",
+              "alt": "Unity Cup finals promotion slide two"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/unity-cup-2026/Unity-cup-finals-promo-slide-3.webp",
+              "alt": "Unity Cup finals promotion slide three"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/unity-cup-2026/Unity-cup-finals-promo-slide-4.webp",
+              "alt": "Unity Cup finals promotion slide four"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/unity-cup-2026/Unity-cup-finals-promo-slide-5.webp",
+              "alt": "Unity Cup finals promotion slide five"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/unity-cup-2026/Unity-cup-finals-promo-slide-6.webp",
+              "alt": "Unity Cup finals promotion slide six"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "category": "campaign",
+          "title": "Who Are You Bringing?",
+          "items": [
+            {
+              "type": "image",
+              "src": "/img/work/unity-cup-2026/Unity-cup-who-are-you-bringing-slide-1.webp",
+              "alt": "Unity Cup Who Are You Bringing slide one"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/unity-cup-2026/Unity-cup-who-are-you-bringing-slide-2.webp",
+              "alt": "Unity Cup Who Are You Bringing slide two"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/unity-cup-2026/Unity-cup-who-are-you-bringing-slide-3.webp",
+              "alt": "Unity Cup Who Are You Bringing slide three"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/unity-cup-2026/Unity-cup-who-are-you-bringing-slide-5.webp",
+              "alt": "Unity Cup Who Are You Bringing slide five"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/unity-cup-2026/Unity-cup-who-are-you-bringing-slide-6.webp",
+              "alt": "Unity Cup Who Are You Bringing slide six"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/unity-cup-2026/Unity-cup-who-are-you-bringing-slide-7.webp",
+              "alt": "Unity Cup Who Are You Bringing slide seven"
+            }
+          ]
         },
         {
           "type": "image",
-          "src": "/img/work/unity-cup-2026/Unity-cup-match-promo-version-2.webp",
-          "alt": "Unity Cup match promotion version two"
+          "category": "campaign",
+          "title": "Unity Cup Promotion",
+          "src": "/img/work/unity-cup-2026/Unity-cup-promo.webp",
+          "alt": "Unity Cup promotional artwork"
+        },
+        {
+          "type": "image",
+          "category": "campaign",
+          "title": "Semi-finals Promotion",
+          "src": "/img/work/unity-cup-2026/Unity-cup-semi-finals-promo.webp",
+          "alt": "Unity Cup semi-finals promotional artwork"
+        },
+        {
+          "type": "image",
+          "category": "campaign",
+          "title": "Giveaway Reminder",
+          "src": "/img/work/unity-cup-2026/Unity-cup-giveaway-reminder.webp",
+          "alt": "Unity Cup giveaway reminder artwork"
+        },
+        {
+          "type": "video",
+          "category": "motion",
+          "title": "Unity Cup Motion 01",
+          "src": "/img/work/unity-cup-2026/promo-01.mp4",
+          "alt": "Unity Cup promotional motion piece one"
+        },
+        {
+          "type": "video",
+          "category": "motion",
+          "title": "Unity Cup Motion 02",
+          "src": "/img/work/unity-cup-2026/promo-02.mp4",
+          "alt": "Unity Cup promotional motion piece two"
         }
-      ]
+      ],
+      "deliverables": "Social media posts, promotional reels, banners, and posters",
+      "brief": "NISAU was the Official Indian Youth Partner of the 2026 Unity Cup. The campaign needed to promote the matches, including India versus Jamaica and the semi-finals, and to drive visitors to ticket sales.",
+      "approach": "I was asked to create visually engaging social media posts and print collateral that built excitement around each fixture and directed audiences to buy tickets.",
+      "outcome": "I delivered social media content, banners, promotional reels and posters that contributed to ticket sales for the 2026 Unity Cup."
     },
-    {
-      "type": "group",
-      "category": "campaign",
-      "title": "Reasons to Be at The Valley",
-      "items": [
-        {
-          "type": "image",
-          "src": "/img/work/unity-cup-2026/Reasons-to-be-at-valley-slide-1.webp",
-          "alt": "Reasons to be at The Valley slide one"
-        },
-        {
-          "type": "image",
-          "src": "/img/work/unity-cup-2026/Reasons-to-be-at-valley-slide-2.webp",
-          "alt": "Reasons to be at The Valley slide two"
-        },
-        {
-          "type": "image",
-          "src": "/img/work/unity-cup-2026/Reasons-to-be-at-valley-slide-3.webp",
-          "alt": "Reasons to be at The Valley slide three"
-        },
-        {
-          "type": "image",
-          "src": "/img/work/unity-cup-2026/Reasons-to-be-at-valley-slide-4.webp",
-          "alt": "Reasons to be at The Valley slide four"
-        },
-        {
-          "type": "image",
-          "src": "/img/work/unity-cup-2026/Reasons-to-be-at-valley-slide-5.webp",
-          "alt": "Reasons to be at The Valley slide five"
-        },
-        {
-          "type": "image",
-          "src": "/img/work/unity-cup-2026/Reasons-to-be-at-valley-slide-6.webp",
-          "alt": "Reasons to be at The Valley slide six"
-        },
-        {
-          "type": "image",
-          "src": "/img/work/unity-cup-2026/Reasons-to-be-at-valley-slide-7.webp",
-          "alt": "Reasons to be at The Valley slide seven"
-        }
-      ]
-    },
-    {
-      "type": "group",
-      "category": "campaign",
-      "title": "Blue Tigers Arrival",
-      "items": [
-        {
-          "type": "image",
-          "src": "/img/work/unity-cup-2026/Unity-cup-blue-tigers-arrival-slide-1.webp",
-          "alt": "Unity Cup Blue Tigers arrival slide one"
-        },
-        {
-          "type": "image",
-          "src": "/img/work/unity-cup-2026/Unity-cup-blue-tigers-arrival-slide-2.webp",
-          "alt": "Unity Cup Blue Tigers arrival slide two"
-        },
-        {
-          "type": "image",
-          "src": "/img/work/unity-cup-2026/Unity-cup-blue-tigers-arrival-slide-3.webp",
-          "alt": "Unity Cup Blue Tigers arrival slide three"
-        },
-        {
-          "type": "image",
-          "src": "/img/work/unity-cup-2026/Unity-cup-blue-tigers-arrival-slide-4.webp",
-          "alt": "Unity Cup Blue Tigers arrival slide four"
-        }
-      ]
-    },
-    {
-      "type": "group",
-      "category": "campaign",
-      "title": "Finals Promotion",
-      "items": [
-        {
-          "type": "image",
-          "src": "/img/work/unity-cup-2026/Unity-cup-finals-promo-slide-1.webp",
-          "alt": "Unity Cup finals promotion slide one"
-        },
-        {
-          "type": "image",
-          "src": "/img/work/unity-cup-2026/Unity-cup-finals-promo-slide-2.webp",
-          "alt": "Unity Cup finals promotion slide two"
-        },
-        {
-          "type": "image",
-          "src": "/img/work/unity-cup-2026/Unity-cup-finals-promo-slide-3.webp",
-          "alt": "Unity Cup finals promotion slide three"
-        },
-        {
-          "type": "image",
-          "src": "/img/work/unity-cup-2026/Unity-cup-finals-promo-slide-4.webp",
-          "alt": "Unity Cup finals promotion slide four"
-        },
-        {
-          "type": "image",
-          "src": "/img/work/unity-cup-2026/Unity-cup-finals-promo-slide-5.webp",
-          "alt": "Unity Cup finals promotion slide five"
-        },
-        {
-          "type": "image",
-          "src": "/img/work/unity-cup-2026/Unity-cup-finals-promo-slide-6.webp",
-          "alt": "Unity Cup finals promotion slide six"
-        }
-      ]
-    },
-    {
-      "type": "group",
-      "category": "campaign",
-      "title": "Who Are You Bringing?",
-      "items": [
-        {
-          "type": "image",
-          "src": "/img/work/unity-cup-2026/Unity-cup-who-are-you-bringing-slide-1.webp",
-          "alt": "Unity Cup Who Are You Bringing slide one"
-        },
-        {
-          "type": "image",
-          "src": "/img/work/unity-cup-2026/Unity-cup-who-are-you-bringing-slide-2.webp",
-          "alt": "Unity Cup Who Are You Bringing slide two"
-        },
-        {
-          "type": "image",
-          "src": "/img/work/unity-cup-2026/Unity-cup-who-are-you-bringing-slide-3.webp",
-          "alt": "Unity Cup Who Are You Bringing slide three"
-        },
-        {
-          "type": "image",
-          "src": "/img/work/unity-cup-2026/Unity-cup-who-are-you-bringing-slide-5.webp",
-          "alt": "Unity Cup Who Are You Bringing slide five"
-        },
-        {
-          "type": "image",
-          "src": "/img/work/unity-cup-2026/Unity-cup-who-are-you-bringing-slide-6.webp",
-          "alt": "Unity Cup Who Are You Bringing slide six"
-        },
-        {
-          "type": "image",
-          "src": "/img/work/unity-cup-2026/Unity-cup-who-are-you-bringing-slide-7.webp",
-          "alt": "Unity Cup Who Are You Bringing slide seven"
-        }
-      ]
-    },
-    {
-      "type": "image",
-      "category": "campaign",
-      "title": "Unity Cup Promotion",
-      "src": "/img/work/unity-cup-2026/Unity-cup-promo.webp",
-      "alt": "Unity Cup promotional artwork"
-    },
-    {
-      "type": "image",
-      "category": "campaign",
-      "title": "Semi-finals Promotion",
-      "src": "/img/work/unity-cup-2026/Unity-cup-semi-finals-promo.webp",
-      "alt": "Unity Cup semi-finals promotional artwork"
-    },
-    {
-      "type": "image",
-      "category": "campaign",
-      "title": "Giveaway Reminder",
-      "src": "/img/work/unity-cup-2026/Unity-cup-giveaway-reminder.webp",
-      "alt": "Unity Cup giveaway reminder artwork"
-    },
-    {
-      "type": "video",
-      "category": "motion",
-      "title": "Unity Cup Motion 01",
-      "src": "/img/work/unity-cup-2026/promo-01.mp4",
-      "alt": "Unity Cup promotional motion piece one"
-    },
-    {
-      "type": "video",
-      "category": "motion",
-      "title": "Unity Cup Motion 02",
-      "src": "/img/work/unity-cup-2026/promo-02.mp4",
-      "alt": "Unity Cup promotional motion piece two"
-    }
-  ]
-},
     {
       "number": "03",
       "slug": "welcome-to-ldn-2025",
-      "title": "WELCOME TO LDN 2025",
+      "title": "Welcome to LDN",
       "category": "Identity",
       "type": "Event Campaign",
       "client": "NISAU",
       "year": "2025",
-      "role": "Visual Direction + Campaign Design",
-      "description": "Visual direction and campaign design for a welcome event created for Indian students arriving in London.",
+      "role": "Campaign design and visual direction",
+      "description": "A welcoming student-event campaign spanning teasers, promotional materials and post-event content.",
       "primaryImage": "/img/work/ldn-2025/welcome-to-ldn.webp",
       "alt": "LDN 2025 welcome event campaign banner",
       "media": [
-    {
-      "type": "image",
-      "category": "campaign",
-      "title": "LDN 2025",
-      "src": "/img/work/ldn-2025/LDN-2025.webp",
-      "alt": "LDN 2025 campaign artwork"
-    },
-    {
-      "type": "image",
-      "category": "campaign",
-      "title": "Calling All Desi Students",
-      "src": "/img/work/ldn-2025/CALLING-ALL-DESI-STUDENTS.webp",
-      "alt": "Calling All Desi Students campaign artwork"
-    },
-    {
-      "type": "image",
-      "category": "campaign",
-      "title": "Eventbrite Banner",
-      "src": "/img/work/ldn-2025/Eventbrite-banner.webp",
-      "alt": "LDN 2025 Eventbrite banner"
-    },
-    {
-      "type": "group",
-      "category": "merch",
-      "title": "Event T-shirts",
-      "items": [
         {
           "type": "image",
-          "src": "/img/work/ldn-2025/Black T-shirt (front).webp",
-          "alt": "LDN 2025 black T-shirt front"
+          "category": "campaign",
+          "title": "LDN 2025",
+          "src": "/img/work/ldn-2025/LDN-2025.webp",
+          "alt": "LDN 2025 campaign artwork"
         },
         {
           "type": "image",
-          "src": "/img/work/ldn-2025/Black T-shirt (back).webp",
-          "alt": "LDN 2025 black T-shirt back"
+          "category": "campaign",
+          "title": "Calling All Desi Students",
+          "src": "/img/work/ldn-2025/CALLING-ALL-DESI-STUDENTS.webp",
+          "alt": "Calling All Desi Students campaign artwork"
         },
         {
           "type": "image",
-          "src": "/img/work/ldn-2025/Grey T-shirt (front).webp",
-          "alt": "LDN 2025 grey T-shirt front"
+          "category": "campaign",
+          "title": "Eventbrite Banner",
+          "src": "/img/work/ldn-2025/Eventbrite-banner.webp",
+          "alt": "LDN 2025 Eventbrite banner"
         },
         {
-          "type": "image",
-          "src": "/img/work/ldn-2025/Grey T-shirt (back).webp",
-          "alt": "LDN 2025 grey T-shirt back"
+          "type": "group",
+          "category": "merch",
+          "title": "Event T-shirts",
+          "items": [
+            {
+              "type": "image",
+              "src": "/img/work/ldn-2025/Black T-shirt (front).webp",
+              "alt": "LDN 2025 black T-shirt front"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/ldn-2025/Black T-shirt (back).webp",
+              "alt": "LDN 2025 black T-shirt back"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/ldn-2025/Grey T-shirt (front).webp",
+              "alt": "LDN 2025 grey T-shirt front"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/ldn-2025/Grey T-shirt (back).webp",
+              "alt": "LDN 2025 grey T-shirt back"
+            }
+          ]
+        },
+        {
+          "type": "group",
+          "category": "campaign",
+          "title": "Welcome to LDN",
+          "items": [
+            {
+              "type": "image",
+              "src": "/img/work/ldn-2025/welcome-to-ldn-1.webp",
+              "alt": "Welcome to LDN campaign slide one"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/ldn-2025/welcome-to-ldn-2.webp",
+              "alt": "Welcome to LDN campaign slide two"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/ldn-2025/welcome-to-ldn-3.webp",
+              "alt": "Welcome to LDN campaign slide three"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/ldn-2025/welcome-to-ldn-4.webp",
+              "alt": "Welcome to LDN campaign slide four"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/ldn-2025/welcome-to-ldn-5.webp",
+              "alt": "Welcome to LDN campaign slide five"
+            },
+            {
+              "type": "image",
+              "src": "/img/work/ldn-2025/welcome-to-ldn-7.webp",
+              "alt": "Welcome to LDN campaign slide seven"
+            }
+          ]
+        },
+        {
+          "type": "video",
+          "category": "motion",
+          "title": "3 Days to Go",
+          "src": "/img/work/ldn-2025/3 days to go.mp4",
+          "poster": "/img/work/ldn-2025/3-days-to-go-thumb.webp",
+          "alt": "LDN 2025 three days to go motion piece"
+        },
+        {
+          "type": "video",
+          "category": "motion",
+          "title": "First Night in London",
+          "src": "/img/work/ldn-2025/1st night in london.mp4",
+          "alt": "LDN 2025 First Night in London motion piece"
+        },
+        {
+          "type": "video",
+          "category": "motion",
+          "title": "Highlight Reel",
+          "src": "/img/work/ldn-2025/highlight reel.mp4",
+          "poster": "/img/work/ldn-2025/highlight-reel-thumb.webp",
+          "alt": "LDN 2025 event highlight reel"
         }
-      ]
-    },
-    {
-      "type": "group",
-      "category": "campaign",
-      "title": "Welcome to LDN",
-      "items": [
-        {
-          "type": "image",
-          "src": "/img/work/ldn-2025/welcome-to-ldn-1.webp",
-          "alt": "Welcome to LDN campaign slide one"
-        },
-        {
-          "type": "image",
-          "src": "/img/work/ldn-2025/welcome-to-ldn-2.webp",
-          "alt": "Welcome to LDN campaign slide two"
-        },
-        {
-          "type": "image",
-          "src": "/img/work/ldn-2025/welcome-to-ldn-3.webp",
-          "alt": "Welcome to LDN campaign slide three"
-        },
-        {
-          "type": "image",
-          "src": "/img/work/ldn-2025/welcome-to-ldn-4.webp",
-          "alt": "Welcome to LDN campaign slide four"
-        },
-        {
-          "type": "image",
-          "src": "/img/work/ldn-2025/welcome-to-ldn-5.webp",
-          "alt": "Welcome to LDN campaign slide five"
-        },
-        {
-          "type": "image",
-          "src": "/img/work/ldn-2025/welcome-to-ldn-7.webp",
-          "alt": "Welcome to LDN campaign slide seven"
-        }
-      ]
-    },
-    {
-      "type": "video",
-      "category": "motion",
-      "title": "3 Days to Go",
-      "src": "/img/work/ldn-2025/3 days to go.mp4",
-      "poster": "/img/work/ldn-2025/3-days-to-go-thumb.webp",
-      "alt": "LDN 2025 three days to go motion piece"
-    },
-    {
-      "type": "video",
-      "category": "motion",
-      "title": "First Night in London",
-      "src": "/img/work/ldn-2025/1st night in london.mp4",
-      "alt": "LDN 2025 First Night in London motion piece"
-    },
-    {
-      "type": "video",
-      "category": "motion",
-      "title": "Highlight Reel",
-      "src": "/img/work/ldn-2025/highlight reel.mp4",
-      "poster": "/img/work/ldn-2025/highlight-reel-thumb.webp",
-      "alt": "LDN 2025 event highlight reel"
-       }
-  ]
-}
+      ],
+      "deliverables": "Social media posts, promotional reels, banners, posters, print collateral, merchandise",
+      "brief": "NISAU hosted Welcome to LDN, billed as the biggest free international students' event of 2025, for Indian students who had recently moved to the UK to study. It was a welcome party, a chance to unwind, meet people and settle into a new city.",
+      "approach": "I was asked to create engaging social media posts and print collateral that built excitement around the event, including teasers and sneak peeks in the days leading up to it. After the event, I also produced content that showed its scale and turnout and how well it met its goal.",
+      "outcome": "I delivered social media content, banners, promotional reels and posters that contributed to turnout at the Welcome to LDN event."
+    }
   ],
   "archive": []
 }
