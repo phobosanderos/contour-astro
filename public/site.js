@@ -81,22 +81,18 @@
   }
   var EMAIL = (($("a[href^='mailto:']") || {}).href || "").replace("mailto:", "");
   var store = { get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
-  var ACCENTS = ["blue", "orange", "lime"];
 
-  /* ---------- theme, accent, grid ---------- */
+  /* ---------- theme and grid ---------- */
   function themeColor() { var m = $("meta[name=theme-color]"); if (m) m.setAttribute("content", getComputedStyle(root).getPropertyValue("--bg").trim()); }
   function syncToggleNames() {
-    var themeButton = $('[data-action="theme"]'), accentButton = $('[data-action="accent"]');
+    var themeButton = $('[data-action="theme"]');
     if (themeButton) {
-      themeButton.setAttribute("aria-label", "Dark mode");
-      themeButton.setAttribute("aria-pressed", String(root.dataset.theme === "dark"));
-    }
-    if (accentButton) {
-      accentButton.setAttribute("aria-label", "Cycle accent color (current: " + (root.dataset.accent || "blue") + ")");
+      var dark = root.dataset.theme === "dark";
+      themeButton.setAttribute("aria-checked", String(dark));
+      themeButton.title = dark ? "Switch to light mode" : "Switch to dark mode";
     }
   }
   function toggleTheme() { var t = root.dataset.theme === "dark" ? "light" : "dark"; root.dataset.theme = t; store.set("ct-theme", t); themeColor(); syncToggleNames(); }
-  function nextAccent() { var a = ACCENTS[(ACCENTS.indexOf(root.dataset.accent || "blue") + 1) % ACCENTS.length]; root.dataset.accent = a; store.set("ct-accent", a); syncToggleNames(); }
   function toggleGrid() { root.dataset.grid = root.dataset.grid === "on" ? "off" : "on"; }
   themeColor();
   syncToggleNames();
@@ -123,12 +119,11 @@
     var seen = {};
     $$(".nav a[href], [data-palette-link]").forEach(function (a) {
       if (seen[a.href]) return; seen[a.href] = 1;
-      palItems.push({ group: "Go to", label: (a.querySelector(".nav__label, .wp-block-navigation-item__label") || a).textContent.trim(), hint: a.hash || a.pathname, run: go(a) });
+      palItems.push({ group: "Go to", label: (a.querySelector(".nav__print-row:not(.nav__print-row--hover), .nav__label, .wp-block-navigation-item__label") || a).textContent.trim(), hint: a.hash || a.pathname, run: go(a) });
     });
     var ct = doc.getElementById("contact");
     if (ct && !$$(".nav a[href]").some(function (a) { return a.hash === "#contact"; })) { var fake = doc.createElement("a"); fake.href = "#contact"; palItems.push({ group: "Go to", label: "Contact", hint: "#contact", run: go(fake) }); }
     palItems.push({ group: "Do", label: "Toggle light / dark", hint: "theme", run: toggleTheme });
-    palItems.push({ group: "Do", label: "Next accent colour", hint: "accent", run: nextAccent });
     palItems.push({ group: "Do", label: "Show the grid", hint: "G", run: function () { toggleGrid(); pal.close(); } });
     if (EMAIL) palItems.push({ group: "Do", label: "Copy email address", hint: EMAIL, run: function () { if (navigator.clipboard) navigator.clipboard.writeText(EMAIL); pal.close(); } });
     var input = $("input", pal);
@@ -171,7 +166,7 @@
   doc.addEventListener("click", function (e) {
     var t = e.target.closest("[data-action]"); if (!t) return;
     var a = t.dataset.action;
-    if (a === "theme") toggleTheme(); else if (a === "accent") nextAccent(); else if (a === "grid") toggleGrid();
+    if (a === "theme") toggleTheme(); else if (a === "grid") toggleGrid();
   });
   doc.addEventListener("keydown", function (e) {
     var tag = (e.target.tagName || "");
