@@ -1893,14 +1893,12 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   display: flex;
   flex-wrap: wrap;
   align-items: baseline;
-  gap: .5rem 0;
+  gap: .7rem;
 }
-.legal-links a + a::before {
-  content: "|";
-  display: inline-block;
-  margin-inline: .7rem;
+.legal-links__divider {
   color: var(--muted);
   opacity: .7;
+  user-select: none;
   pointer-events: none;
 }
 
@@ -3186,3 +3184,33 @@ body:has(dialog[open]) { overflow: hidden; }
 }
 /* Archive filters are content immediately following the archive heading. */
 #work .archive-filters { padding-top: 0; }
+
+/* Keep motion thumbnails visible before metadata loads and during playback. */
+.project-media__visual:has(.project-media__video) { position: relative; }
+.project-media__video {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  background: var(--bg-raised);
+}
+.project-media__play {
+  position: absolute;
+  right: .85rem;
+  bottom: .85rem;
+  pointer-events: none;
+  display: grid;
+  place-items: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--bg);
+  color: var(--ink);
+}
+.project-media__play .ui-icon { width: 1rem; height: 1rem; fill: currentColor; stroke: none; }
+/* Match the external-link affordance already used by Prints in the footer. */
+.nav__external-icon {
+  width: .78em;
+  height: .78em;
+  stroke-width: 1.15;
+  flex: 0 0 auto;
+  vertical-align: baseline;
+}
