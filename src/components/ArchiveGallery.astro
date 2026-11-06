@@ -3,34 +3,36 @@ import archiveData from "../content/archive.json";
 import { imageDimensions } from "../lib/archive-image-dimensions";
 
 const filters = ["all", "design", "motion", "illustration"];
-const tags = ["all", "personal", "client"];
+const sources = ["all", "client", "personal"];
 // Editorial flags stay in JSON but are excluded from client-side data.
-const archive = archiveData.map(({needsReview, ...entry}) => ({
+const archive = archiveData.map(entry => ({
   ...entry,
   items: entry.items.map(item => ({...item, ...imageDimensions(item.type === "image" ? item.src : item.poster)})),
-  coverDimensions: imageDimensions(entry.cover || entry.items.find(item => item.type === "image")?.src),
+  coverDimensions: imageDimensions(entry.cover || entry.items.find(item => item.type === "image")?.src || entry.items.find(item => item.type === "video")?.poster),
 }));
 const first = item => item.items[0];
-const imageFor = item => item.cover || (first(item)?.type === "image" ? first(item).src : null);
+const imageFor = item => item.cover || first(item)?.poster || (first(item)?.type === "image" ? first(item).src : null);
 ---
 <div class="work__archive" id="archive">
   <header class="section-head work__archive-head">
     <span class="note note--ink">THE ARCHIVE</span>
-    <span class="note">{String(archive.length).padStart(2, "0")} projects</span>
+    <span class="note" data-archive-count>{archive.length} PROJECTS</span>
+    <span class="sr-only" role="status" aria-live="polite" aria-atomic="true" data-archive-count-live>{archive.length} PROJECTS</span>
   </header>
 
   <div class="archive-filters" aria-label="Archive filters">
-    <div class="archive-filter-group" role="group" aria-label="Discipline">
-      {filters.map((filter, i) => (
-        <button type="button" class={`archive-filter note${i === 0 ? " is-active" : ""}`}
-          data-archive-filter={filter} aria-pressed={i === 0 ? "true" : "false"}>{filter}</button>
+    <div class="archive-source" role="group" aria-label="Show">
+      {sources.map((source, i) => (
+        <button type="button" class={`archive-filter archive-source__button note${i === 0 ? " is-active" : ""}`}
+          data-archive-source={source} aria-pressed={i === 0 ? "true" : "false"}>{source}</button>
       ))}
     </div>
-    <div class="archive-filter-group" role="group" aria-label="Project type">
-      {tags.map((tag, i) => (
-        <button type="button" class={`archive-filter note${i === 0 ? " is-active" : ""}`}
-          data-archive-tag={tag} aria-pressed={i === 0 ? "true" : "false"}>{tag}</button>
-      ))}
+    <div class="archive-type-control">
+      <label class="note" for="archive-type">Type</label>
+      <select id="archive-type" class="archive-type note" data-archive-type>
+        {filters.map(type => <option value={type}>{type}</option>)}
+      </select>
+      <button type="button" class="archive-clear note" data-archive-clear hidden>Clear</button>
     </div>
   </div>
 
@@ -41,11 +43,12 @@ const imageFor = item => item.cover || (first(item)?.type === "image" ? first(it
         data-cursor="view" aria-label={`Open ${item.title}`}>
         <div class="archive-gallery__visual">
           {imageFor(item) ? (
-            <img src={imageFor(item)} alt={item.alt} width={item.coverDimensions.width} height={item.coverDimensions.height}
+            <img src={imageFor(item)} alt={item.alt} width={item.coverDimensions.width || 1} height={item.coverDimensions.height || 1}
               loading="lazy" decoding="async" />
           ) : (
             <video
   data-src={first(item)?.src}
+  poster={first(item)?.poster}
   muted
   playsinline
   preload="none"
@@ -59,7 +62,9 @@ const imageFor = item => item.cover || (first(item)?.type === "image" ? first(it
         </div>
         <div class="archive-gallery__meta">
           <span class="archive-gallery__title note">
-          {item.slug === "don-t-be-different" ? <><s>{"Don\u0027t"}</s> be different</> : item.title}
+          {item.titleSegments ? item.titleSegments.map(segment => segment.strike
+            ? <><s>{segment.text}</s><span class="sr-only"> (crossed out)</span></>
+            : segment.text) : item.title}
           </span>
           {item.items.length > 1 && (
             <span class="archive-gallery__count note">{String(item.items.length).padStart(2, "0")} ITEMS</span>
@@ -67,6 +72,10 @@ const imageFor = item => item.cover || (first(item)?.type === "image" ? first(it
         </div>
       </button>
     ))}
+  </div>
+  <div class="archive-gallery__empty note" data-archive-empty hidden>
+    <span data-archive-empty-message>No matching work.</span>
+    <button type="button" class="archive-clear" data-archive-empty-clear>Clear filters</button>
   </div>
 </div>
 
@@ -77,8 +86,6 @@ const imageFor = item => item.cover || (first(item)?.type === "image" ? first(it
         <span data-archive-number></span><span data-archive-title id="archive-dialog-title"></span>
       </div>
       <div class="archive-lightbox__tools">
-        <button type="button" class="archive-lightbox__info-toggle note" data-archive-info hidden
-          aria-expanded="false">ABOUT +</button>
         <button type="button" class="info-dialog__close project-lightbox__close" data-archive-close
           aria-label="Close"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#close"></use></svg></button>
       </div>
@@ -90,10 +97,6 @@ const imageFor = item => item.cover || (first(item)?.type === "image" ? first(it
       <button class="project-lightbox__nav-button note" type="button" data-archive-next>Next <svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#arrow-right"></use></svg></button>
     </footer>
   </div>
-  <!-- Optional description is OUTSIDE the media/window sizing flow. -->
-  <aside class="archive-lightbox__about" data-archive-about hidden>
-    <p data-archive-description></p>
-  </aside>
 </dialog>
 
 <script is:inline define:vars={{ archive }}>
@@ -108,9 +111,14 @@ const imageFor = item => item.cover || (first(item)?.type === "image" ? first(it
   const counterEl = $('[data-archive-counter]', dialog);
   const prevEl = $('[data-archive-prev]', dialog);
   const nextEl = $('[data-archive-next]', dialog);
-  const aboutEl = $('[data-archive-about]', dialog);
-  const descEl = $('[data-archive-description]', dialog);
-  const infoEl = $('[data-archive-info]', dialog);
+  const countEl = $('[data-archive-count]');
+  const countLiveEl = $('[data-archive-count-live]');
+  const typeSelect = $('[data-archive-type]');
+  const clearButton = $('[data-archive-clear]');
+  const emptyEl = $('[data-archive-empty]');
+  const emptyMessage = $('[data-archive-empty-message]');
+  const emptyClearButton = $('[data-archive-empty-clear]');
+  let descriptionBar = null;
   let entryIndex = 0, itemIndex = 0, sequence = 0, lastTrigger = null;
   let touchStart = null;
   let nextImage = null;
@@ -125,29 +133,57 @@ const imageFor = item => item.cover || (first(item)?.type === "image" ? first(it
   }
 
 
-  let activePillar = "all";
-  let activeTag = "all";
+  let activeSource = "all", activeType = "all";
+  const total = archive.length;
   function applyFilters() {
+    let visible = 0;
+    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
     $$("[data-archive-index]").forEach(card => {
-      card.hidden = (activePillar !== "all" && card.dataset.archiveCategory !== activePillar) ||
-        (activeTag !== "all" && card.dataset.archiveProjectTag !== activeTag);
+      const matches = (activeType === "all" || card.dataset.archiveCategory === activeType) &&
+        (activeSource === "all" || card.dataset.archiveProjectTag === activeSource);
+      card.hidden = !matches;
+      if (matches) {
+        visible++;
+        if (!reduced) {
+          card.classList.add("is-filter-revealing");
+          requestAnimationFrame(() => card.classList.remove("is-filter-revealing"));
+        }
+      }
     });
+    const filtered = activeSource !== "all" || activeType !== "all";
+    const text = filtered ? `${visible} OF ${total} PROJECTS` : `${total} PROJECTS`;
+    countEl.textContent = text;
+    countLiveEl.textContent = text;
+    clearButton.hidden = !filtered;
+    emptyEl.hidden = visible !== 0;
+    if (visible === 0) {
+      emptyMessage.textContent = activeSource !== "all" && activeType !== "all"
+        ? `No ${activeSource} ${activeType} work yet.`
+        : "No matching work.";
+    }
   }
-  for (const [selector, update] of [
-    ["[data-archive-filter]", value => { activePillar = value; }],
-    ["[data-archive-tag]", value => { activeTag = value; }]
-  ]) {
-    $$(selector).forEach(button => button.addEventListener("click", () => {
-      const value = button.dataset.archiveFilter ?? button.dataset.archiveTag;
-      update(value);
-      $$(selector).forEach(other => {
-        const on = other === button;
-        other.classList.toggle("is-active", on);
-        other.setAttribute("aria-pressed", String(on));
-      });
-      applyFilters();
-    }));
+  function resetFilters() {
+    activeSource = "all"; activeType = "all";
+    typeSelect.value = "all";
+    $$("[data-archive-source]").forEach(button => {
+      const selected = button.dataset.archiveSource === "all";
+      button.classList.toggle("is-active", selected);
+      button.setAttribute("aria-pressed", String(selected));
+    });
+    applyFilters();
   }
+  $$("[data-archive-source]").forEach(button => button.addEventListener("click", () => {
+    activeSource = button.dataset.archiveSource;
+    $$("[data-archive-source]").forEach(other => {
+      const selected = button === other;
+      other.classList.toggle("is-active", selected);
+      other.setAttribute("aria-pressed", String(selected));
+    });
+    applyFilters();
+  }));
+  typeSelect.addEventListener("change", () => { activeType = typeSelect.value; applyFilters(); });
+  clearButton.addEventListener("click", resetFilters);
+  emptyClearButton.addEventListener("click", resetFilters);
 
   const thumbnailVideos = $$(
   "[data-archive-thumbnail]"
@@ -223,9 +259,9 @@ thumbnailVideos.forEach((video) => {
     navEl.hidden = count <= 1;
     prevEl.hidden = itemIndex === 0;
     nextEl.hidden = itemIndex === count - 1;
-    const position = `${String(itemIndex + 1).padStart(2, '0')} / ${String(count).padStart(2, '0')}`;
-    counterEl.textContent = position;
-    $('[data-archive-number]', dialog).textContent = position;
+    const position = `${itemIndex + 1} / ${count}`;
+    counterEl.textContent = count > 1 ? position : '';
+    $('[data-archive-number]', dialog).textContent = count > 1 ? position : '';
     preloadNextImage();
     const asset = assetFor(item);
 
@@ -234,22 +270,15 @@ thumbnailVideos.forEach((video) => {
       const w = asset.tagName === 'VIDEO' ? asset.videoWidth : asset.naturalWidth;
       const h = asset.tagName === 'VIDEO' ? asset.videoHeight : asset.naturalHeight;
       if (!(w > 0 && h > 0)) return;
-      const head = $('.project-lightbox__head', windowEl);
-      const nav = navEl.hidden ? 0 : navEl.offsetHeight;
-      const maxW = Math.max(160, innerWidth - 64);
-      const maxH = Math.max(160, innerHeight - (head?.offsetHeight || 0) - nav - 64);
+      const maxW = Math.max(200, innerWidth - 32);
+      const maxH = Math.max(200, innerHeight * .65);
       const ratio = Math.min(1, maxW / w, maxH / h);
-      const rw = Math.floor(w * ratio), rh = Math.floor(h * ratio);
-      asset.style.width = rw + 'px';
-      asset.style.height = rh + 'px';
+      const rw = Math.floor(w * ratio);
       mediaEl.classList.add('is-switching');
       window.setTimeout(() => {
         if (ticket !== sequence || !dialog.open) return;
         $('video', mediaEl)?.pause();
-        windowEl.style.width = Math.ceil(rw + 32) + 'px';
-        if (!aboutEl.hidden) {
-        requestAnimationFrame(positionAbout);
-        }
+        windowEl.style.width = Math.max(300, Math.ceil(rw + 32)) + 'px';
         /* Swap the asset while the previous one is faded out */
 mediaEl.replaceChildren(asset);
 
@@ -275,26 +304,47 @@ requestAnimationFrame(() => {
   }
 
   function writeDescription(entry) {
-    descEl.replaceChildren();
-    const description = entry.notes || '';
-    if (!description) { infoEl.hidden = true; return; }
-    infoEl.hidden = false;
+    descriptionBar?.remove();
+    descriptionBar = null;
+    dialog.removeAttribute("aria-describedby");
+    const description = entry.notes || "";
+    if (!description) return;
+    const bar = document.createElement("footer");
+    bar.className = "info-dialog__foot archive-lightbox__description";
+    bar.id = "archive-dialog-description";
+    bar.setAttribute("role", "region");
+    bar.setAttribute("aria-label", "About this work");
+    const paragraph = document.createElement("p");
+    paragraph.className = "note";
+    // Only text nodes and validated, explicit link data are inserted.
     const link = entry.link;
-    if (!link || !description.includes(link.text)) {
-      descEl.textContent = description; return;
+    const allowed = link?.url && /^(https?:|mailto:)/i.test(link.url);
+    if (!allowed || !description.includes(link.text)) {
+      paragraph.textContent = description;
+    } else {
+      const at = description.indexOf(link.text);
+      paragraph.append(document.createTextNode(description.slice(0, at)));
+      const anchor = document.createElement("a");
+      anchor.href = link.url;
+      anchor.textContent = link.text;
+      if (/^https?:/i.test(link.url)) {
+        anchor.target = "_blank";
+        anchor.rel = "noopener noreferrer";
+        const notice = document.createElement("span");
+        notice.className = "sr-only";
+        notice.textContent = " (opens in a new tab)";
+        anchor.append(notice);
+      }
+      paragraph.append(anchor, document.createTextNode(description.slice(at + link.text.length)));
     }
-    const at = description.indexOf(link.text);
-    descEl.append(document.createTextNode(description.slice(0, at)));
-    const anchor = document.createElement('a');
-    anchor.href = link.url;
-    anchor.textContent = link.text;
-    anchor.target = '_blank';
-    anchor.rel = 'noopener noreferrer';
-    const notice = document.createElement('span');
-    notice.className = 'sr-only';
-    notice.textContent = ' (opens in a new tab)';
-    anchor.append(notice);
-    descEl.append(anchor, document.createTextNode(description.slice(at + link.text.length)));
+    bar.append(paragraph);
+    windowEl.append(bar);
+    dialog.setAttribute("aria-describedby", bar.id);
+    descriptionBar = bar;
+    if (!matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      bar.classList.add("is-entering");
+      requestAnimationFrame(() => bar.classList.remove("is-entering"));
+    }
   }
 
   function open(index, trigger) {
@@ -304,13 +354,16 @@ requestAnimationFrame(() => {
 
     const heading = $('[data-archive-title]', dialog);
     heading.replaceChildren();
-    if (entry.slug === 'don-t-be-different') {
-      const strike = document.createElement('s'); strike.textContent = "Don't";
-      heading.append(strike, document.createTextNode(' be different'));
+    if (entry.titleSegments?.length) {
+      entry.titleSegments.forEach(segment => {
+        if (!segment.strike) { heading.append(document.createTextNode(segment.text)); return; }
+        const strike = document.createElement('s'); strike.textContent = segment.text;
+        const explanation = document.createElement('span');
+        explanation.className = 'sr-only'; explanation.textContent = ' (crossed out)';
+        heading.append(strike, explanation);
+      });
     } else heading.textContent = entry.title;
     writeDescription(entry);
-    aboutEl.hidden = true;
-    infoEl.setAttribute('aria-expanded', 'false');
     windowEl.style.width = '';
     window.__lenis?.stop?.();
     dialog.showModal();
@@ -321,73 +374,6 @@ requestAnimationFrame(() => {
   $('[data-archive-close]',dialog).addEventListener('click', () => dialog.close());
   nextEl.addEventListener('click', () => { if (itemIndex < archive[entryIndex].items.length - 1) { itemIndex++; render(); } });
   prevEl.addEventListener('click', () => { if (itemIndex > 0) { itemIndex--; render(); } });
-  function positionAbout() {
-  if (aboutEl.hidden || !dialog.open) return;
-
-  const rect = windowEl.getBoundingClientRect();
-
-  const padding = 12;
-  const width = aboutEl.offsetWidth;
-  const height = aboutEl.offsetHeight;
-
-  const rightSpace = innerWidth - rect.right;
-  const leftSpace = rect.left;
-  const bottomSpace = innerHeight - rect.bottom;
-  const topSpace = rect.top;
-
-  let left;
-  let top;
-
-  if (rightSpace >= width + padding) {
-    // Dock to right edge
-    left = rect.right;
-    top = rect.top;
-  } else if (leftSpace >= width + padding) {
-    // Dock to left edge
-    left = rect.left - width;
-    top = rect.top;
-  } else if (bottomSpace >= height + padding) {
-    // Dock directly below the window
-    left = rect.right - width;
-    top = rect.bottom;
-  } else if (topSpace >= height + padding) {
-    // Dock directly above the window
-    left = rect.right - width;
-    top = rect.top - height;
-  } else {
-    // Small viewport fallback
-    left = innerWidth - width - padding;
-    top = innerHeight - height - padding;
-  }
-
-  left = Math.max(
-    padding,
-    Math.min(left, innerWidth - width - padding)
-  );
-
-  top = Math.max(
-    padding,
-    Math.min(top, innerHeight - height - padding)
-  );
-
-  aboutEl.style.left = `${left}px`;
-  aboutEl.style.top = `${top}px`;
-}
-  infoEl.addEventListener('click', () => {
-  aboutEl.hidden = !aboutEl.hidden;
-
-  infoEl.setAttribute(
-    'aria-expanded',
-    String(!aboutEl.hidden)
-  );
-
-  if (!aboutEl.hidden) {
-    positionAbout();
-  }
-});
-
-window.addEventListener('resize', positionAbout);
-
   dialog.addEventListener('close', () => {
     sequence++;
     touchStart = null;
@@ -397,7 +383,9 @@ window.addEventListener('resize', positionAbout);
     counterEl.textContent = '';
     $('video', mediaEl)?.pause();
     mediaEl.replaceChildren();
-    aboutEl.hidden = true;
+    descriptionBar?.remove();
+    descriptionBar = null;
+    dialog.removeAttribute("aria-describedby");
     window.__lenis?.start?.();
     lastTrigger?.focus({preventScroll:true});
   });
