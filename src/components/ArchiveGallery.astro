@@ -29,9 +29,12 @@ const imageFor = item => item.cover || first(item)?.poster || (first(item)?.type
     </div>
     <div class="archive-type-control">
       <label class="note" for="archive-type">Type</label>
-      <select id="archive-type" class="archive-type note" data-archive-type>
-        {filters.map(type => <option value={type}>{type}</option>)}
-      </select>
+      <span class="archive-type-wrap">
+        <select id="archive-type" class="archive-type note" data-archive-type>
+          {filters.map(type => <option value={type}>{type}</option>)}
+        </select>
+        <svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#arrow-down"></use></svg>
+      </span>
       <button type="button" class="archive-clear note" data-archive-clear hidden>Clear</button>
     </div>
   </div>
@@ -133,22 +136,18 @@ const imageFor = item => item.cover || first(item)?.poster || (first(item)?.type
   }
 
 
+  const grid = $('.archive-gallery__grid');
+  const cards = $$("[data-archive-index]");
   let activeSource = "all", activeType = "all";
   const total = archive.length;
-  function applyFilters() {
+  let filterTimer = 0, filterVersion = 0;
+  function updateGrid() {
     let visible = 0;
-    const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-    $$("[data-archive-index]").forEach(card => {
+    cards.forEach(card => {
       const matches = (activeType === "all" || card.dataset.archiveCategory === activeType) &&
         (activeSource === "all" || card.dataset.archiveProjectTag === activeSource);
       card.hidden = !matches;
-      if (matches) {
-        visible++;
-        if (!reduced) {
-          card.classList.add("is-filter-revealing");
-          requestAnimationFrame(() => card.classList.remove("is-filter-revealing"));
-        }
-      }
+      if (matches) visible++;
     });
     const filtered = activeSource !== "all" || activeType !== "all";
     const text = filtered ? `${visible} OF ${total} PROJECTS` : `${total} PROJECTS`;
@@ -156,11 +155,28 @@ const imageFor = item => item.cover || first(item)?.poster || (first(item)?.type
     countLiveEl.textContent = text;
     clearButton.hidden = !filtered;
     emptyEl.hidden = visible !== 0;
-    if (visible === 0) {
+    if (!visible) {
       emptyMessage.textContent = activeSource !== "all" && activeType !== "all"
         ? `No ${activeSource} ${activeType} work yet.`
         : "No matching work.";
     }
+  }
+  function applyFilters() {
+    clearTimeout(filterTimer);
+    const version = ++filterVersion;
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      updateGrid(); return;
+    }
+    grid.classList.add("is-filter-switching");
+    filterTimer = window.setTimeout(() => {
+      if (version !== filterVersion) return;
+      const oldScroll = window.scrollY;
+      updateGrid();
+      window.scrollTo({top: oldScroll, behavior:"instant"});
+      requestAnimationFrame(() => {
+        if (version === filterVersion) grid.classList.remove("is-filter-switching");
+      });
+    }, 160);
   }
   function resetFilters() {
     activeSource = "all"; activeType = "all";
@@ -270,15 +286,21 @@ thumbnailVideos.forEach((video) => {
       const w = asset.tagName === 'VIDEO' ? asset.videoWidth : asset.naturalWidth;
       const h = asset.tagName === 'VIDEO' ? asset.videoHeight : asset.naturalHeight;
       if (!(w > 0 && h > 0)) return;
-      const maxW = Math.max(200, innerWidth - 32);
-      const maxH = Math.max(200, innerHeight * .65);
+      const chromeHeight =
+        $('.project-lightbox__head', windowEl).offsetHeight +
+        (navEl.hidden ? 0 : navEl.offsetHeight) +
+        (descriptionBar?.offsetHeight || 0);
+      const maxW = Math.max(120, innerWidth - 64);
+      const maxH = Math.max(120, window.innerHeight - 32 - chromeHeight - 32);
       const ratio = Math.min(1, maxW / w, maxH / h);
       const rw = Math.floor(w * ratio);
+      const rh = Math.floor(h * ratio);
       mediaEl.classList.add('is-switching');
       window.setTimeout(() => {
         if (ticket !== sequence || !dialog.open) return;
         $('video', mediaEl)?.pause();
-        windowEl.style.width = Math.max(300, Math.ceil(rw + 32)) + 'px';
+        windowEl.style.width = Math.min(innerWidth - 32, Math.max(160, Math.ceil(rw + 32))) + 'px';
+        mediaEl.style.height = Math.ceil(rh + 32) + 'px';
         /* Swap the asset while the previous one is faded out */
 mediaEl.replaceChildren(asset);
 
@@ -364,6 +386,7 @@ requestAnimationFrame(() => {
     } else heading.textContent = entry.title;
     writeDescription(entry);
     windowEl.style.width = '';
+    mediaEl.style.height = '';
     window.__lenis?.stop?.();
     dialog.showModal();
     render();
@@ -382,6 +405,7 @@ requestAnimationFrame(() => {
     counterEl.textContent = '';
     $('video', mediaEl)?.pause();
     mediaEl.replaceChildren();
+    mediaEl.style.height = '';
     descriptionBar?.remove();
     descriptionBar = null;
     dialog.removeAttribute("aria-describedby");
