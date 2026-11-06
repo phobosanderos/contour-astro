@@ -39,11 +39,9 @@ const { home = false, currentSection = "" } = Astro.props;
         target="_blank"
         rel="noopener noreferrer"
       >
-        <span class="nav__print-clip">
-          <span class="nav__label nav__label--prints">
-            <span>{c.header.span_12}</span>
-            <svg class="ui-icon nav__external-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#arrow-up-right"></use></svg>
-          </span>
+        <span class="nav__label nav__label--prints">
+          <span>{c.header.span_12}</span>
+          <svg class="ui-icon nav__external-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#arrow-up-right"></use></svg>
         </span>
         <span class="sr-only"> (opens in a new tab)</span>
       </a>
