@@ -3188,8 +3188,8 @@ body:has(dialog[open]) { overflow: hidden; }
 /* Keep motion thumbnails visible before metadata loads and during playback. */
 .project-media__visual:has(.project-media__video) { position: relative; }
 .project-media__video {
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+  width: 100%;
+  height: auto;
   background: var(--bg-raised);
 }
 .project-media__play {
