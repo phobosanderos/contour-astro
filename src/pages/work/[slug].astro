@@ -146,7 +146,15 @@ const seoTitle = project.title;
 
                 <div class="project-media__visual">
                   {
-                    preview?.type === "video" ? (
+                    preview?.type === "video" && preview.poster ? (
+                      <img
+                        class="project-media__asset"
+                        src={preview.poster}
+                        alt={preview.alt || item.title || "Project video thumbnail"}
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    ) : preview?.type === "video" ? (
                       <video
                       class="project-media__asset project-media__video"
                       data-src={preview.src}
