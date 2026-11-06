@@ -266,6 +266,38 @@ thumbnailVideos.forEach((video) => {
     return asset;
   }
 
+  /* Resize the already loaded asset in place; retain video playback and
+     the current item when device orientation or the visual viewport changes. */
+  function fitVisibleAsset(asset) {
+    if (!dialog.open || !asset) return;
+    const w = asset.tagName === 'VIDEO' ? asset.videoWidth : asset.naturalWidth;
+    const h = asset.tagName === 'VIDEO' ? asset.videoHeight : asset.naturalHeight;
+    if (!(w > 0 && h > 0)) return;
+    const chromeHeight =
+      $('.project-lightbox__head', windowEl).offsetHeight +
+      (navEl.hidden ? 0 : navEl.offsetHeight) +
+      (descriptionBar?.offsetHeight || 0);
+    const vw = window.visualViewport?.width || innerWidth;
+    const vh = window.visualViewport?.height || innerHeight;
+    const maxW = Math.max(80, vw - 64);
+    const maxH = Math.max(80, vh - 64 - chromeHeight);
+    const scale = Math.min(1, maxW / w, maxH / h);
+    const rw = Math.max(1, Math.floor(w * scale));
+    const rh = Math.max(1, Math.floor(h * scale));
+    asset.style.width = rw + 'px';
+    asset.style.height = rh + 'px';
+    windowEl.style.width = Math.max(1, Math.min(vw - 24, rw + 32)) + 'px';
+    mediaEl.style.height = Math.ceil(rh + 32) + 'px';
+  }
+  let resizeFrame = 0;
+  const requestRefit = () => {
+    if (!dialog.open) return;
+    cancelAnimationFrame(resizeFrame);
+    resizeFrame = requestAnimationFrame(() => fitVisibleAsset($('img,video', mediaEl)));
+  };
+  window.addEventListener('resize', requestRefit, {passive:true});
+  window.visualViewport?.addEventListener('resize', requestRefit, {passive:true});
+
   function render() {
     const entry = archive[entryIndex];
     const item = entry?.items?.[itemIndex];
@@ -286,21 +318,12 @@ thumbnailVideos.forEach((video) => {
       const w = asset.tagName === 'VIDEO' ? asset.videoWidth : asset.naturalWidth;
       const h = asset.tagName === 'VIDEO' ? asset.videoHeight : asset.naturalHeight;
       if (!(w > 0 && h > 0)) return;
-      const chromeHeight =
-        $('.project-lightbox__head', windowEl).offsetHeight +
-        (navEl.hidden ? 0 : navEl.offsetHeight) +
-        (descriptionBar?.offsetHeight || 0);
-      const maxW = Math.max(120, innerWidth - 64);
-      const maxH = Math.max(120, window.innerHeight - 32 - chromeHeight - 32);
-      const ratio = Math.min(1, maxW / w, maxH / h);
-      const rw = Math.floor(w * ratio);
-      const rh = Math.floor(h * ratio);
+
       mediaEl.classList.add('is-switching');
       window.setTimeout(() => {
         if (ticket !== sequence || !dialog.open) return;
         $('video', mediaEl)?.pause();
-        windowEl.style.width = Math.min(innerWidth - 32, Math.max(160, Math.ceil(rw + 32))) + 'px';
-        mediaEl.style.height = Math.ceil(rh + 32) + 'px';
+        fitVisibleAsset(asset);
         /* Swap the asset while the previous one is faded out */
 mediaEl.replaceChildren(asset);
 
