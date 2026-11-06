@@ -1,6 +1,6 @@
 ---
 import c from "../content.json";
-const { home = false } = Astro.props;
+const { home = false, currentSection = "" } = Astro.props;
 ---
 
 <header class="site-header wrap">
@@ -18,7 +18,7 @@ const { home = false } = Astro.props;
   <nav class="nav" aria-label="Main Navigation">
   <ul>
     <li>
-      <a class="nav__link" href="/#work">
+      <a class="nav__link" href="/#work" aria-current={currentSection === "work" ? "page" : undefined}>
         <span class="nav__label" data-label="Work">{c.header.span_6}</span>
       </a>
     </li>
