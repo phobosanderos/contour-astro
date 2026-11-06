@@ -1,151 +1,173 @@
 #!/usr/bin/env python3
-"""Dry-run asset cleanup for featured work. Requires Python 3.10+.
-Run: python scripts/rename-project-assets.py
-Apply: python scripts/rename-project-assets.py --apply
-Requires Pillow to convert JPEG ticket files to WebP; ffmpeg for video posters.
-Always review scripts/project-asset-map.csv before --apply.
+"""Auditable featured-project migration. Python 3.10+, Pillow for ticket conversion.
+
+Default: inspect the mapping without changing files.
+  python scripts/rename-project-assets.py
+Original-checkout migration:
+  python scripts/rename-project-assets.py --apply
+Ticket conversion AFTER the migration:
+  python scripts/rename-project-assets.py --convert-ticket
+Orphan report and proposed removal command:
+  python scripts/rename-project-assets.py --orphans
+
+The repository's current commit may already contain the 59 moves. Applied
+moves are skipped when their new paths exist and old paths are absent.
 """
 import argparse
 import csv
 import json
 import re
-import shutil
 import subprocess
+import sys
 from pathlib import Path
+from urllib.parse import quote
 
 ROOT = Path(__file__).resolve().parents[1]
-DATA = ROOT / "src/content/work.json"
-CSV = ROOT / "scripts/project-asset-map.csv"
-SLUGS = {"achievers-2026", "unity-cup-2026", "welcome-to-ldn-2025"}
+MAPPING = ROOT / "scripts/project-asset-map.csv"
+CONTENT = ROOT / "src/content/work.json"
+ROOTS = ["public/img/work/achievers-2026", "public/img/work/unity-cup-2026",
+         "public/img/work/ldn-2025", "public/video"]
 TEXT_EXT = {".astro", ".json", ".ts", ".js", ".css", ".md", ".mdx", ".xml", ".html", ".yml", ".yaml"}
-EXCLUDE = {"node_modules", ".git", "dist", ".astro"}
+EXCLUDES = {".git", "node_modules", ".astro", "dist"}
+TICKET_OLD = ROOT / "public/img/work/achievers-2026/merch/Achievers-ticket-back.jpg"
+TICKET_JPG = ROOT / "public/img/work/achievers-2026/merch/achievers-ticket-back.jpg"
+TICKET_WEBP = TICKET_JPG.with_suffix(".webp")
 
-def slugify(name):
-    name = re.sub(r"(?i)\s*\(\s*ver(?:sion)?\s*\d+\s*\)", "", name)
-    name = re.sub(r"(?i)\s+ver(?:sion)?\s+\d+(?=\.)", "", name)
-    name = re.sub(r"(?i)boiler[\s-]*plate", "boilerplate", name)
-    name = name.replace("'", "").replace("’", "")
-    name = re.sub(r"(?i)\bversion-(\d+)\b", r"\1", name)
-    name = re.sub(r"[^a-z0-9]+", "-", name.lower()).strip("-")
-    return name
+def git(*args, check=True):
+    return subprocess.run(["git", *args], cwd=ROOT, check=check,
+                          capture_output=True, text=True)
 
-def destination(url, project):
-    path = Path(url)
-    ext = path.suffix.lower()
-    stem = slugify(path.stem)
-    if ext == ".mp4":
-        return "/video/" + project + "-" + stem + ".mp4"
-    if project == "achievers-2026" and path.name.lower() in ("achievers-ticket-back.jpg", "achievers-ticket-02.jpg"):
-        ext = ".webp"
-        stem = "achievers-ticket-back" if "back" in stem else "achievers-ticket-front"
-    return str(path.parent / (stem + ext))
+def rows():
+    with MAPPING.open(newline="", encoding="utf-8") as f:
+        return list(csv.DictReader(f))
 
-def walk_paths(value):
-    if isinstance(value, dict):
-        for key, item in value.items():
-            if key in ("src", "poster", "primaryImage") and isinstance(item, str) and item.startswith("/"):
-                yield item
-            elif isinstance(item, (dict, list)):
-                yield from walk_paths(item)
-    elif isinstance(value, list):
-        for item in value:
-            yield from walk_paths(item)
+def files_to_update():
+    for tree in ("src", "public"):
+        base = ROOT / tree
+        for p in base.rglob("*"):
+            if p.is_file() and p.suffix.lower() in TEXT_EXT and not any(
+                    seg in EXCLUDES for seg in p.relative_to(ROOT).parts):
+                yield p
+
+def replace_references(mapping):
+    for p in files_to_update():
+        original = p.read_text(encoding="utf-8")
+        updated = original
+        for old, new in mapping:
+            for source, target in ((old, new),
+                                   (quote(old, safe="/"), quote(new, safe="/"))):
+                updated = updated.replace(source, target)
+        if updated != original:
+            p.write_text(updated, encoding="utf-8")
+            print("REFERENCES", p.relative_to(ROOT))
+
+def apply_renames(mapping):
+    targets = [new for _, new in mapping]
+    if len(set(targets)) != len(targets):
+        raise RuntimeError("Destination collisions: refusing all moves")
+    moves = []
+    for old, new in mapping:
+        src = ROOT / "public" / old.lstrip("/")
+        dest = ROOT / "public" / new.lstrip("/")
+        if dest.exists() and src.exists():
+            if old.endswith("Achievers-ticket-back.jpg"):
+                print("PRESERVE original ticket JPEG:", old)
+                continue
+            raise RuntimeError(f"Refusing existing destination: {dest}")
+        if not src.exists() and dest.exists():
+            print("ALREADY MOVED", old, "=>", new)
+            continue
+        if not src.exists():
+            raise FileNotFoundError(src)
+        moves.append((src, dest, old.endswith("Achievers-ticket-back.jpg")))
+    if git("status", "--porcelain").stdout.strip():
+        raise RuntimeError("Working tree has uncommitted changes; refusing to migrate")
+    for src, dest, keep in moves:
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        if dest.exists():
+            raise FileExistsError(dest)
+        if keep:
+            import shutil
+            shutil.copy2(src, dest)
+            git("add", "--", str(dest.relative_to(ROOT)))
+            print("COPY", src.relative_to(ROOT), "=>", dest.relative_to(ROOT))
+        else:
+            # The temp hop is necessary for case-insensitive Windows/macOS filesystems.
+            if str(src).casefold() == str(dest).casefold():
+                temp = src.with_name(src.stem + "-temp-rename-" + src.suffix)
+                if temp.exists():
+                    raise FileExistsError(temp)
+                git("mv", "--", str(src.relative_to(ROOT)), str(temp.relative_to(ROOT)))
+                git("mv", "--", str(temp.relative_to(ROOT)), str(dest.relative_to(ROOT)))
+            else:
+                git("mv", "--", str(src.relative_to(ROOT)), str(dest.relative_to(ROOT)))
+            print("MOVED", src.relative_to(ROOT), "=>", dest.relative_to(ROOT))
+    replace_references(mapping)
+    print("Run npm run build and git add/commit after verifying results.")
+
+def convert_ticket():
+    try:
+        from PIL import Image
+    except ImportError as exc:
+        raise SystemExit("Install Pillow: python -m pip install Pillow") from exc
+    source = TICKET_JPG if TICKET_JPG.exists() else TICKET_OLD
+    if not source.exists():
+        raise FileNotFoundError(source)
+    if TICKET_WEBP.exists():
+        raise FileExistsError(f"Refusing to overwrite {TICKET_WEBP}")
+    with Image.open(source) as picture:
+        dimensions = picture.size
+        picture.save(TICKET_WEBP, format="WEBP", quality=85, method=6)
+    with Image.open(TICKET_WEBP) as picture:
+        if picture.size != dimensions:
+            raise RuntimeError("Conversion changed the ticket's dimensions")
+    old_url = "/" + str(source.relative_to(ROOT / "public")).replace("\\", "/")
+    new_url = "/" + str(TICKET_WEBP.relative_to(ROOT / "public")).replace("\\", "/")
+    replace_references([(old_url, new_url)])
+    print("Ticket dimensions:", dimensions, "before:", source.stat().st_size,
+          "bytes; after:", TICKET_WEBP.stat().st_size, "bytes")
+    print("Original JPEG preserved:", source)
+    print("Run git add and npm run build; inspect before approving JPEG removal.")
+
+def report_orphans():
+    references = "\n".join(p.read_text(encoding="utf-8") for p in files_to_update())
+    orphans = []
+    for folder in ROOTS:
+        base = ROOT / folder
+        if not base.exists():
+            continue
+        for path in base.rglob("*"):
+            if not path.is_file() or path.suffix.lower() not in {".jpg", ".jpeg", ".png", ".webp", ".gif", ".svg", ".mp4", ".webm"}:
+                continue
+            url = "/" + str(path.relative_to(ROOT / "public")).replace("\\", "/")
+            if url not in references and quote(url, safe="/") not in references:
+                orphans.append(path.relative_to(ROOT).as_posix())
+    print("Unreferenced asset candidates:", len(orphans))
+    for p in orphans:
+        print("ORPHAN:", p)
+    if orphans:
+        print("REVIEW BEFORE DELETING. Proposed command (do not run until approved):")
+        print("git rm -- " + " ".join('"' + p.replace('"', '\\"') + '"' for p in orphans))
+    else:
+        print("No orphan candidates in scanned folders. Check dynamically generated paths separately.")
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--apply", action="store_true", help="Move files and rewrite references (default dry run)")
-    args = ap.parse_args()
-    data = json.loads(DATA.read_text(encoding="utf8"))
-    mapping = {}
-    for project in data.get("featured", []):
-        if project.get("slug") not in SLUGS:
-            continue
-        for old in walk_paths(project):
-            new = destination(old, project["slug"])
-            if old != new:
-                mapping[old] = new
-    # Check paths before modifying anything.
-    if len(mapping.values()) != len(set(mapping.values())):
-        raise SystemExit("Destination collision detected: review mapping")
-    rows = []
-    for old, new in sorted(mapping.items()):
-        src, dst = ROOT / "public" / old.lstrip("/"), ROOT / "public" / new.lstrip("/")
-        size = src.stat().st_size if src.is_file() else None
-        rows.append({"old": old, "new": new, "bytes": size if size is not None else "",
-                     "source_exists": "yes" if size is not None else "NO",
-                     "action": "convert-webp" if src.suffix.lower() in (".jpg", ".jpeg") and dst.suffix == ".webp" else "move"})
-    CSV.parent.mkdir(exist_ok=True)
-    with CSV.open("w", newline="", encoding="utf8") as fp:
-        writer = csv.DictWriter(fp, fieldnames=["old", "new", "bytes", "source_exists", "action"])
-        writer.writeheader()
-        writer.writerows(rows)
-    print("Mapping:", CSV, "entries:", len(rows))
-    for row in rows:
-        print(row["action"], row["old"], "=>", row["new"], row["bytes"], "bytes")
-    missing = [r for r in rows if r["source_exists"] == "NO"]
-    if missing:
-        print("Missing originals:", len(missing))
-    videos = [r for r in rows if r["old"].lower().endswith(".mp4")]
-    print("Video size report:")
-    for r in videos:
-        mb = round(int(r["bytes"]) / 1048576, 2) if r["bytes"] != "" else "unavailable"
-        print(r["old"], mb, "MiB")
-    if not args.apply:
-        print("DRY RUN ONLY: no assets/references modified. For videos, consider H.264 CRF 23-28, -movflags +faststart and 720p/1080p where suitable.")
-        return
-    if missing:
-        raise SystemExit("Cannot apply: at least one referenced source file is missing.")
-    if any(r["action"] == "convert-webp" for r in rows):
-        try:
-            from PIL import Image
-        except ImportError:
-            raise SystemExit("Install Pillow before applying JPEG->WebP conversions: pip install Pillow")
-    for row in rows:
-        src = ROOT / "public" / row["old"].lstrip("/")
-        dst = ROOT / "public" / row["new"].lstrip("/")
-        if dst.exists():
-            raise SystemExit("Refusing to overwrite existing destination: " + str(dst))
-    for row in rows:
-        src = ROOT / "public" / row["old"].lstrip("/")
-        dst = ROOT / "public" / row["new"].lstrip("/")
-        dst.parent.mkdir(parents=True, exist_ok=True)
-        if row["action"] == "convert-webp":
-            from PIL import Image
-            with Image.open(src) as im:
-                im.save(dst, "WEBP", quality=85, method=6)
-            # Keep source as backup until review; report as orphan after migration.
-        else:
-            shutil.move(str(src), str(dst))
-    # Safely update every occurrence in text sources, not just work.json.
-    for path in ROOT.rglob("*"):
-        if not path.is_file() or path.suffix.lower() not in TEXT_EXT:
-            continue
-        if any(part in EXCLUDE for part in path.relative_to(ROOT).parts):
-            continue
-        source = path.read_text(encoding="utf8")
-        updated = source
-        for old, new in mapping.items():
-            updated = updated.replace(old, new)
-        if updated != source:
-            path.write_text(updated, encoding="utf8")
-            print("Updated references:", path.relative_to(ROOT))
-    # Generate missing video posters if ffmpeg is available; add their paths to work.json.
-    if shutil.which("ffmpeg"):
-        data = json.loads(DATA.read_text(encoding="utf8"))
-        for project in data.get("featured", []):
-            if project.get("slug") not in SLUGS:
-                continue
-            for item in project.get("media", []):
-                if item.get("type") != "video" or item.get("poster"):
-                    continue
-                poster = "/img/work/" + ("ldn-2025" if project["slug"] == "welcome-to-ldn-2025" else project["slug"]) + "/" + slugify(Path(item["src"]).stem) + "-poster.webp"
-                out = ROOT / "public" / poster.lstrip("/")
-                out.parent.mkdir(parents=True, exist_ok=True)
-                subprocess.run(["ffmpeg", "-y", "-ss", "00:00:01", "-i", str(ROOT / "public" / item["src"].lstrip("/")), "-frames:v", "1", str(out)], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-                item["poster"] = poster
-        DATA.write_text(json.dumps(data, indent=2) + "\n", encoding="utf8")
-    else:
-        print("ffmpeg not available: add missing video poster images before publishing.")
-    print("Applied. Verify build and visually check all files; original converted JPEGs remain as potential orphans.")
+    ap.add_argument("--apply", action="store_true", help="Apply moves using git mv")
+    ap.add_argument("--convert-ticket", action="store_true", help="Create ticket WebP, retain JPEG")
+    ap.add_argument("--orphans", action="store_true", help="List unreferenced assets, do not delete")
+    options = ap.parse_args()
+    mapping = [(row["old"], row["new"]) for row in rows()]
+    print("Mapped assets:", len(mapping))
+    for old, new in mapping:
+        print(old, "=>", new)
+    if options.apply:
+        apply_renames(mapping)
+    if options.convert_ticket:
+        convert_ticket()
+    if options.orphans:
+        report_orphans()
+    if not (options.apply or options.convert_ticket or options.orphans):
+        print("Dry run: no files changed. Already-moved assets require no further git mv.")
 if __name__ == "__main__":
     main()
