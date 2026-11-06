@@ -2,6 +2,7 @@
 import Base from "../../layouts/Base.astro";
 import SectionHeader from "../../components/SectionHeader.astro";
 import SectionFooter from "../../components/SectionFooter.astro";
+import ServiceOverlays from "../../components/ServiceOverlays.astro";
 import work from "../../content/work.json";
 
 export function getStaticPaths() {
@@ -295,6 +296,7 @@ const seoTitle = project.title;
 </dialog>
 
   </main>
+  <ServiceOverlays />
   <SectionFooter />
 
 <script
