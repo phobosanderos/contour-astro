@@ -325,6 +325,7 @@ const seoTitle = project.title;
     let activeItems = [];
     let activeItemIndex = 0;
     let touchStart = null;
+    let mediaLoadSequence = 0;
 
 
     /* ---------------------------------------------
@@ -444,6 +445,7 @@ const seoTitle = project.title;
        RENDER CURRENT ITEM
        --------------------------------------------- */
 function renderLightboxItem() {
+  const loadTicket = ++mediaLoadSequence;
 
   const item =
     activeItems[activeItemIndex];
@@ -509,6 +511,7 @@ function renderLightboxItem() {
 
 
   const swapAsset = () => {
+    if (loadTicket !== mediaLoadSequence || !lightbox.open) return;
 
     const naturalWidth =
       nextAsset.tagName === "VIDEO"
@@ -615,6 +618,7 @@ function renderLightboxItem() {
 
 
     window.setTimeout(() => {
+      if (loadTicket !== mediaLoadSequence || !lightbox.open) return;
 
       /*
         Resize while the old asset is faded.
@@ -669,6 +673,27 @@ function renderLightboxItem() {
   };
 
 
+  /* A stalled or broken image/video must never leave an empty lightbox.
+     Keep the current group navigation and Close button usable. */
+  function showLoadError() {
+    if (loadTicket !== mediaLoadSequence || !lightbox.open) return;
+    lightboxMedia.classList.remove("is-switching");
+    const message = document.createElement("div");
+    message.className = "project-lightbox__load-error note";
+    message.setAttribute("role", "status");
+    const label = document.createElement("span");
+    label.textContent = "This asset could not be loaded.";
+    const retry = document.createElement("button");
+    retry.type = "button";
+    retry.className = "archive-clear note";
+    retry.textContent = "Retry";
+    retry.addEventListener("click", () => renderLightboxItem());
+    message.append(label, retry);
+    lightboxMedia.replaceChildren(message);
+    if (lightboxWindow) lightboxWindow.style.width = Math.min(innerWidth - 24, 420) + "px";
+  }
+  nextAsset.addEventListener("error", showLoadError, {once:true});
+
   /* ---------------------------------------------
      WAIT UNTIL NEXT ASSET IS READY
      --------------------------------------------- */
@@ -691,9 +716,11 @@ function renderLightboxItem() {
 
   } else {
 
-    if (nextAsset.complete) {
+    if (nextAsset.complete && nextAsset.naturalWidth > 0) {
 
       swapAsset();
+    } else if (nextAsset.complete && !nextAsset.naturalWidth) {
+      showLoadError();
 
     } else {
 
@@ -1009,6 +1036,7 @@ function preloadNearbyItems() {
         if (lightboxTitle) lightboxTitle.textContent = "";
         if (lightboxCounter) lightboxCounter.textContent = "";
 
+        mediaLoadSequence++;
         activeItems = [];
         activeItemIndex = 0;
         touchStart = null;
