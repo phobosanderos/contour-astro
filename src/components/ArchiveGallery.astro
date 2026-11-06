@@ -289,7 +289,6 @@ requestAnimationFrame(() => {
   mediaEl.classList.remove('is-switching');
   const show = () => {
     asset.style.opacity = '1';
-    if (asset.tagName === 'VIDEO') asset.play().catch(() => {});
   };
   if (reducedMotion) show();
   else requestAnimationFrame(show);
