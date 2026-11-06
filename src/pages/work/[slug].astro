@@ -38,12 +38,7 @@ const hasShowcaseDivider =
   project.slug === "welcome-to-ldn-2025";
 const showcaseFilters = ["all", ...new Set(media.map(item => item.category).filter(Boolean))];
 
-const seoTitles = {
-  "achievers-2026": "Achievers 2026: event identity and editorial campaign | Vipul M.R",
-  "unity-cup-2026": "Unity Cup 2026: football campaign and motion design | Vipul M.R",
-  "welcome-to-ldn-2025": "Welcome to LDN 2025: event campaign for Indian students in London | Vipul M.R"
-};
-const seoTitle = seoTitles[project.slug] || `${project.title} | Vipul M.R`;
+const seoTitle = `${project.title} | Vipul M.R`;
 ---
 
 <Base
