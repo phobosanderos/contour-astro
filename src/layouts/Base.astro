@@ -110,21 +110,8 @@ const buildStamp = Date.now();
       initialTheme;
 
 
-    /* accent */
-    const savedAccent =
-      localStorage.getItem("ct-accent");
-
-    const allowedAccents = [
-      "blue",
-      "orange",
-      "lime"
-    ];
-
-    root.dataset.accent =
-      allowedAccents.includes(savedAccent)
-        ? savedAccent
-        : "blue";
-
+    /* Retire the former accent preference without modifying ct-theme. */
+    try { localStorage.removeItem("ct-accent"); } catch (e) {}
 
     root.classList.add("js");
 
