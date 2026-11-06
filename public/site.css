@@ -3175,3 +3175,14 @@ body:has(dialog[open]) { overflow: hidden; }
 .archive-filter-group { display: flex; align-items: center; flex-wrap: wrap; gap: .6rem 1.25rem; }
 .archive-gallery__title s { text-decoration-thickness: 1px; text-decoration-color: currentColor; }
 
+
+/* Match section-heading spacing to the Contact section's established rhythm. */
+:root { --section-heading-gap: clamp(1rem, 2vw, 1.75rem); }
+#work > .work__head,
+#work .work__archive-head,
+#services > .section-head,
+#contact > .section-head {
+  margin-bottom: var(--section-heading-gap);
+}
+/* Archive filters are content immediately following the archive heading. */
+#work .archive-filters { padding-top: 0; }
