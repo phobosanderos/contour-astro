@@ -1292,8 +1292,12 @@ html.has-cursor .project-lightbox a{
 
 .project-lightbox__nav-button{
   width:max-content;
+  min-height:44px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
 
-  padding:0;
+  padding:0 .35rem;
   border:0;
 
   background:none;
@@ -1367,8 +1371,16 @@ html.has-cursor .project-lightbox a{
 }
 @media (max-width:767px){
 
-  .project-lightbox__window{
-    inset:.75rem;
+  /* Featured-project lightboxes must stay centred, not inherit inset + translate. */
+  .project-lightbox:not(.archive-lightbox) .project-lightbox__window{
+    top:50%;
+    left:50%;
+    right:auto;
+    bottom:auto;
+    transform:translate(-50%,-50%);
+    width:auto;
+    max-width:calc(100vw - 1.5rem);
+    max-height:calc(100dvh - 1.5rem);
   }
 
   .project-lightbox__head{
@@ -3058,6 +3070,13 @@ body:has(dialog[open]) { overflow: hidden; }
   .archive-lightbox__description{transition:none}
 }
 @media(min-width:768px) and (max-width:1199px){.archive-gallery__grid{columns:4}}
+/* Two readable columns for phone-width Archive; desktop stays unchanged. */
+@media(max-width:767px){
+  .archive-gallery__grid{columns:2;column-gap:var(--col-gap)}
+  .archive-gallery__card{margin-bottom:var(--col-gap)}
+  .archive-gallery__meta{align-items:flex-start;gap:.35rem}
+  .archive-gallery__title{overflow-wrap:break-word;word-break:normal}
+}
 @media(prefers-reduced-motion:reduce){
   .archive-gallery__visual img,
   .archive-gallery__visual video,
@@ -3209,6 +3228,31 @@ body:has(.project-page) .site-footer {
   padding-top: clamp(1.5rem, 3vw, 3rem);
 }
 
+/* Correct the older general .info-dialog__shell rule overriding mobile dimensions.
+   Native inert background + an explicit touch-scroll surface inside each dialog. */
+@media(max-width:767px){
+  .info-dialog{max-height:calc(100dvh - 1rem)}
+  .info-dialog__shell{
+    height:min(92dvh,calc(100dvh - 1rem));
+    max-height:min(92dvh,calc(100dvh - 1rem));
+  }
+  .info-dialog__content{
+    flex:1 1 auto;
+    min-height:0;
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+    overscroll-behavior:contain;
+    touch-action:pan-y;
+  }
+  .info-dialog__foot .note{font-size:max(12px,.72rem)}
+  .archive-type{font-size:16px}
+}
+@media(hover:none) and (pointer:coarse){
+  .service__link:not([data-hot]):hover::before{transform:scaleY(0)}
+  .service__link:not([data-hot]):hover{color:var(--ink)}
+  .service__link:not([data-hot]):hover .note{color:var(--muted)}
+  .service__link:not([data-hot]):hover .service__arrow{color:var(--accent)}
+}
 /* Match section-heading spacing to the Contact section's established rhythm. */
 :root { --section-heading-gap: clamp(1rem, 2vw, 1.75rem); }
 #work > .work__head,
