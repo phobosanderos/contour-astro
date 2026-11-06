@@ -3122,3 +3122,12 @@ body:has(dialog[open]) { overflow: hidden; }
 .archive-filters { justify-content: space-between; gap: .85rem 2rem; }
 .archive-filter-group { display: flex; align-items: center; flex-wrap: wrap; gap: .6rem 1.25rem; }
 .archive-gallery__title s { text-decoration-thickness: 1px; text-decoration-color: currentColor; }
+
+/* Featured project facts and case-study narrative */
+.project-facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.5rem;border-top:1px solid currentColor;border-bottom:1px solid currentColor;padding:1.4rem 0;margin:2.5rem 0;}
+.project-facts__item{min-width:0;}
+.project-facts dt,.project-story h2{text-transform:uppercase;opacity:.65;margin:0 0 .65rem;}
+.project-facts dd{margin:0;line-height:1.5;overflow-wrap:anywhere;}
+.project-story{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2rem;margin:2rem 0 3rem;}
+.project-story__section p{margin:0;line-height:1.65;max-width:65ch;}
+@media(max-width:760px){.project-facts{grid-template-columns:repeat(2,minmax(0,1fr));}.project-story{grid-template-columns:1fr;gap:1.5rem;}}
