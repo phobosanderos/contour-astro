@@ -34,7 +34,7 @@
         {
           "type": "group",
           "category": "editorial",
-          "title": "Booklet Cover",
+          "title": "The Achievers Playbook cover",
           "items": [
             {
               "type": "image",
@@ -65,14 +65,14 @@
         {
           "type": "image",
           "category": "digital",
-          "title": "I'm Attending",
+          "title": "I’m attending Achievers",
           "src": "/img/work/achievers-2026/digital/im-attending-post.webp",
           "alt": "Achievers I'm attending digital campaign post"
         },
         {
           "type": "image",
           "category": "digital",
-          "title": "Meet Our Jury",
+          "title": "Meet our 2026 Jury",
           "src": "/img/work/achievers-2026/digital/meet-our-jury-grid-post.webp",
           "alt": "Achievers Meet Our Jury digital campaign post"
         },
@@ -114,14 +114,14 @@
         {
           "type": "image",
           "category": "digital",
-          "title": "Work With NISAU Email",
+          "title": "Work with NISAU email boilerplate",
           "src": "/img/work/achievers-2026/digital/work-with-nisau-email.webp",
           "alt": "Work with NISAU digital email design"
         },
         {
           "type": "image",
           "category": "print",
-          "title": "A4 Partners Leaflet",
+          "title": "Partners leaflet",
           "src": "/img/work/achievers-2026/print/a4-leaflet.webp",
           "alt": "Achievers A4 partners leaflet"
         },
@@ -166,7 +166,7 @@
         {
           "type": "group",
           "category": "merch",
-          "title": "Achievers Ticket",
+          "title": "Ticket",
           "coverIndex": 0,
           "items": [
             {
@@ -418,14 +418,14 @@
         {
           "type": "video",
           "category": "motion",
-          "title": "Unity Cup Motion 01",
+          "title": "Unity cup promo 01",
           "src": "/video/unity-cup-2026-promo-01.mp4",
           "alt": "Unity Cup promotional motion piece one"
         },
         {
           "type": "video",
           "category": "motion",
-          "title": "Unity Cup Motion 02",
+          "title": "Unity cup promo 02",
           "src": "/video/unity-cup-2026-promo-02.mp4",
           "alt": "Unity Cup promotional motion piece two"
         }
@@ -472,7 +472,7 @@
         {
           "type": "group",
           "category": "merch",
-          "title": "Event T-shirts",
+          "title": "T-shirt",
           "items": [
             {
               "type": "image",
