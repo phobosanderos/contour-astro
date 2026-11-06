@@ -2997,17 +2997,17 @@ body:has(dialog[open]) { overflow: hidden; }
   width:auto;
   display:flex;
   flex-direction:column;
-  height:calc(100dvh - 1rem);
-  max-height:calc(100dvh - 1rem);
+  height:auto;
+  max-height:calc(100dvh - 2rem);
   min-width:0;
 }
 .archive-lightbox__window .project-lightbox__head,
 .archive-lightbox__window .project-lightbox__nav{flex:0 0 auto}
 .archive-lightbox__tools{display:flex;align-items:center;gap:1rem}
 .archive-lightbox__media{
-  flex:1 1 auto;
+  flex:0 1 auto;
   min-width:0;
-  min-height:50dvh;
+  min-height:0;
   max-height:100%;
   overflow:hidden;
 }
@@ -3094,31 +3094,49 @@ body:has(.project-page) .site-footer {
   stroke-width: 1.15;
 }
 
-/* One Source segmented group and one Type select, above the unchanged masonry. */
-.archive-filters{justify-content:space-between;gap:.75rem;flex-wrap:wrap}
-.archive-source{display:flex;align-items:stretch;gap:0;max-width:220px}
+/* Match the flat, underlined filter tabs used on project pages. */
+.archive-filters{justify-content:space-between;gap:.75rem 1.5rem;flex-wrap:wrap}
+.archive-source{display:flex;align-items:center;gap:1.5rem;max-width:none}
 .archive-source__button{
   min-height:36px;
-  padding:.5rem .65rem;
-  border:1px solid var(--line-strong);
+  padding:0;
+  border:0;
+  background:none;
   color:var(--muted);
 }
-.archive-source__button + .archive-source__button{border-left:0}
-.archive-source__button.is-active{
-  color:var(--accent-text);
-  box-shadow:inset 0 -2px 0 var(--accent);
-}
-.archive-source__button::after{display:none}
+.archive-source__button + .archive-source__button{border:0}
+.archive-source__button.is-active{color:var(--accent-text);box-shadow:none}
+.archive-source__button::after{display:block}
 .archive-type-control{display:flex;align-items:center;gap:.5rem;min-width:0}
+.archive-type-wrap{position:relative;display:inline-flex;align-items:center;gap:.25em}
 .archive-type{
+  appearance:none;
+  -webkit-appearance:none;
+  width:auto;
   min-width:0;
-  border:1px solid var(--line-strong);
+  border:0;
   border-radius:0;
-  color:var(--ink);
-  background:var(--bg);
+  box-shadow:none;
+  background:transparent;
+  color:var(--accent-text);
   font-family:var(--font-mono);
-  font-size:1rem;
-  padding:.45rem .6rem;
+  font-size:max(16px,1em);
+  line-height:1.4;
+  text-transform:uppercase;
+  padding:0 1.35em 0 0;
+  cursor:pointer;
+}
+.archive-type option{background:var(--bg);color:var(--ink);font-family:var(--font-mono)}
+.archive-type-wrap > .ui-icon{
+  position:absolute;
+  right:0;
+  top:50%;
+  width:.8em;
+  height:.8em;
+  transform:translateY(-50%);
+  stroke-width:1.35;
+  pointer-events:none;
+  color:var(--accent-text);
 }
 .archive-type:focus-visible,
 .archive-clear:focus-visible,
@@ -3139,27 +3157,35 @@ body:has(.project-page) .site-footer {
   gap:1rem;
   color:var(--muted);
 }
-.archive-gallery__card{
+.archive-gallery__grid{
   transition:opacity var(--dur-1) var(--ease-out),transform var(--dur-1) var(--ease-out);
 }
-.archive-gallery__card.is-filter-revealing{opacity:0;transform:translateY(7px)}
+.archive-gallery__grid.is-filter-switching{
+  opacity:0;
+  transform:translateY(7px);
+}
 @media(max-width:767px){
   .archive-source__button,.archive-type{min-height:44px}
-  .archive-source{max-width:220px}
+  .archive-source{gap:1rem}
 }
 @media(min-width:376px) and (max-width:420px){
   .archive-filters{gap:.25rem;flex-wrap:nowrap}
-  .archive-source__button{padding:.5rem .48rem;font-size:.65rem}
+  .archive-source{gap:.65rem}
+  .archive-source__button{font-size:.65rem}
   .archive-type-control{gap:.3rem}
   .archive-type-control > label{font-size:.65rem}
-  .archive-type{max-width:86px;padding-inline:.2rem}
+  .archive-type{font-size:16px;max-width:95px}
   .archive-clear{font-size:.65rem}
 }
 @media(max-width:375px){
   .archive-filters{flex-direction:column;align-items:stretch}
   .archive-source,.archive-type-control{width:100%;max-width:none}
-  .archive-source__button{flex:1}
-  .archive-type{flex:1}
+  .archive-source{justify-content:space-between}
+  .archive-type-control{justify-content:flex-start}
+}
+@media(prefers-reduced-motion:reduce){
+  .archive-gallery__grid{transition:none}
+  .archive-gallery__grid.is-filter-switching{opacity:1;transform:none}
 }
 .archive-gallery__title s { text-decoration-thickness: 1px; text-decoration-color: currentColor; }
 
