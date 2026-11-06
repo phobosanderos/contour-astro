@@ -18,7 +18,7 @@
       }
     ],
     "alt": "Caleb Alvarez reel motion work",
-    "tag": "personal",
+    "tag": "client",
     "notes": "Motion reel associated with Caleb Alvarez.",
     "needsReview": true
   },
@@ -478,7 +478,7 @@
       }
     ],
     "alt": "Revelation: clarity visual",
-    "tag": "personal",
+    "tag": "client",
     "notes": "A series of self-help, hope-core style videos for social media, made to reach a younger audience looking for motivation and direction in an easy-to-digest format.",
     "needsReview": true
   },
@@ -1143,7 +1143,7 @@
   {
     "id": "video-46",
     "slug": "video-46",
-    "title": "Untitled motion",
+    "title": "video-46",
     "category": "motion",
     "type": "video",
     "cover": null,
