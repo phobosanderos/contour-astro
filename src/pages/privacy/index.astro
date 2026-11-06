@@ -71,9 +71,9 @@ body {
 <ul>
 <li><strong>Hosting:</strong> Vercel serves the site. Its infrastructure may process technical request data, including IP addresses and request logs, to deliver and secure it. I have not verified the account-specific logging or retention settings.</li>
 <li><strong>Analytics:</strong> I have not identified a dedicated analytics tracker in the inspected site code. This does not establish whether hosting-level analytics or account features are enabled.</li>
-<li><strong>Fonts:</strong> The site styles include local font resources; any third-party font requests require a live network check before I can rule them out.</li>
+<li><strong>Fonts:</strong> The site CSS references locally hosted Geist and Instrument Serif font files. I found no third-party font URL in the inspected stylesheet; live network requests have not been independently verified.</li>
 <li><strong>Browser storage:</strong> The site uses localStorage for theme and accent preferences and sessionStorage for page-transition and navigation state. Those are not the same as tracking cookies. I have not verified that infrastructure or linked services set no cookies.</li>
-<li><strong>External links:</strong> The site links to Cal.com for booking, INPRNT for prints, and social/portfolio profiles including LinkedIn, Instagram and Behance. Following a link takes you to that provider's own site and privacy practices.</li>
+<li><strong>External links:</strong> The inspected site links to INPRNT for prints and to LinkedIn, Instagram and Behance. Following those links takes you to the external providers. I have not confirmed a live Cal.com booking link in the inspected code; if one is added or located, this notice should name it.</li>
 <li><strong>Spam protection:</strong> The contact form includes a hidden honeypot field called <code>botcheck</code>. Web3Forms also describes server-side filtering; no CAPTCHA widget is present in the inspected form markup.</li>
 </ul>
 <h2>How long I keep it</h2>
