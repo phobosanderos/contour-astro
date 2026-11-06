@@ -3286,6 +3286,19 @@ body:has(.project-page) .site-footer {
   padding-top: clamp(1.5rem, 3vw, 3rem);
 }
 
+/* Simple recoverable media failure state, shared by both lightboxes. */
+.project-lightbox__load-error{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:1rem;
+  min-height:8rem;
+  padding:1rem;
+  color:var(--muted);
+  text-align:center;
+}
+.project-lightbox__load-error button{min-height:44px}
 /* Correct the older general .info-dialog__shell rule overriding mobile dimensions.
    Native inert background + an explicit touch-scroll surface inside each dialog. */
 @media(max-width:767px){
