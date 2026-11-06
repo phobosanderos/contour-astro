@@ -26,6 +26,8 @@ import SectionHeader from "../../components/SectionHeader.astro";
 
       root.dataset.theme =
         savedTheme || (systemDark ? "dark" : "light");
+      const accent = localStorage.getItem("ct-accent");
+      root.dataset.accent = ["blue", "orange", "lime"].includes(accent) ? accent : "blue";
     } catch (error) {
       root.dataset.theme = "light";
     }
@@ -52,6 +54,30 @@ body {
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <SectionHeader />
+<script is:inline>
+  (() => {
+    const root = document.documentElement;
+    const themeButton = document.querySelector('[data-action="theme"]');
+    const accentButton = document.querySelector('[data-action="accent"]');
+    const accents = ["blue", "orange", "lime"];
+    function sync() {
+      themeButton?.setAttribute("aria-label", root.dataset.theme === "dark" ? "Light mode" : "Dark mode");
+      themeButton?.setAttribute("aria-pressed", String(root.dataset.theme === "dark"));
+      accentButton?.setAttribute("aria-label", "Cycle accent color (current: " + (root.dataset.accent || "blue") + ")");
+    }
+    themeButton?.addEventListener("click", () => {
+      root.dataset.theme = root.dataset.theme === "dark" ? "light" : "dark";
+      try { localStorage.setItem("ct-theme", root.dataset.theme); } catch {}
+      sync();
+    });
+    accentButton?.addEventListener("click", () => {
+      root.dataset.accent = accents[(accents.indexOf(root.dataset.accent || "blue") + 1) % accents.length];
+      try { localStorage.setItem("ct-accent", root.dataset.accent); } catch {}
+      sync();
+    });
+    sync();
+  })();
+</script>
 <main class="fg-legal" id="main" tabindex="-1">
 <p class="fg-legal__back">
   <a href="/" id="privacy-back"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#arrow-left"></use></svg> Back to the home page</a>
