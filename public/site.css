@@ -955,7 +955,7 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
   row-gap:1.5rem;
   margin:0;
   padding-block:1.25rem;
-  border-bottom:1px solid var(--line);
+  border-bottom:0;
 }
 .project-story__section{min-width:0;}
 .project-story__brief{grid-column:1/span 6;}
@@ -1891,7 +1891,17 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
 
 .legal-links {
   display: flex;
-  gap: 1.25rem;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: .5rem 0;
+}
+.legal-links a + a::before {
+  content: "|";
+  display: inline-block;
+  margin-inline: .7rem;
+  color: var(--muted);
+  opacity: .7;
+  pointer-events: none;
 }
 
 /* Booking link used in the contact section */
