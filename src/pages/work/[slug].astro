@@ -70,7 +70,7 @@ const seoTitle = `${project.title} | Vipul M.R`;
       </div>
 
       <dl class="project-facts" aria-label="Project facts" data-reveal="up">
-        {(["client", "role", "year", "deliverables"] as const).filter(key => project[key]).map(key => (
+        {(["client", "role", "deliverables"] as const).filter(key => project[key]).map(key => (
           <div class="project-facts__item">
             <dt class="note">{key}</dt>
             <dd>{project[key]}</dd>
