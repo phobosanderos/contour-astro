@@ -11,7 +11,10 @@ const { home = false, currentSection = "" } = Astro.props;
         <span class="brand__role note">| Visual design and motion.</span>
       </>
     ) : (
-      <span class="brand__name note note--int" set:html={c.header.span_5_html}></span>
+      <>
+        <span class="brand__name note note--int" set:html={c.header.span_5_html}></span>
+        <span class="brand__role note">| Visual design and motion.</span>
+      </>
     )}
   </a>
 
