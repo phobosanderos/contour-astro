@@ -2541,6 +2541,7 @@ html.has-cursor dialog.info-dialog a {
 .info-dialog__close {
   position: relative;
   pointer-events: auto;
+  margin-left: auto;
 }
 
 /* Keep the dialog content scrollable */
