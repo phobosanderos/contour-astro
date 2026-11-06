@@ -59,12 +59,7 @@
 /* Contour — Formgong template. Tokens live in :root; every size comes from the fluid type scale. */
 
 :root{color-scheme:light}
-:root[data-theme=dark]{--bg:#0b0b0c;--bg-raised:#151517;--ink:#edede7;--muted:#8b8b85;--line:#edede71f;--line-strong:#edede74d;--control-line:#edede773;--danger:#ff6b5e;color-scheme:dark}
-:root[data-accent=blue]{--accent:#2f5bff;--accent-ink:#fff;--accent-text:#2a52f0}
-:root[data-theme=dark][data-accent=blue]{--accent:#5b7cff;--accent-ink:#0e0e0d}
-:root[data-accent=orange]{--accent:#ff5a1f;--accent-ink:#0e0e0d;--accent-text:#bb3505}
-:root[data-accent=lime]{--accent:#c6f432;--accent-ink:#0e0e0d;--accent-text:#4f6b00}
-:root[data-theme=dark]{--accent-text:var(--accent)}
+:root[data-theme=dark]{--bg:#0b0b0c;--bg-raised:#151517;--ink:#edede7;--muted:#8b8b85;--line:#edede71f;--line-strong:#edede74d;--control-line:#edede773;--danger:#ff6b5e;--accent:#5b7cff;--accent-ink:#0e0e0d;--accent-text:#5b7cff;color-scheme:dark}
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;border:0 solid}
 html {
@@ -341,15 +336,21 @@ html:not(.js) .preloader{
 .nav__label{position:relative;display:inline-block;overflow:hidden;vertical-align:bottom;line-height:1.2}
 .nav__label::after{content:attr(data-label);position:absolute;top:100%;left:0;color:var(--accent-text)}
 .nav__label,.nav__label::after{transition:transform var(--dur-1) var(--ease-in-out)}
-.nav__link:hover .nav__label{transform:translateY(-100%)}
-.nav__link:hover .nav__label::after{transform:translateY(0)}
+.nav__link:hover .nav__label,.nav__link:focus-visible .nav__label{transform:translateY(-100%)}
+.nav__link:hover .nav__label::after,.nav__link:focus-visible .nav__label::after{transform:translateY(0)}
 .tools{justify-self:end;display:flex;align-items:center;gap:0.75rem;padding-right:.75rem}
 .tool{width:2.25rem;height:2.25rem;display:grid;place-items:center;border-radius:999px;box-shadow:inset 0 0 0 1px var(--line-strong);transition:box-shadow var(--dur-1) var(--ease-out),transform var(--dur-1) var(--ease-out)}
 .tool:hover{box-shadow:inset 0 0 0 1px var(--ink)}
 .tool:active{transform:scale(.92)}
-.tool svg{width:1.05rem;height:1.05rem;fill:none;stroke:currentColor;stroke-width:1.5px}
-.tool svg path{fill:currentColor;stroke:none}
-.swatch{width:.9rem;height:.9rem;border-radius:999px;background:var(--accent);transition:background var(--dur-1) var(--ease-out)}
+.tool svg{width:1.05rem;height:1.05rem;fill:none;stroke:currentColor;stroke-width:1.8}
+.tool--theme{position:relative}
+.tool--theme::before{content:"";position:absolute;inset:-4px}
+.tool--theme .theme-icon{position:absolute;width:1.125rem;height:1.125rem;fill:none;stroke:currentColor;stroke-width:1.8;pointer-events:none;transition:opacity var(--dur-1) var(--ease-in-out),transform var(--dur-1) var(--ease-in-out)}
+:root:not([data-theme=dark]) .theme-icon--sun{opacity:1;transform:rotate(0)}
+:root:not([data-theme=dark]) .theme-icon--moon{opacity:0;transform:rotate(-90deg)}
+:root[data-theme=dark] .theme-icon--sun{opacity:0;transform:rotate(90deg)}
+:root[data-theme=dark] .theme-icon--moon{opacity:1;transform:rotate(0)}
+@media (prefers-reduced-motion:reduce){.tool--theme .theme-icon{transition:none}}
 .header-cta{height:2.25rem;margin-left:.25rem;padding-inline:1rem;font-size:.85rem}
 @media (max-width:960px){.site-header{grid-template-columns:1fr auto}.nav,.tool--kbd{display:none}}
 @media (max-width:480px){.header-cta{display:none}}
@@ -3198,39 +3199,11 @@ body:has(dialog[open]) { overflow: hidden; }
   height: auto;
   background: var(--bg-raised);
 }
-/* Prints uses the same sliding .nav__label as Work and Services.
-   Text and arrow move together inside the single label. */
-.nav__print-clip {
-  display: inline-block;
-  height: 1.2em;
-  overflow: hidden;
-  vertical-align: bottom;
-}
-.nav__label--prints {
-  display: block;
-  position: relative;
-  height: 1.2em;
-  line-height: 1.2;
-  overflow: visible;
-}
-.nav__label--prints::after { content: none; }
-.nav__print-row {
-  display: flex;
-  align-items: center;
-  gap: .4rem;
-  height: 1.2em;
-  white-space: nowrap;
-}
-.nav__print-row--hover {
-  position: absolute;
-  top: 100%;
-  left: 0;
-  color: var(--accent-text);
-}
-.nav__external-icon {
-  width: .78em;
-  height: .78em;
-  flex: 0 0 auto;
-  stroke-width: 1.15;
-  color: inherit;
-}
+/* The two Prints frames are children of the same .nav__label translated
+   by the exact shared Work/Services hover/focus rule above. */
+.nav__print-clip{display:inline-block;height:1.2em;overflow:hidden;vertical-align:bottom}
+.nav__label--prints{display:block;position:relative;height:1.2em;line-height:1.2;overflow:visible}
+.nav__label--prints::after{content:none}
+.nav__print-row{display:flex;align-items:center;gap:.25em;height:1.2em;white-space:nowrap}
+.nav__print-row--hover{position:absolute;top:100%;left:0;color:var(--accent-text)}
+.nav__external-icon{width:.78em;height:.78em;flex:0 0 auto;stroke-width:1.8;color:inherit}
