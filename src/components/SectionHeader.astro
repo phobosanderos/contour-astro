@@ -41,14 +41,8 @@ const { home = false, currentSection = "" } = Astro.props;
       >
         <span class="nav__print-clip">
           <span class="nav__label nav__label--prints">
-            <span class="nav__print-row">
-              <span>{c.header.span_12}</span>
-              <svg class="ui-icon nav__external-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#arrow-up-right"></use></svg>
-            </span>
-            <span class="nav__print-row nav__print-row--hover" aria-hidden="true">
-              <span>{c.header.span_12}</span>
-              <svg class="ui-icon nav__external-icon" focusable="false"><use href="/img/ui-icons.svg#arrow-up-right"></use></svg>
-            </span>
+            <span>{c.header.span_12}</span>
+            <svg class="ui-icon nav__external-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#arrow-up-right"></use></svg>
           </span>
         </span>
         <span class="sr-only"> (opens in a new tab)</span>
