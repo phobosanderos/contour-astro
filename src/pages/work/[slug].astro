@@ -785,20 +785,10 @@ function preloadNearbyItems() {
       }
 
 
-      renderLightboxItem();
-
-
-      /*
-        Stop smooth page scrolling before
-        opening the top-layer dialog.
-      */
-
-      if (window.__lenis) {
-        window.__lenis.stop();
-      }
-
-
+      /* Measure the opened frame, not a display:none dialog. */
+      if (window.__lenis) window.__lenis.stop();
       lightbox.showModal();
+      renderLightboxItem();
 
       requestAnimationFrame(() => {
 
@@ -910,6 +900,39 @@ function preloadNearbyItems() {
       nextItem
     );
 
+
+    /* Rotate or resize the visible media in place. Do not recreate a video:
+       its play state and playback position must survive orientation changes. */
+    function refitOpenLightbox() {
+      if (!lightbox.open) return;
+      const asset = lightboxMedia.querySelector("img, video");
+      const win = lightbox.querySelector(".project-lightbox__window");
+      if (!asset || !win) return;
+      const w = asset.tagName === "VIDEO" ? asset.videoWidth : asset.naturalWidth;
+      const h = asset.tagName === "VIDEO" ? asset.videoHeight : asset.naturalHeight;
+      if (!(w > 0 && h > 0)) return;
+      const headH = lightbox.querySelector(".project-lightbox__head")?.offsetHeight || 0;
+      const nav = lightbox.querySelector(".project-lightbox__nav");
+      const navH = nav && !nav.hidden ? nav.offsetHeight : 0;
+      const vw = window.visualViewport?.width || innerWidth;
+      const vh = window.visualViewport?.height || innerHeight;
+      const maxW = Math.max(80, vw - 64);
+      const maxH = Math.max(80, vh - headH - navH - 64);
+      const factor = Math.min(1, maxW / w, maxH / h);
+      const rw = Math.max(1, Math.floor(w * factor));
+      const rh = Math.max(1, Math.floor(h * factor));
+      asset.style.width = rw + "px";
+      asset.style.height = rh + "px";
+      win.style.width = Math.max(1, Math.min(vw - 24, rw + 32)) + "px";
+    }
+    let refitFrame = 0;
+    function scheduleLightboxRefit() {
+      if (!lightbox.open) return;
+      cancelAnimationFrame(refitFrame);
+      refitFrame = requestAnimationFrame(refitOpenLightbox);
+    }
+    window.addEventListener("resize", scheduleLightboxRefit, { passive:true });
+    window.visualViewport?.addEventListener("resize", scheduleLightboxRefit, { passive:true });
 
     /* ---------------------------------------------
        TOUCH NAVIGATION
