@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - "scripts/generate-archive-posters.mjs"
+      - "package.json"
       - ".github/workflows/generate-archive-posters.yml"
 permissions:
   contents: write
