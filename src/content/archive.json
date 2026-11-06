@@ -263,12 +263,12 @@
       {
         "type": "video",
         "src": "/img/work/archive/be-different/be-different.webm",
-        "alt": "Don't be different: be different animation"
+        "alt": "Don’t be different: be different animation"
       },
       {
         "type": "image",
         "src": "/img/work/archive/be-different/be-different-poster.webp",
-        "alt": "Don't be different poster design, be different poster"
+        "alt": "Don’t be different poster design, be different poster"
       }
     ],
     "alt": "Don’t be different",
@@ -737,7 +737,7 @@
   {
     "id": "don-t-cry-j-dilla",
     "slug": "don-t-cry-j-dilla",
-    "title": "Don't cry — J Dilla",
+    "title": "Don’t cry — J Dilla",
     "category": "motion",
     "type": "video",
     "cover": null,
@@ -1123,7 +1123,7 @@
   {
     "id": "you-re-the-flesh-maggots-adore",
     "slug": "you-re-the-flesh-maggots-adore",
-    "title": "You're the flesh maggots adore",
+    "title": "You’re the flesh maggots adore",
     "category": "illustration",
     "type": "image",
     "cover": "/img/work/archive/singles/you-re-the-flesh-maggots-adore.webp",
