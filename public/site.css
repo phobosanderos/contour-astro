@@ -1008,11 +1008,6 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
 }
 
 /* showcase filters */
-.project-showcase__divider{
-  height:1px;
-  margin-bottom:1.25rem;
-  background:var(--line);
-}
 .project-filters{
   display:flex;
   flex-wrap:wrap;
