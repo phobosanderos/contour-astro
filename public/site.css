@@ -354,6 +354,64 @@ html:not(.js) .preloader{
 .header-cta{height:2.25rem;margin-left:.25rem;padding-inline:1rem;font-size:.85rem}
 @media (max-width:960px){.site-header{grid-template-columns:1fr auto}.nav,.tool--kbd{display:none}}
 @media (max-width:480px){.header-cta{display:none}}
+/* Compact native disclosure with the existing section destinations and icon set.
+   Desktop header remains untouched. */
+.mobile-nav{display:none;position:relative}
+@media(max-width:960px){
+  .mobile-nav{display:block}
+  .mobile-nav > summary{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:.45rem;
+    min-height:44px;
+    padding:0 .3rem;
+    list-style:none;
+    color:var(--ink);
+    cursor:pointer;
+  }
+  .mobile-nav > summary::-webkit-details-marker{display:none}
+  .mobile-nav > summary .ui-icon{
+    width:.85em;
+    height:.85em;
+    color:var(--accent-text);
+    transition:transform var(--dur-1) var(--ease-out);
+  }
+  .mobile-nav[open] > summary .ui-icon{transform:rotate(180deg)}
+  .mobile-nav__panel{
+    position:absolute;
+    z-index:60;
+    top:calc(100% + .5rem);
+    right:0;
+    width:min(260px,calc(100vw - 2*var(--gutter)));
+    background:var(--bg);
+    border:1px solid var(--line-strong);
+    display:flex;
+    flex-direction:column;
+  }
+  .mobile-nav__panel a{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    min-height:44px;
+    padding:.65rem 1rem;
+    font-family:var(--font-mono);
+    font-size:.72rem;
+    letter-spacing:.02em;
+    text-transform:uppercase;
+    border-bottom:1px solid var(--line);
+  }
+  .mobile-nav__panel a:last-child{border-bottom:0}
+  .mobile-nav__panel a:hover,.mobile-nav__panel a:focus-visible,.mobile-nav__panel a[aria-current]{color:var(--accent-text)}
+  .mobile-nav__panel .ui-icon{width:1em;height:1em;color:var(--accent-text)}
+}
+@media(max-width:600px){
+  .site-header .brand__role{display:none}
+}
+@media(prefers-reduced-motion:reduce){
+  .mobile-nav > summary .ui-icon{transition:none}
+}
+
 
 /* keyboard command palette */
 .palette{width:min(640px,calc(100vw - 2*var(--gutter)));max-height:70vh;margin:12vh auto auto;padding:0;border:0;background:none;color:var(--ink);overflow:visible}
