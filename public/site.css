@@ -3206,39 +3206,37 @@ body:has(dialog[open]) { overflow: hidden; }
   color: var(--ink);
 }
 .project-media__play .ui-icon { width: 1rem; height: 1rem; fill: currentColor; stroke: none; }
-/* Match the external-link affordance already used by Prints in the footer. */
-/* Prints and arrow share the same vertical slide as the other nav labels. */
+/* Same .nav__label sliding transition as Work and Services,
+   with Prints and the arrow inside both full-width label frames. */
 .nav__print-clip {
   display: inline-block;
   height: 1.2em;
   overflow: hidden;
   vertical-align: bottom;
 }
-.nav__print-track {
+.nav__label--prints {
   display: block;
-  transition: transform var(--dur-1) var(--ease-in-out);
+  overflow: visible;
+  height: 1.2em;
 }
+.nav__label--prints::after { content: none; }
 .nav__print-row {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: .4rem;
   height: 1.2em;
   white-space: nowrap;
 }
-.nav__print-row--hover > span {
+.nav__print-row--hover {
+  position: absolute;
+  top: 100%;
+  left: 0;
   color: var(--accent-text);
 }
 .nav__external-icon {
   width: .78em;
   height: .78em;
-  stroke-width: 1.15;
   flex: 0 0 auto;
-  color: var(--ink);
-}
-.nav__link:hover .nav__print-track,
-.nav__link:focus-visible .nav__print-track {
-  transform: translateY(-50%);
-}
-@media (prefers-reduced-motion: reduce) {
-  .nav__print-track { transition: none; }
+  stroke-width: 1.15;
+  color: inherit;
 }
