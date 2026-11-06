@@ -3174,6 +3174,12 @@ body:has(dialog[open]) { overflow: hidden; }
 .archive-gallery__title s { text-decoration-thickness: 1px; text-decoration-color: currentColor; }
 
 
+/* Bring Services closer to the end of the Archive masonry without changing
+   spacing inside either section. */
+#services.section {
+  padding-top: clamp(1.5rem, 3vw, 3rem);
+}
+
 /* Match section-heading spacing to the Contact section's established rhythm. */
 :root { --section-heading-gap: clamp(1rem, 2vw, 1.75rem); }
 #work > .work__head,
