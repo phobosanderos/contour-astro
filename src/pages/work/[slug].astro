@@ -30,10 +30,6 @@ export function getStaticPaths() {
   });
 }
 const { project, nextProject } = Astro.props;
-const featuredCount = work.featured.length;
-const featuredIndex = work.featured.findIndex(item => item.slug === project.slug) + 1;
-const indexLabel = `${String(featuredIndex).padStart(2, "0")} / ${String(featuredCount).padStart(2, "0")}`;
-
 const media = project.media || [];
 const showcaseFilters = ["all", ...new Set(media.map(item => item.category).filter(Boolean))];
 const hasShowcaseFilters = media.length > 0 && showcaseFilters.length > 1;
@@ -60,9 +56,14 @@ const seoTitle = project.title;
         <a href="/#work" class="note project-back" data-cursor="back">
           <svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#arrow-left"></use></svg> Back to Work
         </a>
-        <span class="note project-intro__index" aria-label={`Project ${featuredIndex} of ${featuredCount}`}>
-          {indexLabel}
-        </span>
+        <a
+          href={`/work/${nextProject.slug}/`}
+          class="note project-back project-intro__next"
+          data-cursor="next"
+          aria-label={`Next project: ${nextProject.title}`}
+        >
+          Next project <svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#arrow-right"></use></svg>
+        </a>
       </div>
 
       <div class="project-intro__title-band">
@@ -205,36 +206,6 @@ const seoTitle = project.title;
   }
 
 </section>
-
-
-    <section class="project-next wrap">
-
-      <header class="section-head project-next__head">
-        <span class="note note--ink">
-          Next project
-        </span>
-
-        <span class="note">
-          {nextProject.year}
-        </span>
-      </header>
-
-      <a
-        href={`/work/${nextProject.slug}/`}
-        class="project-next__link"
-        data-cursor="open"
-      >
-        <span class="project-next__title">
-          {nextProject.title}
-        </span>
-
-        <span
-          class="project-next__arrow"
-          aria-hidden="true"
-        ><svg class="ui-icon" focusable="false"><use href="/img/ui-icons.svg#arrow-right"></use></svg></span>
-      </a>
-
-    </section>
 
 
 <dialog
