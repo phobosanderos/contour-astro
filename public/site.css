@@ -151,7 +151,7 @@ body::after{right:calc(var(--gutter)/2)}
 .info-dialog__close .ui-icon { width: 1.1rem; height: 1.1rem; }
 .featured-card__arrow .ui-icon,
 .service__arrow .ui-icon,
-.project-next__arrow .ui-icon { width: 1em; height: 1em; }
+
 .archive-gallery__play .ui-icon { width: 1em; height: 1em; fill: currentColor; stroke: none; }
 .project-back,
 .project-lightbox__nav-button { display: inline-flex; align-items: center; gap: .35rem; }
@@ -905,7 +905,7 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
   padding-block:1.25rem;
   border-bottom:0;
 }
-.project-intro__index{margin-left:auto;color:var(--muted);white-space:nowrap;}
+.project-intro__next{margin-left:auto;white-space:nowrap;}
 .project-intro__title-band{
   display:grid;
   grid-template-columns:repeat(var(--columns),minmax(0,1fr));
@@ -1315,89 +1315,6 @@ html.has-cursor .project-lightbox a{
 
 
 /* ---------------------------------------------------------
-   NEXT PROJECT
-   --------------------------------------------------------- */
-
-.project-next{
-  padding-top:3.5rem;
-  padding-bottom:0;
-}
-
-.project-next__head{
-  margin-bottom:0;
-}
-
-.project-next__link{
-  position:relative;
-  isolation:isolate;
-
-  display:grid;
-  grid-template-columns:1fr auto;
-  align-items:center;
-  gap:2rem;
-
-  padding-block:clamp(2rem,4vw,3.5rem);
-
-  color:var(--ink);
-  text-decoration:none;
-
-  border-bottom:1px solid var(--line);
-
-  transition:
-    color var(--dur-1) var(--ease-out);
-}
-
-.project-next__link::before{
-  content:"";
-
-  position:absolute;
-  inset:0 calc(-1 * var(--gutter));
-
-  z-index:-1;
-
-  background:var(--ink);
-
-  transform:scaleY(0);
-  transform-origin:bottom;
-
-  transition:
-    transform var(--dur-2) var(--ease-in-out);
-}
-
-.project-next__link:hover{
-  color:var(--bg);
-}
-
-.project-next__link:hover::before{
-  transform:scaleY(1);
-  transform-origin:top;
-}
-
-.project-next__title{
-  font-size:clamp(2rem,5vw,5rem);
-  letter-spacing:-.04em;
-  line-height:.95;
-}
-
-
-/* exact Services arrow logic */
-
-.project-next__arrow{
-  justify-self:end;
-
-  font-size:var(--step-2);
-
-  transition:
-    transform var(--dur-2) var(--ease-in-out),
-    color var(--dur-1);
-}
-
-.project-next__link:hover .project-next__arrow{
-  color:var(--accent-text);
-  transform:translateX(3px);
-}
-
-/* ---------------------------------------------------------
    MASONRY RESPONSIVE
    --------------------------------------------------------- */
 
@@ -1466,10 +1383,6 @@ html.has-cursor .project-lightbox a{
     padding:.8rem 1rem;
   }
 
-  .project-next__link{
-    gap:1rem;
-  }
-
 }
 
 /* ---------------------------------------------------------
@@ -1480,9 +1393,6 @@ html.has-cursor .project-lightbox a{
 
   .project-back,
   .project-media__asset,
-  .project-next__link,
-  .project-next__link::before,
-  .project-next__arrow,
   .project-lightbox__window,
   .project-lightbox__media img,
   .project-lightbox__media video{
@@ -3136,11 +3046,10 @@ body:has(dialog[open]) { overflow: hidden; }
 }
 
 
-/* Project-page footer: reduce only the gap below the next-project link. */
-.project-page + .site-footer {
-  padding-top: clamp(.35rem, 1vw, .9rem);
-}
-.project-page + .site-footer .footer-top {
+/* Project pages now finish at the gallery: keep the shared footer close
+   without touching homepage or privacy spacing. Service overlays sit between
+   the main element and footer, so the former adjacent selector was ineffective. */
+body:has(.project-page) .site-footer {
   padding-top: clamp(.75rem, 1.5vw, 1.4rem);
 }
 
@@ -3161,9 +3070,6 @@ body:has(dialog[open]) { overflow: hidden; }
 /* A more understated arrowhead across shared UI controls. */
 .ui-icon:has(use[href*="#arrow-"]) {
   stroke-width: 1.35;
-}
-.project-next__arrow {
-  font-size: clamp(1.2rem, 1.8vw, 1.65rem);
 }
 .site-footer .footer-top a[target="_blank"] .ui-icon {
   stroke-width: 1.15;
