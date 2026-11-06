@@ -5,17 +5,17 @@
 <dialog class="info-dialog" id="service-dialog" role="dialog" aria-modal="true" aria-labelledby="service-dialog-title">
   <div class="info-dialog__shell">
     <header class="info-dialog__head">
-      <p class="note note--accent" id="service-dialog-kicker">SERVICE DETAILS</p>
+      <p class="note note--accent" id="service-dialog-kicker" hidden></p>
       <button class="info-dialog__close" type="button" data-dialog-close aria-label="Close"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#close"></use></svg></button>
     </header>
 
     <div class="info-dialog__content" tabindex="0">
-      <h2 class="h1 info-dialog__title" id="service-dialog-title">Service details</h2>
+      <h2 class="h1 info-dialog__title" id="service-dialog-title">Services</h2>
       <div id="service-dialog-body"></div>
     </div>
 
     <footer class="info-dialog__foot">
-      <span class="note">PHOBOS AND EROS · SERVICES</span>
+      <span class="note">Phobos &amp; Eros</span>
 
     </footer>
   </div>
@@ -98,80 +98,88 @@
   const dialogOpeners = new WeakMap();
 
   const services = {
+    campaign: {
+      title: "Campaign systems",
+      content: `
+        <section class="rate-item">
+          <p class="note note--accent">CAMPAIGNS & EVENT SYSTEMS</p>
+          <h3 class="h3">Multi-channel campaign systems</h3>
+          <p class="rate-price">Quoted per brief</p>
+          <p>Key art and a consistent visual system for events and organisations, adapted across social, print, digital and merchandise. Scope, deliverables and timeline are agreed for each campaign.</p>
+        </section>`
+    },
     identity: {
-      number: "01 / IDENTITY & BRANDING SYSTEMS",
-      title: "Build a recognisable identity.",
+      title: "Identity & Branding Systems",
       content: `
         <section class="rate-item">
           <p class="note note--accent">CORPORATE & BUSINESS</p>
           <h3 class="h3">Brand identity package</h3>
-          <p class="rate-price">$500–$850+ <span>|</span> €450–€800+ <span>|</span> £400–£700+</p>
+          <p class="rate-price">£400–£700</p>
           <p>Primary logo, responsive secondary layouts, brand iconography, typography hierarchy, HEX/RGB/CMYK colour specifications, a multi-page brand style guide and print-ready business cards, letterheads and email signatures.</p>
-          <p class="note">14–21 BUSINESS DAYS · 3 INITIAL DIRECTIONS · UP TO 4 REVISION LOOPS</p>
+          <p class="note">14–21 BUSINESS DAYS · 3 INITIAL DIRECTIONS · UP TO 4 REVISION ROUNDS</p>
         </section>
         <section class="rate-item">
           <p class="note note--accent">WEDDINGS & PERSONAL IDENTITY</p>
           <h3 class="h3">Wedding logo & monogram suite</h3>
-          <p class="rate-price">$75–$150 <span>|</span> €70–€140 <span>|</span> £60–£120</p>
+          <p class="rate-price">£60–£120</p>
           <p>Custom initials or vector illustrations, master vector layouts (.AI, .EPS) and press-ready PDFs for printing, stamping or embroidery.</p>
-          <p class="note">5–7 BUSINESS DAYS · 3 CONCEPT PATHS · UP TO 2 REVISION ROUNDS</p>
-        </section>`
+          <p class="note">5–7 BUSINESS DAYS · 3 INITIAL CONCEPTS · UP TO 2 REVISION ROUNDS</p>
+        </section>
+        <p class="policy-note">Fees are in GBP. If you need the invoice in another currency, I will confirm that amount before work starts.</p>`
     },
     media: {
-      number: "02 / MEDIA, PUBLISHING & SPATIAL GRAPHICS",
-      title: "Design for screens, pages and spaces.",
+      title: "Media, Publishing & Spatial Graphics",
       content: `
         <section class="rate-item">
-          <h3 class="h3">Album cover design</h3>
-          <p class="rate-price">$65–$135 <span>|</span> €60–€125 <span>|</span> £50–£110</p>
-          <p>3000 × 3000 px digital artwork for music platforms, plus one matching social announcement template or static Canvas backdrop.</p>
-          <p class="note">5–7 BUSINESS DAYS · 2 CONCEPT THEMES · UP TO 2 REVISION CYCLES</p>
+          <h3 class="h3">Large-scale print & signage</h3>
+          <p class="rate-price">£200–£480 <span>per structural asset</span></p>
+          <p>Environmental graphics for arches, event backdrops, architectural signage and wraps; 1:1 high-resolution production files, bleed and crop alignment, and material recommendations for vinyl, ACP, acrylic or canvas.</p>
+          <p class="note">7–12 BUSINESS DAYS · 2 VARIATIONS · UP TO 3 REVISION ROUNDS</p>
         </section>
         <section class="rate-item">
           <h3 class="h3">Book cover design</h3>
-          <p class="rate-price">$85–$200 <span>|</span> €80–€185 <span>|</span> £70–£160</p>
-          <p>Full print jacket including front, spine, back and flap copy, plus screen-ready JPG/PNG e-book cover exports.</p>
-          <p class="note">7–10 BUSINESS DAYS · 2 TYPOGRAPHIC LAYOUTS · UP TO 3 REVISION CYCLES</p>
+          <p class="rate-price">£70–£160</p>
+          <p>Full print jacket including front, spine, back and space for flap copy, plus screen-ready JPG/PNG e-book cover exports.</p>
+          <p class="note">7–10 BUSINESS DAYS · 2 TYPOGRAPHIC LAYOUTS · UP TO 3 REVISION ROUNDS</p>
         </section>
         <section class="rate-item">
-          <h3 class="h3">Large-scale print & signage</h3>
-          <p class="rate-price">$250–$600+ <span>|</span> €230–€550+ <span>|</span> £200–£480+ <span>per structural asset</span></p>
-          <p>Environmental graphics for arches, event backdrops, architectural signage and wraps; 1:1 high-resolution production files, bleed and crop alignment, and material recommendations for vinyl, ACP, acrylic or canvas.</p>
-          <p class="note">7–12 BUSINESS DAYS · 2 VARIATIONS · UP TO 3 REVISION CYCLES</p>
-        </section>`
+          <h3 class="h3">Album cover design</h3>
+          <p class="rate-price">£50–£110</p>
+          <p>3000 × 3000 px digital artwork for music platforms, plus one matching social announcement template or static canvas backdrop.</p>
+          <p class="note">5–7 BUSINESS DAYS · 2 INITIAL CONCEPTS · UP TO 2 REVISION ROUNDS</p>
+        </section>
+        <p class="policy-note">Fees are in GBP. If you need the invoice in another currency, I will confirm that amount before work starts.</p>`
     },
     artwork: {
-      number: "03 / STANDALONE ARTWORK & MARKETING",
-      title: "Make the message visible.",
+      title: "Artwork & Marketing",
       content: `
         <section class="rate-item">
-          <h3 class="h3">Posters & collateral</h3>
-          <p class="rate-price">$35–$85 <span>|</span> €30–€80 <span>|</span> £25–£70 <span>per asset</span></p>
-          <p>Single visual assets in a tailored aesthetic direction, with high-fidelity print PDF and digital PNG exports.</p>
-          <p class="note">3–5 BUSINESS DAYS · 1 FOCAL LAYOUT · UP TO 2 QUICK REVISIONS</p>
-        </section>
-        <section class="rate-item">
           <h3 class="h3">Monthly social media retainer</h3>
-          <p class="rate-price">$275–$600 <span>|</span> €250–€550 <span>|</span> £220–£480 <span>per month</span></p>
-          <p>A monthly batch of 12–15 custom static layouts or multi-frame carousel narratives, matching covers and promotional frames, plus organised Canva setups or Photoshop master assets.</p>
-          <p class="note">MINIMUM 3-MONTH COMMITMENT · 50% RETAINER BEFORE EACH MONTH'S CYCLE</p>
+          <p class="rate-price">Quoted per brief</p>
+          <p>A monthly batch of 12–15 custom static layouts or multi-frame carousel posts, matching covers and promotional frames, plus organised Canva setups or Photoshop master assets.</p>
+          <p class="note">MINIMUM 3-MONTH COMMITMENT · 50% RETAINER BEFORE EACH MONTH'S WORK BEGINS</p>
         </section>
         <section class="rate-item">
           <h3 class="h3">Personalised digital illustrations</h3>
-          <p class="rate-price">$50–$110 <span>|</span> €45–€100 <span>|</span> £40–£90 <span>per layout</span></p>
+          <p class="rate-price">£40–£90 <span>per layout</span></p>
           <p>Custom vector or digital-painting artwork and portraits for digital gifting or merchandise. Commercial retail usage requires a separate rights add-on.</p>
-          <p class="note">5–8 BUSINESS DAYS · 1 ROUGH DRAFT · UP TO 2 REVISIONS</p>
-        </section>`
+          <p class="note">5–8 BUSINESS DAYS · 1 ROUGH DRAFT · UP TO 2 REVISION ROUNDS</p>
+        </section>
+        <section class="rate-item">
+          <h3 class="h3">Posters & collateral</h3>
+          <p class="rate-price">£25–£70 <span>per asset</span></p>
+          <p>Single visual assets in a tailored visual style, with print-ready PDF and digital PNG exports.</p>
+          <p class="note">3–5 BUSINESS DAYS · 1 MAIN LAYOUT · UP TO 2 REVISION ROUNDS</p>
+        </section>
+        <p class="policy-note">Fees are in GBP. If you need the invoice in another currency, I will confirm that amount before work starts.</p>`
     },
     custom: {
-      number: "04 / CUSTOM REQUESTS",
-      title: "Let's scope your project.",
+      title: "Custom Requests",
       content: `
         <p class="info-dialog__intro">If your brief combines multiple services or needs something not listed in the rate card, send the intended outcome, deliverables, timeline and any production requirements. I'll review the scope and confirm a quote before work begins.</p>
         <p class="note">CUSTOM PROJECTS ARE QUOTED ACCORDING TO SCOPE.</p>`
     }
   };
-
 
 function resetDialogScroll(dialog) {
   const content = dialog.querySelector(".info-dialog__content");
@@ -208,8 +216,9 @@ function closeDialog(dialog) {
       const item = services[key];
       if (!item || !(serviceDialog instanceof HTMLDialogElement)) return;
 
-      serviceKicker.textContent = item.number;
-      serviceTitle.textContent = item.title;
+      serviceKicker.textContent = "";
+      serviceKicker.hidden = true;
+      serviceTitle.textContent = item.title || "Services";
       serviceBody.innerHTML = item.content;
       openInfoDialog(serviceDialog, button);
     });
