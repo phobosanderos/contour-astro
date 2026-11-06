@@ -159,7 +159,7 @@ const seoTitle = `${project.title} | Vipul M.R`;
                       <video
                       class="project-media__asset"
                       src={preview.src}
-                      poster={preview.poster}
+                      poster={preview.poster || project.primaryImage}
                       muted
                       playsinline
                       preload="metadata"
@@ -309,7 +309,7 @@ const seoTitle = `${project.title} | Vipul M.R`;
 
 <script
   is:inline
-  define:vars={{ media }}
+  define:vars={{ media, defaultPoster: project.primaryImage }}
 >
   (() => {
 
@@ -426,7 +426,7 @@ const seoTitle = `${project.title} | Vipul M.R`;
         asset.playsInline = true;
         asset.preload = "metadata";
         asset.setAttribute("aria-label", item.alt || item.title || "Project video");
-        if (item.poster) asset.poster = item.poster;
+        asset.poster = item.poster || defaultPoster;
         asset.textContent = "Your browser does not support HTML video.";
 
       } else {
