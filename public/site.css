@@ -2459,8 +2459,10 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   }
 
   .info-dialog__foot .note {
-    max-width: 8rem;
+    max-width: 100%;
     font-size: .6rem;
+    white-space: normal;
+    overflow-wrap: anywhere;
   }
 
 
