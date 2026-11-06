@@ -3192,22 +3192,8 @@ body:has(dialog[open]) { overflow: hidden; }
   height: auto;
   background: var(--bg-raised);
 }
-.project-media__play {
-  position: absolute;
-  right: .85rem;
-  bottom: .85rem;
-  pointer-events: none;
-  display: grid;
-  place-items: center;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 50%;
-  background: var(--bg);
-  color: var(--ink);
-}
-.project-media__play .ui-icon { width: 1rem; height: 1rem; fill: currentColor; stroke: none; }
-/* Same .nav__label sliding transition as Work and Services,
-   with Prints and the arrow inside both full-width label frames. */
+/* Prints uses the same sliding .nav__label as Work and Services.
+   Text and arrow move together inside the single label. */
 .nav__print-clip {
   display: inline-block;
   height: 1.2em;
@@ -3216,12 +3202,14 @@ body:has(dialog[open]) { overflow: hidden; }
 }
 .nav__label--prints {
   display: block;
-  overflow: visible;
+  position: relative;
   height: 1.2em;
+  line-height: 1.2;
+  overflow: visible;
 }
 .nav__label--prints::after { content: none; }
 .nav__print-row {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: .4rem;
   height: 1.2em;
