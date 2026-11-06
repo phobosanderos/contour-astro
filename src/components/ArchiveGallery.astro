@@ -340,10 +340,30 @@ requestAnimationFrame(() => {
 });
       }, matchMedia("(prefers-reduced-motion: reduce)").matches ? 0 : 150);
     };
+    const loadError = () => {
+      if (ticket !== sequence || !dialog.open) return;
+      mediaEl.classList.remove('is-switching');
+      mediaEl.style.height = '';
+      windowEl.style.width = Math.min(innerWidth - 24, 420) + 'px';
+      const message = document.createElement('div');
+      message.className = 'project-lightbox__load-error note';
+      message.setAttribute('role', 'status');
+      const label = document.createElement('span');
+      label.textContent = 'This asset could not be loaded.';
+      const retry = document.createElement('button');
+      retry.type = 'button';
+      retry.className = 'archive-clear note';
+      retry.textContent = 'Retry';
+      retry.addEventListener('click', () => render());
+      message.append(label, retry);
+      mediaEl.replaceChildren(message);
+    };
+    asset.addEventListener('error', loadError, {once:true});
     if (asset.tagName === 'VIDEO') {
       if (asset.readyState >= 1) apply();
       else asset.addEventListener('loadedmetadata', apply, { once: true });
     } else if (asset.complete && asset.naturalWidth) apply();
+    else if (asset.complete && !asset.naturalWidth) loadError();
     else asset.addEventListener('load', apply, { once: true });
   }
 
