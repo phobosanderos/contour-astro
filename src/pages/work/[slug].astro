@@ -30,38 +30,13 @@ export function getStaticPaths() {
 }
 const { project, nextProject } = Astro.props;
 
-const stripYear = (title = "") => {
-  const parts = title.trim().split(" ");
-  const lastPart = parts[parts.length - 1];
-
-  const isYear =
-    lastPart?.length === 4 &&
-    !Number.isNaN(Number(lastPart));
-
-  return isYear
-    ? parts.slice(0, -1).join(" ")
-    : title;
-};
-
-const displayTitle =
-  stripYear(project.title);
-
-const nextDisplayTitle =
-  stripYear(nextProject.title);
-
 const media = project.media || [];
 const hasShowcaseFilters =
   project.slug === "achievers-2026";
 const hasShowcaseDivider =
   project.slug === "unity-cup-2026" ||
   project.slug === "welcome-to-ldn-2025";
-const showcaseFilters = [
-  "all",
-  "editorial",
-  "print",
-  "digital",
-  "merch"
-];
+const showcaseFilters = ["all", ...new Set(media.map(item => item.category).filter(Boolean))];
 
 const seoTitles = {
   "achievers-2026": "Achievers 2026: event identity and editorial campaign | Vipul M.R",
@@ -78,7 +53,7 @@ const seoTitle = seoTitles[project.slug] || `${project.title} | Vipul M.R`;
   image={project.primaryImage}
   imageAlt={project.alt || `${project.title} project cover`}
 >
-  <SectionHeader />
+  <SectionHeader currentSection="work" />
 
   <main
     id="main"
@@ -102,12 +77,26 @@ const seoTitle = seoTitles[project.slug] || `${project.title} | Vipul M.R`;
 </div>
 
       <h1 class="project-intro__title">
-        {displayTitle}
+        {project.title}
       </h1>
 
-      <p class="project-intro__description">
-        {project.description}
-      </p>
+      {project.description && <p class="project-intro__description">{project.description}</p>}
+      <dl class="project-facts" aria-label="Project facts">
+        {(["client", "role", "year", "deliverables"] as const).filter(key => project[key]).map(key => (
+          <div class="project-facts__item">
+            <dt class="note">{key}</dt>
+            <dd>{project[key]}</dd>
+          </div>
+        ))}
+      </dl>
+      <div class="project-story">
+        {(["brief", "approach", "outcome"] as const).filter(key => project[key]).map(key => (
+          <section class="project-story__section">
+            <h2 class="note">{key}</h2>
+            <p>{project[key]}</p>
+          </section>
+        ))}
+      </div>
 
     </section>
 
@@ -179,7 +168,8 @@ const seoTitle = seoTitles[project.slug] || `${project.title} | Vipul M.R`;
                       muted
                       playsinline
                       preload="metadata"
-                      />
+                      aria-label={preview.alt || item.title || "Project video"}
+                      >Your browser does not support HTML video.</video>
                     ) : (
                       <img
                         class="project-media__asset"
@@ -241,7 +231,7 @@ const seoTitle = seoTitles[project.slug] || `${project.title} | Vipul M.R`;
         data-cursor="open"
       >
         <span class="project-next__title">
-          {nextDisplayTitle}
+          {nextProject.title}
         </span>
 
         <span
@@ -437,7 +427,12 @@ const seoTitle = seoTitles[project.slug] || `${project.title} | Vipul M.R`;
         asset.controls = true;
         asset.controlsList = "nodownload";
         asset.autoplay = true;
+        asset.muted = true;
         asset.playsInline = true;
+        asset.preload = "metadata";
+        asset.setAttribute("aria-label", item.alt || item.title || "Project video");
+        if (item.poster) asset.poster = item.poster;
+        asset.textContent = "Your browser does not support HTML video.";
 
       } else {
 
