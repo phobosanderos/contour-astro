@@ -149,12 +149,11 @@ const seoTitle = project.title;
                     preview?.type === "video" ? (
                       <video
                       class="project-media__asset project-media__video"
-                      src={preview.src}
-                      poster={preview.poster || project.primaryImage}
+                      data-src={preview.src}
+                      poster={preview.poster}
                       muted
-                      loop
                       playsinline
-                      preload="metadata"
+                      preload="none"
                       aria-label={preview.alt || item.title || "Project video"}
                       >Your browser does not support HTML video.</video>
                     ) : (
@@ -402,25 +401,31 @@ const seoTitle = project.title;
     });
 
 
-    /* Play muted previews only while visible; the lightbox remains the
-       full video player with its own controls. */
-    const previewVideos = [...document.querySelectorAll(".project-media__video")];
+    /* Same still-frame approach as Archive: never autoplay thumbnails. */
+    const thumbnailVideos = [...document.querySelectorAll(".project-media__video")];
+    const loadThumbnail = (video) => {
+      const src = video.dataset.src;
+      if (!src) return;
+      video.addEventListener("loadedmetadata", () => {
+        if (Number.isFinite(video.duration) && video.duration > 0.1) {
+          try { video.currentTime = Math.min(0.15, video.duration / 2); } catch (_) {}
+        }
+      }, { once: true });
+      video.src = src;
+      video.preload = "metadata";
+      delete video.dataset.src;
+    };
     if ("IntersectionObserver" in window) {
-      const previewObserver = new IntersectionObserver((entries) => {
+      const thumbnailObserver = new IntersectionObserver((entries, observer) => {
         entries.forEach(({ target, isIntersecting }) => {
-          if (!(target instanceof HTMLVideoElement)) return;
-          if (isIntersecting && !target.closest(".project-media")?.hidden) {
-            target.play().catch(() => {});
-          } else {
-            target.pause();
-          }
+          if (!isIntersecting || !(target instanceof HTMLVideoElement)) return;
+          loadThumbnail(target);
+          observer.unobserve(target);
         });
-      }, { threshold: 0.15, rootMargin: "120px 0px" });
-      previewVideos.forEach(video => previewObserver.observe(video));
+      }, { rootMargin: "300px 0px", threshold: 0 });
+      thumbnailVideos.forEach(video => thumbnailObserver.observe(video));
     } else {
-      previewVideos.forEach(video => {
-        video.play().catch(() => {});
-      });
+      thumbnailVideos.forEach(loadThumbnail);
     }
 
     /* ---------------------------------------------
