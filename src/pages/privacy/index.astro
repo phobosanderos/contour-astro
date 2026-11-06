@@ -1,5 +1,6 @@
 ---
 import SectionFooter from "../../components/SectionFooter.astro";
+import SectionHeader from "../../components/SectionHeader.astro";
 ---
 <!doctype html>
 <html lang="en">
@@ -49,27 +50,41 @@ body {
 .fg-legal .fg-legal__back{font-size:.875rem;opacity:.75}</style>
 </head>
 <body>
-<main class="fg-legal" id="top">
+<a class="skip" href="#main">Skip to content</a>
+<SectionHeader />
+<main class="fg-legal" id="main" tabindex="-1">
 <p class="fg-legal__back">
   <a href="/" id="privacy-back"><svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#arrow-left"></use></svg> Back to the home page</a>
 </p>
-<!-- Sample privacy notice for the contact form. Replace every [bracketed] part and check it against the law that applies to you before launch. -->
+<!-- Privacy wording requires legal review before publication as a final legal notice. -->
 <h1>Privacy</h1>
-<p>This page explains what happens to the details you send through the contact form on this site. The site is run by Vipul M.R, who decides how those details are used.</p>
-
-<h2>What the form collects</h2>
-<p>The details you type in: usually your name, your email address and your message, plus any other fields the form shows. Nothing else is collected through the form.</p>
-
-<h2>Why</h2>
-<p>Only to answer your message and, if you ask for it, to work with you. Your details are not used for newsletters or advertising and are not sold.</p>
-
+<p>Last updated: 6 November 2026</p>
+<p>I run this site under the name <strong>Phobos &amp; Eros</strong>. I am Vipul M.R, and I handle enquiries sent to me through its contact form. If you have any questions about your personal data, email <a href="mailto:phobosanderos@gmail.com">phobosanderos@gmail.com</a>.</p>
+<h2>What I collect</h2>
+<p>When you send a project brief, the form asks for your name, email address, budget range and brief, plus your studio or company (optional). You may also include personal information in the brief that I did not ask for.</p>
+<p>Web3Forms and its sub-processors also process technical information, which may include your IP address, submission time and referrer, to deliver submissions, secure the service and filter spam. This is not limited to what you type in.</p>
+<h2>Why I use it</h2>
+<p>I use your enquiry to reply, discuss potential work and, where appropriate, communicate about a project. My proposed legal basis, where the GDPR or UK GDPR applies, is taking steps at your request before a contract and, where applicable, my legitimate interests in managing correspondence and protecting the form against spam. The appropriate basis needs legal review.</p>
 <h2>Who processes it</h2>
-<p>The contact form is delivered by <a href="https://web3forms.com/" target="_blank" rel="noopener noreferrer">Web3Forms<span class="sr-only"> (opens in a new tab)</span></a>, operated by Web3Creative. It processes the information you submit to deliver your enquiry to Vipul's email inbox. Web3Forms acts as a data processor on Vipul's behalf. For more information, see the <a href="https://web3forms.com/privacy" target="_blank" rel="noopener noreferrer">Web3Forms Privacy Policy<span class="sr-only"> (opens in a new tab)</span></a>.</p>
-
-<h2>How long it is kept</h2>
-<p>Web3Forms retains form submission data for up to three years by default, subject to its applicable retention settings and any earlier deletion. Vipul keeps his own copy of correspondence only for as long as needed to respond to your enquiry and manage any work that follows.</p>
-<h2>Your rights</h2>
-<p>You can ask to see, correct or delete the details you sent, or object to how they are used. Write to phobosanderos@gmail.com. You can also complain to your data protection authority.</p>
+<p>I use <a href="https://web3forms.com/" target="_blank" rel="noopener noreferrer">Web3Forms</a>, operated by Web3Creative, to deliver contact-form submissions to my email inbox. Web3Forms processes submission information on my behalf, including through its service providers. See its <a href="https://web3forms.com/privacy" target="_blank" rel="noopener noreferrer">privacy policy</a>, <a href="https://web3forms.com/dpa#annex-3--authorised-sub-processors" target="_blank" rel="noopener noreferrer">sub-processor list in Annex 3</a> and <a href="https://web3forms.com/dpa" target="_blank" rel="noopener noreferrer">data processing agreement</a>.</p>
+<h2>Other things on this site</h2>
+<ul>
+<li><strong>Hosting:</strong> Vercel serves the site. Its infrastructure may process technical request data, including IP addresses and request logs, to deliver and secure it. I have not verified the account-specific logging or retention settings.</li>
+<li><strong>Analytics:</strong> I have not identified a dedicated analytics tracker in the inspected site code. This does not establish whether hosting-level analytics or account features are enabled.</li>
+<li><strong>Fonts:</strong> The site styles include local font resources; any third-party font requests require a live network check before I can rule them out.</li>
+<li><strong>Browser storage:</strong> The site uses localStorage for theme and accent preferences and sessionStorage for page-transition and navigation state. Those are not the same as tracking cookies. I have not verified that infrastructure or linked services set no cookies.</li>
+<li><strong>External links:</strong> The site links to Cal.com for booking, INPRNT for prints, and social/portfolio profiles including LinkedIn, Instagram and Behance. Following a link takes you to that provider's own site and privacy practices.</li>
+<li><strong>Spam protection:</strong> The contact form includes a hidden honeypot field called <code>botcheck</code>. Web3Forms also describes server-side filtering; no CAPTCHA widget is present in the inspected form markup.</li>
+</ul>
+<h2>How long I keep it</h2>
+<p>I keep my own copy of correspondence for <strong>30 days</strong>. Web3Forms has a separate retention policy: it currently describes form submissions as retained for up to three years by default, subject to any shorter configured period or deletion. My 30-day period does not, by itself, change Web3Forms' retention settings.</p>
+<h2>International transfers</h2>
+<p>My providers may process personal data in countries outside your own. Web3Forms describes international transfers and safeguards, including standard contractual clauses for relevant UK and European transfers, in its <a href="https://web3forms.com/dpa">data processing agreement</a>. The legal adequacy of these arrangements for this site requires review.</p>
+<h2>Your rights and requests</h2>
+<p>Depending on the law that applies to you, you may request access, correction, deletion, restriction or objection regarding your personal data. Please contact <a href="mailto:phobosanderos@gmail.com">phobosanderos@gmail.com</a>. I aim to respond to rights requests within <strong>30 days</strong>, subject to any different mandatory legal deadline.</p>
+<p>If you ask me to delete a submission, I will also request deletion of the copy processed by Web3Forms, subject to applicable legal requirements and Web3Forms' documented deletion process. I cannot guarantee that every provider backup disappears immediately.</p>
+<h2>Complaints</h2>
+<p>Depending on which law applies, you may be able to contact the <a href="https://ico.org.uk/make-a-complaint/">UK Information Commissioner's Office (ICO)</a>, the <a href="https://www.edpb.europa.eu/about-edpb/about-edpb/members_en">relevant EEA data protection authority</a>, or <a href="https://www.meity.gov.in/">India's Data Protection Board / MeitY</a>. The correct regulator and any complaint process depend on your circumstances.</p>
     <script is:inline>
   const backLink = document.querySelector("#privacy-back");
 
