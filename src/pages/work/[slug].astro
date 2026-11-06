@@ -148,10 +148,11 @@ const seoTitle = project.title;
                   {
                     preview?.type === "video" ? (
                       <video
-                      class="project-media__asset"
+                      class="project-media__asset project-media__video"
                       src={preview.src}
                       poster={preview.poster || project.primaryImage}
                       muted
+                      loop
                       playsinline
                       preload="metadata"
                       aria-label={preview.alt || item.title || "Project video"}
@@ -166,6 +167,11 @@ const seoTitle = project.title;
                       />
                     )
                   }
+                  {preview?.type === "video" && (
+                    <span class="project-media__play" aria-hidden="true">
+                      <svg class="ui-icon" focusable="false"><use href="/img/ui-icons.svg#play"></use></svg>
+                    </span>
+                  )}
                 </div>
 
                 <div class="project-media__meta">
@@ -395,6 +401,27 @@ const seoTitle = project.title;
 
     });
 
+
+    /* Play muted previews only while visible; the lightbox remains the
+       full video player with its own controls. */
+    const previewVideos = [...document.querySelectorAll(".project-media__video")];
+    if ("IntersectionObserver" in window) {
+      const previewObserver = new IntersectionObserver((entries) => {
+        entries.forEach(({ target, isIntersecting }) => {
+          if (!(target instanceof HTMLVideoElement)) return;
+          if (isIntersecting && !target.closest(".project-media")?.hidden) {
+            target.play().catch(() => {});
+          } else {
+            target.pause();
+          }
+        });
+      }, { threshold: 0.15, rootMargin: "120px 0px" });
+      previewVideos.forEach(video => previewObserver.observe(video));
+    } else {
+      previewVideos.forEach(video => {
+        video.play().catch(() => {});
+      });
+    }
 
     /* ---------------------------------------------
        BUILD MEDIA
