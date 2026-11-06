@@ -3213,4 +3213,13 @@ body:has(dialog[open]) { overflow: hidden; }
   stroke-width: 1.15;
   flex: 0 0 auto;
   vertical-align: baseline;
+  transition: transform var(--dur-1) var(--ease-in-out), color var(--dur-1) var(--ease-in-out);
+}
+.nav__link:hover .nav__external-icon,
+.nav__link:focus-visible .nav__external-icon {
+  transform: translateY(-.35em);
+  color: var(--accent-text);
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav__external-icon { transition: none; }
 }
