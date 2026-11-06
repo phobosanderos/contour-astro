@@ -10,7 +10,11 @@
       {
         "type": "video",
         "src": "/img/work/archive/singles/caleb-alvarez-reel.webm",
-        "alt": "Caleb Alvarez reel motion work"
+        "alt": "Caleb Alvarez reel motion work",
+        "poster": "/img/work/archive/posters/caleb-alvarez-reel-caleb-alvarez-reel.webp",
+        "posterTime": 0.001,
+        "posterWidth": 1080,
+        "posterHeight": 1920
       }
     ],
     "alt": "Caleb Alvarez reel motion work",
@@ -29,7 +33,11 @@
       {
         "type": "video",
         "src": "/img/work/archive/singles/in-another-life.webm",
-        "alt": "In another life motion work — Short audio/lyric visualiser for \"Swim Good\" by Frank Ocean."
+        "alt": "In another life motion work — Short audio/lyric visualiser for \"Swim Good\" by Frank Ocean.",
+        "poster": "/img/work/archive/posters/in-another-life-in-another-life.webp",
+        "posterTime": 4.806,
+        "posterWidth": 1920,
+        "posterHeight": 960
       }
     ],
     "alt": "In another life motion work — Short audio/lyric visualiser for \"Swim Good\" by Frank Ocean.",
@@ -48,7 +56,11 @@
       {
         "type": "video",
         "src": "/img/work/archive/bite-me-savor-me/bite-me-savor-me.webm",
-        "alt": "Bite me / Savor me: bite me savor me animation"
+        "alt": "Bite me / Savor me: bite me savor me animation",
+        "poster": "/img/work/archive/posters/bite-me-savor-me-bite-me-savor-me.webp",
+        "posterTime": 0.001,
+        "posterWidth": 1080,
+        "posterHeight": 1920
       },
       {
         "type": "image",
@@ -263,7 +275,11 @@
       {
         "type": "video",
         "src": "/img/work/archive/be-different/be-different.webm",
-        "alt": "Don’t be different: be different animation"
+        "alt": "Don’t be different: be different animation",
+        "poster": "/img/work/archive/posters/don-t-be-different-be-different.webp",
+        "posterTime": 0.001,
+        "posterWidth": 1080,
+        "posterHeight": 1350
       },
       {
         "type": "image",
@@ -372,7 +388,11 @@
       {
         "type": "video",
         "src": "/img/work/archive/singles/im-watching-you-watching-me.webm",
-        "alt": "Tutorial video motion work — How to draw realistic eyes in just 5 simple steps."
+        "alt": "Tutorial video motion work — How to draw realistic eyes in just 5 simple steps.",
+        "poster": "/img/work/archive/posters/tutorial-video-im-watching-you-watching-me.webp",
+        "posterTime": 0.001,
+        "posterWidth": 1080,
+        "posterHeight": 1920
       }
     ],
     "alt": "Tutorial video motion work — How to draw realistic eyes in just 5 simple steps.",
@@ -396,37 +416,65 @@
       {
         "type": "video",
         "src": "/img/work/archive/revelation/anger.webm",
-        "alt": "Revelation: anger animation"
+        "alt": "Revelation: anger animation",
+        "poster": "/img/work/archive/posters/revelation-anger.webp",
+        "posterTime": 0.001,
+        "posterWidth": 1080,
+        "posterHeight": 1920
       },
       {
         "type": "video",
         "src": "/img/work/archive/revelation/laziness.webm",
-        "alt": "Revelation: laziness animation"
+        "alt": "Revelation: laziness animation",
+        "poster": "/img/work/archive/posters/revelation-laziness.webp",
+        "posterTime": 0.001,
+        "posterWidth": 1080,
+        "posterHeight": 1920
       },
       {
         "type": "video",
         "src": "/img/work/archive/revelation/rejection.webm",
-        "alt": "Revelation: rejection animation"
+        "alt": "Revelation: rejection animation",
+        "poster": "/img/work/archive/posters/revelation-rejection.webp",
+        "posterTime": 0.001,
+        "posterWidth": 1080,
+        "posterHeight": 1920
       },
       {
         "type": "video",
         "src": "/img/work/archive/revelation/thoughts.webm",
-        "alt": "Revelation: thoughts animation"
+        "alt": "Revelation: thoughts animation",
+        "poster": "/img/work/archive/posters/revelation-thoughts.webp",
+        "posterTime": 0.587,
+        "posterWidth": 1080,
+        "posterHeight": 1920
       },
       {
         "type": "video",
         "src": "/img/work/archive/revelation/what-are-you-grateful-for.webm",
-        "alt": "Revelation: what are you grateful for animation"
+        "alt": "Revelation: what are you grateful for animation",
+        "poster": "/img/work/archive/posters/revelation-what-are-you-grateful-for.webp",
+        "posterTime": 0.001,
+        "posterWidth": 1080,
+        "posterHeight": 1920
       },
       {
         "type": "video",
         "src": "/img/work/archive/revelation/you-stopped-settling.webm",
-        "alt": "Revelation: you stopped settling animation"
+        "alt": "Revelation: you stopped settling animation",
+        "poster": "/img/work/archive/posters/revelation-you-stopped-settling.webp",
+        "posterTime": 2.343,
+        "posterWidth": 1080,
+        "posterHeight": 1920
       },
       {
         "type": "video",
         "src": "/img/work/archive/revelation/you-re-not-behind.webm",
-        "alt": "Revelation: you're not behind animation"
+        "alt": "Revelation: you're not behind animation",
+        "poster": "/img/work/archive/posters/revelation-you-re-not-behind.webp",
+        "posterTime": 0.001,
+        "posterWidth": 1080,
+        "posterHeight": 1920
       }
     ],
     "alt": "Revelation: clarity visual",
@@ -497,7 +545,11 @@
       {
         "type": "video",
         "src": "/img/work/archive/singles/ddtti.webm",
-        "alt": "DDTTI motion work — Bob vylan is not the problem, he is simply a carrier of the truth that is constantly being sile"
+        "alt": "DDTTI motion work — Bob vylan is not the problem, he is simply a carrier of the truth that is constantly being sile",
+        "poster": "/img/work/archive/posters/ddtt-ddtti.webp",
+        "posterTime": 1.673,
+        "posterWidth": 1536,
+        "posterHeight": 1536
       }
     ],
     "alt": "DDTTI motion work — Bob vylan is not the problem, he is simply a carrier of the truth that is constantly being sile",
@@ -516,7 +568,11 @@
       {
         "type": "video",
         "src": "/img/work/archive/intruder/intruder.webm",
-        "alt": "Intruder: intruder animation"
+        "alt": "Intruder: intruder animation",
+        "poster": "/img/work/archive/posters/intruder-intruder.webp",
+        "posterTime": 3.453,
+        "posterWidth": 1080,
+        "posterHeight": 1920
       },
       {
         "type": "image",
@@ -626,7 +682,11 @@
       {
         "type": "video",
         "src": "/img/work/archive/nisau-anniversary/logo-reveal.webm",
-        "alt": "NISAU anniversary logo logo design, logo reveal variant"
+        "alt": "NISAU anniversary logo logo design, logo reveal variant",
+        "poster": "/img/work/archive/posters/nisau-anniversary-logo-logo-reveal.webp",
+        "posterTime": 0.402,
+        "posterWidth": 3840,
+        "posterHeight": 2160
       }
     ],
     "alt": "NISAU anniversary logo logo design, nisau logo variant",
@@ -745,7 +805,11 @@
       {
         "type": "video",
         "src": "/img/work/archive/singles/don-t-cry.webm",
-        "alt": "Don't Cry — J Dilla motion work — Audio/lyric visualiser for the song \"Don't Cry\" by J Dilla"
+        "alt": "Don't Cry — J Dilla motion work — Audio/lyric visualiser for the song \"Don't Cry\" by J Dilla",
+        "poster": "/img/work/archive/posters/don-t-cry-j-dilla-don-t-cry.webp",
+        "posterTime": 0.001,
+        "posterWidth": 1178,
+        "posterHeight": 2308
       }
     ],
     "alt": "Don't Cry — J Dilla motion work — Audio/lyric visualiser for the song \"Don't Cry\" by J Dilla",
@@ -821,7 +885,11 @@
       {
         "type": "video",
         "src": "/img/work/archive/why/why.webm",
-        "alt": "Why: why animation"
+        "alt": "Why: why animation",
+        "poster": "/img/work/archive/posters/why-why.webp",
+        "posterTime": 0.001,
+        "posterWidth": 1080,
+        "posterHeight": 1352
       },
       {
         "type": "image",
@@ -888,7 +956,11 @@
       {
         "type": "video",
         "src": "/img/work/archive/singles/cycle-of-life.webm",
-        "alt": "Cycle of life motion work"
+        "alt": "Cycle of life motion work",
+        "poster": "/img/work/archive/posters/cycle-of-life-cycle-of-life.webp",
+        "posterTime": 3.271,
+        "posterWidth": 1080,
+        "posterHeight": 1080
       }
     ],
     "alt": "Cycle of life motion work",
@@ -983,7 +1055,11 @@
       {
         "type": "video",
         "src": "/img/work/archive/singles/rishi-kapoor-x-lse-reel.webm",
-        "alt": "Rishi Kapoor × LSE reel motion work"
+        "alt": "Rishi Kapoor × LSE reel motion work",
+        "poster": "/img/work/archive/posters/rishi-kapoor-x-lse-reel-rishi-kapoor-x-lse-reel.webp",
+        "posterTime": 8.89,
+        "posterWidth": 1080,
+        "posterHeight": 1920
       }
     ],
     "alt": "Rishi Kapoor × LSE reel motion work",
@@ -1075,7 +1151,11 @@
       {
         "type": "video",
         "src": "/img/work/archive/singles/video-46.webm",
-        "alt": "Motion piece 1 in the Untitled video 46 project"
+        "alt": "Motion piece 1 in the Untitled video 46 project",
+        "poster": "/img/work/archive/posters/video-46-video-46.webp",
+        "posterTime": 0.474,
+        "posterWidth": 576,
+        "posterHeight": 1024
       }
     ],
     "alt": "Motion piece 1 in the Untitled video 46 project",
@@ -1112,7 +1192,11 @@
       {
         "type": "video",
         "src": "/img/work/archive/singles/word-vomit-1.webm",
-        "alt": "Word vomit motion work"
+        "alt": "Word vomit motion work",
+        "poster": "/img/work/archive/posters/word-vomit-1-word-vomit-1.webp",
+        "posterTime": 0.001,
+        "posterWidth": 3840,
+        "posterHeight": 2160
       }
     ],
     "alt": "Word vomit motion work",
