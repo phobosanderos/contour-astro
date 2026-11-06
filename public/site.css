@@ -3120,8 +3120,9 @@ body:has(.project-page) .site-footer {
   background:transparent;
   color:var(--accent-text);
   font-family:var(--font-mono);
-  font-size:max(16px,1em);
+  font-size:.72rem;
   line-height:1.4;
+  letter-spacing:.02em;
   text-transform:uppercase;
   padding:0 1.35em 0 0;
   cursor:pointer;
@@ -3182,6 +3183,18 @@ body:has(.project-page) .site-footer {
   .archive-source,.archive-type-control{width:100%;max-width:none}
   .archive-source{justify-content:space-between}
   .archive-type-control{justify-content:flex-start}
+}
+/* Undo project-lightbox's full-inset mobile positioning for the
+   media-fitted Archive dialog, without modifying project galleries. */
+@media(max-width:767px){
+  .archive-lightbox__window{
+    inset:auto;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    max-width:calc(100vw - 1.5rem);
+    max-height:calc(100dvh - 1.5rem);
+  }
 }
 @media(prefers-reduced-motion:reduce){
   .archive-gallery__grid{transition:none}
