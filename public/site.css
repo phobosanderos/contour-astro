@@ -3023,7 +3023,7 @@ body:has(dialog[open]) { overflow: hidden; }
   display:block;
   flex:0 0 auto;
   min-height:0;
-  max-height:min(35dvh,calc(50dvh - 9rem));
+  max-height:min(35dvh,calc(50dvh - 10rem));
   overflow-y:auto;
   overflow-x:hidden;
   overscroll-behavior:contain;
