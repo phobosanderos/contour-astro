@@ -34,9 +34,8 @@ const featuredIndex = work.featured.findIndex(item => item.slug === project.slug
 const indexLabel = `${String(featuredIndex).padStart(2, "0")} / ${String(featuredCount).padStart(2, "0")}`;
 
 const media = project.media || [];
-const hasShowcaseFilters =
-  project.slug === "achievers-2026";
 const showcaseFilters = ["all", ...new Set(media.map(item => item.category).filter(Boolean))];
+const hasShowcaseFilters = media.length > 0 && showcaseFilters.length > 1;
 
 const seoTitle = project.title;
 ---
@@ -100,7 +99,7 @@ const seoTitle = project.title;
     hasShowcaseFilters && media.length > 0 && (
       <div
         class="project-filters"
-        aria-label="Filter Achievers media"
+        aria-label={`Filter ${project.title} media`}
       >
         {
           showcaseFilters.map((filter, index) => (
