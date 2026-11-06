@@ -3,18 +3,6 @@ import work from "../content/work.json";
 import ArchiveGallery from "./ArchiveGallery.astro";
 
 const featured = work.featured;
-const stripYear = (title = "") => {
-  const parts = title.trim().split(" ");
-  const lastPart = parts[parts.length - 1];
-
-  const isYear =
-    lastPart?.length === 4 &&
-    !Number.isNaN(Number(lastPart));
-
-  return isYear
-    ? parts.slice(0, -1).join(" ")
-    : title;
-};
 ---
 <section
   class="section wrap work"
@@ -61,7 +49,7 @@ const stripYear = (title = "") => {
 
   <div class="featured-card__title-row">
     <h3 class="h3 featured-card__title">
-      {stripYear(project.title)}
+      {project.title}
     </h3>
 
     <span class="featured-card__year note">
