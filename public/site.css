@@ -3207,19 +3207,38 @@ body:has(dialog[open]) { overflow: hidden; }
 }
 .project-media__play .ui-icon { width: 1rem; height: 1rem; fill: currentColor; stroke: none; }
 /* Match the external-link affordance already used by Prints in the footer. */
+/* Prints and arrow share the same vertical slide as the other nav labels. */
+.nav__print-clip {
+  display: inline-block;
+  height: 1.2em;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+.nav__print-track {
+  display: block;
+  transition: transform var(--dur-1) var(--ease-in-out);
+}
+.nav__print-row {
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  height: 1.2em;
+  white-space: nowrap;
+}
+.nav__print-row--hover > span {
+  color: var(--accent-text);
+}
 .nav__external-icon {
   width: .78em;
   height: .78em;
   stroke-width: 1.15;
   flex: 0 0 auto;
-  vertical-align: baseline;
-  transition: transform var(--dur-1) var(--ease-in-out), color var(--dur-1) var(--ease-in-out);
+  color: var(--ink);
 }
-.nav__link:hover .nav__external-icon,
-.nav__link:focus-visible .nav__external-icon {
-  transform: translateY(-100%);
-  color: var(--accent-text);
+.nav__link:hover .nav__print-track,
+.nav__link:focus-visible .nav__print-track {
+  transform: translateY(-50%);
 }
 @media (prefers-reduced-motion: reduce) {
-  .nav__external-icon { transition: none; }
+  .nav__print-track { transition: none; }
 }
