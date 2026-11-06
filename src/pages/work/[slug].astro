@@ -29,6 +29,9 @@ export function getStaticPaths() {
   });
 }
 const { project, nextProject } = Astro.props;
+const featuredCount = work.featured.length;
+const featuredIndex = work.featured.findIndex(item => item.slug === project.slug) + 1;
+const indexLabel = `${String(featuredIndex).padStart(2, "0")} / ${String(featuredCount).padStart(2, "0")}`;
 
 const media = project.media || [];
 const hasShowcaseFilters =
@@ -55,28 +58,21 @@ const seoTitle = `${project.title} | Vipul M.R`;
     class="project-page"
     tabindex="-1"
   >
-    <section class="project-intro wrap">
+    <section class="project-intro wrap" aria-label="Project overview">
+      <div class="project-intro__top">
+        <a href="/#work" class="note project-back" data-cursor="back">
+          <svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#arrow-left"></use></svg> Back to Work
+        </a>
+        <span class="note project-intro__index" aria-label={`Project ${featuredIndex} of ${featuredCount}`}>
+          {indexLabel}
+        </span>
+      </div>
 
-     <div class="project-intro__top">
-  <a
-    href="/#work"
-    class="note project-back"
-    data-cursor="back"
-  >
-    <svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#arrow-left"></use></svg> Back to Work
-  </a>
+      <div class="project-intro__title-band">
+        <h1 class="project-intro__title" data-reveal="up">{project.title}</h1>
+      </div>
 
-  <span class="note project-intro__year">
-    {project.year}
-  </span>
-</div>
-
-      <h1 class="project-intro__title">
-        {project.title}
-      </h1>
-
-      {project.description && <p class="project-intro__description">{project.description}</p>}
-      <dl class="project-facts" aria-label="Project facts">
+      <dl class="project-facts" aria-label="Project facts" data-reveal="up">
         {(["client", "role", "year", "deliverables"] as const).filter(key => project[key]).map(key => (
           <div class="project-facts__item">
             <dt class="note">{key}</dt>
@@ -84,15 +80,21 @@ const seoTitle = `${project.title} | Vipul M.R`;
           </div>
         ))}
       </dl>
-      <div class="project-story">
-        {(["brief", "approach", "outcome"] as const).filter(key => project[key]).map(key => (
-          <section class="project-story__section">
-            <h2 class="note">{key}</h2>
-            <p>{project[key]}</p>
-          </section>
-        ))}
-      </div>
 
+      <div class="project-story" data-reveal="up">
+        {project.brief && (
+          <section class="project-story__section project-story__brief">
+            <h2 class="note">Brief</h2>
+            <p>{project.brief}</p>
+          </section>
+        )}
+        {project.outcome && (
+          <section class="project-story__section project-story__outcome">
+            <h2 class="note">Outcome</h2>
+            <p>{project.outcome}</p>
+          </section>
+        )}
+      </div>
     </section>
 
 <section class="project-showcase wrap">
