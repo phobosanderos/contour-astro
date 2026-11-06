@@ -3199,11 +3199,9 @@ body:has(dialog[open]) { overflow: hidden; }
   height: auto;
   background: var(--bg-raised);
 }
-/* The two Prints frames are children of the same .nav__label translated
-   by the exact shared Work/Services hover/focus rule above. */
+/* Prints and its arrow slide out together via the same .nav__label
+   hover/focus transform as Work and Services; no replacement label. */
 .nav__print-clip{display:inline-block;height:1.2em;overflow:hidden;vertical-align:bottom}
-.nav__label--prints{display:block;position:relative;height:1.2em;line-height:1.2;overflow:visible}
+.nav__label--prints{display:inline-flex;align-items:center;gap:.25em;height:1.2em;line-height:1.2;overflow:visible;white-space:nowrap}
 .nav__label--prints::after{content:none}
-.nav__print-row{display:flex;align-items:center;gap:.25em;height:1.2em;white-space:nowrap}
-.nav__print-row--hover{position:absolute;top:100%;left:0;color:var(--accent-text)}
 .nav__external-icon{width:.78em;height:.78em;flex:0 0 auto;stroke-width:1.8;color:inherit}
