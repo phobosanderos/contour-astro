@@ -15,7 +15,7 @@
     ],
     "alt": "Caleb Alvarez reel motion work",
     "tag": "personal",
-    "notes": "Motion reel associated with Caleb Alvarez. Confirm the subject, purpose, credit and whether this is client work.",
+    "notes": "Motion reel associated with Caleb Alvarez.",
     "needsReview": true
   },
   {
@@ -34,7 +34,7 @@
     ],
     "alt": "In another life motion work — Short audio/lyric visualiser for \"Swim Good\" by Frank Ocean.",
     "tag": "personal",
-    "notes": "Short audio/lyric visualiser for \"Swim Good\" by Frank Ocean.",
+    "notes": "Short audio and lyric visualiser for the song “Swim Good” by Frank Ocean.",
     "needsReview": true
   },
   {
@@ -82,7 +82,7 @@
     ],
     "alt": "Illustration titled Every angel is terrifying",
     "tag": "personal",
-    "notes": "A photo-bash poster made entirely by using pictures of my hands/my tattoos",
+    "notes": "A photo-bash poster made entirely from pictures of my hands and tattoos.",
     "needsReview": true
   },
   {
@@ -186,7 +186,7 @@
     ],
     "alt": "Tooth artisan: tooth artisan visual",
     "tag": "client",
-    "notes": "A case study and full fledged campaign for branding, identity and advertisements leading up to initial stages of product launch.",
+    "notes": "A case study and full campaign: branding, identity and advertising for the lead-up to a product launch.",
     "needsReview": true
   },
   {
@@ -205,7 +205,7 @@
     ],
     "alt": "Illustration titled Chainsaw Man",
     "tag": "personal",
-    "notes": "Fan illustration for the manga/anime \"Chainsaw man\".",
+    "notes": "Fan illustration for the manga and anime Chainsaw Man.",
     "needsReview": true
   },
   {
@@ -255,7 +255,7 @@
   {
     "id": "don-t-be-different",
     "slug": "don-t-be-different",
-    "title": "Don't be different",
+    "title": "Don’t be different",
     "category": "design",
     "type": "series",
     "cover": "/img/work/archive/be-different/be-different-poster.webp",
@@ -271,14 +271,23 @@
         "alt": "Don't be different poster design, be different poster"
       }
     ],
-    "alt": "Don't be different poster design, be different poster",
+    "alt": "Don’t be different",
     "tag": "personal",
-    "notes": "Credits to @grant_rat for capturing this beautiful sighting in the first place that inspired me to make this motion visual. Title should display Don't with a strikethrough; credit @grant_rat for the source sighting.",
+    "notes": "Credit to @grant_rat for capturing the sighting that inspired this motion visual.",
     "link": {
       "text": "@grant_rat",
       "url": "https://www.instagram.com/grant_rat/"
     },
-    "needsReview": true
+    "needsReview": true,
+    "titleSegments": [
+      {
+        "text": "Don’t",
+        "strike": true
+      },
+      {
+        "text": " be different"
+      }
+    ]
   },
   {
     "id": "a-quick-fix",
@@ -296,7 +305,7 @@
     ],
     "alt": "A quick fix graphic design artwork — A personal take on the sensationalized media coverage during the mid 20th century framing ",
     "tag": "personal",
-    "notes": "A personal take on the sensationalized media coverage during the mid 20th century framing the lobotomy as a \"miracle cure\".",
+    "notes": "A personal take on the sensationalised mid-20th-century media coverage that framed the lobotomy as a “miracle cure”.",
     "needsReview": true
   },
   {
@@ -330,7 +339,7 @@
     ],
     "alt": "COGNOO logo logo design, gradient logo variant",
     "tag": "client",
-    "notes": "A logo re-brand commission for a client that wanted it in a short turnover for user testing.",
+    "notes": "A logo rebrand commission for a client who needed a quick turnaround for user testing.",
     "needsReview": true
   },
   {
@@ -349,7 +358,7 @@
     ],
     "alt": "Illustration titled Self-sabotage",
     "tag": "personal",
-    "notes": "An indonesian pig inspired this.",
+    "notes": "Artwork inspired by an Indonesian pig.",
     "needsReview": true
   },
   {
@@ -368,7 +377,7 @@
     ],
     "alt": "Tutorial video motion work — How to draw realistic eyes in just 5 simple steps.",
     "tag": "personal",
-    "notes": "How to draw realistic eyes in just 5 simple steps.",
+    "notes": "A tutorial on drawing realistic eyes in five simple steps.",
     "needsReview": true
   },
   {
@@ -422,7 +431,7 @@
     ],
     "alt": "Revelation: clarity visual",
     "tag": "personal",
-    "notes": "An array of social media self-help/hope-core style videos for social media to attract a younger audience seeking for motivation and direction in digestable manner.",
+    "notes": "A series of self-help, hope-core style videos for social media, made to reach a younger audience looking for motivation and direction in an easy-to-digest format.",
     "needsReview": true
   },
   {
@@ -493,7 +502,7 @@
     ],
     "alt": "DDTTI motion work — Bob vylan is not the problem, he is simply a carrier of the truth that is constantly being sile",
     "tag": "personal",
-    "notes": "Bob vylan is not the problem, he is simply a carrier of the truth that is constantly being silenced. Title corrected to DDTTI as specified; confirm the expanded meaning if the project needs it.",
+    "notes": "Bob Vylan is not the problem. He is simply a carrier of the truth that is constantly being silenced.",
     "needsReview": true
   },
   {
@@ -599,7 +608,6 @@
     ],
     "alt": "A quote from Poe graphic design artwork",
     "tag": "personal",
-    "notes": "Text artwork featuring an Edgar Allan Poe quotation; verify the exact quotation against the image.",
     "needsReview": true
   },
   {
@@ -623,7 +631,7 @@
     ],
     "alt": "NISAU anniversary logo logo design, nisau logo variant",
     "tag": "client",
-    "notes": "A milestone mark logo branding for NISAU's 15 year anniversary using a Logo Hijack / Integrated Mark to highlight the year without disrupting the existing identity.",
+    "notes": "A milestone logo for NISAU’s 15th anniversary, using a Logo Hijack / Integrated Mark to highlight the year without disrupting the existing identity.",
     "needsReview": true
   },
   {
@@ -642,7 +650,7 @@
     ],
     "alt": "Illustration titled Behelit",
     "tag": "personal",
-    "notes": "Fan illustration for the manga \"Berserk\".",
+    "notes": "Fan illustration for the manga Berserk.",
     "needsReview": true
   },
   {
@@ -666,7 +674,6 @@
     ],
     "alt": "Memories: good memories visual",
     "tag": "personal",
-    "notes": "Title corrected from memories? to Memories.",
     "needsReview": true
   },
   {
@@ -685,7 +692,7 @@
     ],
     "alt": "Farzi graphic design artwork — Fan poster for the movie \"Farzi\".",
     "tag": "personal",
-    "notes": "Fan poster for the movie \"Farzi\".",
+    "notes": "Fan poster for the film Farzi.",
     "needsReview": true
   },
   {
@@ -743,7 +750,7 @@
     ],
     "alt": "Don't Cry — J Dilla motion work — Audio/lyric visualiser for the song \"Don't Cry\" by J Dilla",
     "tag": "personal",
-    "notes": "Audio/lyric visualiser for the song \"Don't Cry\" by J Dilla",
+    "notes": "Audio and lyric visualiser for the song “Don’t Cry” by J Dilla.",
     "needsReview": true
   },
   {
@@ -777,7 +784,7 @@
     ],
     "alt": "Unarmed soldier poster design, movie poster (version 1)",
     "tag": "client",
-    "notes": "A commission for different variants of launch/teaser posters for a movie called Unarmed Soldier.",
+    "notes": "A commission for launch and teaser poster variants for a film called Unarmed Soldier.",
     "link": {
       "text": "Unarmed Soldier",
       "url": "https://www.pickleentertainment.com/"
@@ -800,7 +807,7 @@
     ],
     "alt": "Illustration titled Revenant",
     "tag": "personal",
-    "notes": "Fan illustration for the video game \"Apex Legends\".",
+    "notes": "Fan illustration for the video game Apex Legends.",
     "needsReview": true
   },
   {
@@ -848,7 +855,7 @@
     ],
     "alt": "Unlimited Love graphic design artwork — Fan song cover art for Unlimited Love by Underscores.",
     "tag": "personal",
-    "notes": "Fan song cover art for Unlimited Love by Underscores.",
+    "notes": "Fan cover art for the song “Unlimited Love” by Underscores.",
     "needsReview": true
   },
   {
@@ -867,7 +874,7 @@
     ],
     "alt": "Illustration titled Makima",
     "tag": "personal",
-    "notes": "Fan illustration for the manga/anime \"Chainsaw man\".",
+    "notes": "Fan illustration of Makima from the manga and anime Chainsaw Man.",
     "needsReview": true
   },
   {
@@ -1006,7 +1013,7 @@
   {
     "id": "untitled-1",
     "slug": "untitled-1",
-    "title": "Untitled 1",
+    "title": "Untitled 01",
     "category": "design",
     "type": "image",
     "cover": "/img/work/archive/singles/untitled-1.webp",
@@ -1019,13 +1026,12 @@
     ],
     "alt": "Untitled 1 graphic design artwork",
     "tag": "personal",
-    "notes": "Working title only; replace when the visual can be identified.",
     "needsReview": true
   },
   {
     "id": "untitled-2",
     "slug": "untitled-2",
-    "title": "Untitled 2",
+    "title": "Untitled 02",
     "category": "design",
     "type": "image",
     "cover": "/img/work/archive/singles/untitled-2.webp",
@@ -1038,13 +1044,12 @@
     ],
     "alt": "Untitled 2 graphic design artwork",
     "tag": "personal",
-    "notes": "Working title only; replace when the visual can be identified.",
     "needsReview": true
   },
   {
     "id": "untitled-3",
     "slug": "untitled-3",
-    "title": "Untitled 3",
+    "title": "Untitled 03",
     "category": "design",
     "type": "image",
     "cover": "/img/work/archive/singles/untitled-3.webp",
@@ -1057,13 +1062,12 @@
     ],
     "alt": "Untitled 3 graphic design artwork",
     "tag": "personal",
-    "notes": "Working title only; replace when the visual can be identified.",
     "needsReview": true
   },
   {
     "id": "video-46",
     "slug": "video-46",
-    "title": "Untitled video 46",
+    "title": "Untitled motion",
     "category": "motion",
     "type": "video",
     "cover": null,
@@ -1076,7 +1080,6 @@
     ],
     "alt": "Motion piece 1 in the Untitled video 46 project",
     "tag": "personal",
-    "notes": "Video label lacks context; identify the intended title.",
     "needsReview": true
   },
   {
@@ -1266,7 +1269,6 @@
     ],
     "alt": "Illustration titled Sakura kuma",
     "tag": "personal",
-    "notes": "Japanese-lettered original title is retained in the notes; display title and filename transliterated to Sakura kuma.",
     "needsReview": true
   }
 ]
