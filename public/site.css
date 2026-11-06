@@ -3105,9 +3105,10 @@ body:has(.project-page) .site-footer {
   height: auto;
   background: var(--bg-raised);
 }
-/* Prints and its arrow slide out together via the same .nav__label
-   hover/focus transform as Work and Services; no replacement label. */
-.nav__print-clip{display:inline-block;height:1.2em;overflow:hidden;vertical-align:bottom}
-.nav__label--prints{display:inline-flex;align-items:center;gap:.25em;height:1.2em;line-height:1.2;overflow:visible;white-space:nowrap}
+/* No extra clipping wrapper: Prints and its arrow use the shared
+   .nav__label hover/focus transform, like Work and Services. */
+.nav__label--prints{display:inline-flex;align-items:center;gap:.25em;line-height:1.2;overflow:visible;white-space:nowrap}
 .nav__label--prints::after{content:none}
 .nav__external-icon{width:.78em;height:.78em;flex:0 0 auto;stroke-width:1.8;color:inherit}
+/* Raise the Services landing position by 12px, without moving its layout. */
+#services{scroll-margin-top:-12px}
