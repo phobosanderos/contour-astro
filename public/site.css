@@ -345,7 +345,7 @@ html:not(.js) .preloader{
 .tool svg{width:1.05rem;height:1.05rem;fill:none;stroke:currentColor;stroke-width:1.8}
 .tool--theme{position:relative}
 .tool--theme::before{content:"";position:absolute;inset:-4px}
-.tool--theme .theme-icon{position:absolute;width:1.125rem;height:1.125rem;fill:none;stroke:currentColor;stroke-width:1.8;pointer-events:none;transition:opacity var(--dur-1) var(--ease-in-out),transform var(--dur-1) var(--ease-in-out)}
+.tool--theme .theme-icon{position:absolute;inset:0;margin:auto;width:1.125rem;height:1.125rem;fill:none;stroke:currentColor;stroke-width:1.8;pointer-events:none;transition:opacity var(--dur-1) var(--ease-in-out),transform var(--dur-1) var(--ease-in-out)}
 :root:not([data-theme=dark]) .theme-icon--sun{opacity:1;transform:rotate(0)}
 :root:not([data-theme=dark]) .theme-icon--moon{opacity:0;transform:rotate(-90deg)}
 :root[data-theme=dark] .theme-icon--sun{opacity:0;transform:rotate(90deg)}
