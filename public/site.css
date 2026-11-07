@@ -149,10 +149,10 @@ body::after{right:calc(var(--gutter)/2)}
   vertical-align: -.12em;
 }
 .info-dialog__close .ui-icon { width: 1.1rem; height: 1.1rem; }
+/* Navigation arrows stay outlined; only the media Play glyph is filled. */
 .featured-card__arrow .ui-icon,
-.service__arrow .ui-icon,
-
-.archive-gallery__play .ui-icon { width: 1em; height: 1em; fill: currentColor; stroke: none; }
+.service__arrow .ui-icon{width:1em;height:1em;fill:none;stroke:currentColor}
+.archive-gallery__play .ui-icon{width:1em;height:1em;fill:currentColor;stroke:none}
 .project-back,
 .project-lightbox__nav-button { display: inline-flex; align-items: center; gap: .35rem; }
 #privacy-back { display: inline-flex; align-items: center; gap: .35rem; }
@@ -354,76 +354,84 @@ html:not(.js) .preloader{
 .header-cta{height:2.25rem;margin-left:.25rem;padding-inline:1rem;font-size:.85rem}
 @media (max-width:960px){.site-header{grid-template-columns:1fr auto}.nav,.tool--kbd{display:none}}
 @media (max-width:480px){.header-cta{display:none}}
-/* Compact native disclosure with the existing section destinations and icon set.
-   Desktop header remains untouched. */
-.mobile-nav{display:none;position:relative}
+/* The mobile header uses two always-visible rows, not a menu dropdown.
+   The desktop header rules above remain unchanged. */
+.mobile-nav{display:none}
 @media(max-width:960px){
-  .mobile-nav{display:block}
-  .mobile-nav > summary{
+  :root{--mobile-header-height:calc(6.5rem + env(safe-area-inset-top,0px))}
+  .site-header,
+  .site-header.is-compact{
+    height:var(--mobile-header-height);
+    padding-top:env(safe-area-inset-top,0px);
+    grid-template-columns:minmax(0,1fr) auto;
+    grid-template-rows:3.5rem 3rem;
+    gap:0 .5rem;
+  }
+  .site-header .brand{
+    grid-column:1;
+    grid-row:1;
+    flex-direction:row;
+    justify-self:start;
+    align-items:center;
+    gap:.4rem;
+    padding-left:0;
+    min-width:0;
+    max-width:none;
+    white-space:nowrap;
+  }
+  .site-header .brand__name,
+  .site-header .brand__role{
+    display:inline;
+    width:auto;
+    max-width:none;
+    font-size:clamp(9px,2.6vw,12px);
+    line-height:1.3;
+    letter-spacing:0;
+    white-space:nowrap;
+  }
+  .site-header .tools{
+    grid-column:2;
+    grid-row:1;
+    padding-right:0;
+    gap:0;
+  }
+  .site-header .header-cta{display:none}
+  .mobile-nav{
+    display:flex;
+    grid-column:1/-1;
+    grid-row:2;
+    align-items:stretch;
+    justify-content:space-between;
+    width:100%;
+    min-width:0;
+    border-top:1px solid var(--line);
+  }
+  .mobile-nav a{
     display:inline-flex;
     align-items:center;
     justify-content:center;
-    gap:.45rem;
     min-height:44px;
-    padding:0 .3rem;
-    list-style:none;
+    padding-inline:.12rem;
     color:var(--ink);
-    cursor:pointer;
-  }
-  .mobile-nav > summary::-webkit-details-marker{display:none}
-  .mobile-nav > summary .ui-icon{
-    width:.85em;
-    height:.85em;
-    color:var(--accent-text);
-    transition:transform var(--dur-1) var(--ease-out);
-  }
-  .mobile-nav[open] > summary .ui-icon{transform:rotate(180deg)}
-  .mobile-nav__panel{
-    position:absolute;
-    z-index:60;
-    top:calc(100% + .5rem);
-    right:0;
-    width:min(260px,calc(100vw - 2*var(--gutter)));
-    background:var(--bg);
-    border:1px solid var(--line-strong);
-    display:flex;
-    flex-direction:column;
-  }
-  .mobile-nav__panel a{
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    min-height:44px;
-    padding:.65rem 1rem;
     font-family:var(--font-mono);
-    font-size:.72rem;
-    letter-spacing:.02em;
+    font-size:clamp(10px,2.7vw,12px);
+    line-height:1.2;
+    letter-spacing:0;
     text-transform:uppercase;
-    border-bottom:1px solid var(--line);
+    white-space:nowrap;
+    gap:.2em;
   }
-  .mobile-nav__panel a:last-child{border-bottom:0}
-  .mobile-nav__panel a:hover,.mobile-nav__panel a:focus-visible,.mobile-nav__panel a[aria-current]{color:var(--accent-text)}
-  .mobile-nav__panel .ui-icon{width:1em;height:1em;color:var(--accent-text)}
-}
-@media(max-width:600px){
-  /* Retain the desktop's brand role, wrapped below the name on phones. */
-  .site-header .brand{
-    flex-direction:column;
-    align-items:flex-start;
-    gap:0;
-    min-width:0;
-    max-width:calc(100vw - 160px);
+  .mobile-nav a[aria-current],
+  .mobile-nav a:hover,
+  .mobile-nav a:focus-visible{color:var(--accent-text)}
+  .mobile-nav a .ui-icon{width:.85em;height:.85em;stroke-width:1.35}
+  html{scroll-padding-top:var(--mobile-header-height)}
+  #main > .work:first-child{
+    padding-top:calc(var(--mobile-header-height) + clamp(1rem,2.5vw,2rem));
   }
-  .site-header .brand__role{
-    display:block;
-    max-width:100%;
-    font-size:12px;
-    line-height:1.25;
-    white-space:normal;
-  }
-}
-@media(prefers-reduced-motion:reduce){
-  .mobile-nav > summary .ui-icon{transition:none}
+  .project-page{padding-top:var(--mobile-header-height)}
+  .cta{scroll-margin-top:calc(var(--mobile-header-height) + 12px)}
+  #services{scroll-margin-top:var(--mobile-header-height)}
 }
 /* Safe-area spacing belongs to the page primitives, not duplicated pages. */
 @media(max-width:1023px){
@@ -3420,18 +3428,16 @@ body:has(.project-page) .site-footer {
 /* With viewport-fit=cover, keep controls below the hardware cutout.
    All env() values are 0 on ordinary screens, leaving existing geometry intact. */
 @media(max-width:1023px){
-  .site-header{
-    height:calc(4.5rem + env(safe-area-inset-top,0px));
-    padding-top:env(safe-area-inset-top,0px);
-  }
-  .site-header.is-compact{
-    height:calc(3.75rem + env(safe-area-inset-top,0px));
-  }
-  html{scroll-padding-top:calc(4.5rem + env(safe-area-inset-top,0px))}
+  .site-header{padding-top:env(safe-area-inset-top,0px)}
   .site-footer{padding-bottom:max(1rem,env(safe-area-inset-bottom,0px))}
 }
+@media(min-width:961px) and (max-width:1023px){
+  .site-header{height:calc(4.5rem + env(safe-area-inset-top,0px))}
+  .site-header.is-compact{height:calc(3.75rem + env(safe-area-inset-top,0px))}
+  html{scroll-padding-top:calc(4.5rem + env(safe-area-inset-top,0px))}
+}
 @media(max-width:767px){
-  .project-page{padding-top:calc(4.5rem + env(safe-area-inset-top,0px))}
+  .project-page{padding-top:var(--mobile-header-height,calc(4.5rem + env(safe-area-inset-top,0px)))}
   .project-lightbox:not(.archive-lightbox) .project-lightbox__window,
   .archive-lightbox__window{
     top:calc(50% + (env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px)) / 2);
@@ -3466,6 +3472,23 @@ body:has(.project-page) .site-footer {
     width:44px;
     height:44px;
     flex:0 0 44px;
+  }
+}
+/* A little more separation between service headings and supporting text
+   on phones; preserve the original grid and hover treatment on desktop. */
+@media(max-width:767px){
+  .service__link{
+    row-gap:1.2rem;
+    padding-block:clamp(2.5rem,7vw,3.5rem);
+  }
+  .service__n,.service__title,.service__arrow{grid-row:1}
+  .service__title{line-height:1.08}
+  .service__body{
+    grid-row:2;
+    grid-column:2/span 9;
+    align-self:start;
+    line-height:1.6;
+    opacity:.8;
   }
 }
 /* Match section-heading spacing to the Contact section's established rhythm. */
