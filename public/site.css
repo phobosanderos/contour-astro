@@ -3994,3 +3994,20 @@ body:has(.project-page) .site-footer {
     white-space:nowrap;
   }
 }
+
+/* Align mobile contact actions with the form's left edge; retain sizing. */
+@media(max-width:767px){
+  #contact .fg-row{
+    justify-content:flex-start;
+    padding-inline:0;
+  }
+  /* Restore the desktop copyright punctuation and let the type-size fitter
+     account for the separator and spacing. */
+  .site-footer .copy{
+    justify-content:space-between;
+    gap:.5em;
+  }
+  .site-footer .copy > span + span::before{
+    content:"· ";
+  }
+}
