@@ -106,7 +106,7 @@ const currentYear = new Date().getFullYear();
         const pieces = copyright.querySelectorAll(":scope > span");
         const intrinsicWidth = Array.from(pieces).reduce(
           (sum, piece) => sum + piece.getBoundingClientRect().width, 0
-        );
+        ) + (pieces.length - 1) * (parseFloat(getComputedStyle(copyright).columnGap) || 0);
         if (intrinsicWidth <= available - 2) low = mid;
         else high = mid;
       }
