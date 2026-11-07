@@ -32,8 +32,8 @@ const featured = work.featured;
               src={project.primaryImage}
               alt={project.alt}
               style={`object-position:${project.coverPosition || "center center"};`}
-              loading="eager"
-              fetchpriority={index === 0 ? "auto" : "high"}
+              loading={index === 0 ? "eager" : "lazy"}
+              fetchpriority={index === 0 ? "high" : "auto"}
               decoding="async"
             />
 
