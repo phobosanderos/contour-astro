@@ -50,39 +50,17 @@ const { home = false, currentSection = "" } = Astro.props;
 </nav>
 
   <div class="tools">
-  <details class="mobile-nav" data-mobile-nav>
-    <summary class="note" aria-label="Open navigation">Menu <svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#arrow-down"></use></svg></summary>
-    <nav class="mobile-nav__panel" aria-label="Mobile navigation">
-      <a href="/#work" aria-current={currentSection === "work" ? "page" : undefined}>Work</a>
-      <a href="/#services">Services</a>
-      <a href="https://www.inprnt.com/gallery/phobosanderos/" target="_blank" rel="noopener noreferrer">Prints <svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#arrow-up-right"></use></svg><span class="sr-only"> (opens in a new tab)</span></a>
-      <a href="/#contact">Start a project</a>
-    </nav>
-  </details>
   <button class="tool tool--theme" type="button" data-action="theme" role="switch" aria-label="Dark mode" aria-checked="false" title="Switch to dark mode">
     <svg class="ui-icon theme-icon theme-icon--sun" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#sun"></use></svg>
     <svg class="ui-icon theme-icon theme-icon--moon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#moon"></use></svg>
   </button>
   <a class="btn header-cta" href="/#contact">{c.header.a_16}</a>
 </div>
+  <nav class="mobile-nav" aria-label="Mobile navigation">
+    <a href="/#work" aria-current={currentSection === "work" ? "page" : undefined}>Work</a>
+    <a href="/#services">Services</a>
+    <a href="https://www.inprnt.com/gallery/phobosanderos/" target="_blank" rel="noopener noreferrer">Prints <svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#arrow-up-right"></use></svg><span class="sr-only"> (opens in a new tab)</span></a>
+    <a href="/#contact">Start a project</a>
+  </nav>
 </header>
 
-<script>
-  const mobileMenu = document.querySelector("[data-mobile-nav]");
-  if (mobileMenu) {
-    mobileMenu.querySelectorAll("a").forEach(link => {
-      link.addEventListener("click", () => { mobileMenu.open = false; });
-    });
-    mobileMenu.addEventListener("toggle", () => {
-      mobileMenu.querySelector("summary")?.setAttribute("aria-label", mobileMenu.open ? "Close navigation" : "Open navigation");
-    });
-    document.addEventListener("click", event => {
-      if (mobileMenu.open && !mobileMenu.contains(event.target)) mobileMenu.open = false;
-    });
-    document.addEventListener("keydown", event => {
-      if (event.key !== "Escape" || !mobileMenu.open) return;
-      mobileMenu.open = false;
-      mobileMenu.querySelector("summary")?.focus({preventScroll:true});
-    });
-  }
-</script>
