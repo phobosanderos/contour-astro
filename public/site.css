@@ -3491,6 +3491,46 @@ body:has(.project-page) .site-footer {
     opacity:.8;
   }
 }
+/* Keep the contact actions aligned on one row at phone widths. Only the
+   status and fallback messages may wrap below the actions. */
+@media(max-width:767px){
+  #contact .fg-row{
+    flex-wrap:wrap;
+    align-items:center;
+    column-gap:clamp(.35rem,1.8vw,.75rem);
+    row-gap:.75rem;
+  }
+  #contact .fg-row .cta__button[type="submit"],
+  #contact .fg-row .fg-mail{
+    flex:1 1 0;
+    width:0;
+    min-width:0;
+    max-width:none;
+    height:3.25rem;
+    padding-inline:clamp(.5rem,2.5vw,.9rem);
+    gap:.25rem;
+    font-size:clamp(.78rem,3.4vw,1rem);
+    justify-content:center;
+    text-align:center;
+  }
+  #contact .fg-row .fg-mail{
+    justify-content:space-between;
+  }
+  #contact .fg-row .fg-or{
+    flex:0 0 auto;
+    font-size:max(12px,.72rem);
+  }
+  #contact .fg-row .cta__button-icon{
+    flex:0 0 1em;
+    width:1em;
+    height:1em;
+  }
+  #contact .fg-row [data-status],
+  #contact .fg-row [data-form-fallback],
+  #contact .fg-row .fg-sent{
+    flex:1 1 100%;
+  }
+}
 /* Match section-heading spacing to the Contact section's established rhythm. */
 :root { --section-heading-gap: clamp(1rem, 2vw, 1.75rem); }
 #work > .work__head,
