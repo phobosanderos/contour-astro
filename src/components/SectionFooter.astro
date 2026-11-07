@@ -89,4 +89,32 @@ const currentYear = new Date().getFullYear();
   document.querySelectorAll("[data-copyright-year]").forEach((year) => {
     year.textContent = String(new Date().getFullYear());
   });
+  // Fit the copyright to the available mobile width without reducing it
+  // unnecessarily on wider phones. Keep desktop typography CSS-controlled.
+  const copyright = document.querySelector(".site-footer .copy");
+  if (copyright) {
+    const fitCopyright = () => {
+      copyright.style.fontSize = "";
+      if (!window.matchMedia("(max-width: 767px)").matches) return;
+      const available = copyright.clientWidth;
+      if (!available) return;
+      let low = 9, high = 17;
+      for (let i = 0; i < 12; i++) {
+        const mid = (low + high) / 2;
+        copyright.style.fontSize = mid + "px";
+        // Use the true right edge of the text, not the width of the flex row.
+        const pieces = copyright.querySelectorAll(":scope > span");
+        const left = pieces[0]?.getBoundingClientRect().left ?? 0;
+        const right = pieces[pieces.length - 1]?.getBoundingClientRect().right ?? 0;
+        if (right - left <= available - 2) low = mid;
+        else high = mid;
+      }
+      copyright.style.fontSize = low.toFixed(2) + "px";
+    };
+    fitCopyright();
+    if ("ResizeObserver" in window) {
+      new ResizeObserver(fitCopyright).observe(copyright.parentElement);
+    } else window.addEventListener("resize", fitCopyright, { passive: true });
+    document.fonts?.ready?.then(fitCopyright);
+  }
 </script>
