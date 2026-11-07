@@ -4011,3 +4011,16 @@ body:has(.project-page) .site-footer {
     content:"· ";
   }
 }
+
+/* Mobile Archive: both filter rows use the same 12px mono type scale.
+   Scope to Archive only; leave layouts, hit areas and desktop untouched. */
+@media(max-width:767px){
+  #work .archive-source__button,
+  #work .archive-type-control > label,
+  #work .archive-type-control .archive-type,
+  #work .archive-type-control .archive-clear{
+    font-size:12px;
+    font-family:var(--font-mono);
+    line-height:1.4;
+  }
+}
