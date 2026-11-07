@@ -86,7 +86,7 @@ const imageFor = item => item.cover || first(item)?.poster || (first(item)?.type
   <div class="project-lightbox__window archive-lightbox__window" data-archive-window>
     <header class="project-lightbox__head">
       <div class="project-lightbox__identity note">
-        <span data-archive-number></span><span data-archive-title id="archive-dialog-title"></span>
+        <span data-archive-title id="archive-dialog-title"></span>
       </div>
       <div class="archive-lightbox__tools">
         <button type="button" class="info-dialog__close project-lightbox__close" data-archive-close
@@ -309,7 +309,6 @@ thumbnailVideos.forEach((video) => {
     nextEl.hidden = itemIndex === count - 1;
     const position = `${itemIndex + 1} / ${count}`;
     counterEl.textContent = count > 1 ? position : '';
-    $('[data-archive-number]', dialog).textContent = count > 1 ? position : '';
     preloadNextImage();
     const asset = assetFor(item);
 
@@ -443,7 +442,6 @@ requestAnimationFrame(() => {
     sequence++;
     touchStart = null;
     nextImage = null;
-    $('[data-archive-number]', dialog).textContent = '';
     $('[data-archive-title]', dialog).textContent = '';
     counterEl.textContent = '';
     $('video', mediaEl)?.pause();
