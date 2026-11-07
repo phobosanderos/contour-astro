@@ -51,7 +51,11 @@ const output=Buffer.from(pixels.subarray(0,newHeight*stride));
 // the name, subtitle, rules or background.
 const copyX=1032, copyY=488, copyW=120;
 for(let y=copyY;y<newHeight;y++) {
-  output.fill(0,y*stride+copyX*channels,y*stride+(copyX+copyW)*channels);
+  for(let x=copyX;x<copyX+copyW;x++) {
+    const p=y*stride+x*channels;
+    output[p]=11; output[p+1]=11; output[p+2]=12;
+    if(channels===4) output[p+3]=255;
+  }
 }
 function crc32(b){let crc=-1;for(const byte of b){crc^=byte;for(let i=0;i<8;i++)crc=(crc>>>1)^((crc&1)?0xedb88320:0);}return (crc^(-1))>>>0;}
 function pngChunk(type,data){const name=Buffer.from(type,'ascii');const header=Buffer.alloc(4);header.writeUInt32BE(data.length);const crc=Buffer.alloc(4);crc.writeUInt32BE(crc32(Buffer.concat([name,data])));return Buffer.concat([header,name,data,crc]);}
