@@ -1068,10 +1068,13 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
 @media (max-width:380px){
   .project-facts__item{grid-column:1/-1;}
 }
-/* Project-page phone layout: use the same content width for Deliverables
-   as Brief and Outcome, and keep each intro band on a consistent rhythm. */
+/* Project-page phone layout: keep navigation immediately beneath the
+   fixed header rather than reserving another top gutter for it. */
 @media (max-width:767px){
-  .project-intro__top,
+  .project-intro__top{
+    padding-top:0;
+    padding-bottom:.75rem;
+  }
   .project-intro__title-band,
   .project-facts,
   .project-story{
