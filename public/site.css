@@ -3516,8 +3516,9 @@ body:has(.project-page) .site-footer {
 .nav__external-icon{width:.78em;height:.78em;flex:0 0 auto;stroke-width:1.8;color:inherit}
 /* Raise the Services landing position by 12px, without moving its layout. */
 #services{scroll-margin-top:-12px}
-/* Mobile navigation must land below both fixed header rows. */
+/* html already supplies the fixed-header scroll padding; add only
+   the 12px breathing space here to avoid doubling the header offset. */
 @media(max-width:960px){
-  #services{scroll-margin-top:calc(var(--mobile-header-height) + 12px)}
-  #contact{scroll-margin-top:calc(var(--mobile-header-height) + 12px)}
+  #services{scroll-margin-top:12px}
+  #contact{scroll-margin-top:12px}
 }
