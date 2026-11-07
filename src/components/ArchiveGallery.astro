@@ -280,18 +280,16 @@ thumbnailVideos.forEach((video) => {
     const chromeHeight =
       $('.project-lightbox__head', windowEl).offsetHeight +
       (navEl.hidden ? 0 : navEl.offsetHeight);
-    // On phones, cap the scrollable description first rather than measuring
-    // its full natural text height and shrinking the artwork to accommodate it.
+    // Phone description has a fixed, internally scrollable footprint.
+    // Its length must never steal height from the artwork.
     const descriptionSpace = hasDescription
-      ? (phone ? Math.min(120, Math.max(72, vh * .14)) : descriptionBar.offsetHeight)
+      ? (phone ? 76 : descriptionBar.offsetHeight)
       : 0;
     const frameWidth = Math.max(1, vw - (phone ? 24 : 32));
     if (phone && hasDescription) windowEl.style.width = frameWidth + 'px';
     // Re-measure the description at the final phone width: a short note
     // should not reserve the same height as a long, internally scrolling one.
-    const fittedDescriptionSpace = phone && hasDescription
-      ? descriptionBar.offsetHeight
-      : descriptionSpace;
+    const fittedDescriptionSpace = descriptionSpace;
     const maxW = Math.max(80, frameWidth - 32);
     const maxH = Math.max(80, vh - (phone ? 24 : 64) - chromeHeight - fittedDescriptionSpace - 32);
     const scale = Math.min(1, maxW / w, maxH / h);
