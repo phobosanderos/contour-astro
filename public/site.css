@@ -3390,6 +3390,8 @@ body:has(.project-page) .site-footer {
 @media(max-width:1023px){
   .note{font-size:max(12px,.72rem)}
   .service-policy-trigger{display:inline-flex;align-items:center;min-height:44px}
+  .archive-source__button,
+  .archive-type{min-height:44px}
   .project-filter{min-width:44px}
   .archive-source__button{min-width:44px}
   .site-footer .footer-top nav a{min-width:44px}
