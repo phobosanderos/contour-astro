@@ -3650,3 +3650,175 @@ body:has(.project-page) .site-footer {
     padding-block:.55rem;
   }
 }
+
+/* November mobile header refinements: name-only identity, retained CTA and
+   three centred navigation links. Keep the existing desktop header intact. */
+@media(max-width:960px){
+  .site-header .brand__name{
+    font-size:clamp(12px,3.25vw,15px);
+    letter-spacing:.01em;
+  }
+  .site-header .tools{
+    display:flex;
+    align-items:center;
+    gap:clamp(.35rem,1.6vw,.65rem);
+  }
+  .site-header .header-cta{
+    display:inline-flex;
+    order:-1;
+    align-items:center;
+    justify-content:center;
+    height:44px;
+    min-height:44px;
+    margin:0;
+    padding-inline:clamp(.55rem,2.4vw,1rem);
+    font-size:clamp(10px,2.7vw,12px);
+    white-space:nowrap;
+  }
+  .mobile-nav{
+    justify-content:center;
+    gap:clamp(.75rem,5vw,3rem);
+  }
+  .mobile-nav a{
+    flex:0 1 auto;
+    min-width:44px;
+    padding-inline:.3rem;
+  }
+  /* The generic Work padding rule comes after the original header media
+     query. Override it here so the new second row never covers the top. */
+  #main > .work:first-child{
+    padding-top:calc(var(--mobile-header-height) + clamp(1rem,2.5vw,2rem));
+  }
+  #main{scroll-margin-top:var(--mobile-header-height)}
+}
+@media(max-width:360px){
+  .site-header .brand__name{font-size:12px}
+  .site-header .header-cta{font-size:10px;padding-inline:.55rem}
+  .site-header .tools{gap:.25rem}
+}
+
+/* Stable Archive filter geometry on phones. Source always occupies the
+   first row, Type and Clear the second — no reflow when the select changes.
+   Reserve the Clear slot even when its button is hidden. */
+@media(max-width:767px){
+  #work .archive-filters{
+    display:grid;
+    grid-template-columns:minmax(0,1fr);
+    gap:.25rem;
+    align-items:stretch;
+  }
+  #work .archive-source{
+    width:100%;
+    max-width:none;
+    justify-content:flex-start;
+    gap:clamp(.75rem,3.5vw,1.5rem);
+    min-width:0;
+  }
+  #work .archive-source__button{
+    min-width:44px;
+    font-size:max(12px,.72rem);
+    white-space:nowrap;
+  }
+  #work .archive-type-control{
+    display:flex;
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    flex-wrap:nowrap;
+    justify-content:flex-start;
+    gap:.75rem;
+  }
+  #work .archive-type-control > label{
+    flex:0 0 auto;
+    font-size:max(12px,.72rem);
+  }
+  #work .archive-type-wrap{
+    flex:0 0 auto;
+    width:clamp(138px,39vw,174px);
+    min-width:0;
+  }
+  #work .archive-type{
+    width:100%;
+    max-width:none;
+    min-width:0;
+    font-size:16px;
+    padding-right:1.25em;
+    text-overflow:clip;
+  }
+  #work .archive-type-control .archive-clear{
+    flex:0 0 auto;
+    min-width:44px;
+    margin-left:auto;
+    font-size:max(12px,.72rem);
+  }
+  #work .archive-type-control .archive-clear[hidden]{
+    display:inline-flex!important;
+    align-items:center;
+    visibility:hidden;
+    pointer-events:none;
+  }
+}
+
+/* Keep the two contact actions close to the OR rather than leaving
+   unequal dead space inside the Mail button. */
+@media(max-width:767px){
+  #contact .fg-row{column-gap:clamp(.45rem,2vw,.75rem)}
+  #contact .fg-row .cta__button[type="submit"],
+  #contact .fg-row .fg-mail{
+    padding-inline:clamp(.35rem,1.9vw,.7rem);
+    justify-content:center;
+    font-size:clamp(.78rem,3.25vw,.98rem);
+  }
+  #contact .cta__title{
+    font-size:clamp(2.15rem,8.1vw,4rem);
+    line-height:.98;
+  }
+}
+
+/* Revised compact mobile footer: right-align Elsewhere, keep the
+   copyright sentence on one line, split legal links to opposite ends. */
+@media(max-width:767px){
+  .site-footer .footer-col--elsewhere{
+    align-items:flex-end;
+    text-align:right;
+  }
+  .site-footer .footer-col--elsewhere ul{
+    align-items:flex-end;
+  }
+  .site-footer .footer-col--elsewhere li,
+  .site-footer .footer-col--elsewhere nav a{
+    text-align:right;
+    justify-content:flex-end;
+  }
+  .site-footer .copy{
+    flex-direction:row;
+    align-items:center;
+    justify-content:flex-start;
+    flex-wrap:nowrap;
+    width:100%;
+    max-width:none;
+    gap:.35em;
+    font-size:clamp(7px,1.98vw,10px);
+    letter-spacing:-.025em;
+    white-space:nowrap;
+  }
+  .site-footer .copy > span{
+    display:inline;
+    white-space:nowrap;
+  }
+  .site-footer .copy span + span::before{
+    content:none;
+  }
+  .site-footer .legal-links{
+    width:100%;
+    max-width:none;
+    justify-content:space-between;
+    flex-wrap:nowrap;
+    gap:.5rem;
+  }
+  .site-footer .legal-links__divider{display:none}
+  .site-footer .legal-links a{
+    white-space:nowrap;
+    font-size:clamp(10px,2.9vw,12px);
+  }
+}
