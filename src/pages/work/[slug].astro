@@ -220,7 +220,6 @@ const seoTitle = project.title;
     <header class="project-lightbox__head">
 
       <div class="project-lightbox__identity note">
-        <span data-lightbox-number></span>
         <span data-lightbox-title id="project-lightbox-title"></span>
       </div>
 
@@ -289,9 +288,6 @@ const seoTitle = project.title;
 
     const lightboxMedia =
       document.querySelector("[data-lightbox-media]");
-
-    const lightboxNumber =
-      document.querySelector("[data-lightbox-number]");
 
     const lightboxTitle =
       document.querySelector("[data-lightbox-title]");
@@ -461,12 +457,6 @@ function renderLightboxItem() {
 
   const multiple =
     activeItems.length > 1;
-
-  if (lightboxNumber) {
-    lightboxNumber.textContent =
-      `${String(activeItemIndex + 1).padStart(2, "0")} / ${String(activeItems.length).padStart(2, "0")}`;
-  }
-
 
   /* ---------------------------------------------
      UPDATE NAV
@@ -1032,7 +1022,6 @@ function preloadNearbyItems() {
 
         lightboxMedia.innerHTML = "";
 
-        if (lightboxNumber) lightboxNumber.textContent = "";
         if (lightboxTitle) lightboxTitle.textContent = "";
         if (lightboxCounter) lightboxCounter.textContent = "";
 
