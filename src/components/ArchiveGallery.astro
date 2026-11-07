@@ -286,8 +286,14 @@ thumbnailVideos.forEach((video) => {
       ? (phone ? Math.min(120, Math.max(72, vh * .14)) : descriptionBar.offsetHeight)
       : 0;
     const frameWidth = Math.max(1, vw - (phone ? 24 : 32));
+    if (phone && hasDescription) windowEl.style.width = frameWidth + 'px';
+    // Re-measure the description at the final phone width: a short note
+    // should not reserve the same height as a long, internally scrolling one.
+    const fittedDescriptionSpace = phone && hasDescription
+      ? descriptionBar.offsetHeight
+      : descriptionSpace;
     const maxW = Math.max(80, frameWidth - 32);
-    const maxH = Math.max(80, vh - (phone ? 24 : 64) - chromeHeight - descriptionSpace - 32);
+    const maxH = Math.max(80, vh - (phone ? 24 : 64) - chromeHeight - fittedDescriptionSpace - 32);
     const scale = Math.min(1, maxW / w, maxH / h);
     const rw = Math.max(1, Math.floor(w * scale));
     const rh = Math.max(1, Math.floor(h * scale));
