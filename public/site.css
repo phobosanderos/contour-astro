@@ -4041,3 +4041,19 @@ body:has(.project-page) .site-footer {
   font-size:max(12px,.72rem);
   white-space:nowrap;
 }
+
+/* Homepage divider-to-content rhythm.
+   Archive is the reference: use its existing heading gap everywhere.
+   Keep each component's internal padding and responsive grid unchanged. */
+:root{
+  --home-divider-content-gap:clamp(1rem,2vw,1.75rem);
+}
+#work > .work__head,
+#work .work__archive-head,
+#services > .section-head,
+#contact > .section-head{
+  margin-bottom:var(--home-divider-content-gap);
+}
+#work .archive-filters{padding-top:0;}
+/* The Services header's original zero-gap special case is superseded by
+   the same Archive spacing, without changing the service row padding. */
