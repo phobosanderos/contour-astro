@@ -406,10 +406,41 @@ html:not(.js) .preloader{
   .mobile-nav__panel .ui-icon{width:1em;height:1em;color:var(--accent-text)}
 }
 @media(max-width:600px){
-  .site-header .brand__role{display:none}
+  /* Retain the desktop's brand role, wrapped below the name on phones. */
+  .site-header .brand{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:0;
+    min-width:0;
+    max-width:calc(100vw - 160px);
+  }
+  .site-header .brand__role{
+    display:block;
+    max-width:100%;
+    font-size:12px;
+    line-height:1.25;
+    white-space:normal;
+  }
 }
 @media(prefers-reduced-motion:reduce){
   .mobile-nav > summary .ui-icon{transition:none}
+}
+/* Safe-area spacing belongs to the page primitives, not duplicated pages. */
+@media(max-width:1023px){
+  .wrap{
+    padding-left:max(var(--gutter),env(safe-area-inset-left,0px));
+    padding-right:max(var(--gutter),env(safe-area-inset-right,0px));
+  }
+}
+@media(max-width:767px){
+  #contact .fg-fields input,
+  #contact .fg-fields textarea,
+  #contact .fg-fields select{
+    font-size:max(16px,var(--step-0));
+    scroll-margin-top:calc(4.5rem + var(--gutter));
+    scroll-margin-bottom:calc(1rem + env(safe-area-inset-bottom,0px));
+  }
+  #contact .fg-row{padding-bottom:env(safe-area-inset-bottom,0px)}
 }
 
 
