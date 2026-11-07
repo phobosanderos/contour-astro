@@ -8,12 +8,10 @@ const { home = false, currentSection = "" } = Astro.props;
     {home ? (
       <>
         <span class="brand__name note note--int">{c.header.span_5_html}</span>
-        <span class="brand__role note">| Visual design and motion.</span>
       </>
     ) : (
       <>
         <span class="brand__name note note--int" set:html={c.header.span_5_html}></span>
-        <span class="brand__role note">| Visual design and motion.</span>
       </>
     )}
   </div>
@@ -60,7 +58,6 @@ const { home = false, currentSection = "" } = Astro.props;
     <a href="/#work" aria-current={currentSection === "work" ? "page" : undefined}>Work</a>
     <a href="/#services">Services</a>
     <a href="https://www.inprnt.com/gallery/phobosanderos/" target="_blank" rel="noopener noreferrer">Prints <svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#arrow-up-right"></use></svg><span class="sr-only"> (opens in a new tab)</span></a>
-    <a href="/#contact">Start a project</a>
   </nav>
 </header>
 
