@@ -104,9 +104,10 @@ const currentYear = new Date().getFullYear();
         copyright.style.fontSize = mid + "px";
         // Use the true right edge of the text, not the width of the flex row.
         const pieces = copyright.querySelectorAll(":scope > span");
-        const left = pieces[0]?.getBoundingClientRect().left ?? 0;
-        const right = pieces[pieces.length - 1]?.getBoundingClientRect().right ?? 0;
-        if (right - left <= available - 2) low = mid;
+        const intrinsicWidth = Array.from(pieces).reduce(
+          (sum, piece) => sum + piece.getBoundingClientRect().width, 0
+        );
+        if (intrinsicWidth <= available - 2) low = mid;
         else high = mid;
       }
       copyright.style.fontSize = low.toFixed(2) + "px";
