@@ -3355,6 +3355,36 @@ body:has(.project-page) .site-footer {
   .service__link:not([data-hot]):hover .note{color:var(--muted)}
   .service__link:not([data-hot]):hover .service__arrow{color:var(--accent)}
 }
+/* Coarse-pointer hit areas: padding expands the target without replacing
+   the page's fonts, buttons, colours, or desktop layout. */
+@media(max-width:1023px){
+  .project-intro__top .project-back,
+  .project-filter,
+  .site-footer .footer-top nav a,
+  .site-footer .legal-links a,
+  .fg-legal #privacy-back{
+    display:inline-flex;
+    align-items:center;
+    min-height:44px;
+  }
+  .project-intro__top .project-back{padding-block:.65rem}
+  .project-filter{padding-block:.65rem}
+  .site-footer .footer-top nav a,
+  .site-footer .legal-links a{padding-block:.55rem}
+  .fg-legal #privacy-back{padding-block:.55rem}
+}
+@media(max-width:767px){
+  .archive-source__button{min-width:44px;font-size:max(12px,.72rem)}
+  .archive-type-control > label{font-size:max(12px,.72rem)}
+  .archive-clear{min-height:44px}
+}
+@media(min-width:376px) and (max-width:420px){
+  /* Allow the controls to wrap instead of forcing sideways overflow. */
+  .archive-filters{flex-wrap:wrap}
+  .archive-source__button{font-size:12px}
+  .archive-type-control > label{font-size:12px}
+  .archive-clear{font-size:12px}
+}
 /* Match section-heading spacing to the Contact section's established rhythm. */
 :root { --section-heading-gap: clamp(1rem, 2vw, 1.75rem); }
 #work > .work__head,
