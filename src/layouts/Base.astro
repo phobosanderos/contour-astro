@@ -58,8 +58,8 @@ const buildStamp = Date.now();
     <meta name="twitter:image" content={ogImage}>
     <meta name="twitter:image:alt" content={imageAlt}>
     {structuredData && <script type="application/ld+json" set:html={JSON.stringify(structuredData).replace(/</g, "\\u003c")} />}
-    <link rel="icon" type="image/svg+xml" href="/img/favicon-light.svg" id="site-favicon">
-    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32.png">
+    <!-- One canonical favicon: dark artwork in light mode, light artwork in dark mode. -->
+    <link rel="icon" type="image/svg+xml" href="/img/favicon-dark.svg" id="site-favicon">
 
 
     <script is:inline>
@@ -70,7 +70,8 @@ const buildStamp = Date.now();
 
         const favicon = document.getElementById("site-favicon");
         if (favicon) {
-          favicon.href = darkMode ? "/img/favicon-light.svg" : "/img/favicon-dark.svg";
+          const path = darkMode ? "/img/favicon-light.svg" : "/img/favicon-dark.svg";
+          if (favicon.getAttribute("href") !== path) favicon.setAttribute("href", path);
         }
       }
 
