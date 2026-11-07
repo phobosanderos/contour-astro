@@ -273,20 +273,31 @@ thumbnailVideos.forEach((video) => {
     const w = asset.tagName === 'VIDEO' ? asset.videoWidth : asset.naturalWidth;
     const h = asset.tagName === 'VIDEO' ? asset.videoHeight : asset.naturalHeight;
     if (!(w > 0 && h > 0)) return;
-    const chromeHeight =
-      $('.project-lightbox__head', windowEl).offsetHeight +
-      (navEl.hidden ? 0 : navEl.offsetHeight) +
-      (descriptionBar?.offsetHeight || 0);
     const vw = window.visualViewport?.width || innerWidth;
     const vh = window.visualViewport?.height || innerHeight;
-    const maxW = Math.max(80, vw - 64);
-    const maxH = Math.max(80, vh - 64 - chromeHeight);
+    const phone = vw < 768;
+    const hasDescription = Boolean(descriptionBar);
+    const chromeHeight =
+      $('.project-lightbox__head', windowEl).offsetHeight +
+      (navEl.hidden ? 0 : navEl.offsetHeight);
+    // On phones, cap the scrollable description first rather than measuring
+    // its full natural text height and shrinking the artwork to accommodate it.
+    const descriptionSpace = hasDescription
+      ? (phone ? Math.min(120, Math.max(72, vh * .14)) : descriptionBar.offsetHeight)
+      : 0;
+    const frameWidth = Math.max(1, vw - (phone ? 24 : 32));
+    const maxW = Math.max(80, frameWidth - 32);
+    const maxH = Math.max(80, vh - (phone ? 24 : 64) - chromeHeight - descriptionSpace - 32);
     const scale = Math.min(1, maxW / w, maxH / h);
     const rw = Math.max(1, Math.floor(w * scale));
     const rh = Math.max(1, Math.floor(h * scale));
     asset.style.width = rw + 'px';
     asset.style.height = rh + 'px';
-    windowEl.style.width = Math.max(1, Math.min(vw - 24, rw + 32)) + 'px';
+    // Use available horizontal room for the description, not an image-narrow
+    // strip. The image retains its own dimensions and object-fit: contain.
+    windowEl.style.width = phone && hasDescription
+      ? frameWidth + 'px'
+      : Math.max(1, Math.min(frameWidth, rw + 32)) + 'px';
     mediaEl.style.height = Math.ceil(rh + 32) + 'px';
   }
   let resizeFrame = 0;
