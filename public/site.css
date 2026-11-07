@@ -3822,3 +3822,78 @@ body:has(.project-page) .site-footer {
     font-size:clamp(10px,2.9vw,12px);
   }
 }
+
+/* Final phone refinements: mirror desktop control order (theme, project CTA),
+   reserve media space before letting the Archive description scroll, and
+   align footer information to the edges without touching desktop rules. */
+@media(max-width:960px){
+  .site-header .tools{gap:clamp(.4rem,2vw,.8rem)}
+  .site-header .tool--theme{order:0}
+  .site-header .header-cta{
+    order:1;
+    width:auto;
+    flex:0 0 auto;
+    height:44px;
+    min-height:44px;
+    padding-inline:clamp(.8rem,3vw,1.1rem);
+    font-size:clamp(11px,3vw,13px);
+  }
+}
+@media(max-width:360px){
+  .site-header .header-cta{
+    font-size:11px;
+    padding-inline:.7rem;
+  }
+}
+@media(max-width:767px){
+  .archive-lightbox__window:has(.archive-lightbox__description){
+    width:calc(100vw - 1.5rem);
+    max-width:calc(100vw - 1.5rem);
+  }
+  .archive-lightbox__description{
+    height:auto;
+    max-height:clamp(72px,14dvh,120px);
+    overflow-y:auto;
+    -webkit-overflow-scrolling:touch;
+    touch-action:pan-y;
+  }
+  #contact .fg-row{
+    justify-content:center;
+    column-gap:clamp(.5rem,2.5vw,.8rem);
+  }
+  #contact .fg-row .cta__button[type="submit"],
+  #contact .fg-row .fg-mail{
+    flex:0 1 auto;
+    width:auto;
+    min-width:0;
+    max-width:100%;
+    padding-inline:clamp(.5rem,2.7vw,.85rem);
+    justify-content:center;
+    white-space:nowrap;
+  }
+  .site-footer .footer-col--elsewhere{
+    align-items:stretch;
+    text-align:right;
+  }
+  .site-footer .footer-col--elsewhere > .note{
+    align-self:flex-end;
+  }
+  .site-footer .footer-col--elsewhere nav,
+  .site-footer .footer-col--elsewhere ul{
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+    width:100%;
+    min-width:0;
+  }
+  .site-footer .footer-col--elsewhere li,
+  .site-footer .footer-col--elsewhere nav a{
+    align-self:flex-end;
+    justify-content:flex-end;
+  }
+  .site-footer .copy{
+    font-size:clamp(8px,2.6vw,12px);
+    letter-spacing:-.035em;
+    column-gap:.25em;
+  }
+}
