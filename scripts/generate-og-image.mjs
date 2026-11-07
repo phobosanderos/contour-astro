@@ -47,16 +47,11 @@ for(let y=0;y<height;y++){
 }
 const newHeight=530;
 const output=Buffer.from(pixels.subarray(0,newHeight*stride));
-// Move the ornamental eye from beneath the bottom rule up to the subtitle line.
-// Artwork is copied verbatim; only background pixels are reset.
-const copyX=1032, copyY=488, copyW=120, copyH=105, newY=288;
-const eye=Buffer.alloc(copyW*copyH*channels);
-for(let y=0;y<copyH;y++){
-  pixels.copy(eye,y*copyW*channels,(copyY+y)*stride+copyX*channels,(copyY+y)*stride+(copyX+copyW)*channels);
-}
-for(let y=copyY;y<newHeight;y++) output.fill(0,y*stride+copyX*channels,y*stride+(copyX+copyW)*channels);
-for(let y=0;y<copyH;y++){
-  eye.copy(output,(newY+y)*stride+copyX*channels,y*copyW*channels,(y+1)*copyW*channels);
+// Remove the decorative favicon from the social banner without altering
+// the name, subtitle, rules or background.
+const copyX=1032, copyY=488, copyW=120;
+for(let y=copyY;y<newHeight;y++) {
+  output.fill(0,y*stride+copyX*channels,y*stride+(copyX+copyW)*channels);
 }
 function crc32(b){let crc=-1;for(const byte of b){crc^=byte;for(let i=0;i<8;i++)crc=(crc>>>1)^((crc&1)?0xedb88320:0);}return (crc^(-1))>>>0;}
 function pngChunk(type,data){const name=Buffer.from(type,'ascii');const header=Buffer.alloc(4);header.writeUInt32BE(data.length);const crc=Buffer.alloc(4);crc.writeUInt32BE(crc32(Buffer.concat([name,data])));return Buffer.concat([header,name,data,crc]);}

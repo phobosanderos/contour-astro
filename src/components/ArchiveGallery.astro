@@ -3,7 +3,7 @@ import archiveData from "../content/archive.json";
 import { imageDimensions } from "../lib/archive-image-dimensions";
 
 const filters = ["all", "design", "motion", "illustration"];
-const sources = ["all", "client", "personal"];
+const sources = ["client", "personal"];
 // Editorial flags stay in JSON but are excluded from client-side data.
 const archive = archiveData.map(entry => ({
   ...entry,
@@ -138,7 +138,7 @@ const imageFor = item => item.cover || first(item)?.poster || (first(item)?.type
 
   const grid = $('.archive-gallery__grid');
   const cards = $$("[data-archive-index]");
-  let activeSource = "all", activeType = "all";
+  let activeSource = "client", activeType = "all";
   const total = archive.length;
   let filterTimer = 0, filterVersion = 0;
   function updateGrid() {
@@ -149,7 +149,7 @@ const imageFor = item => item.cover || first(item)?.poster || (first(item)?.type
       card.hidden = !matches;
       if (matches) visible++;
     });
-    const filtered = activeSource !== "all" || activeType !== "all";
+    const filtered = activeSource !== "client" || activeType !== "all";
     const text = filtered ? `${visible} OF ${total} PROJECTS` : `${total} PROJECTS`;
     countEl.textContent = text;
     countLiveEl.textContent = text;
@@ -161,6 +161,7 @@ const imageFor = item => item.cover || first(item)?.poster || (first(item)?.type
         : "No matching work.";
     }
   }
+  updateGrid(); // Initial Client view while retaining the full archive project count.
   function applyFilters() {
     clearTimeout(filterTimer);
     const version = ++filterVersion;
@@ -179,10 +180,10 @@ const imageFor = item => item.cover || first(item)?.poster || (first(item)?.type
     }, 160);
   }
   function resetFilters() {
-    activeSource = "all"; activeType = "all";
+    activeSource = "client"; activeType = "all";
     typeSelect.value = "all";
     $$("[data-archive-source]").forEach(button => {
-      const selected = button.dataset.archiveSource === "all";
+      const selected = button.dataset.archiveSource === "client";
       button.classList.toggle("is-active", selected);
       button.setAttribute("aria-pressed", String(selected));
     });
@@ -283,7 +284,7 @@ thumbnailVideos.forEach((video) => {
     // Phone description has a fixed, internally scrollable footprint.
     // Its length must never steal height from the artwork.
     const descriptionSpace = hasDescription
-      ? (phone ? 76 : descriptionBar.offsetHeight)
+      ? descriptionBar.offsetHeight
       : 0;
     const frameWidth = Math.max(1, vw - (phone ? 24 : 32));
     if (phone && hasDescription) windowEl.style.width = frameWidth + 'px';
@@ -415,6 +416,7 @@ requestAnimationFrame(() => {
       }
       paragraph.append(anchor, document.createTextNode(description.slice(at + link.text.length)));
     }
+    bar.tabIndex = 0; // Make lengthy notes scrollable by keyboard and touch.
     bar.append(paragraph);
     windowEl.append(bar);
     dialog.setAttribute("aria-describedby", bar.id);
