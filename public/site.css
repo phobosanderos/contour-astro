@@ -3385,6 +3385,16 @@ body:has(.project-page) .site-footer {
   .archive-type-control > label{font-size:12px}
   .archive-clear{font-size:12px}
 }
+/* Floor small interface labels and make the last remaining narrow controls
+   operable by touch without changing the desktop breakpoints. */
+@media(max-width:1023px){
+  .note{font-size:max(12px,.72rem)}
+  .service-policy-trigger{display:inline-flex;align-items:center;min-height:44px}
+  .project-filter{min-width:44px}
+  .archive-source__button{min-width:44px}
+  .site-footer .footer-top nav a{min-width:44px}
+  .header-cta{min-height:44px}
+}
 /* Match section-heading spacing to the Contact section's established rhythm. */
 :root { --section-heading-gap: clamp(1rem, 2vw, 1.75rem); }
 #work > .work__head,
