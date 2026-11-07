@@ -28,10 +28,10 @@ const imageFor = item => item.cover || first(item)?.poster || (first(item)?.type
       ))}
     </div>
     <div class="archive-type-control">
-      <label class="note" for="archive-type">Type</label>
+      <label class="note" for="archive-type">Type:</label>
       <span class="archive-type-wrap">
         <select id="archive-type" class="archive-type note" data-archive-type>
-          {filters.map(type => <option value={type}>{type}</option>)}
+          {filters.map(type => <option value={type}>{type.toUpperCase()}</option>)}
         </select>
         <svg class="ui-icon" aria-hidden="true" focusable="false"><use href="/img/ui-icons.svg#arrow-down"></use></svg>
       </span>
