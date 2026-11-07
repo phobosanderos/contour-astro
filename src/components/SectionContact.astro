@@ -208,4 +208,33 @@ window.addEventListener("load", () => {
   if (location.hash === "#contact") requestAnimationFrame(() => navigateToContact());
 });
 
+/* On small touch viewports, keep the currently focused field above the
+   software keyboard. Do not move the page when no keyboard is visible. */
+if (window.visualViewport) {
+  let keyboardFrame = 0;
+  const keepActiveFieldVisible = () => {
+    if (innerWidth > 767) return;
+    const focused = document.activeElement;
+    if (!(focused instanceof HTMLElement) || !contactPanel?.contains(focused)) return;
+    if (!focused.matches("input,textarea,select")) return;
+    const viewport = window.visualViewport;
+    if (viewport.height >= window.innerHeight - 120) return;
+    cancelAnimationFrame(keyboardFrame);
+    keyboardFrame = requestAnimationFrame(() => {
+      const rect = focused.getBoundingClientRect();
+      const visibleBottom = viewport.offsetTop + viewport.height - 16;
+      const visibleTop = viewport.offsetTop + (header?.getBoundingClientRect().height || 72) + 8;
+      if (rect.bottom > visibleBottom) {
+        window.scrollBy({top:rect.bottom - visibleBottom,behavior:"instant"});
+      } else if (rect.top < visibleTop) {
+        window.scrollBy({top:rect.top - visibleTop,behavior:"instant"});
+      }
+    });
+  };
+  window.visualViewport.addEventListener("resize", keepActiveFieldVisible,{passive:true});
+  contactPanel?.addEventListener("focusin", () => {
+    requestAnimationFrame(keepActiveFieldVisible);
+  });
+}
+
 </script>
