@@ -4024,3 +4024,20 @@ body:has(.project-page) .site-footer {
     line-height:1.4;
   }
 }
+
+/* Featured-project pages: move Next project beneath the complete gallery.
+   The divider marks the transition to the shared footer on all screen sizes. */
+.project-next-nav{
+  display:flex;
+  justify-content:flex-end;
+  align-items:center;
+  padding-top:clamp(2rem,5vw,4rem);
+  padding-bottom:clamp(1.25rem,2.5vw,2rem);
+  border-bottom:1px solid var(--line);
+}
+.project-next-nav .project-intro__next{
+  margin-left:auto;
+  color:var(--accent-text);
+  font-size:max(12px,.72rem);
+  white-space:nowrap;
+}
