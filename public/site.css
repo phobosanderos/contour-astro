@@ -3562,3 +3562,91 @@ body:has(.project-page) .site-footer {
   #services{scroll-margin-top:12px}
   #contact{scroll-margin-top:12px}
 }
+
+/* Approved compact mobile footer: paired columns with stacked links,
+   then copyright and legal information below a single divider.
+   Desktop footer layout and all existing links remain unchanged. */
+@media (max-width:767px) {
+  .site-footer .footer-top {
+    display:grid;
+    grid-template-columns:repeat(2,minmax(0,1fr));
+    column-gap:clamp(.75rem,3vw,1.5rem);
+    row-gap:0;
+    padding-top:1rem;
+    padding-bottom:clamp(1.25rem,4vw,2rem);
+  }
+  .site-footer .footer-top .footer-col {
+    grid-column:auto;
+    align-items:flex-start;
+    text-align:left;
+    min-width:0;
+    gap:.65rem;
+  }
+  .site-footer .footer-top .footer-col > .note {
+    margin:0;
+    line-height:1.4;
+  }
+  .site-footer .footer-top .footer-col ul {
+    display:flex;
+    flex-direction:column;
+    flex-wrap:nowrap;
+    align-items:flex-start;
+    gap:0;
+    margin:0;
+    padding:0;
+  }
+  .site-footer .footer-top .footer-col li {
+    display:block;
+    white-space:normal;
+    min-width:0;
+    max-width:100%;
+  }
+  .site-footer .footer-top .footer-col li + li::before {
+    display:none;
+    content:none;
+  }
+  .site-footer .footer-top nav a {
+    display:inline-flex;
+    align-items:center;
+    min-height:44px;
+    max-width:100%;
+    padding-block:.55rem;
+    font-size:clamp(.82rem,3.5vw,.95rem);
+    white-space:nowrap;
+  }
+  .site-footer .footer-bottom {
+    display:flex;
+    flex-direction:column;
+    flex-wrap:nowrap;
+    align-items:flex-start;
+    gap:1.25rem;
+    margin-top:0;
+    padding-top:1rem;
+  }
+  .site-footer .copy {
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    flex-wrap:nowrap;
+    gap:.3rem;
+    margin:0;
+    max-width:100%;
+    line-height:1.5;
+  }
+  .site-footer .copy > span {display:block}
+  .site-footer .legal-links {
+    display:flex;
+    align-items:center;
+    flex-wrap:wrap;
+    column-gap:.75rem;
+    row-gap:0;
+    max-width:100%;
+    margin:0;
+  }
+  .site-footer .legal-links a {
+    display:inline-flex;
+    align-items:center;
+    min-height:44px;
+    padding-block:.55rem;
+  }
+}
