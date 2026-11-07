@@ -3397,6 +3397,32 @@ body:has(.project-page) .site-footer {
   .site-footer .footer-top nav a{min-width:44px}
   .header-cta{min-height:44px}
 }
+/* With viewport-fit=cover, keep controls below the hardware cutout.
+   All env() values are 0 on ordinary screens, leaving existing geometry intact. */
+@media(max-width:1023px){
+  .site-header{
+    height:calc(4.5rem + env(safe-area-inset-top,0px));
+    padding-top:env(safe-area-inset-top,0px);
+  }
+  .site-header.is-compact{
+    height:calc(3.75rem + env(safe-area-inset-top,0px));
+  }
+  html{scroll-padding-top:calc(4.5rem + env(safe-area-inset-top,0px))}
+  .site-footer{padding-bottom:max(1rem,env(safe-area-inset-bottom,0px))}
+}
+@media(max-width:767px){
+  .project-page{padding-top:calc(6rem + env(safe-area-inset-top,0px))}
+  .project-lightbox:not(.archive-lightbox) .project-lightbox__window,
+  .archive-lightbox__window{
+    top:calc(50% + (env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px)) / 2);
+    max-height:calc(100dvh - 1.5rem - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px));
+  }
+  .info-dialog{max-height:calc(100dvh - 1rem - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px))}
+  .info-dialog__shell{
+    height:min(92dvh,calc(100dvh - 1rem - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px)));
+    max-height:min(92dvh,calc(100dvh - 1rem - env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px)));
+  }
+}
 /* Match section-heading spacing to the Contact section's established rhythm. */
 :root { --section-heading-gap: clamp(1rem, 2vw, 1.75rem); }
 #work > .work__head,
