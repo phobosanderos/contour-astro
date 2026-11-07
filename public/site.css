@@ -3235,7 +3235,7 @@ body:has(.project-page) .site-footer {
 .archive-source__button + .archive-source__button{border:0}
 .archive-source__button.is-active{color:var(--accent-text);box-shadow:none}
 .archive-source__button::after{display:block}
-.archive-type-control{display:flex;align-items:center;gap:.5rem;min-width:0}
+.archive-type-control{display:flex;align-items:center;gap:.75rem;min-width:0}
 .archive-type-wrap{position:relative;display:inline-flex;align-items:center;gap:.25em}
 .archive-type{
   appearance:none;
@@ -3255,7 +3255,7 @@ body:has(.project-page) .site-footer {
   padding:0 1.35em 0 0;
   cursor:pointer;
 }
-.archive-type option{background:var(--bg);color:var(--ink);font-family:var(--font-mono)}
+.archive-type option{background:var(--bg);color:var(--ink);font-family:var(--font-mono);text-transform:uppercase}
 .archive-type-wrap > .ui-icon{
   position:absolute;
   right:0;
@@ -3301,7 +3301,7 @@ body:has(.project-page) .site-footer {
   .archive-filters{gap:.25rem;flex-wrap:nowrap}
   .archive-source{gap:.65rem}
   .archive-source__button{font-size:.65rem}
-  .archive-type-control{gap:.3rem}
+  .archive-type-control{gap:.75rem}
   .archive-type-control > label{font-size:.65rem}
   .archive-type{font-size:16px;max-width:95px}
   .archive-clear{font-size:.65rem}
