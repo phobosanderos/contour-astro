@@ -11,6 +11,7 @@
     "posters": "node scripts/generate-archive-posters.mjs"
   },
   "dependencies": {
+    "@vercel/analytics": "^2.0.1",
     "astro": "^7.4.0"
   }
 }
