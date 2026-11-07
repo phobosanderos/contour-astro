@@ -1068,6 +1068,23 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
 @media (max-width:380px){
   .project-facts__item{grid-column:1/-1;}
 }
+/* Project-page phone layout: use the same content width for Deliverables
+   as Brief and Outcome, and keep each intro band on a consistent rhythm. */
+@media (max-width:767px){
+  .project-intro__top,
+  .project-intro__title-band,
+  .project-facts,
+  .project-story{
+    padding-block:1rem;
+  }
+  .project-facts,
+  .project-story{
+    row-gap:1rem;
+  }
+  .project-facts__item:last-child{
+    grid-column:1/-1;
+  }
+}
 
 /* ---------------------------------------------------------
    MEDIA SHOWCASE
@@ -1435,7 +1452,7 @@ html.has-cursor .project-lightbox a{
 @media (max-width:767px){
 
   .project-page{
-    padding-top:6rem;
+    padding-top:4.5rem;
   }
 
   .project-intro__title{
@@ -3411,7 +3428,7 @@ body:has(.project-page) .site-footer {
   .site-footer{padding-bottom:max(1rem,env(safe-area-inset-bottom,0px))}
 }
 @media(max-width:767px){
-  .project-page{padding-top:calc(6rem + env(safe-area-inset-top,0px))}
+  .project-page{padding-top:calc(4.5rem + env(safe-area-inset-top,0px))}
   .project-lightbox:not(.archive-lightbox) .project-lightbox__window,
   .archive-lightbox__window{
     top:calc(50% + (env(safe-area-inset-top,0px) - env(safe-area-inset-bottom,0px)) / 2);
