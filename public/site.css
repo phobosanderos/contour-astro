@@ -4057,3 +4057,9 @@ body:has(.project-page) .site-footer {
 #work .archive-filters{padding-top:0;}
 /* The Services header's original zero-gap special case is superseded by
    the same Archive spacing, without changing the service row padding. */
+
+/* Services first-row hover fill reaches the heading divider. The heading's
+   padding and Archive-derived margin remain unchanged. */
+#services .service:first-child .service__link::before{
+  top:calc(-1 * var(--home-divider-content-gap));
+}
