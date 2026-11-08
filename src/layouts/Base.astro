@@ -1,4 +1,5 @@
 ---
+import { inject } from '@vercel/analytics';
 import c from "../content.json";
 
 const {
@@ -11,6 +12,8 @@ const {
   imageHeight,
   homepage = false
 } = Astro.props;
+
+inject();
 
 const siteOrigin = "https://phobosanderos.vercel.app";
 const canonical = new URL(canonicalPath, siteOrigin).href;
