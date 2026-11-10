@@ -9,7 +9,8 @@ const {
   imageAlt = "Vipul M.R — Phobos & Eros visual design and motion portfolio",
   imageWidth,
   imageHeight,
-  homepage = false
+  homepage = false,
+  robots = "index, follow"
 } = Astro.props;
 
 const siteOrigin = "https://phobosanderos.vercel.app";
@@ -39,7 +40,7 @@ const buildStamp = Date.now();
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>{title}</title>
     <meta name="description" content={description}>
-    <meta name="robots" content="index, follow">
+    <meta name="robots" content={robots}>
     <meta name="theme-color" content="#f4f4f0" media="(prefers-color-scheme: light)">
     <meta name="theme-color" content="#0b0b0c" media="(prefers-color-scheme: dark)">
     <link rel="canonical" href={canonical}>
