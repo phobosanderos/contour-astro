@@ -253,13 +253,13 @@ if (pc && ring && preloader && !root.dataset.preloaded) {
    
   formInit();
 
-  var G = window.gsap, ST = window.ScrollTrigger, Split = window.SplitText;
+  var G = window.gsap, ST = window.ScrollTrigger;
   if (!G || !ST || reduce) {
     root.classList.add("motion-ready");
     if (root.dataset.preloaded === "true") bootAnimations();
     return;
   }
-  G.registerPlugin(ST); if (Split) G.registerPlugin(Split);
+  G.registerPlugin(ST);
 
   /* ---------- smooth scroll ---------- */
   var lenis = null;
@@ -288,9 +288,6 @@ history.replaceState(history.state, "", "#" + id);
       t.focus({ preventScroll: true });
     }, true);
   }
-
-  var EXPO = "expo.out", P4 = "power4.inOut";
-  var maskPad = function (s) { (s.masks || []).forEach(function (m) { m.style.paddingBottom = "0.12em"; m.style.marginBottom = "-0.12em"; }); };
 
   /* ---------- crosshair cursor + magnetic buttons ---------- */
   (function cursor() {
@@ -329,18 +326,6 @@ history.replaceState(history.state, "", "#" + id);
   })();
 
   /* ---------- scroll reveals ---------- */
-  function reveals() {
-    if (Split) $$('[data-reveal="lines"]').forEach(function (el) {
-      Split.create(el, { type: "lines", mask: "lines", aria: "none", autoSplit: true, onSplit: function (s) { maskPad(s); return G.from(s.lines, { yPercent: 110, duration: 1.1, ease: EXPO, stagger: .07, scrollTrigger: { trigger: el, start: "top 85%", once: true } }); } });
-    });
-    var up = $$('[data-reveal="up"]').filter(function (el) { return !el.matches(".featured-projects .featured-card") && el.getBoundingClientRect().top > innerHeight * .88; });
-    if (up.length) {
-      G.set(up, { autoAlpha: 0, y: 48, force3D: true });
-      ST.batch(up, { start: "top 88%", once: true, onEnter: function (els) { G.to(els, { autoAlpha: 1, y: 0, duration: 1.3, ease: "power3.out", stagger: .09, overwrite: true, clearProps: "transform,opacity,visibility" }); } });
-    }
-
-  }
-
 /* ---------- boot ---------- */
   function bootAnimations() {
     if (root.dataset.motionBooted === "true") return;
