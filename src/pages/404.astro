@@ -1,0 +1,137 @@
+---
+import Base from "../layouts/Base.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import SectionFooter from "../components/SectionFooter.astro";
+---
+
+<Base
+  title="404 — Page not found"
+  description="That page doesn't exist. Return to the work at Phobos & Eros."
+  canonicalPath="/404"
+  robots="noindex, follow"
+>
+  <SectionHeader />
+
+  <main id="main" class="not-found wrap" tabindex="-1">
+    <section class="not-found__content" aria-labelledby="not-found-title">
+      <div class="not-found__eyebrow note">
+        <span class="note--ink">Phobos &amp; Eros</span>
+        <span>Page not found</span>
+      </div>
+
+      <div class="not-found__heading">
+        <p class="not-found__code display" aria-hidden="true">404</p>
+        <h1 id="not-found-title">Nothing here.</h1>
+      </div>
+
+      <div class="not-found__bottom">
+        <p>The page you're looking for doesn't exist, or its address has changed.</p>
+        <a class="project-back note not-found__link" href="/#work">
+          <svg class="ui-icon" aria-hidden="true" focusable="false">
+            <use href="/img/ui-icons.svg#arrow-left"></use>
+          </svg>
+          Back to work
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <SectionFooter />
+</Base>
+
+<style>
+  .not-found {
+    display: flex;
+    align-items: center;
+    min-height: 100svh;
+    padding-top: clamp(8rem, 14vh, 12rem);
+    padding-bottom: clamp(3rem, 7vh, 6rem);
+  }
+
+  .not-found__content {
+    width: 100%;
+  }
+
+  .not-found__eyebrow {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 1rem;
+    padding-bottom: var(--section-heading-gap, 1.5rem);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .not-found__heading {
+    padding-block: clamp(2rem, 5vw, 5rem);
+  }
+
+  .not-found__code {
+    margin: 0;
+    font-size: clamp(9rem, 25vw, 25rem);
+    line-height: .78;
+    letter-spacing: -.09em;
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .not-found__heading h1 {
+    margin: clamp(1.5rem, 3vw, 3rem) 0 0;
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: clamp(2rem, 5vw, 5.8rem);
+    letter-spacing: -.055em;
+    line-height: 1;
+    color: var(--ink);
+  }
+
+  .not-found__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 1.5rem 2.5rem;
+    padding-top: clamp(1.5rem, 2.5vw, 2.5rem);
+    border-top: 1px solid var(--line);
+  }
+
+  .not-found__bottom p {
+    margin: 0;
+    max-width: 34ch;
+    color: var(--muted);
+    font-size: var(--step-0);
+    line-height: 1.5;
+  }
+
+  .not-found__link {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    min-height: 44px;
+  }
+
+  .not-found__link:focus-visible {
+    outline: 2px solid var(--accent-text);
+    outline-offset: 4px;
+  }
+
+  @media (max-width: 767px) {
+    .not-found {
+      min-height: 85svh;
+      padding-top: calc(var(--mobile-header-height, 6.5rem) + 3rem);
+      padding-bottom: 3rem;
+    }
+
+    .not-found__code {
+      font-size: clamp(8.5rem, 37vw, 19rem);
+    }
+
+    .not-found__heading h1 {
+      font-size: clamp(2.2rem, 10vw, 4rem);
+    }
+
+    .not-found__bottom {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+  }
+</style>
