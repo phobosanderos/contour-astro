@@ -493,19 +493,6 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
 .cursor.is-hover .cursor__label{top:-6px;left:30px;color:var(--accent-text)}
 
 
-/* manifesto */
-.wf{font:inherit;letter-spacing:inherit}
-.wf-row{display:block;position:relative}
-.wf-line{display:block;position:relative;width:fit-content;max-width:100%;white-space:nowrap}
-.wf-solid{position:absolute;inset:0;clip-path:inset(-.35em 0 -.45em);will-change:clip-path}
-.wf-solid__inner{display:block}
-.wf-dim{position:absolute;top:.6em;right:0;color:var(--accent-text)}
-.wf-row:nth-of-type(2) .wf-line{margin-left:8vw}
-.wf-row:nth-of-type(3) .wf-line{margin-left:16vw}
-.manifesto__body{margin-top:clamp(48px,7vw,112px)}
-.manifesto__body p{grid-column:7/-1}
-@media (max-width:767px){.wf-line{white-space:normal;font-size:var(--step-3)}.wf-row:nth-of-type(n) .wf-line{margin-left:0}.wf-dim{display:none}.manifesto__body p{grid-column:1/-1}}
-
 /* ---------------------------------------------------------
    WORK · FEATURED PROJECTS
    --------------------------------------------------------- */
@@ -1579,25 +1566,6 @@ html.has-cursor .project-lightbox a{
     color var(--dur-1);
 }
 html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot] .service__arrow{color:var(--accent-text);transform:translateX(3px)}
-
-/* process */
-.process__claim{max-width:18ch;margin-bottom:clamp(3rem,6vw,5rem)}
-.process__line{height:1px;background:var(--ink);transform-origin:0}
-.process{row-gap:2.5rem}
-.step{position:relative;grid-column:span 3;padding-top:1.5rem}
-.step__dot{position:absolute;top:-5px;left:0;width:9px;height:9px;border-radius:99px;background:var(--accent)}
-.step__title{font-size:var(--step-1);margin:.6rem 0 .5rem}
-.step__body{max-width:30ch;color:var(--muted)}
-
-/* notes */
-.posts{border-bottom:1px solid var(--line)}
-.posts li{border-top:1px solid var(--line)}
-.post{align-items:baseline;row-gap:.4rem;padding-block:1.6rem}
-.post__date{grid-column:1/span 2}
-.post__title{grid-column:3/span 7;transition:transform var(--dur-2) var(--ease-in-out),color var(--dur-1)}
-.post__pillar{grid-column:11/span 2;justify-self:end}
-.post:hover .post__title{color:var(--accent-text);transform:translateX(1rem)}
-
 
 /* contact */
 .cta {
