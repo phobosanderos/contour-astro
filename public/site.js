@@ -353,12 +353,7 @@ history.replaceState(history.state, "", "#" + id);
       G.set(up, { autoAlpha: 0, y: 48, force3D: true });
       ST.batch(up, { start: "top 88%", once: true, onEnter: function (els) { G.to(els, { autoAlpha: 1, y: 0, duration: 1.3, ease: "power3.out", stagger: .09, overwrite: true, clearProps: "transform,opacity,visibility" }); } });
     }
-    $$("[data-wireframe]").forEach(function (sec) {
-      var tl = G.timeline({ defaults: { ease: "none" }, scrollTrigger: { trigger: sec, start: "top 65%", end: "bottom 60%", scrub: true } });
-      tl.fromTo($$("[data-wf-solid]", sec), { clipPath: "inset(-0.35em 100% -0.45em 0em)" }, { clipPath: "inset(-0.35em 0% -0.45em 0em)", stagger: .6 });
-      tl.to($$("[data-wf-note]", sec), { opacity: .15 }, .4);
-    });
-    $$("[data-draw]").forEach(function (el) { G.fromTo(el, { scaleX: 0 }, { scaleX: 1, transformOrigin: "left center", ease: P4, scrollTrigger: { trigger: el, start: "top 90%", end: "top 45%", scrub: true } }); });
+
   }
 
 /* ---------- boot ---------- */
