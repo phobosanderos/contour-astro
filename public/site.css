@@ -4144,3 +4144,87 @@ body:has(.project-page) .site-footer {
   .project-next-nav{padding-top:clamp(.8rem,1.8vw,1.5rem);padding-bottom:clamp(.8rem,1.4vw,1.25rem)}
   body:has(.project-page) .site-footer{padding-top:clamp(.75rem,1.2vw,1.2rem)}
 }
+
+/* 2026-11-10: targeted mobile refinements. Desktop presentation is unchanged. */
+@media (max-width:767px) {
+  /* A small increase, retaining single-line titles and existing gutters. */
+  .project-intro__title {
+    font-size:clamp(1.75rem,8.7vw,3.9rem);
+  }
+
+  /* Let both contact actions share the available row width around OR. */
+  #contact .fg-row {
+    display:grid;
+    grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);
+    align-items:center;
+    justify-content:stretch;
+    column-gap:clamp(.45rem,2.4vw,.85rem);
+    row-gap:.65rem;
+    width:100%;
+  }
+  #contact .fg-row .cta__button[type="submit"],
+  #contact .fg-row .fg-mail {
+    display:inline-flex;
+    width:100%;
+    min-width:0;
+    max-width:100%;
+    height:50px;
+    min-height:50px;
+    padding-inline:clamp(.45rem,2.4vw,.85rem);
+    font-size:clamp(12px,3.4vw,14px);
+    white-space:nowrap;
+    justify-content:center;
+  }
+  #contact .fg-row .fg-or {
+    font-size:clamp(12px,3.3vw,14px);
+    white-space:nowrap;
+    justify-self:center;
+  }
+  #contact .fg-row [data-status],
+  #contact .fg-row [data-form-fallback],
+  #contact .fg-row .fg-sent:not([hidden]) {
+    grid-column:1 / -1;
+    min-width:0;
+  }
+}
+@media (max-width:380px) {
+  .project-intro__title { font-size:8.2vw; }
+}
+
+/* On touchscreens, a tap must not leave a simulated mouse-hover state.
+   Keep explicit selected states and :focus-visible keyboard affordances. */
+@media (hover:none) and (pointer:coarse) {
+  .btn:hover::before { transform:translateY(101%);border-radius:50% 50% 0 0; }
+  .btn:hover { color:var(--btn-fg); }
+  .btn:hover .ui-icon.arrow,
+  .btn:hover .arrow { transform:none; }
+
+  .nav__link:hover .nav__label { transform:none; }
+  .nav__link:hover .nav__label::after { transform:none; }
+  .mobile-nav a:hover:not([aria-current]) { color:var(--ink); }
+  .project-filter:hover:not(.is-active) { color:var(--ink); }
+  .archive-filter:hover:not(.is-active) { color:var(--ink); }
+  .archive-filter:hover:not(.is-active)::after { transform:scaleX(0); }
+
+  .service__link:hover,
+  .service__link[data-hot] { color:var(--ink); }
+  .service__link:hover::before,
+  .service__link[data-hot]::before { transform:scaleY(0); }
+  .service__link:hover .note,
+  .service__link[data-hot] .note { color:var(--muted); }
+  .service__link:hover .service__arrow,
+  .service__link[data-hot] .service__arrow {
+    color:var(--accent);
+    transform:none;
+  }
+  body:has(#services .service:last-child .service__link:hover) #contact > .section-head,
+  body:has(#services .service:last-child .service__link:hover) #contact > .section-head .note {
+    color:var(--ink);
+  }
+
+  .tool:hover { box-shadow:inset 0 0 0 1px var(--line-strong); }
+  #contact .cta__button--outline:hover {
+    color:var(--ink);
+    border-color:var(--line-strong);
+  }
+}
