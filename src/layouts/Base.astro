@@ -58,34 +58,26 @@ const buildStamp = Date.now();
     <meta name="twitter:image" content={ogImage}>
     <meta name="twitter:image:alt" content={imageAlt}>
     {structuredData && <script type="application/ld+json" set:html={JSON.stringify(structuredData).replace(/</g, "\\u003c")} />}
-    <!-- One favicon source: dark in light theme and light in dark theme. Default is legible in dark browser previews. -->
-    <link rel="icon" type="image/svg+xml" href="/img/favicon-light.svg?v=2" id="site-favicon">
-
-
+    <!-- Raster icons support Safari's iPhone tab bar and Apple home-screen UI. -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32-light.png?v=4" id="site-favicon">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon-180-light.png?v=4" id="site-apple-touch-icon">
     <script is:inline>
       function updateFavicon() {
         const root = document.documentElement;
         const darkMode = root.dataset.theme === "dark" ||
           (!root.dataset.theme && window.matchMedia("(prefers-color-scheme: dark)").matches);
-
+        const scheme = darkMode ? "dark" : "light";
         const favicon = document.getElementById("site-favicon");
-        if (favicon) {
-          const path = darkMode ? "/img/favicon-light.svg?v=2" : "/img/favicon-dark.svg?v=2";
-          if (favicon.getAttribute("href") !== path) favicon.setAttribute("href", path);
-        }
+        const touchIcon = document.getElementById("site-apple-touch-icon");
+        const iconPath = `/img/favicon-32-${scheme}.png?v=4`;
+        const touchPath = `/img/favicon-180-${scheme}.png?v=4`;
+        if (favicon && favicon.getAttribute("href") !== iconPath) favicon.setAttribute("href", iconPath);
+        if (touchIcon && touchIcon.getAttribute("href") !== touchPath) touchIcon.setAttribute("href", touchPath);
       }
-
       updateFavicon();
-
-      const observer = new MutationObserver(() => {
-        updateFavicon();
+      new MutationObserver(updateFavicon).observe(document.documentElement, {
+        attributes: true, attributeFilter: ["data-theme"]
       });
-
-      observer.observe(document.documentElement, {
-        attributes: true,
-        attributeFilter: ["data-theme"]
-      });
-
       window.matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", updateFavicon);
     </script>
 
