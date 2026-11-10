@@ -251,21 +251,6 @@ if (pc && ring && preloader && !root.dataset.preloaded) {
   root.dataset.preloaded = "true";
 }
    
-  /* ---------- footer title block: 9 → 0 as each cell enters ---------- */
-  function tbCount() {
-    if (!("IntersectionObserver" in window)) return;
-    $$(".tb__val").forEach(function (v, i) {
-      var span = $("span", v) || v, end = span.textContent, done = false;
-      new IntersectionObserver(function (es, ob) {
-        if (!es[0].isIntersecting || done) return; done = true; ob.disconnect();
-        var n = 9, step = function () { span.textContent = String(n); if (n-- > +end) setTimeout(step, 70); };
-        setTimeout(step, i * 150);
-      }, { threshold: 1 }).observe(v);
-    });
-  }
-  if (!reduce) tbCount();
-
-
   formInit();
 
   var G = window.gsap, ST = window.ScrollTrigger, Split = window.SplitText;
