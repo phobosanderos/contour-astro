@@ -82,7 +82,7 @@
   var EMAIL = (($("a[href^='mailto:']") || {}).href || "").replace("mailto:", "");
   var store = { get: function (k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set: function (k, v) { try { localStorage.setItem(k, v); } catch (e) {} } };
 
-  /* ---------- theme and grid ---------- */
+  /* ---------- theme ---------- */
   function themeColor() { var m = $("meta[name=theme-color]"); if (m) m.setAttribute("content", getComputedStyle(root).getPropertyValue("--bg").trim()); }
   function syncToggleNames() {
     var themeButton = $('[data-action="theme"]');
@@ -93,7 +93,6 @@
     }
   }
   function toggleTheme() { var t = root.dataset.theme === "dark" ? "light" : "dark"; root.dataset.theme = t; store.set("ct-theme", t); themeColor(); syncToggleNames(); }
-  function toggleGrid() { root.dataset.grid = root.dataset.grid === "on" ? "off" : "on"; }
   themeColor();
   syncToggleNames();
 
@@ -124,7 +123,6 @@
     var ct = doc.getElementById("contact");
     if (ct && !$$(".nav a[href]").some(function (a) { return a.hash === "#contact"; })) { var fake = doc.createElement("a"); fake.href = "#contact"; palItems.push({ group: "Go to", label: "Contact", hint: "#contact", run: go(fake) }); }
     palItems.push({ group: "Do", label: "Toggle light / dark", hint: "theme", run: toggleTheme });
-    palItems.push({ group: "Do", label: "Show the grid", hint: "G", run: function () { toggleGrid(); pal.close(); } });
     if (EMAIL) palItems.push({ group: "Do", label: "Copy email address", hint: EMAIL, run: function () { if (navigator.clipboard) navigator.clipboard.writeText(EMAIL); pal.close(); } });
     var input = $("input", pal);
     input.addEventListener("input", function () { palSel = 0; filter(input.value); });
@@ -166,12 +164,10 @@
   doc.addEventListener("click", function (e) {
     var t = e.target.closest("[data-action]"); if (!t) return;
     var a = t.dataset.action;
-    if (a === "theme") toggleTheme(); else if (a === "grid") toggleGrid();
+    if (a === "theme") toggleTheme();
   });
   doc.addEventListener("keydown", function (e) {
-    var tag = (e.target.tagName || "");
     if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") { e.preventDefault(); openPalette(); return; }
-    if (!e.metaKey && !e.ctrlKey && e.code === "KeyG" && tag !== "INPUT" && tag !== "TEXTAREA" && tag !== "SELECT") { e.preventDefault(); toggleGrid(); }
   });
 
   /* ---------- header: compact band, ruler draw, progress tag ---------- */
