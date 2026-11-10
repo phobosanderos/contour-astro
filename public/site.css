@@ -1503,14 +1503,6 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   text-wrap: balance;
 }
 
-.cta__actions {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: .75rem;
-  margin-top: clamp(1.5rem, 3vw, 2.5rem);
-}
-
 
 
 /* The open form expands naturally and pushes the footer down. */
@@ -1672,14 +1664,6 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
     z-index: 1;
     max-width: 9ch;
     font-size: clamp(2.8rem, 11vw, 4.6rem);
-  }
-
-  .cta__actions {
-    position: relative;
-    z-index: 2;
-    align-items: flex-start;
-    flex-direction: column;
-    margin-top: 1.5rem;
   }
 
 
@@ -2532,26 +2516,6 @@ html.has-cursor dialog.info-dialog a {
   white-space: nowrap;
   text-wrap: nowrap;
 }
-#contact .cta__stack {
-  grid-column: 8 / -1;
-  grid-row: 1;
-  align-self: stretch;
-  min-width: 0;
-}
-#contact .cta__stack-inner {
-  display: flex;
-  flex-direction: column;
-  min-height: calc(1.8 * clamp(3rem, 5.8vw, 6.8rem));
-  padding-top: .35rem;
-}
-
-#contact .cta__actions {
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  gap: .75rem;
-  margin: 0;
-}
 #contact .cta__button {
   display: inline-flex;
   width: 100%;
@@ -2573,30 +2537,6 @@ html.has-cursor dialog.info-dialog a {
   text-transform: none;
   text-align: left;
   white-space: nowrap;
-}
-#contact .cta__button-icon {
-  display: inline-grid;
-  flex: 0 0 1.15em;
-  width: 1.15em;
-  height: 1.15em;
-  place-items: center;
-  line-height: 1;
-  font-size: 1em;
-  transform: none;
-}
-#contact .cta__button:hover .cta__button-icon,
-#contact .cta__button:focus-visible .cta__button-icon {
-  transform: none;
-}
-#contact .cta__toggle .cta__arrow {
-  display: inline-block;
-  transform: rotate(0deg);
-  transition: transform var(--dur-1) var(--ease-out);
-}
-#contact .cta__toggle:hover .cta__arrow,
-#contact .cta__toggle:focus-visible .cta__arrow,
-#contact.is-brief-open:not(.is-sent) .cta__toggle .cta__arrow {
-  transform: rotate(45deg);
 }
 #contact .cta__button--outline {
   --btn-bg: transparent;
@@ -2621,15 +2561,6 @@ html.has-cursor dialog.info-dialog a {
   opacity: .65;
   cursor: wait;
   transform: none;
-}
-#contact .cta__reply {
-  margin-top: auto;
-  font-family: var(--font-mono);
-  font-size: .72rem;
-  line-height: 1.4;
-  letter-spacing: .02em;
-  text-transform: uppercase;
-  color: var(--ink);
 }
 #contact .cta__expanded {
   display: block;
@@ -2696,18 +2627,10 @@ html.has-cursor dialog.info-dialog a {
     grid-column: auto;
     grid-row: auto;
   }
-  #contact .cta__stack-inner,
-  #contact.is-brief-open .cta__stack-inner {
-    position: static;
-    min-height: 0;
-    padding: 0;
-  }
-  #contact .cta__reply { margin-top: var(--col-gap); }
   #contact .cta__title {
     font-size: clamp(2rem, 5.15vw, 3.8rem);
     white-space: nowrap;
   }
-  #contact .cta__actions { max-width: 28rem; }
   #contact { --contact-copy-size: var(--step-1); }
   #contact .cta__expanded { margin-top: var(--col-gap); }
 }
@@ -2730,15 +2653,6 @@ html.has-cursor dialog.info-dialog a {
   #contact .cta__toggle .cta__arrow {
     transition: none;
   }
-}
-
-
-/* Open contact: full-width compact form and distinct action state. */
-#contact.is-brief-open:not(.is-sent) .cta__toggle {
-  --btn-bg: var(--accent);
-  --btn-fg: var(--accent-ink);
-  background: var(--accent);
-  color: var(--accent-ink);
 }
 #contact .cta__expanded { min-width: 0; }
 #contact .fg-fields {
@@ -3395,11 +3309,6 @@ body:has(.project-page) .site-footer {
   #contact .fg-row .fg-or{
     flex:0 0 auto;
     font-size:max(12px,.72rem);
-  }
-  #contact .fg-row .cta__button-icon{
-    flex:0 0 1em;
-    width:1em;
-    height:1em;
   }
   #contact .fg-row [data-status],
   #contact .fg-row [data-form-fallback],
