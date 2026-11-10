@@ -2079,40 +2079,6 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
 }
 
 
-/* Slightly enlarge the contact particle sphere */
-
-
-@media (max-width: 767px) {
-
-}
-
-
-/* Move the complete contact section upwards when the brief opens */
-
-
-/* Keep the [06] label and its line together */
-
-
-/* Preserve the original headline size */
-
-
-/* Bring the form closer to the intro without shrinking it */
-
-
-/* Move only the Send the brief button down */
-
-
-/* Mobile adjustments */
-@media (max-width: 767px) {
-  
-
-
-
-  
-
-  
-}
-
 /* Services: retain the existing row interaction with button controls */
 .service__link {
   width: 100%;
