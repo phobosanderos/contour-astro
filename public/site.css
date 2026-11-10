@@ -2088,39 +2088,27 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
 
 
 /* Move the complete contact section upwards when the brief opens */
-.cta.is-brief-open {
-  padding-top: 1rem;
-}
+
 
 /* Keep the [06] label and its line together */
 
 
 /* Preserve the original headline size */
-.cta.is-brief-open .cta__intro {
-  transform: none;
-}
+
 
 /* Bring the form closer to the intro without shrinking it */
-.cta.is-brief-open .cta__expanded {
-  margin-top: 0.5rem;
-  padding-top: 0.75rem;
-}
+
 
 /* Move only the Send the brief button down */
 
 
 /* Mobile adjustments */
 @media (max-width: 767px) {
-  .cta.is-brief-open {
-    padding-top: 0.75rem;
-  }
+  
 
 
 
-  .cta.is-brief-open .cta__expanded {
-    margin-top: 0.5rem;
-    padding-top: 0.75rem;
-  }
+  
 
   
 }
