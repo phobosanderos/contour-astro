@@ -11,7 +11,7 @@ import ServiceOverlays from "../../components/ServiceOverlays.astro";
 <title>Privacy | Phobos &amp; Eros</title>
 <meta name="description" content="How the contact form on this site uses your details.">
 <meta name="robots" content="noindex">
-<link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32-light.png?v=4" id="site-favicon">
+<link rel="icon" type="image/svg+xml" href="/img/favicon-dark.svg?v=5" id="site-favicon">
 <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon-180-light.png?v=4" id="site-apple-touch-icon">
 
 <link rel="stylesheet" href="/site.css">
@@ -78,7 +78,7 @@ body {
     const touchIcon = document.getElementById("site-apple-touch-icon");
     const updateFavicon = () => {
       const scheme = root.dataset.theme === "dark" ? "dark" : "light";
-      if (favicon) favicon.href = `/img/favicon-32-${scheme}.png?v=4`;
+      if (favicon) favicon.href = scheme === "dark" ? "/img/favicon-light.svg?v=5" : "/img/favicon-dark.svg?v=5";
       if (touchIcon) touchIcon.href = `/img/favicon-180-${scheme}.png?v=4`;
     };
     const observer = new MutationObserver(updateFavicon);
