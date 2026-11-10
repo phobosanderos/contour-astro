@@ -1878,11 +1878,7 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
 }
 
 /* Make the headline closer to its original scale, but slightly smaller */
-.cta__title {
-  font-size: clamp(3.3rem, 9.5vw, 12rem);
-  line-height: 0.88;
-  letter-spacing: -0.055em;
-}
+
 
 /* Reduce excess vertical space in the opening row */
 .cta__intro {
@@ -1963,12 +1959,7 @@ html:not(.fill-js) .service__link:hover .service__arrow,.service__link[data-hot]
   }
 }
 /* Final contact refinements */
-.cta__title {
-  max-width: 10ch;
-  font-size: clamp(3.2rem, 7.2vw, 8.5rem);
-  line-height: 0.9;
-  letter-spacing: -0.055em;
-}
+
 
 @media (max-width: 767px) {
   .cta__title {
