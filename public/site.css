@@ -164,18 +164,7 @@ body::after{right:calc(var(--gutter)/2)}
 .link:hover{background-size:100% 1px}
 .link--inline{background-image:linear-gradient(color-mix(in oklab,currentColor 45%,transparent),color-mix(in oklab,currentColor 45%,transparent));background-size:100% 1px}
 .link--inline:hover{background-image:linear-gradient(currentColor,currentColor)}
-.outline-text{color:transparent;-webkit-text-stroke:1px var(--line-strong)}
 kbd{font-family:inherit;box-shadow:inset 0 0 0 1px var(--line-strong);color:var(--ink);border-radius:4px;padding:.05em .4em}
-
-/* monogram */
-.monogram{display:block;width:auto;height:1em;overflow:visible}
-.monogram path{fill:none;stroke:currentColor;stroke-width:4.2px;stroke-linecap:square;stroke-linejoin:miter;stroke-dasharray:1;stroke-dashoffset:0}
-.monogram__dot{fill:var(--accent);transition:fill var(--dur-1) var(--ease-out)}
-.monogram.is-plotting path{animation:plot var(--dur-3) var(--ease-in-out) both}
-.monogram.is-plotting .monogram__g{animation-delay:.18s}
-.monogram.is-plotting .monogram__dot{animation:pop var(--dur-1) var(--ease-out) .9s both}
-@keyframes plot{0%{stroke-dashoffset:1px}}
-@keyframes pop{0%{transform-origin:64px 36px;transform:scale(0)}}
 
 /* preloader */
 :root{
@@ -471,12 +460,6 @@ html:not(.js) .preloader{
 .palette__group{padding:.9rem .75rem .35rem}
 .palette__empty{padding:1rem .75rem}
 @media (max-width:560px){.palette__list [role=option]{flex-direction:column;gap:.15rem}.palette__list [role=option]>.note{max-width:100%}}
-
-/* grid overlay */
-.grid-overlay{position:fixed;inset:0;z-index:90;padding-inline:var(--gutter);pointer-events:none;opacity:0;transition:opacity var(--dur-1) var(--ease-out)}
-.grid-overlay>div{height:100%}
-.grid-overlay span{background:color-mix(in oklab,var(--accent) 9%,transparent);border-inline:1px solid color-mix(in oklab,var(--accent) 35%,transparent)}
-:root[data-grid=on] .grid-overlay{opacity:1}
 
 /* cursor */
 html.has-cursor,html.has-cursor *{cursor:none!important}
