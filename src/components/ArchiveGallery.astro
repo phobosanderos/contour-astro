@@ -16,7 +16,6 @@ const imageFor = item => item.cover || first(item)?.poster || (first(item)?.type
 <div class="work__archive" id="archive">
   <header class="section-head work__archive-head">
     <span class="note note--ink">THE ARCHIVE</span>
-    <span class="note" data-archive-count>{archive.length} PROJECTS</span>
     <span class="sr-only" role="status" aria-live="polite" aria-atomic="true" data-archive-count-live>{archive.length} PROJECTS</span>
   </header>
 
@@ -114,7 +113,6 @@ const imageFor = item => item.cover || first(item)?.poster || (first(item)?.type
   const counterEl = $('[data-archive-counter]', dialog);
   const prevEl = $('[data-archive-prev]', dialog);
   const nextEl = $('[data-archive-next]', dialog);
-  const countEl = $('[data-archive-count]');
   const countLiveEl = $('[data-archive-count-live]');
   const typeSelect = $('[data-archive-type]');
   const clearButton = $('[data-archive-clear]');
@@ -151,7 +149,6 @@ const imageFor = item => item.cover || first(item)?.poster || (first(item)?.type
     });
     const filtered = activeSource !== "client" || activeType !== "all";
     const text = filtered ? `${visible} OF ${total} PROJECTS` : `${total} PROJECTS`;
-    countEl.textContent = text;
     countLiveEl.textContent = text;
     clearButton.hidden = !filtered;
     emptyEl.hidden = visible !== 0;
