@@ -4,12 +4,23 @@ on:
   push:
     branches: [main]
     paths:
-      - 'scripts/generate-og.py'
-      - 'public/fonts/geist-mono-latin.woff2'
-      - 'public/img/favicon-light.svg'
-      - 'public/img/og-home-v2.png'
+      - 'scripts/generate-og-image.mjs'
+      - 'public/img/og-home-v4.svg'
+      - 'public/img/og-home-v4.png'
       - 'src/pages/index.astro'
       - 'src/layouts/Base.astro'
+      - 'package.json'
+      - 'package-lock.json'
+      - '.github/workflows/refresh-og.yml'
+  pull_request:
+    paths:
+      - 'scripts/generate-og-image.mjs'
+      - 'public/img/og-home-v4.svg'
+      - 'public/img/og-home-v4.png'
+      - 'src/pages/index.astro'
+      - 'src/layouts/Base.astro'
+      - 'package.json'
+      - 'package-lock.json'
       - '.github/workflows/refresh-og.yml'
   workflow_dispatch:
 
@@ -21,13 +32,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-node@v4
         with:
-          python-version: '3.12'
-      - name: Install image generation dependencies
-        run: python -m pip install Pillow fonttools brotli cairosvg
+          node-version: '24'
+          cache: npm
+      - run: npm ci
       - name: Regenerate and verify social card
         run: |
-          python scripts/generate-og.py
-          git diff --exit-code -- public/img/og-home-v2.png src/pages/index.astro src/layouts/Base.astro
-          test -s public/img/og-home-v2.png
+          node scripts/generate-og-image.mjs
+          git diff --exit-code -- public/img/og-home-v4.png
+          test -s public/img/og-home-v4.png

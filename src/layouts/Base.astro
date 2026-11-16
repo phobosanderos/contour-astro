@@ -1,14 +1,17 @@
 ---
 import c from "../content.json";
 
+const defaultSocialImage = "/img/og-home-v4.png";
+
 const {
   title = c.site.title,
   description = c.site.description,
   canonicalPath = Astro.url.pathname,
-  image = "/img/og-home-v3.png",
+  image = defaultSocialImage,
   imageAlt = "Vipul M.R — Phobos & Eros visual design and motion portfolio",
-  imageWidth,
-  imageHeight,
+  imageWidth = image === defaultSocialImage ? 2400 : undefined,
+  imageHeight = image === defaultSocialImage ? 1260 : undefined,
+  imageType = image === defaultSocialImage ? "image/png" : undefined,
   homepage = false,
   robots = "index, follow"
 } = Astro.props;
@@ -49,6 +52,7 @@ const buildStamp = Date.now();
     <meta property="og:type" content="website">
     <meta property="og:url" content={canonical}>
     <meta property="og:image" content={ogImage}>
+    {imageType && <meta property="og:image:type" content={imageType} />}
     {imageWidth && <meta property="og:image:width" content={String(imageWidth)} />}
     {imageHeight && <meta property="og:image:height" content={String(imageHeight)} />}
     <meta property="og:image:alt" content={imageAlt}>
