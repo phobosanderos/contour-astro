@@ -489,6 +489,22 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
   margin-bottom:clamp(2.5rem,5vw,4.5rem);
 }
 
+/* Portfolio confidentiality notice below the Featured projects divider. */
+#work .work__confidentiality-note{
+  max-width:82ch;
+  margin:calc(-1 * clamp(2.5rem,5vw,4.5rem) + clamp(1rem,2vw,1.5rem)) 0 clamp(1.75rem,3vw,2.75rem);
+  color:var(--muted);
+  font-size:var(--step--1);
+  line-height:1.6;
+  text-wrap:pretty;
+}
+@media(max-width:767px){
+  #work .work__confidentiality-note{
+    margin-top:calc(-2.5rem + 1rem);
+    margin-bottom:1.75rem;
+  }
+}
+
 .featured-projects{
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
