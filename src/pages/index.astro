@@ -31,7 +31,9 @@ import SectionFooter from "../components/SectionFooter.astro";
         </div>
         <p>Hi, I'm Vipul, a visual designer based in India. Thank you for taking the time to explore my work. It genuinely means a lot.</p>
 
-        <p>I've always been fascinated by how things look and the emotions they evoke. Growing up, I often experienced life more as a spectator, which taught me to appreciate the little details. I think that's where my interest in design began and now this is where it got me. So, I hope you enjoy going through my work.</p>
+        <p>I've always been fascinated by how things look and the emotions they evoke. Growing up, I often experienced life more as a spectator, which taught me to appreciate the little details. I think that's where my interest in design began.</p>
+
+        <p>I've worked across campaigns, identities, editorial design, social content and motion. I enjoy experimenting across different mediums and hope to collaborate with people who aren't afraid to try something unconventional. There's still a lot I want to learn and create. I hope you enjoy my work.</p>
       </div>
     </section>
     <script is:inline>
@@ -53,7 +55,8 @@ import SectionFooter from "../components/SectionFooter.astro";
             const textHeight = Math.max(0, last.bottom - first.top);
             const mobile = window.matchMedia("(max-width: 767px)").matches;
             const available = copyWidth * (mobile ? 0.38 : 0.36);
-            const size = Math.max(80, Math.min(textHeight, available, 460));
+            // Do not let the float outgrow the text column and reserve empty space below.
+            const size = Math.min(textHeight, available, 240);
             const previous = parseFloat(mark.style.getPropertyValue("--about-mark-size")) || 0;
             if (Math.abs(previous - size) > 1) mark.style.setProperty("--about-mark-size", size + "px");
           });
