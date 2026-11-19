@@ -477,6 +477,41 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
 
 
 /* ---------------------------------------------------------
+   ABOUT · HOME INTRODUCTION
+   --------------------------------------------------------- */
+#main > .about:first-child{
+  padding-top:calc(4.5rem + clamp(1rem,2.5vw,2rem));
+}
+.about__head{
+  margin-bottom:var(--home-divider-content-gap,clamp(1rem,2vw,1.75rem));
+}
+.about__copy{
+  max-width:82ch;
+  color:var(--ink);
+  opacity:.8;
+  font-size:var(--step-0);
+  font-weight:400;
+  line-height:1.55;
+}
+.about__copy p + p{
+  margin-top:1.25rem;
+}
+.about + .work{
+  padding-top:clamp(3.5rem,6vw,6rem);
+}
+@media(max-width:767px){
+  #main > .about:first-child{
+    padding-top:calc(var(--mobile-header-height,4.5rem) + clamp(1rem,2.5vw,2rem));
+  }
+  .about__copy p + p{
+    margin-top:1rem;
+  }
+  .about + .work{
+    padding-top:clamp(3rem,7vw,4.5rem);
+  }
+}
+
+/* ---------------------------------------------------------
    WORK · FEATURED PROJECTS
    --------------------------------------------------------- */
 
