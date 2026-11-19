@@ -571,7 +571,7 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
 .about__copy p + p{
   margin-top:1.25rem;
 }
-.about + .work{
+#main > .about ~ .work{
   padding-top:var(--home-divider-content-gap,clamp(1rem,2vw,1.75rem));
 }
 @media(max-width:767px){
@@ -581,7 +581,7 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
   .about__copy p + p{
     margin-top:1rem;
   }
-  .about + .work{
+  #main > .about ~ .work{
     padding-top:var(--home-divider-content-gap,clamp(1rem,2vw,1.75rem));
   }
 }
