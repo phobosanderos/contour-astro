@@ -283,10 +283,21 @@ lenis.scrollTo(t, {
   duration: 0.9,
 });
 
-history.replaceState(history.state, "", "#" + id);
+// Keep the browser URL clean: in-page scrolling is not a distinct route.
+      history.replaceState(history.state, "", location.pathname + location.search);
       if (!t.matches("a[href],button,input,select,textarea,[tabindex]")) t.setAttribute("tabindex", "-1");
       t.focus({ preventScroll: true });
     }, true);
+  }
+
+  // Links returning from project pages may arrive as /#work. Preserve the
+  // initial anchor jump, then remove the fragment without changing scroll.
+  if (location.hash && doc.getElementById(decodeURIComponent(location.hash.slice(1)))) {
+    window.addEventListener("load", function () {
+      requestAnimationFrame(function () {
+        history.replaceState(history.state, "", location.pathname + location.search);
+      });
+    }, { once: true });
   }
 
   var EXPO = "expo.out", P4 = "power4.inOut";
