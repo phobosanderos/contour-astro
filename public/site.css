@@ -499,7 +499,7 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
 }
 /* The floated mark lets paragraphs reflow beside its circular silhouette. */
 .about__mark{
-  --about-mark-size:6rem;
+  --about-mark-size:min(28vw,340px);
   float:right;
   position:relative;
   width:var(--about-mark-size);
