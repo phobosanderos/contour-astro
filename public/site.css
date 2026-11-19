@@ -530,7 +530,7 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
   position:absolute;
   inset:0;
   backface-visibility:visible;
-  transform:translateZ(calc((var(--layer) - 4) * 1.8px));
+  transform:translateZ(var(--depth));
 }
 .about__mark-layer:first-child,
 .about__mark-layer:last-child{
