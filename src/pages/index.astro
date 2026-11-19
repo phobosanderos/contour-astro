@@ -46,11 +46,14 @@ import SectionFooter from "../components/SectionFooter.astro";
           cancelAnimationFrame(frame);
           frame = requestAnimationFrame(() => {
             const copyWidth = copy.getBoundingClientRect().width;
-            // Match the height of the revised second paragraph, not the whole section.
-            const paragraphHeight = paragraphs[1] ? paragraphs[1].getBoundingClientRect().height : paragraphs[0].getBoundingClientRect().height;
+            // Size against the complete About text: first line of the first
+            // paragraph through the final line of the last paragraph.
+            const first = paragraphs[0].getBoundingClientRect();
+            const last = paragraphs[paragraphs.length - 1].getBoundingClientRect();
+            const textHeight = Math.max(0, last.bottom - first.top);
             const mobile = window.matchMedia("(max-width: 767px)").matches;
             const available = copyWidth * (mobile ? 0.38 : 0.36);
-            const size = Math.min(paragraphHeight, available);
+            const size = Math.max(80, Math.min(textHeight, available, 460));
             const previous = parseFloat(mark.style.getPropertyValue("--about-mark-size")) || 0;
             if (Math.abs(previous - size) > 1) mark.style.setProperty("--about-mark-size", size + "px");
           });
