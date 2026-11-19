@@ -55,7 +55,8 @@ import SectionFooter from "../components/SectionFooter.astro";
             const textHeight = Math.max(0, last.bottom - first.top);
             const mobile = window.matchMedia("(max-width: 767px)").matches;
             const available = copyWidth * (mobile ? 0.38 : 0.36);
-            const size = Math.max(80, Math.min(textHeight, available, 460));
+            // Do not let the float outgrow the text column and reserve empty space below.
+            const size = Math.min(textHeight, available, 240);
             const previous = parseFloat(mark.style.getPropertyValue("--about-mark-size")) || 0;
             if (Math.abs(previous - size) > 1) mark.style.setProperty("--about-mark-size", size + "px");
           });
