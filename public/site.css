@@ -497,6 +497,77 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
 .about__copy p{
   text-wrap:wrap;
 }
+/* The floated mark lets paragraphs reflow beside its circular silhouette. */
+.about__mark{
+  --about-mark-size:min(28vw,340px);
+  float:right;
+  position:relative;
+  width:var(--about-mark-size);
+  height:var(--about-mark-size);
+  margin:0 0 .5rem clamp(1rem,3vw,3rem);
+  shape-outside:circle(49% at 50% 50%);
+  shape-margin:clamp(.4rem,1vw,1rem);
+  perspective:1100px;
+  pointer-events:none;
+  user-select:none;
+}
+.about__mark-float{
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  animation:about-mark-float 5.5s ease-in-out infinite;
+}
+.about__mark-rotor{
+  position:relative;
+  width:94%;
+  height:94%;
+  transform-style:preserve-3d;
+  animation:about-mark-spin 16s linear infinite;
+  will-change:transform;
+}
+.about__mark-layer{
+  position:absolute;
+  inset:0;
+  backface-visibility:visible;
+  transform:translateZ(var(--depth));
+}
+.about__mark-layer:first-child,
+.about__mark-layer:last-child{
+  filter:drop-shadow(0 2px 1px rgb(0 0 0 / .06));
+}
+.about__mark-icon{
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+.about__mark-icon--dark{display:none}
+:root[data-theme=dark] .about__mark-icon--light{display:none}
+:root[data-theme=dark] .about__mark-icon--dark{display:block}
+@keyframes about-mark-spin{
+  from{transform:rotateY(0deg) rotateX(-12deg)}
+  to{transform:rotateY(360deg) rotateX(-12deg)}
+}
+@keyframes about-mark-float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-8px)}
+}
+@media(max-width:767px){
+  .about__mark{
+    --about-mark-size:38vw;
+    margin-left:clamp(.65rem,3vw,1rem);
+    shape-margin:.35rem;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .about__mark-rotor{
+    animation:none;
+    transform:rotateY(-19deg) rotateX(-12deg);
+    will-change:auto;
+  }
+  .about__mark-float{animation:none}
+}
 .about__copy p + p{
   margin-top:1.25rem;
 }
