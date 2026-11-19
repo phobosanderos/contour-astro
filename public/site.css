@@ -624,6 +624,10 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
 
 .featured-card__title{
   margin:0;
+  min-width:0;
+  font-size:clamp(1.5rem,1.2rem + 1.25vw,2rem);
+  line-height:1.1;
+  overflow-wrap:normal;
 }
 
 ..featured-card__year{
@@ -912,7 +916,7 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
   grid-column:1/-1;
   min-width:0;
   margin:0;
-  font-size:clamp(3rem,9vw,9rem);
+  font-size:clamp(2.75rem,7vw,7rem);
   font-weight:500;
   letter-spacing:-.055em;
   line-height:.9;
@@ -934,6 +938,8 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
   border-bottom:1px solid var(--line);
 }
 .project-facts__item{grid-column:span 4;min-width:0;}
+/* A single Deliverables entry spans the facts row on the featured pages. */
+.project-facts__item:only-child{grid-column:1/-1;}
 .project-facts dt,.project-story h2{
   margin:0 0 .65rem;
   text-transform:uppercase;
@@ -3863,10 +3869,10 @@ body:has(.project-page) .site-footer {
   .site-footer .legal-links{margin:0}
   /* Title line lengths: no wrapping on the three featured project pages. */
   .project-intro__title{
-    font-size:clamp(1.65rem,8.2vw,3.9rem);
-    white-space:nowrap;
+    font-size:clamp(1.85rem,7vw,3.4rem);
+    white-space:normal;
     overflow-wrap:normal;
-    text-wrap:nowrap;
+    text-wrap:wrap;
   }
 }
 @media(max-width:380px){
@@ -3880,9 +3886,13 @@ body:has(.project-page) .site-footer {
 
 /* 2026-11-10: targeted mobile refinements. Desktop presentation is unchanged. */
 @media (max-width:767px) {
-  /* A small increase, retaining single-line titles and existing gutters. */
+  /* Descriptive featured titles must wrap at word boundaries on mobile. */
   .project-intro__title {
-    font-size:clamp(1.75rem,8.7vw,3.9rem);
+    font-size:clamp(1.85rem,7vw,3.4rem);
+    line-height:1.06;
+    white-space:normal;
+    text-wrap:wrap;
+    overflow-wrap:normal;
   }
 
   /* Let both contact actions share the available row width around OR. */
@@ -3921,7 +3931,7 @@ body:has(.project-page) .site-footer {
   }
 }
 @media (max-width:380px) {
-  .project-intro__title { font-size:8.2vw; }
+  .project-intro__title { font-size:clamp(1.7rem,7vw,2.2rem); }
 }
 
 /* On touchscreens, a tap must not leave a simulated mouse-hover state.
