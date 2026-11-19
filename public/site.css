@@ -555,9 +555,13 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
 }
 @media(max-width:767px){
   .about__mark{
-    --about-mark-size:38vw;
+    --about-mark-size:30vw;
     margin-left:clamp(.65rem,3vw,1rem);
     shape-margin:.35rem;
+  }
+  /* Three shallow layers keep the moving edge legible on narrow screens. */
+  .about__mark-layer:not(:nth-child(4)):not(:nth-child(5)):not(:nth-child(6)){
+    display:none;
   }
 }
 @media(prefers-reduced-motion:reduce){
@@ -568,7 +572,7 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
   }
   .about__mark-float{animation:none}
 }
-.about__copy p + p{
+.about__copy p ~ p{
   margin-top:1.25rem;
 }
 #main > .about ~ .work{
@@ -578,7 +582,7 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
   #main > .about:first-child{
     padding-top:calc(var(--mobile-header-height,4.5rem) + clamp(1rem,2.5vw,2rem));
   }
-  .about__copy p + p{
+  .about__copy p ~ p{
     margin-top:1rem;
   }
   #main > .about ~ .work{
