@@ -2,7 +2,7 @@
   "featured": [
     {
       "number": "01",
-      "slug": "achievers-2026",
+      "slug": "awards-and-recognition",
       "title": "Awards & Recognition",
       "category": "Campaigns",
       "type": "Event Identity",
@@ -17,34 +17,34 @@
         {
           "type": "group",
           "category": "editorial",
-          "title": "Living Bridge Magazine Cover",
+          "title": "Editorial Magazine Covers",
           "items": [
             {
               "type": "image",
               "src": "/img/work/achievers-2026/editorial/living-bridge-magazine-cover-front.webp",
-              "alt": "Living Bridge 2026 magazine front cover"
+              "alt": "Editorial magazine front cover"
             },
             {
               "type": "image",
               "src": "/img/work/achievers-2026/editorial/living-bridge-magazine-cover-back.webp",
-              "alt": "Living Bridge 2026 magazine back cover"
+              "alt": "Editorial magazine back cover"
             }
           ]
         },
         {
           "type": "group",
           "category": "editorial",
-          "title": "The Achievers Playbook cover",
+          "title": "Event Programme Covers",
           "items": [
             {
               "type": "image",
               "src": "/img/work/achievers-2026/editorial/booklet-cover-front.webp",
-              "alt": "Achievers event booklet front cover"
+              "alt": "Recognition programme event booklet front cover"
             },
             {
               "type": "image",
               "src": "/img/work/achievers-2026/editorial/booklet-cover-back.webp",
-              "alt": "Achievers event booklet back cover"
+              "alt": "Recognition programme event booklet back cover"
             }
           ]
         },
@@ -60,70 +60,70 @@
           "category": "digital",
           "title": "Deadline Extended",
           "src": "/img/work/achievers-2026/digital/deadline-extended.webp",
-          "alt": "Achievers deadline extended digital campaign post"
+          "alt": "Recognition programme deadline extended digital campaign post"
         },
         {
           "type": "image",
           "category": "digital",
-          "title": "I’m attending Achievers",
+          "title": "Attendance Announcement",
           "src": "/img/work/achievers-2026/digital/im-attending-post.webp",
-          "alt": "Achievers I'm attending digital campaign post"
+          "alt": "Attendance announcement digital campaign post"
         },
         {
           "type": "image",
           "category": "digital",
           "title": "Meet our 2026 Jury",
           "src": "/img/work/achievers-2026/digital/meet-our-jury-grid-post.webp",
-          "alt": "Achievers Meet Our Jury digital campaign post"
+          "alt": "Recognition programme jury digital campaign post"
         },
         {
           "type": "image",
           "category": "digital",
           "title": "Nominations Open",
           "src": "/img/work/achievers-2026/digital/nominations-now-open.webp",
-          "alt": "Achievers nominations open campaign post"
+          "alt": "Recognition programme nominations open campaign post"
         },
         {
           "type": "image",
           "category": "digital",
           "title": "Nominations Closing Soon",
           "src": "/img/work/achievers-2026/digital/nominations-closing-soon.webp",
-          "alt": "Achievers nominations closing soon campaign post"
+          "alt": "Recognition programme nominations closing soon campaign post"
         },
         {
           "type": "image",
           "category": "digital",
           "title": "Nominations Closed",
           "src": "/img/work/achievers-2026/digital/nominations-are-closed.webp",
-          "alt": "Achievers nominations closed campaign post"
+          "alt": "Recognition programme nominations closed campaign post"
         },
         {
           "type": "image",
           "category": "digital",
-          "title": "Chevening Outreach Email Boilerplate",
+          "title": "Partner Outreach Email",
           "src": "/img/work/achievers-2026/digital/outreach-email-boilerplate-chevening.webp",
-          "alt": "Achievers Chevening outreach email design"
+          "alt": "Partner outreach email design"
         },
         {
           "type": "image",
           "category": "digital",
-          "title": "UUKI Outreach Email Boilerplate",
+          "title": "Institutional Outreach Email",
           "src": "/img/work/achievers-2026/digital/achievers-email-boilerplate-uuki.webp",
-          "alt": "Achievers UUKI outreach email design"
+          "alt": "Institutional outreach email design"
         },
         {
           "type": "image",
           "category": "digital",
-          "title": "Work with NISAU email boilerplate",
+          "title": "Collaboration Outreach Email",
           "src": "/img/work/achievers-2026/digital/work-with-nisau-email.webp",
-          "alt": "Work with NISAU digital email design"
+          "alt": "Collaboration outreach digital email design"
         },
         {
           "type": "image",
           "category": "print",
           "title": "Partners leaflet",
           "src": "/img/work/achievers-2026/print/a4-leaflet.webp",
-          "alt": "Achievers A4 partners leaflet"
+          "alt": "Recognition programme A4 partners leaflet"
         },
         {
           "type": "group",
@@ -133,12 +133,12 @@
             {
               "type": "image",
               "src": "/img/work/achievers-2026/print/congratulations-front.webp",
-              "alt": "Achievers congratulations card front"
+              "alt": "Recognition programme congratulations card front"
             },
             {
               "type": "image",
               "src": "/img/work/achievers-2026/print/congratulations-back.webp",
-              "alt": "Achievers congratulations card back"
+              "alt": "Recognition programme congratulations card back"
             }
           ]
         },
@@ -147,21 +147,21 @@
           "category": "print",
           "title": "Share Your Moments Banner",
           "src": "/img/work/achievers-2026/print/share-your-moments-banner.webp",
-          "alt": "Achievers Share Your Moments event banner"
+          "alt": "Recognition programme Share Your Moments event banner"
         },
         {
           "type": "image",
           "category": "print",
-          "title": "Welcome to Achievers Roll-up",
+          "title": "Welcome Roll-up Banner",
           "src": "/img/work/achievers-2026/print/welcome-to-achievers-roll-up-banner.webp",
-          "alt": "Welcome to Achievers roll-up banner"
+          "alt": "Welcome to Recognition programme roll-up banner"
         },
         {
           "type": "image",
           "category": "print",
           "title": "Partners Roll-up Banner",
           "src": "/img/work/achievers-2026/print/partners-roll-up-banner.webp",
-          "alt": "Achievers partners roll-up banner"
+          "alt": "Recognition programme partners roll-up banner"
         },
         {
           "type": "group",
@@ -172,12 +172,12 @@
             {
               "type": "image",
               "src": "/img/work/achievers-2026/merch/achievers-ticket-front.jpg",
-              "alt": "Achievers event ticket front"
+              "alt": "Recognition programme event ticket front"
             },
             {
               "type": "image",
               "src": "/img/work/achievers-2026/merch/achievers-ticket-back.jpg",
-              "alt": "Achievers event ticket back"
+              "alt": "Recognition programme event ticket back"
             }
           ]
         },
@@ -189,12 +189,12 @@
             {
               "type": "image",
               "src": "/img/work/achievers-2026/merch/lanyard-mock-up-1.webp",
-              "alt": "Achievers lanyard mockup one"
+              "alt": "Recognition programme lanyard mockup one"
             },
             {
               "type": "image",
               "src": "/img/work/achievers-2026/merch/lanyard-mock-up-2.webp",
-              "alt": "Achievers lanyard mockup two"
+              "alt": "Recognition programme lanyard mockup two"
             }
           ]
         },
@@ -206,12 +206,12 @@
             {
               "type": "image",
               "src": "/img/work/achievers-2026/merch/tote-bag-design-front.webp",
-              "alt": "Achievers tote bag front design"
+              "alt": "Recognition programme tote bag front design"
             },
             {
               "type": "image",
               "src": "/img/work/achievers-2026/merch/tote-bag-design-back.webp",
-              "alt": "Achievers tote bag back design"
+              "alt": "Recognition programme tote bag back design"
             }
           ]
         }
@@ -223,7 +223,7 @@
     },
     {
       "number": "02",
-      "slug": "unity-cup-2026",
+      "slug": "football-tournament-identity",
       "title": "Football Tournament Identity",
       "category": "Campaigns",
       "type": "Social Campaign",
@@ -242,81 +242,81 @@
             {
               "type": "image",
               "src": "/img/work/unity-cup-2026/unity-cup-match-promo-1.webp",
-              "alt": "Unity Cup match promotion version one"
+              "alt": "Tournament match promotion version one"
             },
             {
               "type": "image",
               "src": "/img/work/unity-cup-2026/unity-cup-match-promo-2.webp",
-              "alt": "Unity Cup match promotion version two"
+              "alt": "Tournament match promotion version two"
             }
           ]
         },
         {
           "type": "group",
           "category": "campaign",
-          "title": "Reasons to Be at The Valley",
+          "title": "Match-day Venue Promotion",
           "items": [
             {
               "type": "image",
               "src": "/img/work/unity-cup-2026/reasons-to-be-at-valley-slide-1.webp",
-              "alt": "Reasons to be at The Valley slide one"
+              "alt": "Match-day venue promotion slide one"
             },
             {
               "type": "image",
               "src": "/img/work/unity-cup-2026/reasons-to-be-at-valley-slide-2.webp",
-              "alt": "Reasons to be at The Valley slide two"
+              "alt": "Match-day venue promotion slide two"
             },
             {
               "type": "image",
               "src": "/img/work/unity-cup-2026/reasons-to-be-at-valley-slide-3.webp",
-              "alt": "Reasons to be at The Valley slide three"
+              "alt": "Match-day venue promotion slide three"
             },
             {
               "type": "image",
               "src": "/img/work/unity-cup-2026/reasons-to-be-at-valley-slide-4.webp",
-              "alt": "Reasons to be at The Valley slide four"
+              "alt": "Match-day venue promotion slide four"
             },
             {
               "type": "image",
               "src": "/img/work/unity-cup-2026/reasons-to-be-at-valley-slide-5.webp",
-              "alt": "Reasons to be at The Valley slide five"
+              "alt": "Match-day venue promotion slide five"
             },
             {
               "type": "image",
               "src": "/img/work/unity-cup-2026/reasons-to-be-at-valley-slide-6.webp",
-              "alt": "Reasons to be at The Valley slide six"
+              "alt": "Match-day venue promotion slide six"
             },
             {
               "type": "image",
               "src": "/img/work/unity-cup-2026/reasons-to-be-at-valley-slide-7.webp",
-              "alt": "Reasons to be at The Valley slide seven"
+              "alt": "Match-day venue promotion slide seven"
             }
           ]
         },
         {
           "type": "group",
           "category": "campaign",
-          "title": "Blue Tigers Arrival",
+          "title": "Team Arrival Campaign",
           "items": [
             {
               "type": "image",
               "src": "/img/work/unity-cup-2026/unity-cup-blue-tigers-arrival-slide-1.webp",
-              "alt": "Unity Cup Blue Tigers arrival slide one"
+              "alt": "Team arrival campaign slide one"
             },
             {
               "type": "image",
               "src": "/img/work/unity-cup-2026/unity-cup-blue-tigers-arrival-slide-2.webp",
-              "alt": "Unity Cup Blue Tigers arrival slide two"
+              "alt": "Team arrival campaign slide two"
             },
             {
               "type": "image",
               "src": "/img/work/unity-cup-2026/unity-cup-blue-tigers-arrival-slide-3.webp",
-              "alt": "Unity Cup Blue Tigers arrival slide three"
+              "alt": "Team arrival campaign slide three"
             },
             {
               "type": "image",
               "src": "/img/work/unity-cup-2026/unity-cup-blue-tigers-arrival-slide-4.webp",
-              "alt": "Unity Cup Blue Tigers arrival slide four"
+              "alt": "Team arrival campaign slide four"
             }
           ]
         },
@@ -328,32 +328,32 @@
             {
               "type": "image",
               "src": "/img/work/unity-cup-2026/unity-cup-finals-promo-slide-1.webp",
-              "alt": "Unity Cup finals promotion slide one"
+              "alt": "Tournament finals promotion slide one"
             },
             {
               "type": "image",
               "src": "/img/work/unity-cup-2026/unity-cup-finals-promo-slide-2.webp",
-              "alt": "Unity Cup finals promotion slide two"
+              "alt": "Tournament finals promotion slide two"
             },
             {
               "type": "image",
               "src": "/img/work/unity-cup-2026/unity-cup-finals-promo-slide-3.webp",
-              "alt": "Unity Cup finals promotion slide three"
+              "alt": "Tournament finals promotion slide three"
             },
             {
               "type": "image",
               "src": "/img/work/unity-cup-2026/unity-cup-finals-promo-slide-4.webp",
-              "alt": "Unity Cup finals promotion slide four"
+              "alt": "Tournament finals promotion slide four"
             },
             {
               "type": "image",
               "src": "/img/work/unity-cup-2026/unity-cup-finals-promo-slide-5.webp",
-              "alt": "Unity Cup finals promotion slide five"
+              "alt": "Tournament finals promotion slide five"
             },
             {
               "type": "image",
               "src": "/img/work/unity-cup-2026/unity-cup-finals-promo-slide-6.webp",
-              "alt": "Unity Cup finals promotion slide six"
+              "alt": "Tournament finals promotion slide six"
             }
           ]
         },
@@ -365,69 +365,69 @@
             {
               "type": "image",
               "src": "/img/work/unity-cup-2026/unity-cup-who-are-you-bringing-slide-1.webp",
-              "alt": "Unity Cup Who Are You Bringing slide one"
+              "alt": "Tournament invitation slide one"
             },
             {
               "type": "image",
               "src": "/img/work/unity-cup-2026/unity-cup-who-are-you-bringing-slide-2.webp",
-              "alt": "Unity Cup Who Are You Bringing slide two"
+              "alt": "Tournament invitation slide two"
             },
             {
               "type": "image",
               "src": "/img/work/unity-cup-2026/unity-cup-who-are-you-bringing-slide-3.webp",
-              "alt": "Unity Cup Who Are You Bringing slide three"
+              "alt": "Tournament invitation slide three"
             },
             {
               "type": "image",
               "src": "/img/work/unity-cup-2026/unity-cup-who-are-you-bringing-slide-5.webp",
-              "alt": "Unity Cup Who Are You Bringing slide five"
+              "alt": "Tournament invitation slide five"
             },
             {
               "type": "image",
               "src": "/img/work/unity-cup-2026/unity-cup-who-are-you-bringing-slide-6.webp",
-              "alt": "Unity Cup Who Are You Bringing slide six"
+              "alt": "Tournament invitation slide six"
             },
             {
               "type": "image",
               "src": "/img/work/unity-cup-2026/unity-cup-who-are-you-bringing-slide-7.webp",
-              "alt": "Unity Cup Who Are You Bringing slide seven"
+              "alt": "Tournament invitation slide seven"
             }
           ]
         },
         {
           "type": "image",
           "category": "campaign",
-          "title": "Unity Cup Promotion",
+          "title": "Tournament Promotion",
           "src": "/img/work/unity-cup-2026/unity-cup-promo.webp",
-          "alt": "Unity Cup promotional artwork"
+          "alt": "Tournament promotional artwork"
         },
         {
           "type": "image",
           "category": "campaign",
           "title": "Semi-finals Promotion",
           "src": "/img/work/unity-cup-2026/unity-cup-semi-finals-promo.webp",
-          "alt": "Unity Cup semi-finals promotional artwork"
+          "alt": "Tournament semi-finals promotional artwork"
         },
         {
           "type": "image",
           "category": "campaign",
           "title": "Giveaway Reminder",
           "src": "/img/work/unity-cup-2026/unity-cup-giveaway-reminder.webp",
-          "alt": "Unity Cup giveaway reminder artwork"
+          "alt": "Tournament giveaway reminder artwork"
         },
         {
           "type": "video",
           "category": "motion",
-          "title": "Unity cup promo 01",
+          "title": "Tournament Promo 01",
           "src": "/video/unity-cup-2026-promo-01.mp4",
-          "alt": "Unity Cup promotional motion piece one"
+          "alt": "Tournament promotional motion piece one"
         },
         {
           "type": "video",
           "category": "motion",
-          "title": "Unity cup promo 02",
+          "title": "Tournament Promo 02",
           "src": "/video/unity-cup-2026-promo-02.mp4",
-          "alt": "Unity Cup promotional motion piece two"
+          "alt": "Tournament promotional motion piece two"
         }
       ],
       "deliverables": "Social media posts, promotional reels, banners, and posters",
@@ -437,7 +437,7 @@
     },
     {
       "number": "03",
-      "slug": "welcome-to-ldn-2025",
+      "slug": "student-welcome-campaign",
       "title": "Student Welcome Campaign",
       "category": "Identity",
       "type": "Event Campaign",
@@ -451,23 +451,23 @@
         {
           "type": "image",
           "category": "campaign",
-          "title": "LDN 2025",
+          "title": "Student Welcome Artwork",
           "src": "/img/work/ldn-2025/ldn-2025.webp",
-          "alt": "LDN 2025 campaign artwork"
+          "alt": "Student welcome campaign artwork"
         },
         {
           "type": "image",
           "category": "campaign",
-          "title": "Calling All Desi Students",
+          "title": "Student Outreach Artwork",
           "src": "/img/work/ldn-2025/calling-all-desi-students.webp",
-          "alt": "Calling All Desi Students campaign artwork"
+          "alt": "Student outreach campaign artwork"
         },
         {
           "type": "image",
           "category": "campaign",
           "title": "Eventbrite Banner",
           "src": "/img/work/ldn-2025/eventbrite-banner.webp",
-          "alt": "LDN 2025 Eventbrite banner"
+          "alt": "Student welcome Eventbrite banner"
         },
         {
           "type": "group",
@@ -477,59 +477,59 @@
             {
               "type": "image",
               "src": "/img/work/ldn-2025/black-t-shirt-front.webp",
-              "alt": "LDN 2025 black T-shirt front"
+              "alt": "Student welcome black T-shirt front"
             },
             {
               "type": "image",
               "src": "/img/work/ldn-2025/black-t-shirt-back.webp",
-              "alt": "LDN 2025 black T-shirt back"
+              "alt": "Student welcome black T-shirt back"
             },
             {
               "type": "image",
               "src": "/img/work/ldn-2025/grey-t-shirt-front.webp",
-              "alt": "LDN 2025 grey T-shirt front"
+              "alt": "Student welcome grey T-shirt front"
             },
             {
               "type": "image",
               "src": "/img/work/ldn-2025/grey-t-shirt-back.webp",
-              "alt": "LDN 2025 grey T-shirt back"
+              "alt": "Student welcome grey T-shirt back"
             }
           ]
         },
         {
           "type": "group",
           "category": "campaign",
-          "title": "Welcome to LDN",
+          "title": "Welcome Campaign Series",
           "items": [
             {
               "type": "image",
               "src": "/img/work/ldn-2025/welcome-to-ldn-1.webp",
-              "alt": "Welcome to LDN campaign slide one"
+              "alt": "Student welcome campaign slide one"
             },
             {
               "type": "image",
               "src": "/img/work/ldn-2025/welcome-to-ldn-2.webp",
-              "alt": "Welcome to LDN campaign slide two"
+              "alt": "Student welcome campaign slide two"
             },
             {
               "type": "image",
               "src": "/img/work/ldn-2025/welcome-to-ldn-3.webp",
-              "alt": "Welcome to LDN campaign slide three"
+              "alt": "Student welcome campaign slide three"
             },
             {
               "type": "image",
               "src": "/img/work/ldn-2025/welcome-to-ldn-4.webp",
-              "alt": "Welcome to LDN campaign slide four"
+              "alt": "Student welcome campaign slide four"
             },
             {
               "type": "image",
               "src": "/img/work/ldn-2025/welcome-to-ldn-5.webp",
-              "alt": "Welcome to LDN campaign slide five"
+              "alt": "Student welcome campaign slide five"
             },
             {
               "type": "image",
               "src": "/img/work/ldn-2025/welcome-to-ldn-7.webp",
-              "alt": "Welcome to LDN campaign slide seven"
+              "alt": "Student welcome campaign slide seven"
             }
           ]
         },
@@ -539,14 +539,14 @@
           "title": "3 Days to Go",
           "src": "/video/welcome-to-ldn-2025-3-days-to-go.mp4",
           "poster": "/img/work/ldn-2025/3-days-to-go-thumb.webp",
-          "alt": "LDN 2025 three days to go motion piece"
+          "alt": "Student welcome three days to go motion piece"
         },
         {
           "type": "video",
           "category": "motion",
-          "title": "First Night in London",
+          "title": "Event Opening Reel",
           "src": "/video/welcome-to-ldn-2025-1st-night-in-london.mp4",
-          "alt": "LDN 2025 First Night in London motion piece"
+          "alt": "Student welcome event opening motion piece"
         },
         {
           "type": "video",
@@ -554,7 +554,7 @@
           "title": "Highlight Reel",
           "src": "/video/welcome-to-ldn-2025-highlight-reel.mp4",
           "poster": "/img/work/ldn-2025/highlight-reel-thumb.webp",
-          "alt": "LDN 2025 event highlight reel"
+          "alt": "Student welcome event highlight reel"
         }
       ],
       "deliverables": "Social media posts, promotional reels, banners, posters, print collateral, merchandise",

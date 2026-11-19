@@ -9,5 +9,37 @@
         }
       ]
     }
+  ],
+  "redirects": [
+    {
+      "source": "/work/achievers-2026",
+      "destination": "/work/awards-and-recognition/",
+      "permanent": true
+    },
+    {
+      "source": "/work/unity-cup-2026",
+      "destination": "/work/football-tournament-identity/",
+      "permanent": true
+    },
+    {
+      "source": "/work/welcome-to-ldn-2025",
+      "destination": "/work/student-welcome-campaign/",
+      "permanent": true
+    },
+    {
+      "source": "/work/achievers-2026/",
+      "destination": "/work/awards-and-recognition/",
+      "permanent": true
+    },
+    {
+      "source": "/work/unity-cup-2026/",
+      "destination": "/work/football-tournament-identity/",
+      "permanent": true
+    },
+    {
+      "source": "/work/welcome-to-ldn-2025/",
+      "destination": "/work/student-welcome-campaign/",
+      "permanent": true
+    }
   ]
 }
