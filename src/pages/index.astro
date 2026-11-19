@@ -47,14 +47,17 @@ import SectionFooter from "../components/SectionFooter.astro";
         const measure = () => {
           cancelAnimationFrame(frame);
           frame = requestAnimationFrame(() => {
+            const mobile = window.matchMedia("(max-width: 767px)").matches;
+            // Keep the desktop float at the beginning. On mobile, let the
+            // introduction span the whole line before the mark enters the flow.
+            const nextParagraph = paragraphs[mobile ? 1 : 0];
+            if (mark.nextElementSibling !== nextParagraph) copy.insertBefore(mark, nextParagraph);
             const copyWidth = copy.getBoundingClientRect().width;
-            // Size against the complete About text: first line of the first
-            // paragraph through the final line of the last paragraph.
+            // Measure all paragraphs without changing the desktop sizing.
             const first = paragraphs[0].getBoundingClientRect();
             const last = paragraphs[paragraphs.length - 1].getBoundingClientRect();
             const textHeight = Math.max(0, last.bottom - first.top);
-            const mobile = window.matchMedia("(max-width: 767px)").matches;
-            const available = copyWidth * (mobile ? 0.38 : 0.36);
+            const available = copyWidth * (mobile ? 0.30 : 0.36);
             // Do not let the float outgrow the text column and reserve empty space below.
             const size = Math.min(textHeight, available, 240);
             const previous = parseFloat(mark.style.getPropertyValue("--about-mark-size")) || 0;
