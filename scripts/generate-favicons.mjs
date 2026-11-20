@@ -20,7 +20,7 @@ for (const [theme, sourceName, background] of [
       .toBuffer();
     const dest = join(directory, `favicon-${size}-${theme}.png`);
     await sharp({
-      create: { width: size, height: size, channels: 4, background },
+      create: { width: size, height: size, channels: 4, background: size === 32 ? { r: 0, g: 0, b: 0, alpha: 0 } : background },
     })
       .composite([{ input: image, left: inset, top: inset }])
       .png()
