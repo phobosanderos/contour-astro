@@ -556,32 +556,15 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
 @media(max-width:767px){
   .about__copy{min-width:0;max-width:100%}
   .about__mark{
-    --about-mark-size:40vw;
-    margin-left:clamp(.5rem,2.5vw,.85rem);
-    shape-margin:.25rem;
+    --about-mark-size:46vw;
+    margin-left:clamp(.25rem,1vw,.5rem);
+    shape-outside:circle(47% at 50% 50%);
+    shape-margin:0;
   }
   /* Three shallow layers keep the moving edge legible on narrow screens. */
   .about__mark-layer:not(:nth-child(4)):not(:nth-child(5)):not(:nth-child(6)){
     display:none;
   }
-}
-@media(max-width:520px){
-  /* A taller elliptical exclusion creates a gradual text wrap across the
-     first two paragraphs; the visible emblem remains its natural square. */
-  .about__mark{
-    height:calc(var(--about-mark-size) * 1.55);
-    shape-outside:ellipse(49% 49% at 50% 50%);
-  }
-  .about__mark-float{
-    inset:50% 0 auto;
-    height:var(--about-mark-size);
-    transform:translateY(-50%);
-    animation:about-mark-float-mobile 5.5s ease-in-out infinite;
-  }
-}
-@keyframes about-mark-float-mobile{
-  0%,100%{transform:translateY(-50%)}
-  50%{transform:translateY(calc(-50% - 6px))}
 }
 @media(prefers-reduced-motion:reduce){
   .about__mark-rotor{
