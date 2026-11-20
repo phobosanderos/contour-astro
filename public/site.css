@@ -555,7 +555,7 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
 }
 @media(max-width:767px){
   .about__mark{
-    --about-mark-size:30vw;
+    --about-mark-size:38vw;
     margin-left:clamp(.65rem,3vw,1rem);
     shape-margin:.35rem;
   }
