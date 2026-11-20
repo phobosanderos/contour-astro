@@ -1,4 +1,4 @@
-// Generate iOS-compatible PNG favicons from the existing original SVG artwork.
+// Generate transparent PNG favicons from the existing original SVG artwork.
 // Run before Astro builds. No source SVGs are altered.
 import sharp from "sharp";
 import { readFile, mkdir } from "node:fs/promises";
@@ -7,9 +7,9 @@ import { join } from "node:path";
 const directory = join(process.cwd(), "public", "img");
 const sizes = [32, 180, 192];
 await mkdir(directory, { recursive: true });
-for (const [theme, sourceName, background] of [
-  ["light", "favicon-dark.svg", "#f4f4f0"],
-  ["dark", "favicon-light.svg", "#0b0b0c"],
+for (const [theme, sourceName] of [
+  ["light", "favicon-dark.svg"],
+  ["dark", "favicon-light.svg"],
 ]) {
   const svg = await readFile(join(directory, sourceName));
   for (const size of sizes) {
@@ -20,7 +20,7 @@ for (const [theme, sourceName, background] of [
       .toBuffer();
     const dest = join(directory, `favicon-${size}-${theme}.png`);
     await sharp({
-      create: { width: size, height: size, channels: 4, background },
+      create: { width: size, height: size, channels: 4, background: { r: 0, g: 0, b: 0, alpha: 0 } },
     })
       .composite([{ input: image, left: inset, top: inset }])
       .png()

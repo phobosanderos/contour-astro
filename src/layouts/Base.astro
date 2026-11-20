@@ -63,9 +63,10 @@ const buildStamp = Date.now();
     <meta name="twitter:image" content={ogImage}>
     <meta name="twitter:image:alt" content={imageAlt}>
     {structuredData && <script type="application/ld+json" set:html={JSON.stringify(structuredData).replace(/</g, "\\u003c")} />}
-    <!-- Raster icons support Safari's iPhone tab bar and Apple home-screen UI. -->
-    <link rel="icon" type="image/svg+xml" href="/img/favicon-dark.svg?v=5" id="site-favicon">
-    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon-180-light.png?v=4" id="site-apple-touch-icon">
+    <!-- Transparent PNG for mobile tabs; SVG for supporting browsers; opaque touch icon for iOS Home Screen. -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon-32-light.png?v=8" id="site-favicon-png">
+    <link rel="icon" type="image/svg+xml" sizes="any" href="/img/favicon-dark.svg?v=8" id="site-favicon">
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon-180-light.png?v=8" id="site-apple-touch-icon">
     <script is:inline>
       function updateFavicon() {
         const root = document.documentElement;
@@ -73,10 +74,13 @@ const buildStamp = Date.now();
           (!root.dataset.theme && window.matchMedia("(prefers-color-scheme: dark)").matches);
         const scheme = darkMode ? "dark" : "light";
         const favicon = document.getElementById("site-favicon");
+        const pngFavicon = document.getElementById("site-favicon-png");
         const touchIcon = document.getElementById("site-apple-touch-icon");
-        const iconPath = scheme === "dark" ? "/img/favicon-light.svg?v=5" : "/img/favicon-dark.svg?v=5";
-        const touchPath = `/img/favicon-180-${scheme}.png?v=4`;
+        const iconPath = scheme === "dark" ? "/img/favicon-light.svg?v=8" : "/img/favicon-dark.svg?v=8";
+        const pngPath = `/img/favicon-32-${scheme}.png?v=8`;
+        const touchPath = `/img/favicon-180-${scheme}.png?v=8`;
         if (favicon && favicon.getAttribute("href") !== iconPath) favicon.setAttribute("href", iconPath);
+        if (pngFavicon && pngFavicon.getAttribute("href") !== pngPath) pngFavicon.setAttribute("href", pngPath);
         if (touchIcon && touchIcon.getAttribute("href") !== touchPath) touchIcon.setAttribute("href", touchPath);
       }
       updateFavicon();
