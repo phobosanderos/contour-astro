@@ -555,7 +555,7 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
 }
 @media(max-width:767px){
   .about__mark{
-    --about-mark-size:38vw;
+    --about-mark-size:44vw;
     margin-left:clamp(.65rem,3vw,1rem);
     shape-margin:.35rem;
   }
@@ -603,11 +603,11 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
   margin-bottom:clamp(2.5rem,5vw,4.5rem);
 }
 
-/* Keep the confidentiality note below the section divider, with no negative offset. */
+/* Confidentiality note follows the featured cards, before the Archive. */
 #work .work__confidentiality-note{
   width:100%;
   max-width:none;
-  margin:0 0 clamp(1.75rem,3vw,2.75rem);
+  margin:clamp(1.25rem,2.5vw,2rem) 0 0;
   color:var(--ink);
   opacity:.8;
   font-size:var(--step-0);
@@ -615,11 +615,6 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
   font-style:italic;
   line-height:1.55;
   text-wrap:wrap;
-}
-@media(max-width:767px){
-  #work .work__confidentiality-note{
-    margin-bottom:1.75rem;
-  }
 }
 
 .featured-projects{
@@ -912,6 +907,9 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
 
 .work__archive{
   margin-top:clamp(5rem,9vw,9rem);
+}
+#work .work__confidentiality-note + .work__archive{
+  margin-top:clamp(2.5rem,4vw,4rem);
 }
 
 .work__archive-head{
