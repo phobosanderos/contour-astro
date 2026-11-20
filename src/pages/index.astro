@@ -51,13 +51,14 @@ import SectionFooter from "../components/SectionFooter.astro";
             // Start the float with the first paragraph on every viewport.
             if (mark.nextElementSibling !== paragraphs[0]) copy.insertBefore(mark, paragraphs[0]);
             const copyWidth = copy.getBoundingClientRect().width;
-            // Measure all paragraphs without changing the desktop sizing.
             const first = paragraphs[0].getBoundingClientRect();
             const last = paragraphs[paragraphs.length - 1].getBoundingClientRect();
             const textHeight = Math.max(0, last.bottom - first.top);
-            const available = copyWidth * (mobile ? 0.46 : 0.36);
-            // Do not let the float outgrow the text column and reserve empty space below.
-            const size = Math.min(textHeight, available, 240);
+            // On mobile, match the first paragraph's rendered height.
+            // Limit width to preserve room for legible wrapped text.
+            const size = mobile
+              ? Math.min(first.height, copyWidth * 0.54)
+              : Math.min(textHeight, copyWidth * 0.36, 240);
             const previous = parseFloat(mark.style.getPropertyValue("--about-mark-size")) || 0;
             if (Math.abs(previous - size) > 1) mark.style.setProperty("--about-mark-size", size + "px");
           });
