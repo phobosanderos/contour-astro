@@ -492,7 +492,7 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
   opacity:.8;
   font-size:var(--step-0);
   font-weight:400;
-  line-height:1.55;
+  line-height:1.5;
 }
 .about__copy p{
   text-wrap:wrap;
@@ -1581,6 +1581,14 @@ html.has-cursor .project-lightbox a{
   grid-column:8/span 4;
   align-self:center;
   opacity:.8;
+}
+/* Supporting typography: preserve the existing mobile size while using
+   a restrained 16px body size for About and Services on larger screens. */
+@media (min-width:768px){
+  .about__copy,
+  .service__body{
+    font-size:1rem;
+  }
 }
 
 .service__arrow{
