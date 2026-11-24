@@ -910,8 +910,13 @@ html.has-cursor,html.has-cursor *{cursor:none!important}
 .work__archive{
   margin-top:clamp(5rem,9vw,9rem);
 }
+/* The confidentiality note and Archive should have one spacing interval,
+   not the container margin plus the heading's own top margin. */
 #work .work__confidentiality-note + .work__archive{
-  margin-top:clamp(2.5rem,4vw,4rem);
+  margin-top:clamp(1.25rem,2vw,1.75rem);
+}
+#work .work__confidentiality-note + .work__archive > .work__archive-head{
+  margin-top:0;
 }
 
 .work__archive-head{
